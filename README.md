@@ -23,7 +23,6 @@ Repo del proyecto
             </li>
         </ul>
     </li>
-
             <li>
                 Taskapi (PDO, API)
                 <br>
