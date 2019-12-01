@@ -3,6 +3,15 @@ Repo del proyecto
 <h2>POR MOTIVOS DE SEGURIDAD, LAS CONTRASEÑAS HAN SIDO RETIRADAS DE LA REPO, PARA PODER COMPROBAR FUNCIONALIDADES, HA DE PEDIRSE LA CONTRASEÑA </h2>
 <h1>Esquema de la base de datos</h1>
 <img src="esquema.jpg" style="text-align: center;">
+<h1>Enlaces al proyecto</h1>
+<ul>
+    <li>
+        Proyecto publicado: <a href="nukazoku.albertogomp.es" target="_blank">Web kazoku</a>
+    </li>
+     <li>
+        API publicada: <a href="taskapi.albertogomp.es" target="_blank">Web Taskapi</a>
+    </li>
+</ul>
 <h1>Listado de funcionalidades disponibles</h1>
 <small>Actualmente se está realizando una conversión de MySQLi a PDO en las consultas, al lado de cada apartado se puede ver que acciones se relizan con PDO o con MySQL</small>
 <h2>Página de Inicio</h2>
