@@ -9,7 +9,7 @@ Repo del proyecto
         Proyecto publicado: <a href="http://nukazoku.albertogomp.es" target="_blank">Web kazoku</a>
     </li>
      <li>
-        API publicada: <a href="http://taskapi.albertogomp.es/taskapi.php" target="_blank">Web Taskapi</a>
+        API publicada: <a href="http://taskapi.albertogomp.es/Taskapi.php" target="_blank">Web Taskapi</a>
     </li>
 </ul>
 <h1>Listado de funcionalidades disponibles</h1>
