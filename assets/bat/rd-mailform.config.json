@@ -1,0 +1,8 @@
+{
+  "useSmtp": true,
+  "host": "smtp.clubkazoku.es",
+  "port": 465,
+  "username": "backendemailer@clubkazoku.es",
+  "password": "Akvbsh^))F7o",
+  "recipientEmail": "desarrollo@clubkazoku.es"
+}

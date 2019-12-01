@@ -1,0 +1,139 @@
+<?php
+session_start();
+if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) ){
+    header('Location: ../../../login.php');
+}
+if ($_SESSION['Rango']>=2  ){
+    header('Location: ../../../login.php');
+}
+if ($_SESSION['Confirmado']!=1){
+    header('Location: ../../../login.php');
+}
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nueva noticia - Kazoku</title>
+    <?php include 'componentes/commonhead.php'; ?>
+
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <?php include 'componentes/nav.php'; ?>
+
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <?php include 'componentes/navbar.php'; ?>
+
+            <div class="container-fluid">
+
+                <!-- Start: Chart -->
+                <div class="form-signin">
+                    <div class="text-center mb-4">
+                        <img class="mb-4" src="assets/img/Logo/logo-judo-93x94.png" alt="" width="72" height="72">
+                        <h1 class="h3 mb-3 font-weight-normal">Escribir nueva noticia</h1>
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputPassword">Titulo de la noticia</label>
+                        <textarea class="form-control" type="text" name="titulo" id="titulo" rows="1" required></textarea>
+                        <div class="text-right"><span id="caracterest" class="valid-text pt-3" id="caracterest"></span></div>
+
+
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputPassword">Cuerpo de la noticia</label>
+                        <textarea class="form-control" type="text" name="mensaje" id="mensaje" rows="6" required></textarea>
+                        <div class="text-right"><span id="caracteres" class="valid-text pt-3" id="caracteres"></span></div>
+
+                    </div>
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <select class="form-control form-control-md" id="publica">
+                                <option selected value="0">Privada</option>
+                                <option value="1">Pública</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div id="message"></div>
+                    <button class="btn btn-lg btn-primary btn-block" id="enviar">Publicar</button>
+                </div>
+                <!-- End: Chart -->
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <?php include 'componentes/footer.php'; ?>
+        <?php include 'componentes/commonscripts.php'; ?>
+        <script>
+            $("#mensaje").on('keypress', function() {
+                var limite = 5000;
+                $("#mensaje").attr('maxlength', limite);
+                var caracteres = $(this).val().length;
+
+                if(caracteres<limite){
+                    caracteres++;
+                    if(caracteres >= 255){
+                        $('#caracteres').text(caracteres+"/"+limite+" caracteres" );
+                    }
+
+                }
+
+            });
+            $("#titulo").on('keypress', function() {
+                var limite = 255;
+                $("#titulo").attr('maxlength', limite);
+                var caracteres = $(this).val().length;
+
+                if(caracteres<limite){
+                    caracteres++;
+                    if(caracteres >= 100){
+                        $('#caracterest').text(caracteres+"/"+limite+" caracteres" );
+                    }
+
+                }
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#enviar").click(function(){
+                    var titulo = $("#titulo").val().trim();
+                    var cuerpo = $("#mensaje").val().trim();
+                    var publico = $("#publica").val().trim();
+                    var Autor = "<?=$_SESSION['name'];?>";
+                    alert (Autor);
+                    if( cuerpo != "" && titulo != "" && (publico==1 || publico == 0) &&Autor!=-"" ){
+                        $.ajax({
+                            url:'./form/enviarNoticia.php',
+                            type:'post',
+                            data:{titulo:titulo,cuerpo:cuerpo,publico:publico,Autor:Autor},
+                            success:function(response){
+                                if(response == 0){
+                                    var msg = "Noticia no enviada, revise los datos";
+                                }else if(response == 1){
+                                    var msg = "10/10";
+                                    window.location = "../index.php";
+                                }
+                                $("#message").html('<h1 class="alert alert-danger">'+msg+'</h1>');
+                            }
+
+                        });
+                    }
+                });
+
+            });
+        </script>
+</body>
+
+</html>
