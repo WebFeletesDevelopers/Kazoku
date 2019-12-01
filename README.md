@@ -118,7 +118,6 @@ Repo del proyecto
                                 El usuario puede ver sus datos de usuario (nickname, correo electrónico, nombre y apellidos)
                             </li>
                         </ul>
-
                     </li>
                     <li>
                         El usuario puede ver sus datos de dirección.
