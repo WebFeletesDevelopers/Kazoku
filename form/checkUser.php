@@ -12,7 +12,11 @@ $uname = $_POST['username'];
 $password = $_POST['password'];
 
 if ($uname != "" && $password != ""){
-    $usuario = selectOne("users");
+    $sql = "SELECT * FROM users WHERE username = '".$uname."'";
+    $bd = crear();
+    $query = $bd->query($sql);
+    $usuario = $query->fetchObject();
+
     //$sql_query = "SELECT * FROM users WHERE username='".$uname."'";
     //$result = mysqli_query($con,$sql_query);
     //$row = mysqli_fetch_array($result);
@@ -47,18 +51,24 @@ if ($uname != "" && $password != ""){
         $_SESSION['Nombre']=$usuario->name;
         $_SESSION['Apellido1']=$usuario->Apellido1;
         $_SESSION['Apellido2']=$usuario->Apellido2;
-        $_SESSION['CodUsu'] = $usuario->Codusu;
+        $_SESSION['CodUsu'] = $usuario->CodUsu;
+        $_SESSION["ApiKey"] = $usuario->username;
+
+        $sql = "SELECT * FROM Verification WHERE  Uname ='".$usuario->username."'";
+        $verify = $bd->query($sql);
+        $ApiKey = $verify->fetchObject();
         //$sql1 = 'select * from alumno where CodUsu = ' . $row['CodUsu'];
         //$query = $con->query($sql1);
+
         if(!isset($bd)){
             $bd = crear();
         }
         $sql = 'SELECT * FROM alumno WHERE CodUsu = '.$usuario->CodUsu;
         $sentencia = $bd->query($sql);
         $alumno = $sentencia->fetchObject();
-        if(count($alumno)>0){
-            $sesion->setNombre($alumno->name);
-            $_SESSION['Nombre']=$alumno->name;
+        if(isset($alumno)){
+            //$sesion->setNombre($alumno->name);
+            //$_SESSION['Nombre']=$alumno->name;
 
         }
         else{
