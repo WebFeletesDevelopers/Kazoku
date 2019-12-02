@@ -23,7 +23,8 @@
         if(isset($_SESSION['Rango'])) {
             if ($_SESSION['Rango'] < 2) {
                 echo '
-                 <button class="btn btn-danger container-fluid" href="borrar.php?id=' . $noticia->CodNot . '"  type="submit" >Borrar</button>';
+                
+                 <button class="btn btn-danger container-fluid" href="../../borrar.php?CodNot=' .$noticia->CodNot.'"  type="submit" >Borrar</button>';
             }
         }
         ?>

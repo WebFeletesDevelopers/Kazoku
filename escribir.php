@@ -112,7 +112,6 @@ if ($_SESSION['Confirmado']!=1){
                     var cuerpo = $("#mensaje").val().trim();
                     var publico = $("#publica").val().trim();
                     var Autor = "<?=$_SESSION['name'];?>";
-                    alert (Autor);
                     if( cuerpo != "" && titulo != "" && (publico==1 || publico == 0) &&Autor!=-"" ){
                         $.ajax({
                             url:'./form/enviarNoticia.php',
