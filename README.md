@@ -145,7 +145,6 @@ Repo del proyecto
                             <li>
                                 El usuario puede ver el teléfono del profesor
                             </li>
-
                         </ul>
                     </li>
                     <li>
