@@ -1,0 +1,30 @@
+version: "3.4"
+services:
+  nginx:
+    build:
+      context: cfg
+      dockerfile: docker-images/dev/nginx.Dockerfile
+    ports:
+    - "8080:80"
+    volumes:
+    - ".:/code"
+
+  php-fpm:
+    build:
+      context: cfg
+      dockerfile: docker-images/dev/php-fpm.Dockerfile
+    volumes:
+    - ".:/code"
+
+  db:
+    image: mariadb:10.4
+    volumes:
+      - "kazoku_database_testing:/var/lib/mysql"
+      - "./cfg/db:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'devel'
+      MYSQL_DATABASE: 'kazoku'
+    ports:
+    - "3306:3306"
+volumes:
+  kazoku_database_testing:

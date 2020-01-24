@@ -12,6 +12,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+USE kazoku;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -288,6 +290,37 @@ ALTER TABLE `tutor`
 --
 ALTER TABLE `users`
   MODIFY `CodUsu` int(11) NOT NULL AUTO_INCREMENT;
+
+
+--
+-- Table structure for table `todo`
+--
+
+CREATE TABLE `todo` (
+                        `TaskCode` int(11) NOT NULL,
+                        `Name` varchar(100) DEFAULT NULL,
+                        `Progress` tinyint(3) NOT NULL DEFAULT 0,
+                        `Comments` text DEFAULT NULL,
+                        `DeathLine` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `todo` (`TaskCode`, `Name`, `Progress`, `Comments`, `DeathLine`) VALUES
+(33, 'Rediseño de interfaces', 80, '', NULL),
+(32, 'Gestión de cuentas', 76, '', NULL),
+(31, 'Conversión a PDO', 80, '', NULL),
+(37, 'mykolan', 101, 'Verificación para Antonio', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `todo`
+--
+ALTER TABLE `todo`
+    ADD PRIMARY KEY (`TaskCode`);
+
 
 --
 -- AUTO_INCREMENT for table `Verification`
