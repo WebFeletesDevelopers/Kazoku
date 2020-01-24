@@ -53,11 +53,11 @@
                                 <input class="form-input" id="form-login-name-1" type="text" name="username" data-constraints="@Required">
                             </div>
                             <div class="form-wrap">
-                                <label class="form-label" for="form-login-password-1" id="txt_pwd" name="txt_pwd">Contraseña</label>
+                                <label class="form-label" for="form-login-password-1" id="txt_pwd" name="txt_pwd">Contraseï¿½a</label>
                                 <input class="form-input" id="form-login-password-1" type="password" name="password" data-constraints="@Required">
                             </div>
                             <label class="checkbox-inline checkbox-inline-lg checkbox-light">
-                                <input name="input-checkbox-1" value="checkbox-1" type="checkbox">Mantener sesión iniciada
+                                <input name="input-checkbox-1" value="checkbox-1" type="checkbox">Mantener sesiï¿½n iniciada
                             </label>
                             <input type="button" value="Submit" name="but_submit" id="but_submit" />
 <!--<!--                            <button class="button button-lg button-primary button-block" value="Submit" name="but_submit" id="but_submit" type="submit">Iniciar sesi?n</button>

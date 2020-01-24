@@ -421,15 +421,15 @@
 				},
 				{
 					type: regula.Constraint.Email,
-					newMessage: "El email no es válido"
+					newMessage: "El email no es vï¿½lido"
 				},
 				{
 					type: regula.Constraint.Numeric,
-					newMessage: "Solo números"
+					newMessage: "Solo nï¿½meros"
 				},
 				{
 					type: regula.Constraint.Selected,
-					newMessage: "Elije una opción"
+					newMessage: "Elije una opciï¿½n"
 				}
 			];
 

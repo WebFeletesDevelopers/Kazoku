@@ -8,11 +8,11 @@
                             <div class="unit-left"><a class="brand brand-md" href="../index.php"><img class="brand-logo " src="../assets/img/Logo/logo-judo-93x94.png" alt="" width="81" height="81"/></a>
                                 <div class="group-item">
                                     <h4 class="letter-spacing-01">Kazoku</h4>
-                                    <p class="text-style-4">Málaga</p>
+                                    <p class="text-style-4">Mï¿½laga</p>
                                 </div>
                             </div>
                             <div class="unit-body">
-                                <p>Kazoku es un club de judo <br class="d-none d-xxl-block"> Aqui habria que poner una descripción corta</p>
+                                <p>Kazoku es un club de judo <br class="d-none d-xxl-block"> Aqui habria que poner una descripciï¿½n corta</p>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                                     <div class="unit-left"><img class="icon-image" src="assets/img/logo/logo-judo-93x94.png" alt="" width="38" height="35"/>
                                     </div>
                                     <div class="unit-body">
-                                        <h6>¡Síguenos!</h6>
+                                        <h6>ï¿½Sï¿½guenos!</h6>
                                         <ul class="list-inline list-inline-xs">
                                             <li><a class="icon icon-default fa fa-facebook" href="#"></a></li>
                                             <li><a class="icon icon-default fa fa-twitter" href="#"></a></li>
@@ -55,7 +55,7 @@
         <div class="container">
             <div class="row row-50">
                 <div class="col-lg-4">
-                    <h5>Galería</h5><br><small>Pendiente de añadir fotos</small>
+                    <h5>Galerï¿½a</h5><br><small>Pendiente de aï¿½adir fotos</small>
                     <article class="gallery" data-lightgallery="group">
                       <!--  --><?php /*include '../Kazoku/php/UserData.php'; */?>
 
@@ -71,7 +71,7 @@
                                     <!-- Badge-->
                                     <div class="badge badge-orange">Fanjyda
                                     </div>
-                                    <p class="post-classic-title"><a href="https://fanjyda.com/?page_id=274" target="_blank">Últimas noticias</a></p>
+                                    <p class="post-classic-title"><a href="https://fanjyda.com/?page_id=274" target="_blank">ï¿½ltimas noticias</a></p>
                                     <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
                                         <time datetime="2019">26 septiembre 2019</time>
                                     </div>
@@ -83,9 +83,9 @@
                             <article class="post-classic">
                                 <div class="post-classic-main">
                                     <!-- Badge-->
-                                    <div class="badge badge-red">Federación Española</span>
+                                    <div class="badge badge-red">Federaciï¿½n Espaï¿½ola</span>
                                     </div>
-                                    <p class="post-classic-title"><a href="http://www.rfejudo.com/" target="_blank">Página de inicio</a></p>
+                                    <p class="post-classic-title"><a href="http://www.rfejudo.com/" target="_blank">Pï¿½gina de inicio</a></p>
                                     <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
                                         <time datetime="2019">26 septiembre 2019</time>
                                     </div>
@@ -99,7 +99,7 @@
                                     <!-- Badge-->
                                     <div class="badge badge-primary">Desarrollador
                                     </div>
-                                    <p class="post-classic-title"><a href="https://albertogomp.es" target="_blank">Alberto Gómez</a></p>
+                                    <p class="post-classic-title"><a href="https://albertogomp.es" target="_blank">Alberto Gï¿½mez</a></p>
                                     <div class="post-classic-time"><span class="icon mdi mdi-clock"></span>
                                         <time datetime="2019">26 septiembre 2019</time>
                                     </div>
@@ -139,12 +139,12 @@
             </div>
             <hr>
             <div class="layout-justify">
-                <p class="rights"><span>Kazoku</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span><a class="link-underline" href="privacidad.php">Política de privacidad</a></p>
+                <p class="rights"><span>Kazoku</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span><a class="link-underline" href="privacidad.php">Polï¿½tica de privacidad</a></p>
                 <nav class="nav-minimal">
                     <ul class="nav-minimal-list">
                         <li><a href="nosotros.php">Sobre Nosotros</a></li>
                         <li><a href="resources#">NO ASIGNADO</a></li>
-                        <li><a href="../Gallery/gallery.php">Galería</a></li>
+                        <li><a href="../Gallery/gallery.php">Galerï¿½a</a></li>
                         <li><a href="contacto.php">Contacto</a></li>
                         <li><a href="resources#">Campeonatos</a></li>
                     </ul>

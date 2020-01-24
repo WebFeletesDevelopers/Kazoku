@@ -21,7 +21,7 @@ if(isset($_SESSION['redireccionar'])){ include "php/modalAgregar.php";} ?>
                             <ul class="nav-light-list">
                                 <li><a href="nosotros.php">Sobre Nosotros</a></li>
                                 <li><a href="#">NO ASIGNADO</a></li>
-                                <li><a href="../Gallery/gallery.php">Galería</a></li>
+                                <li><a href="../Gallery/gallery.php">Galerï¿½a</a></li>
                                 <li><a href="contacto.php">Contacto</a></li>
                                 <li><a href="#">Campeonatos</a></li>
                             </ul>
@@ -51,15 +51,15 @@ if(isset($_SESSION['redireccionar'])){ include "php/modalAgregar.php";} ?>
                                         $continuar .='><span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Tu cuenta, ' .$_SESSION['name']." </span></a>";
 
                                         echo "$continuar";
-                                        echo "<a class=\"link link-icon link-icon-left link-classic\" href='php/logout.php'><span class=\"link-icon-text\"> &nbsp; &nbsp; Cerrar Sesión</span></a>";
+                                        echo "<a class=\"link link-icon link-icon-left link-classic\" href='php/logout.php'><span class=\"link-icon-text\"> &nbsp; &nbsp; Cerrar Sesiï¿½n</span></a>";
 
                                     }
                                     else{
-                                        echo ' <a class="link link-icon link-icon-left link-classic" href="../login.php"><span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Iniciar Sesión</span></a>';
+                                        echo ' <a class="link link-icon link-icon-left link-classic" href="../login.php"><span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Iniciar Sesiï¿½n</span></a>';
                                     }
                                 }
                                 else{
-                                    echo ' <a class="link link-icon link-icon-left link-classic" href="../login.php"> <span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Iniciar Sesión</span></a>';
+                                    echo ' <a class="link link-icon link-icon-left link-classic" href="../login.php"> <span class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Iniciar Sesiï¿½n</span></a>';
 
                                 }
 
@@ -93,7 +93,7 @@ if(isset($_SESSION['redireccionar'])){ include "php/modalAgregar.php";} ?>
                                                 </svg>
                                             </div>
                                             <div class="unit-body">
-                                                <h6>Más info:</h6><a class="link" href="mailto:administracion@clubkazoku.es">administracion@clubkazoku.es</a>
+                                                <h6>Mï¿½s info:</h6><a class="link" href="mailto:administracion@clubkazoku.es">administracion@clubkazoku.es</a>
                                             </div>
                                         </div>
                                     </li>
@@ -105,7 +105,7 @@ if(isset($_SESSION['redireccionar'])){ include "php/modalAgregar.php";} ?>
                                                 </svg>
                                             </div>
                                             <div class="unit-body">
-                                                <h6>¡Únete!</h6><a class="link" href="mailto:altas@clubkazoku.es">altas@clubkazoku.es</a>
+                                                <h6>ï¿½ï¿½nete!</h6><a class="link" href="mailto:altas@clubkazoku.es">altas@clubkazoku.es</a>
                                             </div>
                                         </div>
                                     </li>
