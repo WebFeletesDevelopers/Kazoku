@@ -89,8 +89,8 @@ $Rutas = json(array(
     'Bootstrap' => 'site/css/bootstrap.css',
     'Fonts' => 'site/css/fonts.css',
     'CSS' => 'site/css/style.css',
-    'Index' => 'index.php',
-    'Login' => 'login.php',
+    'Index' => 'NuevoIndex.php',
+    'Login' => 'NuevoLogin.php',
 
 ));
 

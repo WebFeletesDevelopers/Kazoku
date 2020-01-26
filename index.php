@@ -12,10 +12,6 @@ session_start();
 <body id="page-top">
     <div id="wrapper">
         <?php include 'componentes/nav.php'; ?>
-        <?php
-        $sesion = unserialize($_SESSION['sesion'],Sesion);
-        echo $sesion->name;
-        ?>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
             <?php include 'componentes/navbar.php'; ?>

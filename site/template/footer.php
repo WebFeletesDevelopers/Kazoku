@@ -73,7 +73,7 @@
                             <div class="col-4 col-sm-2 col-lg-4"><a class="thumbnail-creative" data-lightgallery="item" href="site/images/baseball/gallery-baseball-1-original.jpg"><img src="images/baseball/gallery-baseball-1-105x105.jpg" alt="">
                               <div class="thumbnail-creative-overlay"></div></a>
                             </div>';
-                            }xzo
+                            }
                             ?>
                         </div>
                     </article>
@@ -82,14 +82,19 @@
                     <h5><?= $Mensajes->Noticias ?></h5>
                     <div class="row row-20">
 
-                        <?php foreach (json_decode($ArrayNoticiasFooter) as $NoticiaFooter) { ?>
+                        <?php
+                        include_once 'site/controller/NoticiasController.php';
+                        $i = 0;
+                        foreach ($noticias as $NoticiaFooter) {
+                            if (++$i === 5) break;
+                            ?>
                             <div class="col-sm-6">
                                 <!-- Post Classic-->
                                 <article class="post-classic">
                                     <div class="post-classic-main">
                                         <!-- Badge-->
 
-                                        <div class="badge <?= $NoticiaFooter->color ?>"><?= $NoticiaFooter->Titulo ?>
+                                        <div class="badge badge-primary"><?= $NoticiaFooter->Titulo ?>
                                         </div>
                                         <p class="post-classic-title"><a
                                                     href="site/blog-post.html"><?= $NoticiaFooter->Cuerpo ?></a></p>

@@ -7,7 +7,12 @@
 <!-- pagina-->
 <div class="page">
     <!-- Encabezado-->
-    <?php include 'site/template/header.php' ?>
+    <?php
+    include 'site/template/header.php'; ?>
+    <?php
+
+    include 'site/template/news.php'
+    ?>
 
 
     <!-- Page Footer-->
