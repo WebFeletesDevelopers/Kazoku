@@ -8,8 +8,8 @@
     <div class="page">
       <!-- Encabezado-->
     <?php include 'site/template/header.php' ?>
-        <section class="section parallax-container breadcrumbs-wrap" data-parallax-img="images/bg-breadcrumbs-1-1920x726.jpg">
-            <div class="parallax-content breadcrumbs-custom context-dark">
+        <section class="section parallax-container breadcrumbs-wrap" data-parallax-img="<?=$Rutas->BreadCrums1?>">
+            <div class="parallax-content breadcrumbs-custom context-dark fade-slide-text">
                 <div class="container">
                     <h3 class="breadcrumbs-custom-title"><?=$Navegacion->LoginRegistro?></h3>
                     <ul class="breadcrumbs-custom-path">
@@ -49,6 +49,7 @@
                                         <input name="input-checkbox-1" value="checkbox-1" type="checkbox"><?=$Navegacion->Recuerdame?>
                                     </label>
                                     <button class="button button-lg button-primary button-block" type="submit" id="but_submit"><?=$Navegacion->Login?></button>
+                                    <div id="menssage"></div>
                                 </form>
                                 <div class="group-sm group-sm-justify group-middle"><a class="button button-google button-icon button-icon-left button-round" href="#"><span class="icon fa fa-google-plus"></span><span>Google+</span></a><a class="button button-twitter button-icon button-icon-left button-round" href="#"><span class="icon fa fa-twitter"></span><span>Twitter</span></a><a class="button button-facebook button-icon button-icon-left button-round" href="#"><span class="icon fa fa-facebook"></span><span>Facebook</span></a></div>
                             </div>

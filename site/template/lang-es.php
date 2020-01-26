@@ -91,6 +91,9 @@ $Rutas = json(array(
     'CSS' => 'site/css/style.css',
     'Index' => 'NuevoIndex.php',
     'Login' => 'NuevoLogin.php',
+    'LogicaLogin' => 'form/checkUser.php',
+    'BreadCrums1' => 'site/images/hq/breadcrums.png',
+    'BreadCrums2' => 'site/images/hq/breadcrums2.png',
 
 ));
 
