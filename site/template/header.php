@@ -40,7 +40,7 @@
                             </li>
                             <li><a class="link link-icon link-icon-left link-classic" href="<?= $Rutas->Login ?>"><span
                                             class="icon fl-bigmug-line-login12"></span><span
-                                            class="link-icon-text"><?= $Mensajes->TuCuenta?></span></a></li>
+                                            class="link-icon-text"><?php if(isLogged()){echo $Mensajes->TuCuenta.', '.$_SESSION['Nombre'];}else{echo $Navegacion->Login;}?></span></a></li>
                         </ul>
                     </div>
                     <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1"

@@ -1,6 +1,8 @@
+
 <head>
     <!-- Titulo y metadata-->
     <?php
+    include_once 'site/controller/SessionController.php';
     if(!isset($_SESSION['Lang'])){
         $_SESSION['Lang'] = "ES";
     }

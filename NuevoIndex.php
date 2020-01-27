@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
 <?php include 'site/template/head.php' ?>
