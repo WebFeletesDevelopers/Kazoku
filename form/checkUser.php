@@ -38,7 +38,8 @@ if ($uname != "" && $password != ""){
 
         $_SESSION['loggedin'] = TRUE;
         $sesion->setLogueado(TRUE);
-        $_SESSION['name'] = $uname;
+        $_SESSION['uname'] = $uname;
+        $_SESSION['name'] = $uname; //TODO: Eliminar esta variable, puede dar lugar a error
         $sesion->setUsername($uname);
         $_SESSION['CodUsu'] = $usuario->CodUsu;
         $sesion->setCodUsu($usuario->CodUsu);

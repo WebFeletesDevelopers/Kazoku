@@ -55,6 +55,7 @@ function isAdmin()
         return FALSE;
     }
 }
+
 function isProfe()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {

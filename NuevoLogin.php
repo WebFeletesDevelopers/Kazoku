@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['name'])){
+    header('Location: 404.php');
+
+}
+?>
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="es">
 <?php include 'site/template/head.php' ?>

@@ -89,11 +89,14 @@ $Rutas = json(array(
     'Bootstrap' => 'site/css/bootstrap.css',
     'Fonts' => 'site/css/fonts.css',
     'CSS' => 'site/css/style.css',
+    'CSSKazoku' => 'site/css/kazoku.css',
     'Index' => 'NuevoIndex.php',
     'Login' => 'NuevoLogin.php',
+    'Perfil' => 'NuevoPerfil.php',
     'LogicaLogin' => 'form/checkUser.php',
     'BreadCrums1' => 'site/images/hq/breadcrums.png',
     'BreadCrums2' => 'site/images/hq/breadcrums2.png',
+    'Stop' => 'site/images/stop.png'
 
 ));
 
