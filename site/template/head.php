@@ -24,4 +24,4 @@
     <link rel="stylesheet" href="<?=$Rutas->Fonts?>">
     <link rel="stylesheet" href="<?=$Rutas->CSS?>">
     <link rel="stylesheet" href="<?=$Rutas->CSSKazoku?>">
-  </head>
+</head>
