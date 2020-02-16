@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Crea la conexión a la base de datos
+ * @return PDO
+ */
 function crear(){
     $contrasena = "devel";
     $usuario = "root";
@@ -12,10 +17,13 @@ function crear(){
         echo "Ocurrió algo con la base de datos: " . $e->getMessage();
     }
 };
-function insertar (&$obj,&$bd){
-    if(!isset($bd)){
-        $bd = crear();
-    }
+
+/**
+ * Inserta cualquier objeto en la base de datos
+ * @param $obj
+ * @param $bd
+ */
+function insertar (&$obj,$bd){
     $parameters = '';
     $inter = "";
     $objArray =(array) $obj;
@@ -39,18 +47,20 @@ function insertar (&$obj,&$bd){
     $inter =rtrim($inter,",");
     $parameters = rtrim($parameters,", ");
     $array = explode(",",$parameters);
-    //$array = "[".$parameters."]";
     $sql = 'INSERT INTO'.' ';
     $sql .=$objName;
     $sql .= ' VALUES (';
     $sql .= $inter.')';
-    echo $sql;
-    echo var_dump($array);
-    echo $parameters;
     $sentencia = $bd->prepare($sql);
     $resultado = $sentencia->execute($array);
     return $resultado;
 };
+
+/**
+ * Selecciona una entrada de la base de datos.
+ * @param $table_name
+ * @return mixed
+ */
 function selectOne($table_name){
     $sql = 'SELECT * FROM '.$table_name.';';
     if(!isset($bd)){
@@ -61,6 +71,13 @@ function selectOne($table_name){
     return $resultado;
 }
 
+
+/**
+ * Elimina cualquier entrada de la base de datos.
+ * @param $obj
+ * @param $idName
+ * @return bool
+ */
 function borrar(&$obj,$idName){
     if(!isset($_SESSION['bd'])){
         $bd = crear();
@@ -69,16 +86,10 @@ function borrar(&$obj,$idName){
         $bd = crear();
 
     }
-
-
-
     $objName = get_class($obj);
-
     $sql = 'DELETE  FROM'.' ';
     $sql .=$objName;
     $sql .= 'WHERE '.$idName.' = ?';
-// INSERT INTO nombre_tabla VALUES (?,?,?)
-// si no es un numero, te pone 'valor'
     $sentencia = $bd->prepare($sql);
     $resultado = $sentencia->execute($obj->$idName);
     echo var_dump($resultado);

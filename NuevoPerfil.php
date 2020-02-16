@@ -15,7 +15,7 @@
         >
             <div class=" px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 class="display-4">Perfil de <?=$_SESSION['Nombre'] ?></h1>
-                <h3 class="display-8">INSERTAR FOTO</h3>
+                <img src="/assets/img/profile/generic.png" width="256" height="256">
 
             </div>
             <div class="card-deck mb-3 text-center">

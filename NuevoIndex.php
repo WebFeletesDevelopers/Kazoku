@@ -23,4 +23,5 @@
     include 'site/template/scripts.php'
     ?>
 </body>
+<?php include 'site/template/firebase.php'?>
 </html>

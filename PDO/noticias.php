@@ -4,7 +4,7 @@ class noticias{
     private $CodNot;
     private $Titulo;
     private $Cuerpo;
-    private $Fefcha;
+    private $Fecha;
     private $CodAutor;
     private $Publlica;
 
@@ -66,9 +66,9 @@ class noticias{
     /**
      * @return mixed
      */
-    public function getFefcha()
+    public function getFecha()
     {
-        return $this->Fefcha;
+        return $this->Fecha;
     }
 
     /**
@@ -111,6 +111,12 @@ class noticias{
         $this->Publlica = $Publlica;
     }
 
+    /*
+     * Método to String
+     */
+    public function toString(){
+        return $this->getCodNot()." - ".$this->getTitulo()." - ".$this->getCodAutor()." - ".$this->getCuerpo()." - ".$this->getFecha()." - ".$this->getPubllica();
+    }
 
 
 }

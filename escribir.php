@@ -1,12 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) ){
-    header('Location: ../../../login.php');
-}
-if ($_SESSION['Rango']>=2  ){
-    header('Location: ../../../login.php');
-}
-if ($_SESSION['Confirmado']!=1){
+if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']>=2 || $_SESSION['Confirmado']!=1  ){
     header('Location: ../../../login.php');
 }
 ?>
@@ -108,23 +102,32 @@ if ($_SESSION['Confirmado']!=1){
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#enviar").click(function(){
-                    var titulo = $("#titulo").val().trim();
-                    var cuerpo = $("#mensaje").val().trim();
-                    var publico = $("#publica").val().trim();
+                    var Titulo = $("#titulo").val().trim();
+                    var Cuerpo = $("#mensaje").val().trim();
+                    var Publico = $("#publica").val().trim();
                     var Autor = "<?=$_SESSION['name'];?>";
-                    if( cuerpo != "" && titulo != "" && (publico==1 || publico == 0) &&Autor!=-"" ){
+                    if( Cuerpo != "" && Titulo != "" && (Publico==1 || Publico == 0) && Autor!="" ){
                         $.ajax({
-                            url:'./form/enviarNoticia.php',
+                            url:'./site/negocio/negocioNoticias.php',
                             type:'post',
-                            data:{titulo:titulo,cuerpo:cuerpo,publico:publico,Autor:Autor},
+                            data:{Accion:2,Titulo:Titulo,Cuerpo:Cuerpo,Publico:Publico,Autor:Autor},
                             success:function(response){
+                                alert(response);
                                 if(response == 0){
-                                    var msg = "Noticia no enviada, revise los datos";
+                                    console.log("oof");
+                                    var msg = "Error, revise los datos";
+                                    $("#message").html('<h1 class="alert alert-danger">'+msg+'</h1>');
                                 }else if(response == 1){
                                     var msg = "10/10";
-                                    window.location = "../index.php";
+                                    $("#message").html('<h1 class="alert alert-secondary">'+msg+'</h1>');
+
+                                    // window.location = "../index.php";
                                 }
-                                $("#message").html('<h1 class="alert alert-danger">'+msg+'</h1>');
+                            },
+                            error:function(response){
+                                var msg = "oof";
+                                $("#message").html('<h1 class="alert alert-primary">'+response+'</h1>');
+                                //window.location = "../index.php";
                             }
 
                         });

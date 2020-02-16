@@ -45,7 +45,7 @@ if(isset($_SESSION['name'])){
                             <div class="card-form card-form-login">
                                 <form class="rd-form rd-mailform">
                                     <div class="form-wrap">
-                                        <label class="form-label" for="form-login-name-1"><?=$Navegacion->Login?></label>
+                                        <label class="form-label" for="form-login-name-1"><?=$Mensajes->TuCorreo?></label>
                                         <input class="form-input" id="form-login-name-1" type="text" name="txt_uname1" data-constraints="@Required">
                                     </div>
                                     <div class="form-wrap">
@@ -55,7 +55,7 @@ if(isset($_SESSION['name'])){
                                     <label class="checkbox-inline checkbox-inline-lg checkbox-light">
                                         <input name="input-checkbox-1" value="checkbox-1" type="checkbox"><?=$Navegacion->Recuerdame?>
                                     </label>
-                                    <button class="button button-lg button-primary button-block" type="submit" id="but_submit"><?=$Navegacion->Login?></button>
+                                    <button class="button button-lg button-primary button-block"  onclick="hacerLogin()" id="but_submit"><?=$Navegacion->Login?></button>
                                     <div id="menssage"></div>
                                 </form>
                                 <div class="group-sm group-sm-justify group-middle"><a class="button button-google button-icon button-icon-left button-round" href="#"><span class="icon fa fa-google-plus"></span><span>Google+</span></a><a class="button button-twitter button-icon button-icon-left button-round" href="#"><span class="icon fa fa-twitter"></span><span>Twitter</span></a><a class="button button-facebook button-icon button-icon-left button-round" href="#"><span class="icon fa fa-facebook"></span><span>Facebook</span></a></div>
@@ -92,7 +92,7 @@ if(isset($_SESSION['name'])){
         <!-- Page Footer-->
       <?php 
         include 'site/template/footer.php'; 
-        include 'site/template/videomodal.php';
+        //include 'site/template/videomodal.php';
         include 'site/template/scripts.php';
         include 'site/js/ScriptLogin.php';
         include 'site/js/ScriptRegistro.php';
