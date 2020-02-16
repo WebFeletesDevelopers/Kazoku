@@ -8,3 +8,5 @@ RUN docker-php-ext-install pdo pdo_mysql -j$(getconf _NPROCESSORS_ONLN)
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 COPY php/dev/php_config.ini /usr/local/etc/php/kazoku.ini
+COPY php/dev/php_config.ini /usr/local/etc/php/conf.d/kazoku.ini
+COPY php/dev/php_config.ini /etc/php7/conf.d/kazoku.ini
