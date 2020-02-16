@@ -7,17 +7,19 @@ include_once '../controller/NoticiasController.php';
  * 2 - Envia una noticia
  * 3 - Borra una noticia
  */
-switch ($_POST['accion']){
+switch ($_POST['Accion']){
     case 0:
     case 1:
-        buscarNoticias($_POST['Accion']);
+        //buscarNoticias($_POST['Accion']);
         break;
     case 2:
         $noticia = new noticias();
+        $noticia->setCodNot(0);
         $noticia->setCodAutor($_POST['Autor']);
         $noticia->setTitulo($_POST['Titulo']);
         $noticia->setCuerpo($_POST['Cuerpo']);
-        $noticia->setPubllica($_POST['Publica']);
+        $noticia->setFecha(date("Y-m-d"));
+        $noticia->setPubllica($_POST['Publico']);
         //  $res =  enviarNoticia($noticia);
         if(enviarNoticia($noticia)) {
             echo 1;

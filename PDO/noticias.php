@@ -1,7 +1,7 @@
 <?php
 
 class noticias{
-    private $CodNot;
+    private $CodNot = 1;
     private $Titulo;
     private $Cuerpo;
     private $Fecha;
@@ -72,11 +72,11 @@ class noticias{
     }
 
     /**
-     * @param mixed $Fefcha
+     * @param mixed $Fecha
      */
-    public function setFefcha($Fefcha)
+    public function setFecha($Fecha)
     {
-        $this->Fefcha = $Fefcha;
+        $this->Fecha = $Fecha;
     }
 
     /**
