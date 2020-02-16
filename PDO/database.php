@@ -19,40 +19,57 @@ function crear(){
 };
 
 /**
- * Inserta cualquier objeto en la base de datos
- * @param $obj
- * @param $bd
+ * Método genérico de inserción de objeto en bases de datos mediante PDO pasando un objeto por parámetro. Tiene que ser un objeto que coincida 100% con la tabla correspondiente
+ * @param $objeto object es el objeto a insertar en la base de datos
+ * @param $conexionBD PDO es la conexión a la Base de datos
  */
-function insertar (&$obj,$bd){
-    $parameters = '';
-    $inter = "";
-    $objArray =(array) $obj;
+function insertar (&$objeto,$conexionBD){
 
-    foreach ($objArray as $valor) {
-        if(!isset($valor)){
-            $parameters .= ' , ';
+    $parametros = '';
+    $interrogaciones = "";
+    $objetoEnArray =(array) $objeto;
+
+    foreach ($objetoEnArray as $campoObjeto) {
+
+        if(is_null($campoObjeto)){
+            $parametros .= ",";
         }
         else{
-            if(is_numeric($valor)) {
-                $parameters .= $valor . ', ';
-            }
-            else{
-                $parameters .= $valor.", "; }
 
+            $patronFecha="/[1-9][0-9]{3}-(0[1-9]|1[0-2])-([012][1-9]|3[01])/";
+            if(preg_match($patronFecha, $campoObjeto, $matches) === 1 && $matches[0] === $campoObjeto){ // Comprueba que el objeto coincide con el patrón YYYY-MM-DD
+                $parametros .= $campoObjeto . ',';
+            }
+            else {
+                if(is_numeric($campoObjeto)) {
+                    $parametros .= $campoObjeto . ',';
+                }
+                else{ // Si es una cadena de texto normal
+                    $parametros .= $campoObjeto.",";
+                }
+            }
         }
-        $inter.="?,";
+        // Concatena un numero n de interrogaciones en función de las posiciones del array.
+        $interrogaciones.="?,";
     }
 
-    $objName = get_class($obj);
-    $inter =rtrim($inter,",");
-    $parameters = rtrim($parameters,", ");
-    $array = explode(",",$parameters);
-    $sql = 'INSERT INTO'.' ';
-    $sql .=$objName;
-    $sql .= ' VALUES (';
-    $sql .= $inter.')';
-    $sentencia = $bd->prepare($sql);
-    $resultado = $sentencia->execute($array);
+    $nombreTabla = get_class($objeto);
+
+    $interrogaciones =rtrim($interrogaciones,",");
+
+    // Retiramos la última " , " que pone el foreach y se separa en un nuevo array
+    $parametros = rtrim($parametros,", ");
+    $datosConsulta = explode(",",$parametros);
+
+    // Arregla la query
+    $consulta = 'INSERT INTO'.' ';
+    $consulta .=$nombreTabla;
+    $consulta .= ' VALUES (';
+    $consulta .= $interrogaciones.')';
+
+    // Prepara la sentencia e inserta
+    $sentencia = $conexionBD->prepare($consulta);
+    $resultado = $sentencia->execute($datosConsulta);
     return $resultado;
 };
 
