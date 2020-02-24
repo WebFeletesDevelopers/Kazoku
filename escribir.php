@@ -112,21 +112,15 @@ if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']
                             type:'post',
                             data:{Accion:2,Titulo:Titulo,Cuerpo:Cuerpo,Publico:Publico,Autor:Autor},
                             success:function(response){
-                                alert(response);
                                 if(response == 0){
-                                    console.log("oof");
-                                    var msg = "Error, revise los datos";
+                                    var msg = "Error en el envío, revise los datos";
                                     $("#message").html('<h1 class="alert alert-danger">'+msg+'</h1>');
                                 }else if(response == 1){
-                                    var msg = "10/10";
-                                    $("#message").html('<h1 class="alert alert-secondary">'+msg+'</h1>');
-
-                                    // window.location = "../index.php";
+                                     window.location = "index.php";
                                 }
                             },
                             error:function(response){
-                                var msg = "oof";
-                                $("#message").html('<h1 class="alert alert-primary">'+response+'</h1>');
+                                $("#message").html('<h1 class="alert alert-primary">Hubo un error desconocido</h1>');
                                 //window.location = "../index.php";
                             }
 

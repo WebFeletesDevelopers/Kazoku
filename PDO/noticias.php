@@ -1,11 +1,11 @@
 <?php
 
 class noticias{
-    private $CodNot = 1;
-    private $Titulo;
-    private $Cuerpo;
-    private $Fecha;
-    private $CodAutor;
+    public $CodNot = 1;
+    public $Titulo;
+    public $Cuerpo;
+    public $Fecha;
+    public $Autor;
     private $Publlica;
 
     /**
@@ -82,17 +82,17 @@ class noticias{
     /**
      * @return mixed
      */
-    public function getCodAutor()
+    public function getAutor()
     {
-        return $this->CodAutor;
+        return $this->Autor;
     }
 
     /**
-     * @param mixed $CodAutor
+     * @param mixed $Autor
      */
-    public function setCodAutor($CodAutor)
+    public function setAutor($Autor)
     {
-        $this->CodAutor = $CodAutor;
+        $this->Autor = $Autor;
     }
 
     /**
