@@ -1,7 +1,7 @@
 <?php
 
 class noticias{
-    public $CodNot = 1;
+    public $CodNot;
     public $Titulo;
     public $Cuerpo;
     public $Fecha;
