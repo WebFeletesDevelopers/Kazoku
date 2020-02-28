@@ -1,7 +1,7 @@
 <?php
 //include "config.php";
-include "PDO/database.php";
-include "PDO/Sesion.php";
+include '../../PDO/database.php';
+include '../../PDO/Sesion.php';
 
 
 session_start();

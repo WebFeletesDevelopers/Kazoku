@@ -24,7 +24,7 @@ function isLogged()
 function isConfirmed()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Confirmado'] == TRUE) {
+        if ($_SESSION['Confirmado'] === TRUE) {
             return TRUE;
         } else {
             $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['Username'] . "'";
@@ -46,7 +46,7 @@ function isConfirmed()
 function isAdmin()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] == 0) {
+        if ($_SESSION['Rango'] === 0) {
             return TRUE;
         } else {
             return FALSE;
@@ -59,7 +59,7 @@ function isAdmin()
 function isProfe()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] == 1) {
+        if ($_SESSION['Rango'] === 1) {
             return TRUE;
         } else {
             return FALSE;
@@ -71,7 +71,7 @@ function isProfe()
 function isPadre()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] == 2) {
+        if ($_SESSION['Rango'] === 2) {
             return TRUE;
         } else {
             return FALSE;
@@ -83,7 +83,7 @@ function isPadre()
 function isAlumno()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] == 3) {
+        if ($_SESSION['Rango'] === 3) {
             return TRUE;
         } else {
             return FALSE;

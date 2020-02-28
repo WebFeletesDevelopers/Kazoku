@@ -1,6 +1,5 @@
 <?php
 session_start();
-require 'site/controller/SessionController.php';
 ?>
 <!DOCTYPE html>
 <html>
