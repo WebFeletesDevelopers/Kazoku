@@ -2,6 +2,11 @@
 
 source $(dirname $0)/vars.sh
 
+# Añadir credenciales
+
+mkdir -p ${HOME}/.docker
+echo ${DOCKER_AUTH_CONFIG} > ${HOME}/.docker/config.json
+
 # Crear imágenes
 # Debemos ejecutar este comando desde la raíz del proyecto, nunca desde la subcarpeta.
 
