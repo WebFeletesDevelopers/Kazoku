@@ -11,8 +11,8 @@ if [ "$tag" = "master" ]; then
   tag='latest'
 fi
 
-docker build -f cfg/docker/${project_name}_php.Dockerfile -t "${registry_url}/${project_name}-php:${tag}" .
-docker build -f cfg/docker/${project_name}_web.Dockerfile -t "${registry_url}/${project_name}-web:${tag}" .
+docker build -f cfg/docker-images/prod/php-fpm.Dockerfile -t "${registry_url}/${project_name}-php:${tag}" .
+docker build -f cfg/docker-images/prod/nginx.Dockerfile -t "${registry_url}/${project_name}-web:${tag}" .
 
 # Subir imágenes
 docker push "${registry_url}/${project_name}-php:${tag}"
