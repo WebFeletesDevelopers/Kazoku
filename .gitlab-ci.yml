@@ -1,0 +1,29 @@
+image: "registry.romeronet.es/web-builder"
+
+stages:
+  - build
+  - send-config
+  - deploy
+
+Build and push images:
+  stage: build
+  script:
+    - sh ./cfg/scripts/build-and-push.sh
+
+Send config to server:
+  stage: send-config
+  script:
+    - sh ./cfg/scripts/generate-env.sh
+  only:
+    - master
+
+Deploy to server:
+  stage: deploy
+  script:
+    - sh ./cfg/scripts/deploy.sh
+  environment:
+    name: production
+    url: https://kazoku.romeronet.es
+  when: manual
+  only:
+    - master

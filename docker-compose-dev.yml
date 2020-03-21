@@ -1,0 +1,36 @@
+version: "3.4"
+services:
+  nginx:
+    build:
+      context: cfg
+      dockerfile: docker-images/dev/nginx.Dockerfile
+    ports:
+    - "8080:80"
+    volumes:
+    - ".:/code"
+
+  php-fpm:
+    build:
+      context: cfg
+      dockerfile: docker-images/dev/php-fpm.Dockerfile
+    environment:
+      "KAZOKU_DATABASE_USER": "${KAZOKU_DATABASE_USER}"
+      "KAZOKU_DATABASE_PASSWORD": "${KAZOKU_DATABASE_PASSWORD}"
+      "KAZOKU_DATABASE_DATABASE": "${KAZOKU_DATABASE_DATABASE}"
+    volumes:
+    - ".:/code"
+
+  db:
+    image: mariadb:10.4
+    volumes:
+      - "kazoku_database_testing:/var/lib/mysql"
+      - "./cfg/db:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_USER: '${KAZOKU_DATABASE_USER}'
+      MYSQL_PASSWORD: '${KAZOKU_DATABASE_PASSWORD}'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_DATABASE: '${KAZOKU_DATABASE_DATABASE}'
+    ports:
+    - "3306:3306"
+volumes:
+  kazoku_database_devel:
