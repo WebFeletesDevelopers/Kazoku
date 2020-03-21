@@ -2,6 +2,7 @@
 
 source $(dirname $0)/vars.sh
 
+rm -rf .env
 touch .env
 echo "${project_name_upper}_DATABASE_USER=${DATABASE_DATA_USR}" >> .env
 echo "${project_name_upper}_DATABASE_PASSWORD=${DATABASE_DATA_PSW}" >> .env
