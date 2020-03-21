@@ -12,3 +12,10 @@ remove-data:
 	docker-compose -f docker-compose-dev.yml down -v
 
 daily-up: remove-data start-dev
+
+build:
+	sh ./cfg/scripts/build-and-push.sh
+	docker-compose pull
+
+start:
+	docker-compose up -d

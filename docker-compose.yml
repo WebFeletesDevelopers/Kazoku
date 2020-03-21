@@ -1,36 +1,25 @@
 version: "3.4"
 services:
   nginx:
-    build:
-      context: cfg
-      dockerfile: docker-images/dev/nginx.Dockerfile
+    image: registry.romeronet.es/kazoku-web
     ports:
-    - "8080:80"
-    volumes:
-    - ".:/code"
+    - "20050:80"
 
   php-fpm:
-    build:
-      context: cfg
-      dockerfile: docker-images/dev/php-fpm.Dockerfile
+    image: registry.romeronet.es/kazoku-php
     environment:
       "KAZOKU_DATABASE_USER": "${KAZOKU_DATABASE_USER}"
       "KAZOKU_DATABASE_PASSWORD": "${KAZOKU_DATABASE_PASSWORD}"
       "KAZOKU_DATABASE_DATABASE": "${KAZOKU_DATABASE_DATABASE}"
-    volumes:
-    - ".:/code"
 
   db:
     image: mariadb:10.4
     volumes:
-      - "kazoku_database_testing:/var/lib/mysql"
-      - "./cfg/db:/docker-entrypoint-initdb.d"
+      - "kazoku_database:/var/lib/mysql"
     environment:
       MYSQL_USER: '${KAZOKU_DATABASE_USER}'
       MYSQL_PASSWORD: '${KAZOKU_DATABASE_PASSWORD}'
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
       MYSQL_DATABASE: '${KAZOKU_DATABASE_DATABASE}'
-    ports:
-    - "3306:3306"
 volumes:
-  kazoku_database_testing:
+  kazoku_database:

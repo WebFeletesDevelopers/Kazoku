@@ -5,11 +5,11 @@
  * @return PDO
  */
 function crear(){
-    $contrasena = "devel";
-    $usuario = "root";
-    $nombre_base_de_datos = "kazoku";
+    $user = getenv('KAZOKU_DATABASE_USER');
+    $password = getenv('KAZOKU_DATABASE_PASSWORD');
+    $db = getenv('KAZOKU_DATABASE_DATABASE');
     try{
-        $bd = new PDO('mysql:host=db;dbname=' . $nombre_base_de_datos, $usuario, $contrasena,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $bd = new PDO('mysql:host=db;dbname=' . $db, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         return $bd;

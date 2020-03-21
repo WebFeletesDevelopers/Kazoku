@@ -1,8 +1,8 @@
 <?php
-$host="bbdd.albertogomp.es";
-$user="NONE";
-$password="NONE";
-$db="NONE";
+$host = 'db';
+$user = getenv('KAZOKU_DATABASE_USER');
+$password = getenv('KAZOKU_DATABASE_PASSWORD');
+$db = getenv('KAZOKU_DATABASE_DATABASE');
 $con = new mysqli($host,$user,$password,$db);
 $con->set_charset('utf8');
 /*try{
@@ -11,4 +11,3 @@ $con->set_charset('utf8');
     echo "No se ha podido establecer la conexión.<br>";
     dis("*Error:".$except->getMessage());
 }*/
-?>
