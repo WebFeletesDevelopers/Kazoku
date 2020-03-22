@@ -2,6 +2,8 @@ image: "registry.romeronet.es/web-builder"
 
 stages:
   - build
+  - send-config-testing
+  - deploy-testing
   - send-config
   - deploy
 
@@ -9,6 +11,24 @@ Build and push images:
   stage: build
   script:
     - sh ./cfg/scripts/build-and-push.sh
+
+Send config to testing:
+  stage: send-config-testing
+  script:
+    - sh ./cfg/scripts/generate-env-testing.sh
+  only:
+    - develop
+
+Deploy to testing server:
+  stage: deploy-testing
+  script:
+    - sh ./cfg/scripts/deploy-testing.sh
+  environment:
+    name: testing
+    url: https://testing_kazoku.romeronet.es
+  when: manual
+  only:
+    - develop
 
 Send config to server:
   stage: send-config

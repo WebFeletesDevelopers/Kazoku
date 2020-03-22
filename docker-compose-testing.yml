@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  nginx:
+    image: registry.romeronet.es/kazoku-web:develop
+    ports:
+    - "20051:80"
+
+  php-fpm:
+    image: registry.romeronet.es/kazoku-php:develop
+    environment:
+      "KAZOKU_DATABASE_USER": "${KAZOKU_DATABASE_USER}"
+      "KAZOKU_DATABASE_PASSWORD": "${KAZOKU_DATABASE_PASSWORD}"
+      "KAZOKU_DATABASE_DATABASE": "${KAZOKU_DATABASE_DATABASE}"
+
+  db:
+    image: mariadb:10.4
+    volumes:
+      - "kazoku_database_testing:/var/lib/mysql"
+    environment:
+      MYSQL_USER: '${KAZOKU_DATABASE_USER}'
+      MYSQL_PASSWORD: '${KAZOKU_DATABASE_PASSWORD}'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_DATABASE: '${KAZOKU_DATABASE_DATABASE}'
+volumes:
+  kazoku_database_testing:
