@@ -26,7 +26,6 @@ Deploy to testing server:
   environment:
     name: testing
     url: https://testing_kazoku.romeronet.es
-  when: manual
   only:
     - develop
 
