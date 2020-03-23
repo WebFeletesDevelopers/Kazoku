@@ -23,13 +23,13 @@ services:
   db:
     image: mariadb:10.4
     volumes:
-      - "kazoku_database_testing:/var/lib/mysql"
+      - "kazoku_database_devel"
       - "./cfg/db:/docker-entrypoint-initdb.d"
     environment:
-      MYSQL_USER: '${KAZOKU_DATABASE_USER}'
-      MYSQL_PASSWORD: '${KAZOKU_DATABASE_PASSWORD}'
+      MYSQL_USER:  ${KAZOKU_DATABASE_USER}
+      MYSQL_PASSWORD: ${KAZOKU_DATABASE_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
-      MYSQL_DATABASE: '${KAZOKU_DATABASE_DATABASE}'
+      MYSQL_DATABASE: ${KAZOKU_DATABASE_DATABASE}
     ports:
     - "3306:3306"
 volumes:
