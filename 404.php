@@ -1,40 +1,29 @@
-<?php
-session_start();
-if(!isset($_SESSION['name'])){
-    header('Location: ../../../index.php');
-}
-?>
 <!DOCTYPE html>
-<html>
+<html class="wide wow-animation" lang="es">
+<?php include 'site/template/head.php' ?>
+<body>
+<!-- Preloader -->
+<?php include 'site/template/preloader.php' ?>
+<!-- pagina-->
+<div class="page">
+    <!-- Encabezado-->
+    <?php include 'site/template/header.php' ?>
 
-<head>
-    <title>ERROR - Kazoku</title>
-    <?php include 'componentes/commonhead.php'; ?>
-
-</head>
-
-<body id="page-top">
-<div id="wrapper">
-    <?php include 'componentes/nav.php'; ?>
-
-    <div class="d-flex flex-column" id="content-wrapper">
-        <div id="content">
-            <?php include 'componentes/navbar.php'; ?>
-
-            <div class="container-fluid">
-                <div class="container-fluid">
-                    <div class="text-center mt-5">
-                        <div class="error mx-auto" data-text="404">
-                            <p class="m-0">404</p>
-                        </div>
-                        <p class="text-dark mb-5 lead">Página no encontrada</p>
-                        <p class="text-black-50 mb-0">Has encontrado un fallo en la matriz</p>
-                        <a href="/">Volver al inicio</a></div>
+    <section class="section section-variant-1 bg-gray-100 text-center">
+        <div class="container">
+            <div class="row row-30 justify-content-center">
+                <div class="col-xl-6"><img src="<?=$Rutas->Stop?>" height="100px">
+                    <h2><span class="text-red">Matte!</span> Página no encontrada</h2>
+                    <p class="big text-gray-800"></p><a class="button button-lg button-primary" href="<?=$Rutas->Index ?>">Volver al inicio</a>
                 </div>
             </div>
         </div>
-        <?php include 'componentes/footer.php'; ?>
-        <?php include 'componentes/commonscripts.php'; ?>
+    </section>
+    <!-- Page Footer-->
+    <?php
+    include 'site/template/footer.php';
+    include 'site/template/videomodal.php';
+    include 'site/template/scripts.php'
+    ?>
 </body>
-
 </html>

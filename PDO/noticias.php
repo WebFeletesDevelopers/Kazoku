@@ -1,11 +1,11 @@
 <?php
 
 class noticias{
-    private $CodNot;
-    private $Titulo;
-    private $Cuerpo;
-    private $Fefcha;
-    private $CodAutor;
+    public $CodNot;
+    public $Titulo;
+    public $Cuerpo;
+    public $Fecha;
+    public $Autor;
     private $Publlica;
 
     /**
@@ -66,33 +66,33 @@ class noticias{
     /**
      * @return mixed
      */
-    public function getFefcha()
+    public function getFecha()
     {
-        return $this->Fefcha;
+        return $this->Fecha;
     }
 
     /**
-     * @param mixed $Fefcha
+     * @param mixed $Fecha
      */
-    public function setFefcha($Fefcha)
+    public function setFecha($Fecha)
     {
-        $this->Fefcha = $Fefcha;
+        $this->Fecha = $Fecha;
     }
 
     /**
      * @return mixed
      */
-    public function getCodAutor()
+    public function getAutor()
     {
-        return $this->CodAutor;
+        return $this->Autor;
     }
 
     /**
-     * @param mixed $CodAutor
+     * @param mixed $Autor
      */
-    public function setCodAutor($CodAutor)
+    public function setAutor($Autor)
     {
-        $this->CodAutor = $CodAutor;
+        $this->Autor = $Autor;
     }
 
     /**
@@ -111,6 +111,12 @@ class noticias{
         $this->Publlica = $Publlica;
     }
 
+    /*
+     * Método to String
+     */
+    public function toString(){
+        return $this->getCodNot()." - ".$this->getTitulo()." - ".$this->getCodAutor()." - ".$this->getCuerpo()." - ".$this->getFecha()." - ".$this->getPubllica();
+    }
 
 
 }
