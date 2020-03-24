@@ -15,30 +15,12 @@ class users
     private $EmailConfirmado;
 
 
-    public function user(){
 
-    }
     /**
-     * Usuario constructor.
+     * users constructor.
      */
     public function __construct()
     {
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCodusu()
-    {
-        return $this->Codusu;
-    }
-
-    /**
-     * @param mixed $Codusu
-     */
-    public function setCodusu($Codusu): void
-    {
-        $this->Codusu = $Codusu;
     }
 
     /**
@@ -52,7 +34,7 @@ class users
     /**
      * @param mixed $Confirmado
      */
-    public function setConfirmado($Confirmado): void
+    public function setConfirmado($Confirmado)
     {
         $this->Confirmado = $Confirmado;
     }
@@ -68,9 +50,25 @@ class users
     /**
      * @param mixed $Rango
      */
-    public function setRango($Rango): void
+    public function setRango($Rango)
     {
         $this->Rango = $Rango;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodUsu()
+    {
+        return $this->CodUsu;
+    }
+
+    /**
+     * @param mixed $CodUsu
+     */
+    public function setCodUsu($CodUsu)
+    {
+        $this->CodUsu = $CodUsu;
     }
 
     /**
@@ -84,7 +82,7 @@ class users
     /**
      * @param mixed $username
      */
-    public function setUsername($username): void
+    public function setUsername($username)
     {
         $this->username = $username;
     }
@@ -100,7 +98,7 @@ class users
     /**
      * @param mixed $name
      */
-    public function setName($name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -116,7 +114,7 @@ class users
     /**
      * @param mixed $Telefono
      */
-    public function setTelefono($Telefono): void
+    public function setTelefono($Telefono)
     {
         $this->Telefono = $Telefono;
     }
@@ -132,7 +130,7 @@ class users
     /**
      * @param mixed $Apellido1
      */
-    public function setApellido1($Apellido1): void
+    public function setApellido1($Apellido1)
     {
         $this->Apellido1 = $Apellido1;
     }
@@ -148,7 +146,7 @@ class users
     /**
      * @param mixed $Apellido2
      */
-    public function setApellido2($Apellido2): void
+    public function setApellido2($Apellido2)
     {
         $this->Apellido2 = $Apellido2;
     }
@@ -164,7 +162,7 @@ class users
     /**
      * @param mixed $password
      */
-    public function setPassword($password): void
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -180,7 +178,7 @@ class users
     /**
      * @param mixed $Email
      */
-    public function setEmail($Email): void
+    public function setEmail($Email)
     {
         $this->Email = $Email;
     }
@@ -196,12 +194,10 @@ class users
     /**
      * @param mixed $EmailConfirmado
      */
-    public function setEmailConfirmado ($EmailConfirmado): void
+    public function setEmailConfirmado($EmailConfirmado)
     {
         $this->EmailConfirmado = $EmailConfirmado;
     }
-    public function toString(){
-        return $this->getName().$this->getApellido1().$this->getApellido2();
-    }
+
 
 }

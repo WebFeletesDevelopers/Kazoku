@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']>=2 || $_SESSION['Confirmado']!=1  ){
+if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']>=2 || ($_SESSION['Confirmado']!=1 || $_SESSION['Confirmado']!=0)  ){
     header('Location: ../../../login.php');
 }
 ?>

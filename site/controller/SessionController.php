@@ -1,5 +1,5 @@
 <?php
-include "PDO/database.php";
+include "../../PDO/database.php";
 
 /**
  * Checkea si el usuario está logueado
@@ -91,4 +91,10 @@ function isAlumno()
     } else {
         return FALSE;
     }
+}
+function cerrarSesion(){
+    $_SESSION = [];
+    session_destroy();
+    session_unset();
+    header('Location: index.php');
 }
