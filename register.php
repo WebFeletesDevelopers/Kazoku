@@ -20,7 +20,7 @@ if(isset($_SESSION['name'])){
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-flex">
-                            <div href="index.php" class="flex-grow-1 bg-register-image"  style="background-image: url(&quot;assets/img/Logo/vertical.png&quot;); padding: 10%" ></div>
+                            <div href="index.php" class="flex-grow-1 bg-register-image"  style="background-image: url(&quot;site/images/logo/logoL.png&quot;); padding: 10%; background-size: contain; background-repeat: no-repeat " ></div>
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">

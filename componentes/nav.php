@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark align-items-start sidebar  toggled sidebar-dark accordion   p-0" style="background-color: #2B3E4F">
     <div class="container-fluid d-flex flex-column p-0 sticky-top">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="index.php">
-            <div class="sidebar-brand-icon"><img src="assets/img/Logo/logo-judo-93x94.png" height="50" width="50"></div>
+            <div class="sidebar-brand-icon"><img src="site/images/logo/LogoS.png" height="50" width="50"></div>
             <div class="sidebar-brand-text mx-3"><span>Kazoku</span></div>
         </a>
         <hr class="sidebar-divider my-0">
