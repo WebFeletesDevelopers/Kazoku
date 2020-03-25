@@ -37,22 +37,22 @@ function insertar (&$objeto,$conexionBD){
         if($campoObjeto !== null){
             $patronFecha="/[1-9][0-9]{3}-(0[1-9]|1[0-2])-([012][1-9]|3[01])/";
             if(preg_match($patronFecha, $campoObjeto, $matches) === 1 && $matches[0] === $campoObjeto){ // Comprueba que el objeto coincide con el patrón YYYY-MM-DD
-                $parametros .= $campoObjeto . ',';
-                $interrogaciones.="?,";
+                $parametros .= $campoObjeto . 'Ç';
+                $interrogaciones.= '?,';
             }
             else {
                 if(is_numeric($campoObjeto)) {
-                    $parametros .= $campoObjeto . ',';
+                    $parametros .= $campoObjeto . 'Ç';
                     $interrogaciones.="?,";
                 }
                 else{ // Si es una cadena de texto normal
-                    $parametros .= $campoObjeto.",";
+                    $parametros .= $campoObjeto."Ç";
                     $interrogaciones.="?,";
                 }
             }
         }
         else if($campoObjeto === null){
-            $parametros .= ",";
+            $parametros .= "Ç";
             $interrogaciones.="?,";
         };
         // Concatena un numero n de interrogaciones en función de las posiciones del array.
@@ -63,8 +63,8 @@ function insertar (&$objeto,$conexionBD){
     $interrogaciones =rtrim($interrogaciones,",");
 
     // Retiramos la última " , " que pone el foreach y se separa en un nuevo array
-    $parametros = rtrim($parametros,", ");
-    $datosConsulta = explode(",",$parametros);
+    $parametros = rtrim($parametros,"Ç ");
+    $datosConsulta = explode("Ç",$parametros);
 
     // Arregla la query
     $consulta = 'INSERT INTO'.' ';

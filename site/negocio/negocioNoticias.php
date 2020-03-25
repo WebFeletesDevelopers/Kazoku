@@ -15,7 +15,7 @@ switch ($_POST['Accion']){
     case 2:
         $noticia = new noticias();
         $noticia->setCodNot(0);
-        $noticia->setCodAutor($_POST['Autor']);
+        $noticia->setAutor($_POST['Autor']);
         $noticia->setTitulo($_POST['Titulo']);
         $noticia->setCuerpo($_POST['Cuerpo']);
         $noticia->setFecha(date("Y-m-d"));

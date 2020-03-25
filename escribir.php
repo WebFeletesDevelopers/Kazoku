@@ -1,7 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']>=2 || ($_SESSION['Confirmado']!=1 || $_SESSION['Confirmado']!=0)  ){
-    header('Location: ../../../login.php');
+include 'site/controller/SessionController.php';
+if(isAdmin() || isProfe()){
+
+}else{
+    header('Location: ../../../register.php');
 }
 ?>
 <!DOCTYPE html>
@@ -57,13 +60,6 @@ if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']
                     <button class="btn btn-lg btn-primary btn-block" id="enviar">Publicar</button>
                 </div>
                 <!-- End: Chart -->
-                <div class="row">
-                    <div class="col-lg-6 mb-4">
-
-
-                    </div>
-
-                </div>
             </div>
         </div>
 
@@ -105,7 +101,7 @@ if(!isset($_SESSION['name']) || !isset($_SESSION['Rango']) || $_SESSION['Rango']
                     var Titulo = $("#titulo").val().trim();
                     var Cuerpo = $("#mensaje").val().trim();
                     var Publico = $("#publica").val().trim();
-                    var Autor = "<?=$_SESSION['name'];?>";
+                    var Autor = "<?=$_SESSION['CodUsu'];?>";
                     if( Cuerpo != "" && Titulo != "" && (Publico==1 || Publico == 0) && Autor!="" ){
                         $.ajax({
                             url:'./site/negocio/negocioNoticias.php',

@@ -28,7 +28,7 @@ if($_POST['rango']>1 && $_POST['rango']<4){
     $user->setRango($_POST['rango']);
 }
 if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && $user->getEmail() !="" && $user->getUsername() !=""){
-    include '../PDO/database.php';
+    include '../../PDO/database.php';
     if(!isset($bd)) {
         $bd =  crear();
     }

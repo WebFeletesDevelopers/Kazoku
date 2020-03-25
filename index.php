@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'site/controller/SessionController.php'
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +33,13 @@ session_start();
     </div>
     <?php include 'componentes/footer.php'; ?>
     <?php include 'componentes/commonscripts.php'; ?>
-    <?php include 'template/chat.php'; ?>
+    <?php
+    if(isConfirmed()) {
+        include 'template/chat.php';
+    }
+    ?>
+
+
 </body>
 
 </html>
