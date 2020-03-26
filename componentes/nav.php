@@ -14,6 +14,7 @@
                         echo'
                          <li class="nav-item" role="presentation"><a class="nav-link" href="confirmaciones.php"><i class="fas fa-user-circle"></i><span>Confirmaciones</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="table.php"><i class="fas fa-table"></i><span>Alumnos</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="Listar.php"><i class="fas fa-address-book"></i><span>Pasar Lista</span></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="forgot-password.php"><i class="fas fa-key"></i><span>Reestablecer Contraseñas</span></a></li>';
                     }
                 }

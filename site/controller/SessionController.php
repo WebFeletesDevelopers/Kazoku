@@ -1,5 +1,5 @@
 <?php
-include 'PDO/database.php';
+include_once 'PDO/database.php';
 
 /**
  * Checkea si el usuario está logueado
