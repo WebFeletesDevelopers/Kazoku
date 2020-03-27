@@ -41,6 +41,7 @@ if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && 
         $user->setPassword($hash);
         $insertado = insertar($user,$bd);
         if($insertado){
+            echo 1;
             $_SESSION['uname'] = $user->getUsername();
             $Verificar = new verification();
             $Verificar->setCode(md5(mt_rand()));
@@ -57,7 +58,7 @@ if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && 
                 'Responder a: desarrollo@clubkazoku.es'."\r\n";
             @mail($email_to, $email_subject, $email_message, $headers);
             // ---------------------------------------------------------------------------
-            echo 1;
+            header('Location: ../../../login.php');
         }
         else{
             echo 0;
@@ -65,5 +66,5 @@ if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && 
     }
 }
 else{
-    echo 1;
+    echo 0;
 }
