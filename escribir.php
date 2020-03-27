@@ -101,7 +101,7 @@ if(isAdmin() || isProfe()){
                     var Titulo = $("#titulo").val().trim();
                     var Cuerpo = $("#mensaje").val().trim();
                     var Publico = $("#publica").val().trim();
-                    var Autor = "<?=$_SESSION['CodUsu'];?>";
+                    var Autor = "<?=$_SESSION['uname'];?>";
                     if( Cuerpo != "" && Titulo != "" && (Publico==1 || Publico == 0) && Autor!="" ){
                         $.ajax({
                             url:'./site/negocio/negocioNoticias.php',

@@ -6,7 +6,7 @@
                     <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
                         <h1><?= $noticia->Titulo ?></h1></div>
 
-                    <div class="text-dark font-weight-bold h5 mb-0"><span><?= $noticia->Autor ?></span></div>
+                    <div class="text-dark font-weight-bold h5 mb-0"><span><?= $noticia->Autor?></span></div>
                 </div>
                 <div class="col-md-12">
                     <p class="text-justify"><?= $noticia->Cuerpo ?></p>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <?php
-        if (isProfe() || isAdmin()) {
+        if ((isProfe() || isAdmin()) && $_SESSION['Confirmado'] == 1) {
             echo '<a class="btn btn-danger container" type="sumbit" href="./borrar.php?CodNot='.$noticia->CodNot.'">Borrar</a>';
         }?>
 
