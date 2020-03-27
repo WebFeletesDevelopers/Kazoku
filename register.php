@@ -5,7 +5,7 @@ if(isset($_SESSION['name'])){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Registro - Kazoku</title>
@@ -20,7 +20,7 @@ if(isset($_SESSION['name'])){
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-flex">
-                            <div href="index.php" class="flex-grow-1 bg-register-image"  style="background-image: url(&quot;assets/img/Logo/vertical.png&quot;); padding: 10%" ></div>
+                            <div href="index.php" class="flex-grow-1 bg-register-image"  style="background-image: url(&quot;site/images/logo/logoL.png&quot;); padding: 10%; background-size: contain; background-repeat: no-repeat " ></div>
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -78,10 +78,10 @@ if(isset($_SESSION['name'])){
                 var email = $("#txt_email").val().trim();
                 var phone = $("#txt_phone").val().trim();
                 var username = $("#txt_uname").val().trim();
-                var password = $("#txt_pwd").val().trim();
+                var password1 = $("#txt_pwd").val().trim();
                 var password2 = $("#txt_pwd2").val().trim();
                 var rango = $("#txt_rango").val().trim();
-                if( username !== "" && password !== "" && password2 !== ""  && name !=="" && lastname1 !=="" && rango!==""){
+                if( username !== "" && password1 !== "" && password2 !== ""  && name !=="" && lastname1 !=="" && rango!==""){
                     if(lastname2 === ""){
                         lastname2 = null;
                     }
@@ -89,10 +89,10 @@ if(isset($_SESSION['name'])){
                         email = null;
                     }
                     $.ajax({
-                        url:'form/registroB.php',
+                        url:'site/controller/RegistroController.php',
                         type:'post',
                         method:'post',
-                        data:{username:username,password:password,password2:password2,name:name,lastname1:lastname1,lastname2:lastname2,phone:phone,email:email,rango:rango},
+                        data:{username:username,password1:password1,password2:password2,name:name,lastname1:lastname1,lastname2:lastname2,phone:phone,email:email,rango:rango},
                         success:function(response){
                             if(response == 1){
                                 window.location = "login.php";

@@ -17,9 +17,9 @@ services:
     volumes:
       - "kazoku_database:/var/lib/mysql"
     environment:
-      MYSQL_USER: '${KAZOKU_DATABASE_USER}'
-      MYSQL_PASSWORD: '${KAZOKU_DATABASE_PASSWORD}'
+      MYSQL_USER: ${KAZOKU_DATABASE_USER}
+      MYSQL_PASSWORD: ${KAZOKU_DATABASE_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
-      MYSQL_DATABASE: '${KAZOKU_DATABASE_DATABASE}'
+      MYSQL_DATABASE: ${KAZOKU_DATABASE_DATABASE}
 volumes:
   kazoku_database:

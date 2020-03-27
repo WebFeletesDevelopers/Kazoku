@@ -1,8 +1,7 @@
 <?php
-
-include "conexion.php";
+include '../PDO/database.php';
 $user_id=null;
-$orden="CodAlumno";
+$orden="Nombre";
 /*if($_GET[s]!==null){
     $orden=$_GET[s];
 }*/
@@ -49,8 +48,11 @@ function asignarCinturon($CodCinturon)
 }
 
 
-$sql1= "select * from alumno order by $orden";
-$query = $con->query($sql1);
+$sql1= 'select * from alumno order by ?';
+$bd = crear();
+$query = $bd->query($sql1);
+$usuario = $query->fetchAll($orden);
+
 
 ?>
 
@@ -71,8 +73,11 @@ $query = $con->query($sql1);
     <th></th>
 </thead>
     <tbody class="text-center mx-0">
-<?php while ($r=$query->fetch_array()):
-    $originalDate = $r["FechaNacimiento"];
+<?php
+    foreach ($usuario as $usuarioDetalle){
+
+
+    $originalDate = $usuarioDetalle->FechaNacimiento;
     $newDate = date("d-m-Y", strtotime($originalDate));
 ?>
 
@@ -81,7 +86,7 @@ $query = $con->query($sql1);
 
 
     <td class="align-middle text-center"><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$r['DNI'].'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" width="50" height="50"></td>
-	<td class="align-middle text-center"><?= $r["Nombre"]; ?></td>
+	<td class="align-middle text-center"><?= $r[""]; ?></td>
 	<td class="align-middle text-center"><?= $r["Apellido1"]; ?></td>
 	<td class="align-middle text-center"><?= $r["Apellido2"]; ?></td>
 
@@ -103,7 +108,7 @@ $query = $con->query($sql1);
         </script>
     </td>
 </tr>
-<?php endwhile;?>
+<?php };?>
 </tbody>
 </table>
 <?php else:?>

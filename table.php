@@ -1,68 +1,7 @@
 <?php
-session_start();
-$_SESSION['Rango']=0;
-
-if(!isset($_SESSION['Rango']) ){
-    header('Location: ../../../login.php');
-}
-if ($_SESSION['Rango']>=2){
-    header('Location: ../../../login.php');
-}
-include_once 'PDO/database.php';
-
-//include "php/conexion.php";
-$user_id=null;
-$orden="Apellido1, Apellido2";
-/*if($_GET[s]!==null){
-    $orden=$_GET[s];
-}*/
-
-
-function asignarCinturon($CodCinturon)
-{
-    switch ($CodCinturon) {
-        case 1:
-            $response = 'Blanco';
-            break;
-        case 2:
-            $response = 'Blanco-Amarillo';
-            break;
-        case 3:
-            $response = 'Amarillo-Naranja';
-            break;
-        case 4:
-            $response = 'Naranja-verde';
-            break;
-        case 5:
-            $response = 'Verde';
-            break;
-        case 6:
-            $response = 'Verde-Azul';
-            break;
-        case 7:
-            $response = 'Azul';
-            break;
-        case 8:
-            $response = 'Azul-Marrón';
-            break;
-        case 9:
-            $response = 'Marrón';
-            break;
-        case 10:
-            $response = 'Negro';
-            break;
-        default:
-            $response = 'Blanco';
-
-    }
-    return $response;
-}
-
-$bd =crear();
-$sentencia = $bd->query("SELECT * FROM alumno order by $orden;");
-$alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
+include 'site/controller/SessionController.php';
+include 'site/controller/ListadoController.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -93,20 +32,19 @@ $alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                             <?php if(count($alumno)>0):?>
 
-                                <table class="table dataTable my-0" id="dataTable">
+                                <table class="table dataTable my-0" id="tablaAlumnos">
                                 <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Nombre </th>
-                                        <th>Apellidos</th>
-                                        <th>F Nacimiento</th>
-                                        <th>Sexo</th>
-                                        <th>Cinturón</th>
-                                        <th>ID Fanjyda</th>
-                                        <th>DNI/NIE/PAS</th>
-                                        <th>Info</th>
-
-                                    </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Sexo</th>
+                                    <th>Cinturón</th>
+                                    <th>ID Fanjyda</th>
+                                    <th>DNI/NIE/PAS</th>
+                                    <th>Info</th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
@@ -114,7 +52,7 @@ $alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
                                     $originalDate = $alu->FechaNacimiento;
                                     $newDate = date("d/m/Y", strtotime($originalDate));
                                     ?>
-                                        <tr>
+                                    <tr>
                                         <td><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alu->DNI.'.png')){echo $alu->DNI;}else{echo "generic";}  ?>.png" width="30" height="30"></td>
                                         <td><?= $alu->Nombre; ?></td>
                                         <td><?= $alu->Apellido1.' '.$alu->Apellido2; ?> </td>
@@ -123,8 +61,9 @@ $alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
                                         <td><?php  if(isset($alu->CodCinturon)){ echo asignarCinturon($alu->CodCinturon);} else{ echo "Blanco";}?></td>
                                         <td><?= $alu->IdFanjyda; ?></td>
                                         <td><?= $alu->DNI; ?></td>
-                                        <td><a href="/profile.php?CodAlumno=<?=$alu->CodAlumno?>" class="container-fluid btn btn-sm btn-primary inline-block m-1">Info</a></td>
+                                        <td><a href="/profile.php?CodAlumno=<?=$alu->CodAlumno?>" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-user-tag"></i></a></td>
                                     </tr>
+
                                     <?php }?>
                                 </tbody>
                                 <tfoot>
@@ -132,6 +71,7 @@ $alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
                                         <th></th>
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
+                                        <th>Fecha Nacimiento</th>
                                         <th>Sexo</th>
                                         <th>Cinturón</th>
                                         <th>ID Fanjyda</th>

@@ -1,5 +1,5 @@
 <?php
-include "PDO/database.php";
+include_once 'PDO/database.php';
 
 /**
  * Checkea si el usuario está logueado
@@ -27,7 +27,7 @@ function isConfirmed()
         if ($_SESSION['Confirmado'] === TRUE) {
             return TRUE;
         } else {
-            $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['Username'] . "'";
+            $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['uname'] . "'";
             $bd = crear();
             $query = $bd->query($sql);
             $usuario = $query->fetchObject();
@@ -46,7 +46,7 @@ function isConfirmed()
 function isAdmin()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] === 0) {
+        if ($_SESSION['Rango'] == 0) {
             return TRUE;
         } else {
             return FALSE;
@@ -59,7 +59,7 @@ function isAdmin()
 function isProfe()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] === 1) {
+        if ($_SESSION['Rango'] == 1) {
             return TRUE;
         } else {
             return FALSE;
@@ -71,7 +71,7 @@ function isProfe()
 function isPadre()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] === 2) {
+        if ($_SESSION['Rango'] == 2) {
             return TRUE;
         } else {
             return FALSE;
@@ -83,7 +83,7 @@ function isPadre()
 function isAlumno()
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
-        if ($_SESSION['Rango'] === 3) {
+        if ($_SESSION['Rango'] == 3) {
             return TRUE;
         } else {
             return FALSE;
@@ -91,4 +91,10 @@ function isAlumno()
     } else {
         return FALSE;
     }
+}
+function cerrarSesion(){
+    $_SESSION = [];
+    session_destroy();
+    session_unset();
+    header('Location: index.php');
 }

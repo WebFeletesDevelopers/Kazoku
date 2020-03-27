@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include_once '../PDO/users.php';
-include_once '../PDO/verification.php';
+include_once '../../PDO/users.php';
+include_once '../../PDO/verification.php';
 $user = new users();
 /*
 $_POST['username']="username1";
@@ -28,9 +28,9 @@ if($_POST['rango']>1 && $_POST['rango']<4){
     $user->setRango($_POST['rango']);
 }
 if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && $user->getEmail() !="" && $user->getUsername() !=""){
-    include '../PDO/database.php';
+    include '../../PDO/database.php';
     if(!isset($bd)) {
-       $bd =  crear();
+        $bd =  crear();
     }
     $sentencia = $bd->prepare('SELECT * FROM users WHERE username ='.$user->getUsername().';');
     $count = $sentencia->fetchAll(PDO::FETCH_OBJ);

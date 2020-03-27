@@ -32,7 +32,6 @@
                                         data-dropdown-class="select-inline-dropdown select-inline-dropdown-secondary">
                                     <option value="es" selected="">es</option>
                                     <option value="en">en</option>
-                                    <option value="fr">fr</option>
                                 </select>
                             </li>
                             <li>
