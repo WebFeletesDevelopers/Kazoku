@@ -13,3 +13,4 @@ COPY . /code
 
 WORKDIR /code
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install -o
