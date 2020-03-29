@@ -1,0 +1,25 @@
+{
+  "name": "kazoku/kazoku",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alberto Gómez Peña",
+      "email": "contacto@albertogomp.es"
+    },
+    {
+      "name": "Francisco José Romero Medina",
+      "email": "f.romeromedina@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/WebFeletesDevelopers/MailSail"
+    }
+  ],
+  "require": {
+    "webfeletesdevelopers/mailsail": "^1"
+  }
+}
