@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 RUN apk add --no-cache $PHPIZE_DEPS
 
@@ -10,3 +10,7 @@ COPY cfg/php/prod/php_config.ini /usr/local/etc/php/conf.d/kazoku.ini
 COPY cfg/php/prod/php_config.ini /etc/php7/conf.d/kazoku.ini
 
 COPY . /code
+
+WORKDIR /code
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install -o
