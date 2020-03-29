@@ -11,6 +11,9 @@ Build and push images:
   stage: build
   script:
     - sh ./cfg/scripts/build-and-push.sh
+  only:
+    - master
+    - develop
 
 Send config to testing:
   stage: send-config-testing
