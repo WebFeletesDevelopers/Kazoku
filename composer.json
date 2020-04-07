@@ -20,6 +20,9 @@
     }
   ],
   "require": {
-    "webfeletesdevelopers/mailsail": "^1"
+    "webfeletesdevelopers/mailsail": "^1",
+    "slim/slim": "^4",
+    "twig/twig": "^3",
+    "symfony/translation": "^5"
   }
 }

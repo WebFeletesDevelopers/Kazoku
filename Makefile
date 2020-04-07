@@ -1,7 +1,7 @@
 build-dev:
 	docker-compose -f docker-compose-dev.yml pull
 	docker-compose -f docker-compose-dev.yml build
-	docker-compose -f docker-compose-dev.yml run --rm php-fpm composer install
+	make install-deps
 
 start-dev: build-dev
 	docker-compose -f docker-compose-dev.yml up -d
@@ -20,3 +20,9 @@ build:
 
 start:
 	docker-compose up -d
+
+install-deps:
+	docker-compose -f docker-compose-dev.yml run --rm php-fpm composer install ${args}
+
+update-deps:
+	docker-compose -f docker-compose-dev.yml run --rm php-fpm composer update ${args}

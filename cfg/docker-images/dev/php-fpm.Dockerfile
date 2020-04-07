@@ -13,3 +13,5 @@ COPY php/dev/php_config.ini /etc/php7/conf.d/kazoku.ini
 
 WORKDIR /code
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+RUN composer global require hirak/prestissimo

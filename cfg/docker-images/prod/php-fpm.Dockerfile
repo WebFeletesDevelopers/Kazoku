@@ -13,4 +13,7 @@ COPY . /code
 
 WORKDIR /code
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+RUN composer global require hirak/prestissimo
+
 RUN composer install -o
