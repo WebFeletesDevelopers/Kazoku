@@ -11,7 +11,7 @@ if ($_SESSION['Confirmado']!=1){
     header('Location: ../../../login.php');
 }
 if(!isset($bd)){
-    $bd = crear();
+    $bd = create();
 }
 
 $id = $_GET["CodNot"];

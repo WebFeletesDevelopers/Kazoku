@@ -6,7 +6,7 @@ class noticias{
     public $Cuerpo;
     public $Fecha;
     public $Autor;
-    private $Publlica;
+    public $Publica;
 
     /**
      * noticias constructor.
@@ -98,24 +98,24 @@ class noticias{
     /**
      * @return mixed
      */
-    public function getPubllica()
+    public function getPublica()
     {
-        return $this->Publlica;
+        return $this->Publica;
     }
 
     /**
-     * @param mixed $Publlica
+     * @param mixed $Publica
      */
-    public function setPubllica($Publlica)
+    public function setPublica($Publica)
     {
-        $this->Publlica = $Publlica;
+        $this->Publica = $Publica;
     }
 
     /*
      * Método to String
      */
     public function toString(){
-        return $this->getCodNot()." - ".$this->getTitulo()." - ".$this->getCodAutor()." - ".$this->getCuerpo()." - ".$this->getFecha()." - ".$this->getPubllica();
+        return $this->getCodNot()." - ".$this->getTitulo()." - ".$this->getCodAutor()." - ".$this->getCuerpo()." - ".$this->getFecha()." - ".$this->getPublica();
     }
 
 

@@ -18,6 +18,54 @@
                         <p class="text-primary m-0 font-weight-bold">Datos</p>
                     </div>
                     <div class="card-body">
+                        <table class="table dataTable my-0" id="tablaFaltas">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Clase</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php
+                                getAbsences($CodAlumno);
+                                foreach($absences as $absence){
+                                ?>
+                                <tr>
+                                    <td><?= $alu->Nombre; ?></td>
+                                    <td><?= $alu->Apellido1.' '.$alu->Apellido2; ?> </td>
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" id="<?=$alu->CodAlumno?>" onClick="addToList(this.id);"  >
+                                            <span class="slider round"></span>
+                                        </label>
+
+
+                                    </td>
+                                </tr>
+                            <?php }?>
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Clase</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <?php if($alumno->CodDireccion !=null){ include 'otros.php'; } else{ echo '<div class="alert alert-danger">No hay datos de dirección</div>';} ?>
+
+                <div class="card shadow my-3">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Faltas de asistencia</p>
+                    </div>
+                    <div class="card-body">
                         <form>
                             <div class="form-row">
                                 <div class="col">
@@ -39,7 +87,6 @@
                         </form>
                     </div>
                 </div>
-                <?php if($alumno->CodDireccion !=null){ include 'otros.php'; } else{ echo '<div class="alert alert-danger">No hay datos de dirección</div>';} ?>
             </div>
         </div>
     </div>

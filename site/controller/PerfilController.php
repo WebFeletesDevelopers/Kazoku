@@ -1,5 +1,5 @@
 <?php
-$bd = crear();
+$bd = create();
 if($_SESSION['Rango']<2 && isset($_GET['CodAlumno'])){
 if(isset($_GET['CodAlumno']) &&  $_SESSION['Rango']<2){
 $id =$_GET['CodAlumno'];

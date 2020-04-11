@@ -50,7 +50,7 @@ function asignarCinturon($CodCinturon)
     return $response;
 }
 
-$bd =crear();
+$bd =create();
 $sentencia = $bd->query("SELECT * FROM alumno order by $orden;");
 $alumno = $sentencia->fetchAll(PDO::FETCH_OBJ);
 ?>

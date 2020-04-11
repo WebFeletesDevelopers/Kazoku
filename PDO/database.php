@@ -1,10 +1,11 @@
 <?php
 
 /**
+ * Creates the database connection
  * Crea la conexión a la base de datos
  * @return PDO
  */
-function crear(){
+function create(){
     $user = getenv('KAZOKU_DATABASE_USER');
     $password = getenv('KAZOKU_DATABASE_PASSWORD');
     $db = getenv('KAZOKU_DATABASE_DATABASE');
@@ -21,89 +22,90 @@ function crear(){
 }
 
 /**
- * Método genérico de inserción de objeto en bases de datos mediante PDO pasando un objeto por parámetro. Tiene que ser un objeto que coincida 100% con la tabla correspondiente
- * @param $objeto object es el objeto a insertar en la base de datos
- * @param $conexionBD PDO es la conexión a la Base de datos
- * @return bool si se realizó la insercción correctamente
+ * Generic method to insert any kind of objectToInsert in database througth PDO parsing as parameter the objectToInsert and a PDO connection. It has to be an objectToInsert witch is structured as its reference table.
+ * Método genérico de inserción de objectToInsert en bases de datos mediante PDO pasando un objectToInsert por parámetro. Tiene que ser un objectToInsert que coincida 100% con la tabla correspondiente
+ * @param $objectToInsert objectToInsert The objectToInsert to insert at BD / es el objectToInsert a insert en la base de datos
+ * @param $BDConnection PDO The connection to BD / es la conexión a la Base de datos
+ * @return bool If the insertion was succesfully done / si se realizó la insercción correctamente
  */
-function insertar (&$objeto,$conexionBD){
+function insert (&$objectToInsert, $BDConnection){
 
-    $parametros = '';
-    $interrogaciones = "";
-    $objetoEnArray =(array) $objeto;
+    $parameters = '';
+    $interrogations = "";
+    $objetoEnArray =(array) $objectToInsert;
 
-    foreach ($objetoEnArray as $campoObjeto) {
+    foreach ($objetoEnArray as $field) {
 
-        if($campoObjeto !== null){
-            $patronFecha="/[1-9][0-9]{3}-(0[1-9]|1[0-2])-([012][1-9]|3[01])/";
-            if(preg_match($patronFecha, $campoObjeto, $matches) === 1 && $matches[0] === $campoObjeto){ // Comprueba que el objeto coincide con el patrón YYYY-MM-DD
-                $parametros .= $campoObjeto . 'Ç';
-                $interrogaciones.= '?,';
+        if($field !== null){
+            $datePattern="/[1-9][0-9]{3}-(0[1-9]|1[0-2])-([012][1-9]|3[01])/";
+            if(preg_match($datePattern, $field, $matches) === 1 && $matches[0] === $field){ //  Checks that objectToInsert matches the pattern YYYY-MM-DD - Comprueba que el objectToInsert coincide con el patrón YYYY-MM-DD
+                $parameters .= $field . 'Ç';
+                $interrogations.= '?,';
             }
             else {
-                if(is_numeric($campoObjeto)) {
-                    $parametros .= $campoObjeto . 'Ç';
-                    $interrogaciones.="?,";
+                if(is_numeric($field)) {
+                    $parameters .= $field . 'Ç';
+                    $interrogations.="?,";
                 }
-                else{ // Si es una cadena de texto normal
-                    $parametros .= $campoObjeto."Ç";
-                    $interrogaciones.="?,";
+                else{ // If is a normal string -  Si es una cadena de texto normal
+                    $parameters .= $field."Ç";
+                    $interrogations.="?,";
                 }
             }
         }
-        else if($campoObjeto === null){
-            $parametros .= "Ç";
-            $interrogaciones.="?,";
+        else if($field === null){
+            $parameters .= "Ç";
+            $interrogations.="?,";
         };
-        // Concatena un numero n de interrogaciones en función de las posiciones del array.
+        // Concatenates a n number of interrogations depending of the array's positions -  Concatena un numero n de interrogations en función de las posiciones del array.
     }
 
-    $nombreTabla = get_class($objeto);
+    $tableName = get_class($objectToInsert);
 
-    $interrogaciones =rtrim($interrogaciones,",");
+    $interrogations =rtrim($interrogations,",");
 
-    // Retiramos la última " , " que pone el foreach y se separa en un nuevo array
-    $parametros = rtrim($parametros,"Ç ");
-    $datosConsulta = explode("Ç",$parametros);
+    // Deletes the last " , " that puts the foreach and separates in a new array - Retiramos la última " , " que pone el foreach y se separa en un nuevo array
+    $parameters = rtrim($parameters,"Ç ");
+    $queryData = explode("Ç",$parameters);
 
-    // Arregla la query
-    $consulta = 'INSERT INTO'.' ';
-    $consulta .=$nombreTabla;
-    $consulta .= ' VALUES (';
-    $consulta .= $interrogaciones.')';
+    // Query fix - Arregla la query
+    $query = 'INSERT INTO'.' ';
+    $query .=$tableName;
+    $query .= ' VALUES (';
+    $query .= $interrogations.')';
 
-    // Prepara la sentencia e inserta
-    $sentencia = $conexionBD->prepare($consulta);
-    return $sentencia->execute($datosConsulta);
+    // Prepares the sentence and do the insert - Prepara la sentence e inserta
+    $sentence = $BDConnection->prepare($query);
+    return $sentence->execute($queryData);
 };
 
 /**
- * Selecciona una entrada de la base de datos.
+ * Select a row from the database - Selecciona una entrada de la base de datos.
  * @param $table_name
  * @return mixed
  */
 function selectOne($table_name){
     $sql = 'SELECT * FROM '.$table_name.';';
     if(!isset($bd)){
-        $bd = crear();
+        $bd = create();
     }
-    $sentencia = $bd->query($sql);
-    return $sentencia->fetchObject();
+    $sentence = $bd->query($sql);
+    return $sentence->fetchObject();
 }
 
 
 /**
- * Elimina cualquier entrada de la base de datos.
+ * Deletes any entry from the Database - Elimina cualquier entrada de la base de datos.
  * @param $obj
  * @param $idName
  * @return bool
  */
 function borrar(&$obj,$idName){
-    if(!isset($_SESSION['bd'])){
-        $bd = crear();
+    if(!isset($bd)){
+        $bd = create();
     }
     else{
-        $bd = crear();
+        $bd = create();
 
     }
     $objName = get_class($obj);

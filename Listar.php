@@ -89,7 +89,8 @@ else{
             <div class="container-fluid p-0 m-0">
                 <div class="card m-0 p-0 shadow">
                     <div class="card-header py-3">
-                        <p class="text-primary m-0 font-weight-bold">Club de Judo Kazoku <?php if(!is_null($claseActual->Nombre)){ echo ' - '.$claseActual->Nombre;} else{ echo 'null';}  ?></p>
+                        <p class="text-primary m-0 font-weight-bold">Club de Judo Kazoku <?php if(!is_null($claseActual->Nombre)){ echo ' - '.$claseActual->Nombre;}  ?></p>
+                        <input id="cod" type="hidden" value="<?=$CodClase?>">
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -122,7 +123,7 @@ else{
                                             <td><?= $alu->Apellido1.' '.$alu->Apellido2; ?> </td>
                                             <td>
                                                 <label class="switch">
-                                                    <input type="checkbox" id="<?=$alu->CodAlumno?>" onClick="aLaLista(this.id);"  >
+                                                    <input type="checkbox" id="<?=$alu->CodAlumno?>" onClick="addToList(this.id);"  >
                                                     <span class="slider round"></span>
                                                 </label>
 
@@ -142,7 +143,7 @@ else{
                                     </tfoot>
                                 </table>
 
-                                <button class="btn btn-primary" onclick="mandarLista()">ENVIAR</button>
+                                <button class="btn btn-primary" onclick="sendList()">ENVIAR</button>
 
                             <?php else:?>
                                 <p class="alert alert-warning">No hay resultados</p>

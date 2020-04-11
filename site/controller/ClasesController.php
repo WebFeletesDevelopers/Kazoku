@@ -8,7 +8,7 @@ if (isProfe() || isAdmin()) {
         if (isDiaClase($clase->Dias)) {
             if (isClaseAhora($clase->Horario)) {
                 $claseActual = $clase;
-                $_SESSION['IdClaseActualListado'] = $clase->CodClase;
+                $CodClase = $clase->CodClase;
                 $listadoAlumnos = getAlumnosEnClase($clase->CodClase);
             }
         }
@@ -26,7 +26,7 @@ if (isProfe() || isAdmin()) {
  */
 function getClases()
 {
-    $bd = crear();
+    $bd = create();
     $sentencia1 = $bd->query("SELECT * FROM clase");
     return $sentencia1->fetchAll(PDO::FETCH_OBJ);
 }
@@ -37,7 +37,7 @@ function getClases()
  */
 function getCentros()
 {
-    $bd = crear();
+    $bd = create();
     $sentencia1 = $bd->query("SELECT * FROM centro");
     return $sentencia1->fetchAll(PDO::FETCH_OBJ);
 }
@@ -49,7 +49,7 @@ function getCentros()
  */
 function getAlumnosEnClase($CodClase)
 {
-    $bd = crear();
+    $bd = create();
     $sentencia = $bd->query("SELECT * FROM alumno WHERE CodClase = $CodClase;");
     $res = $sentencia->fetchAll(PDO::FETCH_OBJ);
     return $res;

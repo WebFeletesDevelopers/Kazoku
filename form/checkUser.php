@@ -13,7 +13,7 @@ $password = $_POST['password'];
 
 if ($uname != "" && $password != ""){
     $sql = "SELECT * FROM users WHERE username = '".$uname."'";
-    $bd = crear();
+    $bd = create();
     $query = $bd->query($sql);
     $usuario = $query->fetchObject();
 
@@ -62,7 +62,7 @@ if ($uname != "" && $password != ""){
         //$query = $con->query($sql1);
 
         if(!isset($bd)){
-            $bd = crear();
+            $bd = create();
         }
         $sql = 'SELECT * FROM alumno WHERE CodUsu = '.$usuario->CodUsu;
         $sentencia = $bd->query($sql);

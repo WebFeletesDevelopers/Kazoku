@@ -28,7 +28,7 @@ function isConfirmed()
             return TRUE;
         } else {
             $sql = "SELECT * FROM users WHERE username = '" . $_SESSION['uname'] . "'";
-            $bd = crear();
+            $bd = create();
             $query = $bd->query($sql);
             $usuario = $query->fetchObject();
             $_SESSION['Confirmado'] = $usuario->Confirmado;

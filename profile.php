@@ -6,6 +6,8 @@ if(!isset($_SESSION['Rango'])){
 }
 include_once 'PDO/database.php';
 include_once 'site/controller/PerfilController.php';
+include      'site/controller/AsistenciaController.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +31,7 @@ include_once 'site/controller/PerfilController.php';
                 <div class="container-fluid">
                     <?php
                     if($_SESSION['Rango']<2 && isset($_GET['CodAlumno'])){
+                        $CodAlumno = $_GET['CodAlumno'];
                         include 'componentes/profile/ID.php';
                     }else{
                         if($_SESSION['Alta']==false) {

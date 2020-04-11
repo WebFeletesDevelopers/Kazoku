@@ -49,7 +49,7 @@ function asignarCinturon($CodCinturon)
 
 
 $sql1= 'select * from alumno order by ?';
-$bd = crear();
+$bd = create();
 $query = $bd->query($sql1);
 $usuario = $query->fetchAll($orden);
 

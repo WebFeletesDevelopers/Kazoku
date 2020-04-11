@@ -18,7 +18,7 @@ $orden="Apellido1, Apellido2";
 
 include_once 'PDO/database.php';
 if(!isset($bd)){
-    $bd = crear();
+    $bd = create();
 }
 $sentencia = $bd->query("SELECT * FROM users where `Confirmado`=0 order by `Apellido1`;");
 $users = $sentencia->fetchAll(PDO::FETCH_OBJ);

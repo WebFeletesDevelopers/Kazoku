@@ -15,7 +15,7 @@ enviarNoticia($noticia);
  * @param $tipo int  obtener las públicas 0, públicas y privadas 1.
  */
 function buscarNoticias($tipo){
-    $bd = crear();
+    $bd = create();
     $sql = 'SELECT *  FROM noticias WHERE Publica >= '.$tipo.'   order by 1 desc;';
     $sentencia = $bd->query($sql);
     $noticias = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -33,8 +33,8 @@ function buscarNoticias($tipo){
  * @return mixed
  */
 function enviarNoticia($noticia){
-    $bd = crear();
-    $result = insertar($noticia,$bd);
+    $bd = create();
+    $result = insert($noticia,$bd);
     return ($result);
 }
 
