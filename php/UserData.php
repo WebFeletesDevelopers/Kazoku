@@ -145,7 +145,7 @@ $edad = date("Y") - $yearN;
 
 <div class="container-fluid p-2" >
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alumno->DNI.'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" alt="" width="90" height="90">
+        <img class="d-block mx-auto mb-4" src="/site/images/profile/<?php if(file_exists("site/images/profile/".$alumno->DNI.'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" alt="" width="90" height="90">
         <h2>
             <?php
             echo $alumno->Nombre." ".$alumno->Apellido1;

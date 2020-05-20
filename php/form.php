@@ -66,7 +66,7 @@ $edad = date("Y") - $yearN;
     <form role="form" method="post" action="php/actualizar.php" class=" text-center mx-auto" style="color: white">
         <div class=" row text-center" tyle="color: white">
             <div class=" col-md-12 text-center">
-                <img class=" img-thumbnail img-circle img-fluid" src='../assets/img/profile/<?= $alumno->DNI; ?>.png '  onerror="this.src='../assets/img/profile/generic.png';" width="200" height="200">
+                <img class=" img-thumbnail img-circle img-fluid" src='../site/images/profile/<?= $alumno->DNI; ?>.png '  onerror="this.src='../site/images/profile/generic.png';" width="200" height="200">
 
             </div>
             <div class=" col-md-12 " tyle="color: white">
@@ -77,7 +77,7 @@ $edad = date("Y") - $yearN;
                 <h5 class=" mb-0">DNI/NIE/PAS <?php if(isset($alumno->DNI)){ echo $alumno->DNI;}else{echo "N/A";} ?></h5>
                 <h4 class=" mt-4 mb-0"> <?= $newDate; ?> </h4>
                 <h4 class=" mt-0 mb-5">Edad <?= $edad; ?> años</h4>
-                <img src="../assets/img/cintos/<?= $cinturon; ?>.png" class=" mt-0 mb-5">
+                <img src="../site/images/cintos/<?= $cinturon; ?>.png" class=" mt-0 mb-5">
             </div>
         </div>
         <hr class=" my-5">

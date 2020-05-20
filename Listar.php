@@ -118,7 +118,7 @@ else{
                                         $newDate = date("d/m/Y", strtotime($originalDate));
                                         ?>
                                         <tr>
-                                            <td><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alu->DNI.'.png')){echo $alu->DNI;}else{echo "generic";}  ?>.png" width="30" height="30"></td>
+                                            <td><img src="/site/images/profile/<?php if(file_exists("site/images/profile/".$alu->DNI.'.png')){echo $alu->DNI;}else{echo "generic";}  ?>.png" width="30" height="30"></td>
                                             <td><?= $alu->Nombre; ?></td>
                                             <td><?= $alu->Apellido1.' '.$alu->Apellido2; ?> </td>
                                             <td>

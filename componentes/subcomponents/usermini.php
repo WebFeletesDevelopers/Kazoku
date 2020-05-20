@@ -1,5 +1,5 @@
 <li class="nav-item dropdown no-arrow" role="presentation">
-    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><?= $_SESSION['name']?></span><img class="border rounded-circle img-profile" src="assets/img/profile/generic.png"></a>
+    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><?= $_SESSION['name']?></span><img class="border rounded-circle img-profile" src="site/images/profile/generic.png"></a>
         <div
             class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
             <a class="dropdown-item" role="presentation" href="/userdata.php"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Tus datos</a>

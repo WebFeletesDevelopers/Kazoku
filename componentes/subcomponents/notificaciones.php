@@ -35,7 +35,7 @@
              role="menu">
             <h6 class="dropdown-header">alerts center</h6>
             <a class="d-flex align-items-center dropdown-item" href="#">
-                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
+                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="site/images/avatars/avatar4.jpeg">
                     <div class="bg-success status-indicator"></div>
                 </div>
                 <div class="font-weight-bold">
@@ -44,7 +44,7 @@
                 </div>
             </a>
             <a class="d-flex align-items-center dropdown-item" href="#">
-                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
+                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="site/images/avatars/avatar2.jpeg">
                     <div class="status-indicator"></div>
                 </div>
                 <div class="font-weight-bold">
@@ -53,7 +53,7 @@
                 </div>
             </a>
             <a class="d-flex align-items-center dropdown-item" href="#">
-                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
+                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="site/images/avatars/avatar3.jpeg">
                     <div class="bg-warning status-indicator"></div>
                 </div>
                 <div class="font-weight-bold">
@@ -62,7 +62,7 @@
                 </div>
             </a>
             <a class="d-flex align-items-center dropdown-item" href="#">
-                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
+                <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="site/images/avatars/avatar5.jpeg">
                     <div class="bg-success status-indicator"></div>
                 </div>
                 <div class="font-weight-bold">

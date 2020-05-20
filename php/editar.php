@@ -4,7 +4,7 @@
         <script src="https://use.fontawesome.com/e68939b961.js"></script>
 		<title>Editar</title>
 		<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
-		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../site/js/jquery.min.js"></script>
 	</head>
 	<body>
 	<?php include "php/finder.php"; ?>

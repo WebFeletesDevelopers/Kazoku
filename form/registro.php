@@ -30,7 +30,7 @@ if($_POST['rango']>1 && $_POST['rango']<4){
 if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && $user->getEmail() !="" && $user->getUsername() !=""){
     include '../PDO/database.php';
     if(!isset($bd)) {
-       $bd =  create();
+       $bd =  crear();
     }
     $sentencia = $bd->prepare('SELECT * FROM users WHERE username ='.$user->getUsername().';');
     $count = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -39,7 +39,7 @@ if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && 
     }else{
         $hash = password_hash($_POST['password1'], PASSWORD_DEFAULT);
         $user->setPassword($hash);
-        $insertado = insert($user,$bd);
+        $insertado = insertar($user,$bd);
         if($insertado){
             $_SESSION['uname'] = $user->getUsername();
             $Verificar = new verification();

@@ -29,7 +29,7 @@ if(isAdmin() || isProfe()){
                 <!-- Start: Chart -->
                 <div class="form-signin">
                     <div class="text-center mb-4">
-                        <img class="mb-4" src="assets/img/Logo/logo-judo-93x94.png" alt="" width="72" height="72">
+                        <img class="mb-4" src="site/images/logo/logoL.png" alt="" width="72" height="72">
                         <h1 class="h3 mb-3 font-weight-normal">Escribir nueva noticia</h1>
                     </div>
 

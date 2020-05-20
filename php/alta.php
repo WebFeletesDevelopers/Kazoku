@@ -14,17 +14,17 @@ if (!isset($_SESSION['loggedin'])) {
 
     <title>Alta</title>
     <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
-    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../site/js/jquery.min.js"></script>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../site/images/favicon.ico" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Kanit:300,400,500,500i,600%7CRoboto:400,900">
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/css/fonts.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../site/css/bootstrap.css">
+    <link rel="stylesheet" href="../site/css/fonts.css">
+    <link rel="stylesheet" href="../site/css/style.css">
 </head>
 <body style="background-color: #293541">
 <?php include "../php/header.php"; ?>
@@ -39,8 +39,8 @@ if (!isset($_SESSION['loggedin'])) {
     </div>
 </div>
 
-<script src="../assets/js/core.min.js"></script>
-<script src="../assets/js/script.js"></script>
+<script src="../site/js/core.min.js"></script>
+<script src="../site/js/script.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html><?php

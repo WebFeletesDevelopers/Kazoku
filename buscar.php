@@ -108,7 +108,7 @@ function asignarCinturon($CodCinturon){
                                     $newDate = date("d/m/Y", strtotime($originalDate));
                                     ?>
                                         <tr>
-                                        <td><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$r['DNI'].'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" width="30" height="30"></td>
+                                        <td><img src="/site/images/profile/<?php if(file_exists("site/images/profile/".$r['DNI'].'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" width="30" height="30"></td>
                                         <td><?= $r["Nombre"]; ?></td>
                                         <td><?= $r["Apellido1"].' '.$r['Apellido2']; ?> </td>
                                         <td><?= $newDate; ?></td>
@@ -116,7 +116,7 @@ function asignarCinturon($CodCinturon){
                                         <td><?php  if(isset($r["CodCinturon"])){ echo asignarCinturon($r["CodCinturon"]);} else{ echo "Blanco";}?></td>
                                         <td><?= $r["IdFanjyda"]; ?></td>
                                         <td><?= $r["DNI"]; ?></td>
-                                        <td><a href="/profile.php?CodAlumno=<?=$r["CodAlumno"]?>" class="container-fluid btn btn-sm btn-primary inline-block m-1">Info</a></td>
+                                        <td><a href="profile.php?CodAlumno=<?=$r["CodAlumno"].'"' ?> class="container-fluid btn btn-sm btn-primary inline-block m-1">Info</a></td>
                                     </tr>
                                     <?php endwhile;?>
                                 </tbody>

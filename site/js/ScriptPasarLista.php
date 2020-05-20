@@ -1,50 +1,46 @@
 <script>
-    var AssistanceList = [];
+    var listaFalta = [];
 
-    /**
-     * Adds the selected judoka to the list
-     */
-    function addToList(id){
-        var isAtList = false;
-        var position = 0;
-        for(var i = 0; i < AssistanceList.length; i++){
-            if(AssistanceList[i] == id){
-                isAtList = true;
-                position = i;
+    function myFunc(id){
+        alert(id);
+    };
+
+    function aLaLista(id){
+        var estaEnLista = false;
+        var posicionEnLista = 0;
+        for(var i = 0; i < listaFalta.length; i++){
+            if(listaFalta[i] == id){
+                estaEnLista = true;
+                posicionEnLista = i;
             }
         }
-        if(isAtList){
-            AssistanceList.splice(position,1);
+        if(estaEnLista){
+            listaFalta.splice(posicionEnLista,1);
         }
         else{
-            AssistanceList.push(id);
+            listaFalta.push(id);
         }
     };
 
-    /**
-     * Sends the assistance with POST method with AJAX
-     */
-    function sendList(){
-
-        if (confirm('¿Confirmar faltas?')) {
-            var id = document.getElementById('cod').value;
-            $.ajax({
-                url: 'site/controller/AsistenciaController.php',
-                type: 'post',
-                data: {listaFalta: AssistanceList,CodClase:id},
-                success: function (response) {
-                    if (response == 0) {
-
-                    } else if (response == 1) {
-
-                    }
+    function mandarLista(){
+        alert(listaFalta);
+        $.ajax({
+            url: 'site/controller/ClasesController.php',
+            type: 'post',
+            data: {listaFalta: listaFalta},
+            success: function (response) {
+                if (response == 0) {
+                    var msg = "Error";
+                    $("#message").html(msg);
+                    var div = document.getElementById("message");
+                    div.classList.remove("d-none");
+                } else if (response == 1) {
+                    window.location = "../Listar.php";
                 }
-            });
-        } else {
-            // Do nothing!
-        }
 
+            }
 
+        });
     };
 
 

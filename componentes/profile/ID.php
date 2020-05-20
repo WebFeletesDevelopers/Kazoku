@@ -3,8 +3,8 @@
     <div class="col-lg-4">
         <div class="card mb-3">
 
-            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alumno->DNI.'.png')){echo $alumno->DNI;}else{echo "generic";}  ?>.png"   width="160" height="160">
-                <div class="mb-3 h-auto"><img src="/assets/img/cintos/Negro.png" class="img-fluid"  alt="..."></div>
+            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="/site/images/profile/<?php if(file_exists("site/images/profile/".$alumno->DNI.'.png')){echo $alumno->DNI;}else{echo "generic";}  ?>.png"   width="160" height="160">
+                <div class="mb-3 h-auto"><img src="/site/images/cintos/Negro.png" class="img-fluid" alt="..."></div>
             </div>
         </div>
         <?php if($alumno->CodClase !=null){ include 'clase.php'; } else{ echo '<div class="alert alert-danger">No hay datos de clase</div>';} ?>

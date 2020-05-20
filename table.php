@@ -53,7 +53,7 @@ include 'site/controller/ListadoController.php';
                                     $newDate = date("d/m/Y", strtotime($originalDate));
                                     ?>
                                     <tr>
-                                        <td><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alu->DNI.'.png')){echo $alu->DNI;}else{echo "generic";}  ?>.png" width="30" height="30"></td>
+                                        <td><img src="/site/images/profile/<?php if(file_exists("site/images/profile/".$alu->DNI.'.png')){echo $alu->DNI;}else{echo "generic";}  ?>.png" width="30" height="30"></td>
                                         <td><?= $alu->Nombre; ?></td>
                                         <td><?= $alu->Apellido1.' '.$alu->Apellido2; ?> </td>
                                             <td><?= $newDate  ?></td>
@@ -61,7 +61,7 @@ include 'site/controller/ListadoController.php';
                                         <td><?php  if(isset($alu->CodCinturon)){ echo asignarCinturon($alu->CodCinturon);} else{ echo "Blanco";}?></td>
                                         <td><?= $alu->IdFanjyda; ?></td>
                                         <td><?= $alu->DNI; ?></td>
-                                        <td><a href="/profile.php?CodAlumno=<?=$alu->CodAlumno?>" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-user-tag"></i></a></td>
+                                        <td><a href="profile.php?CodAlumno=<?=$alu->CodAlumno?>" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-user-tag"></i></a></td>
                                     </tr>
 
                                     <?php }?>

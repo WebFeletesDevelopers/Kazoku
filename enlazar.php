@@ -83,7 +83,7 @@ function asignarCinturon($CodCinturon){
                         ?>
                         <div class="row my-0">
                             <div class="col-md-4">
-                                <img class="card-img-top text-center img-fluid" src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$alu->DNI.'.png')){echo "$alu->DNI";}else{echo "generic";}  ?>.png">
+                                <img class="card-img-top text-center img-fluid" src="/site/images/profile/<?php if(file_exists("site/images/profile/".$alu->DNI.'.png')){echo "$alu->DNI";}else{echo "generic";}  ?>.png">
                             </div>
                             <div class="col-md-8" style="width: 18rem;">
                                 <div class="card-body text-left">

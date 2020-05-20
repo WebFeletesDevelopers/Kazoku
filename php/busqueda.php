@@ -75,7 +75,7 @@ function asignarCinturon($CodCinturon){
             });
         </script>
     </td>
-    <td class="align-middle text-center"><img src="/assets/img/profile/<?php if(file_exists("assets/img/profile/".$r['DNI'].'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" width="50" height="50"></td>
+    <td class="align-middle text-center"><img src="/site/images/profile/<?php if(file_exists("site/images/profile/".$r['DNI'].'.png')){echo "$r[DNI]";}else{echo "generic";}  ?>.png" width="50" height="50"></td>
     <td><?= $r["Nombre"]; ?></td>
 	<td><?= $r["Apellido1"]; ?></td>
 	<td><?= $r["Apellido2"]; ?></td>
