@@ -36,7 +36,7 @@ function getAbsences($CodAlumno)
     $absences = $sentence->fetchAll(PDO::FETCH_OBJ);
     foreach ($absences as $absence){
         $classCodes[] = $absence->getCodClase;
-        $
+
     }
 
 }

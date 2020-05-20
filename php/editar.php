@@ -1,5 +1,5 @@
 
-<html>
+<html lang="es">
 	<head>
         <script src="https://use.fontawesome.com/e68939b961.js"></script>
 		<title>Editar</title>
