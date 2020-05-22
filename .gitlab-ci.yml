@@ -28,7 +28,7 @@ Deploy to testing server:
     - sh ./cfg/scripts/deploy-testing.sh
   environment:
     name: testing
-    url: https://testing_kazoku.romeronet.es
+    url: https://testingkazoku.romeronet.es
   only:
     - develop
 
