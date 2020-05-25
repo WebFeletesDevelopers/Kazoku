@@ -3,7 +3,7 @@
 	<head>
         <script src="https://use.fontawesome.com/e68939b961.js"></script>
 		<title>Editar</title>
-		<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../site/css/bootstrap.min.css">
 		<script src="../site/js/jquery.min.js"></script>
 	</head>
 	<body>
@@ -19,6 +19,6 @@
 </div>
 </div>
 
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../site/js/bootstrap.min.js"></script>
 	</body>
 </html>

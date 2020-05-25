@@ -117,7 +117,7 @@ $users = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
                 if( $accion != ""){
                     $.ajax({
-                        url:'./form/confirmar.php',
+                        url:'./controller/ConfirmacionController.php',
                         type:'post',
                         data:{username:$username,action:$accion},
                         success:function(response){

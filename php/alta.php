@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
     <script src="https://use.fontawesome.com/e68939b961.js"></script>
 
     <title>Alta</title>
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../site/css/bootstrap.min.css">
     <script src="../site/js/jquery.min.js"></script>
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1">
@@ -41,6 +41,6 @@ if (!isset($_SESSION['loggedin'])) {
 
 <script src="../site/js/core.min.js"></script>
 <script src="../site/js/script.js"></script>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../site/js/bootstrap.min.js"></script>
 </body>
 </html><?php

@@ -5,7 +5,7 @@ if(!isset($_GET['Code'])){
     }
 }else{
     include "form/config.php";
-
+    //TODO: CONVERTIR ESTA CLASE
     $token = mysqli_real_escape_string($con,substr($_GET['Code'],0,32));
     $user = mysqli_real_escape_string($con,substr($_GET['Code'],32));
     if ($user != "" && $token !== "" ){

@@ -4,17 +4,17 @@ session_start();
 include_once '../../PDO/users.php';
 include_once '../../PDO/verification.php';
 $user = new users();
-/*
-$_POST['username']="username1";
-$_POST['name']="name";
-$_POST['lastname1']="lastname";
-$_POST['password1']="pass";
-$_POST['password2']="pass";
-$_POST['lastname2']="lastname2";
-$_POST['phone']=987654322;
-$_POST['email']="test1@test.com";
-$_POST['rango']=2;
-*/
+
+//$_POST['username']="username1";
+//$_POST['name']="name";
+//$_POST['lastname1']="lastname";
+//$_POST['password1']="pass";
+//$_POST['password2']="pass";
+//$_POST['lastname2']="lastname2";
+//$_POST['phone']=987654322;
+//$_POST['email']="test1@test.com";
+//$_POST['rango']=2;
+
 $user->setUsername($_POST['username']);
 $user->setConfirmado(0);
 $user->setEmailConfirmado(0);
@@ -24,10 +24,10 @@ $user->setApellido2($_POST['lastname2']);
 $user->setTelefono($_POST['phone']);
 $user->setEmail($_POST['email']);
 $user->setCodUsu(0);
-if($_POST['rango']>1 && $_POST['rango']<4){
-    $user->setRango($_POST['rango']);
-}
-if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && $user->getEmail() !="" && $user->getUsername() !=""){
+$user->setRango($_POST['rango']);
+
+
+if (checkData($user)){
     include '../../PDO/database.php';
     if(!isset($bd)) {
         $bd =  create();
@@ -67,4 +67,12 @@ if ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && 
 }
 else{
     echo 0;
+}
+
+/**
+ * @param $user the username to insert
+ * @return bool if can continue the insertion
+ */
+function checkData($user){
+    return ($user->getName() != "" && ($_POST['password1'] === $_POST['password2'])  && $user->getEmail() !="" && $user->getUsername() !="" && ($_POST['rango']>1 && $_POST['rango']<4) );
 }

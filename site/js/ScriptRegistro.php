@@ -27,7 +27,7 @@
                 }
 
                 $.ajax({
-                    url:'form/registroB.php',
+                    url:'controller/RegistroController.php',
                     type:'post',
                     method:'post',
                     data:{username:username,password:password,password2:password2,name:name,lastname1:lastname1,lastname2:lastname2,phone:phone,email:email,rango:rango},
