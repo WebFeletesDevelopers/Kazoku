@@ -1,0 +1,24 @@
+/*TODO: Este archivo debe incluirse en el archivo principal de estilos.*/
+.kaz-primario {
+    background-color: rgb(47, 67, 77);
+    color: white;
+}
+.kaz-terciario{
+    background-color: rgb(57,70,84);
+}
+
+.kaz-oscuro {
+    background-color: rgb(44, 55, 66);
+}
+
+.kaz-secundario {
+    background-color: rgb(56, 70, 84);
+}
+
+.kaz-amarillo {
+    background-color: rgb(213, 205, 105);
+}
+
+.kaz-azul {
+    background-color: rgb(83, 144, 214);
+}

@@ -20,9 +20,16 @@
     }
   ],
   "require": {
+    "php": "^7.4",
     "webfeletesdevelopers/mailsail": "^1",
     "slim/slim": "^4",
-    "twig/twig": "^3",
-    "symfony/translation": "^5"
+    "twig/twig": "^2",
+    "slim/psr7": "^1.1",
+    "twig/extensions": "^1"
+  },
+  "autoload": {
+    "psr-4": {
+      "WebFeletesDevelopers\\Kazoku\\": "./"
+    }
   }
 }
