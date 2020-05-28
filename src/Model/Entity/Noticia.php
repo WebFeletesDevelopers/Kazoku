@@ -16,7 +16,7 @@ class Noticia
     private string $body;
     private DateTime $date;
     private string $author;
-    private bool $public;
+    private bool $isPublic;
 
     /**
      * Noticia constructor.
@@ -25,7 +25,7 @@ class Noticia
      * @param string $body
      * @param DateTime $date
      * @param string $author
-     * @param bool $public
+     * @param bool $isPublic
      */
     public function __construct(
         int $id,
@@ -33,14 +33,14 @@ class Noticia
         string $body,
         DateTime $date,
         string $author,
-        bool $public
+        bool $isPublic
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->body = $body;
         $this->date = $date;
         $this->author = $author;
-        $this->public = $public;
+        $this->isPublic = $isPublic;
     }
 
     /**
@@ -86,8 +86,8 @@ class Noticia
     /**
      * @return bool
      */
-    public function public(): bool
+    public function isPublic(): bool
     {
-        return $this->public;
+        return $this->isPublic;
     }
 }
