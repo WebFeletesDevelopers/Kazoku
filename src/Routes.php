@@ -20,7 +20,6 @@ class Routes
     {
         $app->get('/', HomeAction::class);
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
-
         return $app;
     }
 }
