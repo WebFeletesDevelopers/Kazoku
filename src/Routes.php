@@ -36,6 +36,10 @@ class Routes
         $app->get('/virtualClass', virtualClassAction::class);
         $app->get('/newUser', newUserAction::class);
         $app->get('/panel', panelAction::class);
+        $app->get('/login', loginAction::class);
+        $app->get('/register', registerAction::class);
+        $app->get('/resetPassword', resetPasswordAction::class);
+        $app->get('/logout', logoutAction::class);
         return $app;
     }
 }
