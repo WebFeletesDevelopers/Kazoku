@@ -3,3 +3,4 @@ vendor
 web/node_modules
 public/css/main.css
 public/js/main.js
+web/tmp
