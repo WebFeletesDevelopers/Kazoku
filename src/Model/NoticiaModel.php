@@ -3,7 +3,9 @@
 namespace WebFeletesDevelopers\Kazoku\Model;
 
 use DateTime;
+use Exception;
 use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\NoticiaFactory;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 
@@ -48,5 +50,29 @@ SQL;
         }
 
         return true;
+    }
+
+    /**
+     * @param int $count
+     * @return Noticia[]
+     * @throws Exception
+     */
+    public function getLastPublic(int $count = 5): array {
+        $sql = <<<SQL
+        SELECT n.CodNot AS id,
+               n.Titulo AS title,
+               n.Cuerpo AS body,
+               n.Fecha AS date,
+               n.Autor AS author,
+               n.Publica AS public
+        FROM noticias n
+        WHERE n.Publica = ?
+        LIMIT ?
+SQL;
+        $statement = $this->query($sql, [true, $count]);
+
+        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return NoticiaFactory::fromMysqlRows($rows);
     }
 }
