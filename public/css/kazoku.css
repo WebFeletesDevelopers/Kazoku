@@ -1,4 +1,4 @@
-/*TODO: Este archivo debe incluirse en el archivo principal de estilos.*/
+/* Custom colors */
 .kaz-primario {
     background-color: rgb(47, 67, 77);
     color: white;
@@ -22,3 +22,5 @@
 .kaz-azul {
     background-color: rgb(83, 144, 214);
 }
+
+/* Carousel styling */

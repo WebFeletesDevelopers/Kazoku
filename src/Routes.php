@@ -40,6 +40,7 @@ class Routes
         $app->get('/register', registerAction::class);
         $app->get('/resetPassword', resetPasswordAction::class);
         $app->get('/logout', logoutAction::class);
+        $app->get('/newsCreator', newsCreatorAction::class);
         return $app;
     }
 }

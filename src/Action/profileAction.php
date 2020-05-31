@@ -24,7 +24,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
 
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('profile',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $compiledTwig = $this->render('profile');
         $body->write($compiledTwig);
         return $response;
     }

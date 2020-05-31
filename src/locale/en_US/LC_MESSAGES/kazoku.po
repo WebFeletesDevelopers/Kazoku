@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-25 20:25+0000\n"
-"PO-Revision-Date: 2020-05-24 20:00+0000\n"
+"POT-Creation-Date: 2020-05-31 07:25+0000\n"
+"PO-Revision-Date: 2020-05-31 09:29+0200\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -16,6 +16,61 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. line 4
+#. line 13
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:42
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:54
+msgid "Buscar"
+msgstr "Search"
+
+#. line 24
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:71
+msgid "Notificaciones"
+msgstr "Notifications"
+
+#. line 48
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:98
+msgid "Mostrar Notificaciones"
+msgstr "Show notifications"
+
+#. line 55
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:108
+msgid "Mensajes"
+msgstr "Messages"
+
+#. line 91
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:147
+msgid "Mostrar mensajes"
+msgstr "Show messages"
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:166
+msgid "¡Registrate!"
+msgstr "Register!"
+
+#. line 108
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:185
+msgid "Perfil"
+msgstr "Profile"
+
+#. line 111
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:191
+msgid "Configuración"
+msgstr "Settings"
+
+#. line 114
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:197
+msgid "Actividad"
+msgstr "Logs"
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:204
+msgid "Cerrar sesión"
+msgstr "Logout"
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:210
+msgid "Iniciar sesión"
+msgstr "Login"
 
 #. line 1
 #: View/cache/f2/f2b4c3822de3a226f5298ae5187623c92199dc5232072c8fd7ec376c00a38676.php:37
@@ -26,3 +81,43 @@ msgstr "this is translated manin"
 #: View/cache/f2/f2b4c3822de3a226f5298ae5187623c92199dc5232072c8fd7ec376c00a38676.php:42
 msgid "foook"
 msgstr "sheiiiit"
+
+#. line 9
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:47
+msgid "Mi perfil"
+msgstr "My profile"
+
+#. line 10
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:51
+msgid "Confirmaciones"
+msgstr "Confirmations"
+
+#. line 11
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:55
+msgid "Alumnos"
+msgstr "Judokas"
+
+#. line 12
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:59
+msgid "Pasar Lista"
+msgstr "Check list"
+
+#. line 13
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:63
+msgid "Mi Clase"
+msgstr "My class"
+
+#. line 14
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:67
+msgid "Aula Virtual"
+msgstr "Virtual Class"
+
+#. line 15
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:71
+msgid "Altas"
+msgstr "Signins"
+
+#. line 16
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:75
+msgid "Panel"
+msgstr "Panel"
