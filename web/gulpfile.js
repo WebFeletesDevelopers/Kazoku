@@ -17,8 +17,9 @@ const jsFiles = [
     'js/jquery-3.5.1.js',
     'js/jquery.easing.js',
     'js/bootstrap.min.js',
-    'js/chart.min.js',
+    // 'js/chart.min.js',
     'js/bs-init.js',
+    'js/scripts.js',
 ];
 
 /******* DEV *******/
