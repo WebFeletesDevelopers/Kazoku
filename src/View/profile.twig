@@ -1,0 +1,115 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4">{{ "Perfil" | trans}}</h3>
+        <div class="row mb-3">
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="/img/profile/{% if userId is defined %}{{ userId }}{% else%}generic{% endif %}.png" width="160" height="160" />
+                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">{{ "Cambiar Foto" | trans  }}</button></div>
+                    </div>
+                </div>
+                    <ul class="list-group mb-3 p-1  ">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{ "Próxima clase" | trans  }}</h6>
+
+                                <small class="text-muted">{{ "Día y hora" }}</small>
+                            </div>
+                            <span class="text-muted" style="">{{ "Nombre clase" | trans  }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{ "Centro" | trans  }}</h6>
+                                <small class="text-muted">{{ "Calle del centro" | trans  }}</small>
+                            </div>
+                            <span class="text-muted">{{ "Nombre del centro" | trans  }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">{{ "Profesor" | trans  }}</h6>
+
+                            </div>
+                            <span class="text-success">{{ "Nombre profesor" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{ "Telefono" | trans  }}</h6>
+                                <small class="text-muted"></small>
+                            </div>
+                            <span class="text-muted">{{ "952331204" }}</span>
+                        </li>
+
+                    </ul>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 font-weight-bold">{{ "Datos" | trans}}</p>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="username"><strong>{{ "Nombre de usuario" | trans}}</strong></label><input class="form-control" type="text" placeholder="Administrador" name="username" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="email"><strong>{{ "Email" | trans}}</strong></label><input class="form-control" type="email" placeholder="desarrollo@clubkazoku.es" name="email" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>{{ "Nombre" | trans}}</strong></label><input class="form-control" type="text" placeholder="Alberto" name="first_name" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="last_name"><strong>{{ "Apellido(s)" | trans}}</strong></label><input class="form-control" type="text" placeholder="Gómez" name="last_name" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos" | trans}}</button></div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card shadow">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 font-weight-bold">{{ "Dirección" | trans}}</p>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group"><label for="address"><strong>{{ "Calle" | trans}}</strong></label><input class="form-control" type="text" placeholder="Calle de ejemplo, 23 - 3ºA" name="address" /></div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="city"><strong>{{ "Ciudad" | trans}}</strong></label><input class="form-control" type="text" placeholder="Málaga" name="city" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="zip"><strong>{{ "Código Postal" | trans}}</strong></label><input class="form-control" type="text" placeholder="29003" name="zip" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos" | trans }}</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mb-5">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">{{ "Información Médica" | trans  }}</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group"><label for="signature"><strong>{{ "Escribe aquí un resumen de las cosas más importantes que debamos saber" | trans }}</strong><br /></label><textarea class="form-control" rows="4" name="signature"></textarea></div>
+                            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos" | trans }}</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

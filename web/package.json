@@ -1,0 +1,30 @@
+{
+  "name": "kazoku",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "WebFeletesDevelopers",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "build-dev": "gulp build-dev",
+    "watch": "gulp watch"
+  },
+  "dependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "gulp": "4",
+    "gulp-babel": "^8",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4",
+    "gulp-sourcemaps": "^2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "^3",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^7",
+    "typescript": "^3",
+    "webpack": "^4",
+    "webpack-cli": "^3",
+    "webpack-stream": "^5"
+  }
+}

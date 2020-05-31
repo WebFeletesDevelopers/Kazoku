@@ -1,0 +1,122 @@
+# Spanish translations for PACKAGE package.
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# root <root@d8b5f53730d4>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-31 07:25+0000\n"
+"PO-Revision-Date: 2020-05-24 20:00+0000\n"
+"Last-Translator: root <root@d8b5f53730d4>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. line 4
+#. line 13
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:42
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:54
+msgid "Buscar"
+msgstr ""
+
+#. line 24
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:71
+msgid "Notificaciones"
+msgstr ""
+
+#. line 48
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:98
+msgid "Mostrar Notificaciones"
+msgstr ""
+
+#. line 55
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:108
+msgid "Mensajes"
+msgstr ""
+
+#. line 91
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:147
+msgid "Mostrar mensajes"
+msgstr ""
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:166
+msgid "¡Registrate!"
+msgstr ""
+
+#. line 108
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:185
+msgid "Perfil"
+msgstr ""
+
+#. line 111
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:191
+msgid "Configuración"
+msgstr ""
+
+#. line 114
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:197
+msgid "Actividad"
+msgstr ""
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:204
+msgid "Cerrar sesión"
+msgstr ""
+
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:210
+msgid "Iniciar sesión"
+msgstr ""
+
+#. line 1
+#: View/cache/f2/f2b4c3822de3a226f5298ae5187623c92199dc5232072c8fd7ec376c00a38676.php:37
+msgid "esto esta traducido manin"
+msgstr ""
+
+#. line 5
+#: View/cache/f2/f2b4c3822de3a226f5298ae5187623c92199dc5232072c8fd7ec376c00a38676.php:42
+msgid "foook"
+msgstr ""
+
+#. line 9
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:47
+msgid "Mi perfil"
+msgstr ""
+
+#. line 10
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:51
+msgid "Confirmaciones"
+msgstr ""
+
+#. line 11
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:55
+msgid "Alumnos"
+msgstr ""
+
+#. line 12
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:59
+msgid "Pasar Lista"
+msgstr ""
+
+#. line 13
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:63
+msgid "Mi Clase"
+msgstr ""
+
+#. line 14
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:67
+msgid "Aula Virtual"
+msgstr ""
+
+#. line 15
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:71
+msgid "Altas"
+msgstr ""
+
+#. line 16
+#: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:75
+msgid "Panel"
+msgstr ""
