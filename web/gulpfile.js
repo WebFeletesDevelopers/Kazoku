@@ -15,10 +15,11 @@ const rimraf = require('rimraf');
 
 const jsFiles = [
     'js/jquery-3.5.1.js',
-    'js/jquery.easing.js',
     'js/bootstrap.min.js',
-    // 'js/chart.min.js',
+    'js/Chart.js',
     'js/bs-init.js',
+    'js/jquery.easing.js',
+    'js/theme.js',
     'js/scripts.js',
 ];
 

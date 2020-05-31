@@ -13,4 +13,3 @@ class Main {
 const a = new Main(123);
 
 console.log(a.prueba);
-console.log('cambio manin');
