@@ -2,8 +2,10 @@ build-dev:
 	docker-compose -f docker-compose-dev.yml pull
 	docker-compose -f docker-compose-dev.yml build
 	make install-deps
+	make install-node-deps
+	make web-dev
 
-start-dev: build-dev
+start-dev:
 	docker-compose -f docker-compose-dev.yml up -d
 
 stop-dev:
@@ -23,6 +25,9 @@ start:
 
 install-deps:
 	docker-compose -f docker-compose-dev.yml run --rm php-fpm composer install ${args}
+
+install-node-deps:
+	docker-compose -f docker-compose-dev.yml run --rm node bash -c 'cd web && yarn install'
 
 update-deps:
 	docker-compose -f docker-compose-dev.yml run --rm php-fpm composer update ${args}
@@ -49,3 +54,6 @@ compile-mo-dev:
 
 create-twig-translation-cache:
 	@docker-compose -f docker-compose-dev.yml run --rm php-fpm php locale/generate_twig_cache.php
+
+web-dev:
+	docker-compose -f docker-compose-dev.yml run --rm node bash -c "cd web && yarn build-dev"

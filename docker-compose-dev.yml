@@ -35,6 +35,12 @@ services:
       MYSQL_DATABASE: ${KAZOKU_DATABASE_DATABASE}
     ports:
       - "3306:3306"
+
+  node:
+    image: node:lts
+    volumes:
+      - ./web:/web
+      - ./public:/public
 volumes:
   kazoku_database_devel:
   kazoku_composer_cache:
