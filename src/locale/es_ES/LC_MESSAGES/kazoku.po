@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-31 07:25+0000\n"
+"POT-Creation-Date: 2020-06-01 06:10+0000\n"
 "PO-Revision-Date: 2020-05-24 20:00+0000\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: Spanish\n"
@@ -16,6 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. line 2
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:40
+msgid "Noticias"
+msgstr ""
+
+#. line 5
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:49
+msgid "Añadir noticia"
+msgstr ""
+
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:110
+msgid "Borrar Noticia"
+msgstr ""
+
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:122
+msgid "No hay resultados"
+msgstr ""
 
 #. line 4
 #. line 13
@@ -49,7 +67,9 @@ msgid "¡Registrate!"
 msgstr ""
 
 #. line 108
+#. line 5
 #: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:185
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:53
 msgid "Perfil"
 msgstr ""
 
@@ -119,4 +139,108 @@ msgstr ""
 #. line 16
 #: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:75
 msgid "Panel"
+msgstr ""
+
+#. line 10
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:68
+msgid "Cambiar Foto"
+msgstr ""
+
+#. line 16
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:77
+msgid "Próxima clase"
+msgstr ""
+
+#. line 20
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:87
+msgid "Nombre clase"
+msgstr ""
+
+#. line 24
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:94
+msgid "Centro"
+msgstr ""
+
+#. line 25
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:98
+msgid "Calle del centro"
+msgstr ""
+
+#. line 27
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:103
+msgid "Nombre del centro"
+msgstr ""
+
+#. line 31
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
+msgid "Profesor"
+msgstr ""
+
+#. line 38
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:123
+msgid "Telefono"
+msgstr ""
+
+#. line 52
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:143
+msgid "Datos"
+msgstr ""
+
+#. line 58
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:152
+msgid "Nombre de usuario"
+msgstr ""
+
+#. line 61
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
+msgid "Email"
+msgstr ""
+
+#. line 66
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
+msgid "Nombre"
+msgstr ""
+
+#. line 69
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:172
+msgid "Apellido(s)"
+msgstr ""
+
+#. line 72
+#. line 91
+#. line 108
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:178
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:212
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:238
+msgid "Modificar datos"
+msgstr ""
+
+#. line 78
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:187
+msgid "Dirección"
+msgstr ""
+
+#. line 82
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:194
+msgid "Calle"
+msgstr ""
+
+#. line 85
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:200
+msgid "Ciudad"
+msgstr ""
+
+#. line 88
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:206
+msgid "Código Postal"
+msgstr ""
+
+#. line 101
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:225
+msgid "Información Médica"
+msgstr ""
+
+#. line 107
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
+msgid "Escribe aquí un resumen de las cosas más importantes que debamos saber"
 msgstr ""

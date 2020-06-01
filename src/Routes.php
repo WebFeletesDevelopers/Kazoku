@@ -7,6 +7,7 @@ use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
+use WebFeletesDevelopers\Kazoku\Action\newsCreatorAction;
 use WebFeletesDevelopers\Kazoku\Action\newUserAction;
 use WebFeletesDevelopers\Kazoku\Action\panelAction;
 use WebFeletesDevelopers\Kazoku\Action\profileAction;

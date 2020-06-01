@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-31 07:25+0000\n"
-"PO-Revision-Date: 2020-05-31 09:29+0200\n"
+"POT-Creation-Date: 2020-06-01 06:10+0000\n"
+"PO-Revision-Date: 2020-06-01 11:58+0200\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -17,6 +17,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3.1\n"
+
+#. line 2
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:40
+msgid "Noticias"
+msgstr "Notifications"
+
+#. line 5
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:49
+msgid "Añadir noticia"
+msgstr "Add news"
+
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:110
+msgid "Borrar Noticia"
+msgstr "Delete notifications"
+
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:122
+msgid "No hay resultados"
+msgstr "No results found"
 
 #. line 4
 #. line 13
@@ -50,7 +68,9 @@ msgid "¡Registrate!"
 msgstr "Register!"
 
 #. line 108
+#. line 5
 #: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:185
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:53
 msgid "Perfil"
 msgstr "Profile"
 
@@ -121,3 +141,107 @@ msgstr "Signins"
 #: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:75
 msgid "Panel"
 msgstr "Panel"
+
+#. line 10
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:68
+msgid "Cambiar Foto"
+msgstr "Change photo"
+
+#. line 16
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:77
+msgid "Próxima clase"
+msgstr "Next class"
+
+#. line 20
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:87
+msgid "Nombre clase"
+msgstr "Classname"
+
+#. line 24
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:94
+msgid "Centro"
+msgstr "Center"
+
+#. line 25
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:98
+msgid "Calle del centro"
+msgstr "Center’s street"
+
+#. line 27
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:103
+msgid "Nombre del centro"
+msgstr "Center’s name"
+
+#. line 31
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
+msgid "Profesor"
+msgstr "Trainer"
+
+#. line 38
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:123
+msgid "Telefono"
+msgstr "Phone"
+
+#. line 52
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:143
+msgid "Datos"
+msgstr "Data"
+
+#. line 58
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:152
+msgid "Nombre de usuario"
+msgstr "Username"
+
+#. line 61
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
+msgid "Email"
+msgstr "Email"
+
+#. line 66
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
+msgid "Nombre"
+msgstr "First name"
+
+#. line 69
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:172
+msgid "Apellido(s)"
+msgstr "Last name(s)"
+
+#. line 72
+#. line 91
+#. line 108
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:178
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:212
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:238
+msgid "Modificar datos"
+msgstr "Modify Data"
+
+#. line 78
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:187
+msgid "Dirección"
+msgstr "Address"
+
+#. line 82
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:194
+msgid "Calle"
+msgstr "Street"
+
+#. line 85
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:200
+msgid "Ciudad"
+msgstr "City"
+
+#. line 88
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:206
+msgid "Código Postal"
+msgstr "Postal Code"
+
+#. line 101
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:225
+msgid "Información Médica"
+msgstr "Medical information"
+
+#. line 107
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
+msgid "Escribe aquí un resumen de las cosas más importantes que debamos saber"
+msgstr "Write here a summary of the most important things we should know"
