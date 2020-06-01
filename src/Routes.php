@@ -12,6 +12,7 @@ use WebFeletesDevelopers\Kazoku\Action\newUserAction;
 use WebFeletesDevelopers\Kazoku\Action\panelAction;
 use WebFeletesDevelopers\Kazoku\Action\profileAction;
 use WebFeletesDevelopers\Kazoku\Action\PruebaTraduccionAction;
+use WebFeletesDevelopers\Kazoku\Action\registerAction;
 use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 

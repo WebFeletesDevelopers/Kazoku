@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-01 06:10+0000\n"
+"POT-Creation-Date: 2020-06-01 10:58+0000\n"
 "PO-Revision-Date: 2020-05-24 20:00+0000\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: Spanish\n"
@@ -16,6 +16,103 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. line 15
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:63
+msgid "¡Crear cuenta!"
+msgstr ""
+
+#. line 20
+#. line 66
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:71
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
+msgid "Nombre"
+msgstr ""
+
+#. line 25
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:79
+msgid "Primer Apellido"
+msgstr ""
+
+#. line 28
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:85
+msgid "Segundo Apellido"
+msgstr ""
+
+#. line 33
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:93
+msgid "Nombre de Usuario"
+msgstr ""
+
+#. line 37
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:100
+msgid "Teléfono"
+msgstr ""
+
+#. line 42
+#. line 61
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:108
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
+msgid "Email"
+msgstr ""
+
+#. line 47
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:116
+msgid "Contraseña"
+msgstr ""
+
+#. line 51
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:123
+msgid "Repetir Contraseña"
+msgstr ""
+
+#. line 54
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:129
+msgid "Soy..."
+msgstr ""
+
+#. line 57
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:135
+msgid "Alumno"
+msgstr ""
+
+#. line 59
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:140
+msgid "Padre"
+msgstr ""
+
+#. line 60
+#. line 31
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:144
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
+msgid "Profesor"
+msgstr ""
+
+#. line 64
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:151
+msgid ""
+"Recibirás un correo\n"
+"                                    electrónico para verificarlo. Una vez se "
+"verifique tendrás que esperar a que\n"
+"                                    confirmemos tu identidad. Esta versión "
+"del programa está todavía en desarrollo,\n"
+"                                    se pueden presentar fallos."
+msgstr ""
+
+#. line 70
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:161
+msgid "Registrarse"
+msgstr ""
+
+#. line 77
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:171
+msgid "¿Ya tienes cuenta? ¡Inicia sesión!"
+msgstr ""
+
+#. line 78
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:175
+msgid "Volver al inicio"
+msgstr ""
 
 #. line 2
 #: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:40
@@ -171,11 +268,6 @@ msgstr ""
 msgid "Nombre del centro"
 msgstr ""
 
-#. line 31
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
-msgid "Profesor"
-msgstr ""
-
 #. line 38
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:123
 msgid "Telefono"
@@ -189,16 +281,6 @@ msgstr ""
 #. line 58
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:152
 msgid "Nombre de usuario"
-msgstr ""
-
-#. line 61
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
-msgid "Email"
-msgstr ""
-
-#. line 66
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
-msgid "Nombre"
 msgstr ""
 
 #. line 69
@@ -243,4 +325,34 @@ msgstr ""
 #. line 107
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
 msgid "Escribe aquí un resumen de las cosas más importantes que debamos saber"
+msgstr ""
+
+#. line 11
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:59
+msgid "Escribir nueva noticia"
+msgstr ""
+
+#. line 15
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:66
+msgid "Titulo de la noticia"
+msgstr ""
+
+#. line 23
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:77
+msgid "Cuerpo de la noticia"
+msgstr ""
+
+#. line 32
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:89
+msgid "privada"
+msgstr ""
+
+#. line 33
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:93
+msgid "pública"
+msgstr ""
+
+#. line 38
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:101
+msgid "Publicar"
 msgstr ""

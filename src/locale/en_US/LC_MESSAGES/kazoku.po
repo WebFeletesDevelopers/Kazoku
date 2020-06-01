@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-01 06:10+0000\n"
-"PO-Revision-Date: 2020-06-01 11:58+0200\n"
+"POT-Creation-Date: 2020-06-01 10:58+0000\n"
+"PO-Revision-Date: 2020-06-01 13:26+0200\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -18,10 +18,110 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3.1\n"
 
+#. line 15
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:63
+msgid "¡Crear cuenta!"
+msgstr "Create account!"
+
+#. line 20
+#. line 66
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:71
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
+msgid "Nombre"
+msgstr "First name"
+
+#. line 25
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:79
+msgid "Primer Apellido"
+msgstr "First surname"
+
+#. line 28
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:85
+msgid "Segundo Apellido"
+msgstr "Second Surname (optional)"
+
+#. line 33
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:93
+msgid "Nombre de Usuario"
+msgstr "Username"
+
+#. line 37
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:100
+msgid "Teléfono"
+msgstr "Phone"
+
+#. line 42
+#. line 61
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:108
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
+msgid "Email"
+msgstr "Email"
+
+#. line 47
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:116
+msgid "Contraseña"
+msgstr "Password"
+
+#. line 51
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:123
+msgid "Repetir Contraseña"
+msgstr "Repeat password"
+
+#. line 54
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:129
+msgid "Soy..."
+msgstr "I am…"
+
+#. line 57
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:135
+msgid "Alumno"
+msgstr "Judoka"
+
+#. line 59
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:140
+msgid "Padre"
+msgstr "Parent"
+
+#. line 60
+#. line 31
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:144
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
+msgid "Profesor"
+msgstr "Trainer"
+
+#. line 64
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:151
+msgid ""
+"Recibirás un correo\n"
+"                                    electrónico para verificarlo. Una vez se "
+"verifique tendrás que esperar a que\n"
+"                                    confirmemos tu identidad. Esta versión "
+"del programa está todavía en desarrollo,\n"
+"                                    se pueden presentar fallos."
+msgstr ""
+"You will get a verificative email. Once it’s done  you will have to wait "
+"until we verify your identity. This current version of the website is under "
+"develop, some error may be presented."
+
+#. line 70
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:161
+msgid "Registrarse"
+msgstr "Register"
+
+#. line 77
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:171
+msgid "¿Ya tienes cuenta? ¡Inicia sesión!"
+msgstr "Already have an account? Login!"
+
+#. line 78
+#: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:175
+msgid "Volver al inicio"
+msgstr "Return to homepage"
+
 #. line 2
 #: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:40
 msgid "Noticias"
-msgstr "Notifications"
+msgstr "News"
 
 #. line 5
 #: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:49
@@ -172,11 +272,6 @@ msgstr "Center’s street"
 msgid "Nombre del centro"
 msgstr "Center’s name"
 
-#. line 31
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
-msgid "Profesor"
-msgstr "Trainer"
-
 #. line 38
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:123
 msgid "Telefono"
@@ -191,16 +286,6 @@ msgstr "Data"
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:152
 msgid "Nombre de usuario"
 msgstr "Username"
-
-#. line 61
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
-msgid "Email"
-msgstr "Email"
-
-#. line 66
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
-msgid "Nombre"
-msgstr "First name"
 
 #. line 69
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:172
@@ -245,3 +330,33 @@ msgstr "Medical information"
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
 msgid "Escribe aquí un resumen de las cosas más importantes que debamos saber"
 msgstr "Write here a summary of the most important things we should know"
+
+#. line 11
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:59
+msgid "Escribir nueva noticia"
+msgstr "Create news"
+
+#. line 15
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:66
+msgid "Titulo de la noticia"
+msgstr "News’ title"
+
+#. line 23
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:77
+msgid "Cuerpo de la noticia"
+msgstr "New’s Body"
+
+#. line 32
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:89
+msgid "privada"
+msgstr "Private"
+
+#. line 33
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:93
+msgid "pública"
+msgstr "Public"
+
+#. line 38
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:101
+msgid "Publicar"
+msgstr "Publish"
