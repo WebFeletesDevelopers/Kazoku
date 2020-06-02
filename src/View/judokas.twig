@@ -1,6 +1,89 @@
 {% extends './partials/base.twig' %}
 
 {% block body %}
-    <h1>wacho manin</h1>
-    {{  nombrevariabletwig[0] }}
+    <h3 class="text-dark mb-4">{{"Alumnos" | trans}}</h3>
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">{{ "Club de Judo" | trans }}{% if title is defined %}  {{ title }}{% else%}Kazoku{% endif %} </p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <!-- FINDER -->
+                    <form class="container-fluid" role="search" action="/findJudoka">
+                        <input type="text" name="s" class="form-control " placeholder="{{"Buscar Alumno" | trans}}">
+                        <button type="submit" class="btn btn-secondary d" hidden>&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;</button>
+                    </form>
+                </div>
+            {% if 1==1 %}
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table dataTable my-0" id="tablaAlumnos">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{"Nombre" | trans}}</th>
+                        <th>{{"Apellido(s)" | trans}}</th>
+                        <th>{{"Fecha Nacimiento" | trans}}</th>
+                        <th>{{"Sexo" | trans}}</th>
+                        <th>{{"Cinturón" | trans}}</th>
+                        <th>{{"ID Fanjyda"}}</th>
+                        <th>{{"DNI/NIE/PAS"}}</th>
+                        <th>{{"Información" | trans}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Foreach de alumnos-->
+                    {% for i in 1..5  %}
+
+                    <tr>
+                        <td><img src="/img/profile/{% if judoka.userId is defined %}{{ userId }}{% else %}generic{% endif %}.png" width="30" height="30"></td>
+                        <td>{{"Nombre"}}</td>
+                        <td>{{"Apellidos"}}</td>
+                        <td>{{ "10/10/2000" }}</td>
+                        <td>{{ "Masculino/Femenino" }}</td>
+                        <td>{{ "Negro" }}</td>
+                        <td>{{ 00000 }}</td>
+                        <td>{{ "12345678X" }}</td>
+                        <td><a href="/judokaPanel" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-info"></i></a></td>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        </th>
+                        <th>{{"Nombre" | trans}}</th>
+                        <th>{{"Apellido(s)" | trans}}</th>
+                        <th>{{"Fecha Nacimiento" | trans}}</th>
+                        <th>{{"Sexo" | trans}}</th>
+                        <th>{{"Cinturón" | trans}}</th>
+                        <th>{{"ID Fanjyda"}}</th>
+                        <th>{{"DNI/NIE/PAS"}}</th>
+                        <th>{{"Información" | trans}}</th>
+                    </tr>
+                    </tfoot>
+                </table>
+                {% else %}
+                <p class="alert alert-warning">No hay resultados</p>
+                {% endif %}
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><<</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">>></span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>-->
+        </div>
+    </div>
 {% endblock %}
