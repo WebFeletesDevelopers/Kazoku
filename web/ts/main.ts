@@ -1,4 +1,4 @@
-import { NewsMain } from './news/newsMain';
+import { NewsMain } from './news/NewsMain';
 
 class Main {
     public static handle(): void {
