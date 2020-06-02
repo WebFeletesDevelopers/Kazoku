@@ -4,8 +4,10 @@ namespace WebFeletesDevelopers\Kazoku;
 
 use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
+use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
+use WebFeletesDevelopers\Kazoku\Action\loginAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
 use WebFeletesDevelopers\Kazoku\Action\newsCreatorAction;
 use WebFeletesDevelopers\Kazoku\Action\newUserAction;
@@ -31,7 +33,6 @@ class Routes
         $app->get('/', HomeAction::class);
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/profile', profileAction::class);
-        $app->get('/userCheck', userCheckAction::class);
         $app->get('/judokas', judokasAction::class);
         $app->get('/assistance', assistanceAction::class);
         $app->get('/myClass', myClassAction::class);
@@ -43,6 +44,7 @@ class Routes
         $app->get('/resetPassword', resetPasswordAction::class);
         $app->get('/logout', logoutAction::class);
         $app->get('/newsCreator', newsCreatorAction::class);
+        $app->get('/confirmUser', confirmUserAction::class);
         return $app;
     }
 }

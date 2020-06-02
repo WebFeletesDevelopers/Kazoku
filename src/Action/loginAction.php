@@ -17,14 +17,16 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  * This class will generate the home.
  * @package WebFeletesDevelopers\Kazoku\Action
  */
-class myClassAction extends BaseTwigAction implements ActionInterface
+class loginAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-
+        setlocale(LC_ALL, 'en_US.UTF-8');
+        bindtextdomain('kazoku', __DIR__ . '/../locale');
+        textdomain('kazoku');
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('login',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $compiledTwig = $this->render('login',['title' => "Kazoku",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);
         return $response;
     }

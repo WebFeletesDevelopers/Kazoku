@@ -17,14 +17,14 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  * This class will generate the home.
  * @package WebFeletesDevelopers\Kazoku\Action
  */
-class userCheckAction extends BaseTwigAction implements ActionInterface
+class confirmUserAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
 
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('userCheck',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $compiledTwig = $this->render('confirmUser',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);
         return $response;
     }

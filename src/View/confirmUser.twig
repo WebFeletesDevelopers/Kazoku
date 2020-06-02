@@ -1,0 +1,72 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+    <h3 class="text-dark mb-4">{{"Confirmaciones" | trans}}</h3>
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">{{"Cuentas de usuarios" | trans}}</p>
+        </div>
+        <!-- TODO: Cambiar esta verificación por si hay usuarios que confirmar -->
+        {% if 0 == 0 %}
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <!-- FINDER -->
+                    <form class="container-fluid" role="search" action="/findJudoka">
+                        <input type="text" name="s" class="form-control " placeholder="{{"Buscar Alumno" | trans}}">
+                        <button type="submit" class="btn btn-secondary d" hidden>&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;</button>
+                    </form>
+                </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table dataTable my-0" id="dataTable">
+                    <thead>
+                    <tr>
+                        <th>{{"Usuario"   | trans}}</th>
+                        <th>{{"Nombre"    | trans}}</th>
+                        <th>{{"Apellido(s)" | trans}}</th>
+                        <th>{{"Telefono"  | trans}}</th>
+                        <th>{{"Email"     | trans}}</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Foreach de los usuarios encontrados-->
+                    {% for i in 1..5  %}
+                    <tr>
+                        <td id="username">{{ "username" }}</td>
+                        <td>{{ "Nombre" }}</td>
+                        <td>{{ "Apellido, Apellido" }}</td>
+                        <td>{{ "Telefono" }}</td>
+                        <td>{{"Email "}}</td>
+                        <td class="text-center">
+                            <div id="message"></div>
+                            <button class="btn-primary btn" onclick="" id="confirmar" value="{{ "username" }}">{{"Confirmar" | trans}}</button>
+                            <button class="btn-danger btn" onclick="" id="borrar" value="{{ "username" }}">{{"Borrar" | trans}}</button>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>{{"Usuario"   | trans}}</th>
+                        <th>{{"Nombre"    | trans}}</th>
+                        <th>{{"Apellido(s)" | trans}}</th>
+                        <th>{{"Telefono"  | trans}}</th>
+                        <th>{{"Email"     | trans}}</th>
+                        <th></th>
+
+                    </tr>
+                    </tfoot>
+                </table>
+                {% else %}
+                <p class="alert alert-warning">{{"No hay resultados" | trans}}</p>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
