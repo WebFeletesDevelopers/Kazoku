@@ -1,10 +1,5 @@
 <script>
     var listaFalta = [];
-
-    function myFunc(id){
-        alert(id);
-    };
-
     function aLaLista(id){
         var estaEnLista = false;
         var posicionEnLista = 0;

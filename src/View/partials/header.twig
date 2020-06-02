@@ -99,7 +99,7 @@
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                         <span class="d-none d-lg-inline mr-2 text-gray-600 small">{% if userName is defined %}  {{ userName }}{% else%}{{ "¡Registrate!" | trans }} {% endif %}</span>
-                        <img class="border rounded-circle img-profile" src="/img/profile/{% if userId is defined %}{{ userId }}{% else%}generic{% endif %}.png" width="20px">
+                        <img class="border rounded-circle img-profile" src="/img/profile/{% if userId is defined %}{{ userId }}{% else %}generic{% endif %}.png"  width="20px">
                     </a>
                     <div
                             class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
