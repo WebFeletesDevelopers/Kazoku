@@ -1,6 +1,86 @@
 {% extends './partials/base.twig' %}
 
 {% block body %}
-    <h1>wacho manin</h1>
-    {{  nombrevariabletwig[0] }}
+    <div class="row">
+        <div class="col-md-6 col-sm-12 text-center">
+            <div class="m-1">
+                <div class="row mb-3">
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">{{"Datos de usuario" | trans}}</p>
+                                        <div>
+                                            <div class="alert alert-danger"><?= $msg ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="username"><strong>{{"Nombre de usuario"}}</strong></label><input class="form-control" type="text" placeholder="Ejemplo" name="username" id="username" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="password"><strong>{{"Contraseña" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{ "Contraseña"  | trans }}" name="password" id="password" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="password2"><strong>{{"Repetir Contraseña" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{ "Repetir contraseña"  | trans }}" name="password2" id="password2" required></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="email"><strong>{{"Correo" | trans}}</strong></label><input class="form-control" type="email" placeholder="" name="email" id="email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="name"><strong>{{"Nombre" | trans}}</strong></label><input class="form-control" type="text" placeholder="" name="name" id="name" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="lastname1"><strong>{{"Primer Apellido" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{"Primer Apellido" | trans}}" name="lastname1" id="lastname2" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="lastname2"><strong>{{"Segundo Apellido" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{"Segundo Apellido" | trans}}" id="lastname2" name="lastname2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">{{"Datos de dirección" | trans}}</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <div class="form-group"><label for="address"><strong>{{"Dirección" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{ "Calle Falsa 123" }}" name="address" id="address"></div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="city"><strong>{{"Localidad" | trans}}</strong></label><input class="form-control" type="text" placeholder="Málaga" name="city" id="city"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="province"><strong>{{"Provincia" | trans }}</strong></label><input class="form-control" type="text" placeholder="Málaga" name="province" id="province"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-6">
+                                                    <div class="form-group"><label for="zip"><strong>{{"Código Postal" | trans }}</strong></label><input class="form-control" type="text" placeholder="" name="zip" id="zip"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm">Insertar datos</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 text-center">
+
+        </div>
+    </div>
+
 {% endblock %}
