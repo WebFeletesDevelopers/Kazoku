@@ -1,15 +1,9 @@
+import { NewsMain } from './news/newsMain';
+
 class Main {
-    private _prueba: number;
-
-    constructor(prueba: number) {
-        this._prueba = prueba;
-    }
-
-    get prueba(): number {
-        return this._prueba;
+    public static handle(): void {
+        NewsMain.handle();
     }
 }
 
-const a = new Main(123);
-
-console.log(a.prueba);
+Main.handle();

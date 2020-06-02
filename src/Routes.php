@@ -9,7 +9,7 @@ use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\loginAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
-use WebFeletesDevelopers\Kazoku\Action\newsCreatorAction;
+use WebFeletesDevelopers\Kazoku\Action\NewsCreatorAction;
 use WebFeletesDevelopers\Kazoku\Action\newUserAction;
 use WebFeletesDevelopers\Kazoku\Action\panelAction;
 use WebFeletesDevelopers\Kazoku\Action\profileAction;
@@ -44,7 +44,7 @@ class Routes
         $app->get('/register', registerAction::class);
         $app->get('/resetPassword', resetPasswordAction::class);
         $app->get('/logout', logoutAction::class);
-        $app->get('/newsCreator', newsCreatorAction::class);
+        $app->get('/newsCreator', NewsCreatorAction::class);
         $app->get('/confirmUser', confirmUserAction::class);
         $app->get('/verificate', verificateAction::class);
         return $app;
