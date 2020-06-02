@@ -3,7 +3,6 @@
 namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use DateTime;
-use Exception;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 
@@ -40,22 +39,24 @@ class NoticiaController
         string $author,
         bool $isPublic
     ): bool {
-        //fixme this should be in the model.
-        try {
-            $result = $this->model->add($title, $body, $date, $author, $isPublic);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return $result;
+        return $this->model->add($title, $body, $date, $author, $isPublic);
     }
 
     /**
      * @param int $length
      * @return Noticia[]
      */
-    public function getLastPublic(int $length = 5): array
+    public function getLatestPublic(int $length = 5): array
     {
-        return $this->model->getLastPublic($length);
+        return $this->model->getLatestPublic($length);
+    }
+
+    /**
+     * @param int $length
+     * @return array
+     */
+    public function getLatest(int $length = 5): array
+    {
+        return $this->model->getLatest($length);
     }
 }

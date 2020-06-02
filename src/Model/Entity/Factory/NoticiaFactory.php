@@ -11,12 +11,15 @@ class NoticiaFactory
     /**
      * @param array $rows
      * @return Noticia[]
-     * @throws Exception
      */
     public static function fromMysqlRows(array &$rows): array
     {
         return array_map(static function (array $row) {
-            $date = new DateTime($row['date']);
+            try {
+                $date = new DateTime($row['date']);
+            } catch (Exception $e) {
+                $date = new DateTime();
+            }
             return new Noticia(
                 $row['id'],
                 $row['title'],

@@ -23,7 +23,6 @@ class NoticiaModel extends BaseModel
      * @param string $author
      * @param bool $isPublic
      * @return bool
-     * @throws InsertException
      */
     public function add(
         string $title,
@@ -43,22 +42,51 @@ SQL;
             $author,
             $isPublic
         ];
-        $statement = $this->query($sql, $binds);
 
-        if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+        try {
+            $statement = $this->query($sql, $binds);
+            if ($statement === false) {
+                throw InsertException::fromFailedInsert($sql, $binds);
+            }
+        } catch (Exception $e) {
+            return false;
         }
 
         return true;
     }
 
     /**
+     * Get last public news
      * @param int $count
+     * @param int $page
      * @return Noticia[]
-     * @throws Exception
      */
-    public function getLastPublic(int $count = 5): array {
-        $sql = <<<SQL
+    public function getLatestPublic(int $count = 5, int $page = 1): array {
+        $rows = $this->getNewsRows($count, $page, true);
+        return NoticiaFactory::fromMysqlRows($rows);
+    }
+
+    /**
+     * Get last news
+     * @param int $count
+     * @param int $page
+     * @return array
+     */
+    public function getLatest(int $count = 5, int $page = 1): array {
+        $rows = $this->getNewsRows($count, $page, false);
+        return NoticiaFactory::fromMysqlRows($rows);
+    }
+
+    /**
+     * Query builder for news select
+     * @param int $count
+     * @param int $page
+     * @param bool $onlyPublic
+     * @return array
+     */
+    private function getNewsRows(int $count, int $page, bool $onlyPublic): array
+    {
+        $preSql = <<<SQL
         SELECT n.CodNot AS id,
                n.Titulo AS title,
                n.Cuerpo AS body,
@@ -66,13 +94,26 @@ SQL;
                n.Autor AS author,
                n.Publica AS public
         FROM noticias n
-        WHERE n.Publica = ?
-        LIMIT ?
+        %s
+        ORDER BY n.Fecha DESC
+        LIMIT ?, ?
 SQL;
-        $statement = $this->query($sql, [true, $count]);
+        $where = $onlyPublic === true
+            ? 'WHERE n.Publica = 1'
+            : '';
 
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $sql = sprintf($preSql, $where);
 
-        return NoticiaFactory::fromMysqlRows($rows);
+        $offset = $page === 1
+            ? 0
+            : ($page - 1) * $count;
+
+        try {
+            $statement = $this->query($sql, [true, $offset, $count]);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        return $rows;
     }
 }
