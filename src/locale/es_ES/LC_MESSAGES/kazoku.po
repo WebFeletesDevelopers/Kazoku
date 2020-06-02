@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 09:19+0000\n"
+"POT-Creation-Date: 2020-06-02 09:34+0000\n"
 "PO-Revision-Date: 2020-05-24 20:00+0000\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: Spanish\n"
@@ -432,6 +432,26 @@ msgstr ""
 #. line 107
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
 msgid "Escribe aquí un resumen de las cosas más importantes que debamos saber"
+msgstr ""
+
+#. line 7
+#: View/cache/d5/d55fdacafd982c4da33680b74312fb30da5d09f804b0f943d2f1b86739fc212a.php:55
+msgid "¡Hola!"
+msgstr ""
+
+#. line 8
+#: View/cache/d5/d55fdacafd982c4da33680b74312fb30da5d09f804b0f943d2f1b86739fc212a.php:59
+msgid "Gracias por confirmar tu cuenta"
+msgstr ""
+
+#. line 10
+#: View/cache/d5/d55fdacafd982c4da33680b74312fb30da5d09f804b0f943d2f1b86739fc212a.php:64
+msgid "En estos momentos estamos verificando tu identidad"
+msgstr ""
+
+#. line 11
+#: View/cache/d5/d55fdacafd982c4da33680b74312fb30da5d09f804b0f943d2f1b86739fc212a.php:68
+msgid "Inicio"
 msgstr ""
 
 #. line 11

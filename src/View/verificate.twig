@@ -1,0 +1,14 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <img class="mb-4" src="/img/logo/LogoXL.png" alt="" width="172" height="172">
+        <h1 class="display-4">{{ "¡Hola!" | trans}}</h1>
+        <p class="lead">{{"Gracias por confirmar tu cuenta" | trans}}</p>
+        <hr class="my-4">
+        <p>{{"En estos momentos estamos verificando tu identidad" | trans}}</p>
+        <a class="btn btn-success btn-lg" href="/" role="button">{{"Inicio" | trans}}</a>
+    </div>
+
+{% endblock %}
