@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-03 08:18+0000\n"
+"POT-Creation-Date: 2020-06-03 11:19+0000\n"
 "PO-Revision-Date: 2020-05-24 20:00+0000\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: Spanish\n"
@@ -635,4 +635,48 @@ msgstr ""
 #. line 38
 #: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:101
 msgid "Publicar"
+msgstr ""
+
+#. line 9
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:57
+msgid "Mi clase"
+msgstr ""
+
+#. line 19
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:80
+msgid "Pagar mensualidad"
+msgstr ""
+
+#. line 50
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:132
+msgid "Mis faltas"
+msgstr ""
+
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:142
+msgid "Has faltado"
+msgstr ""
+
+#. line 62
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:158
+msgid "Ver todas"
+msgstr ""
+
+#. line 69
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:168
+msgid "Tu cinturón"
+msgstr ""
+
+#. line 84
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:189
+msgid "Próximo examen"
+msgstr ""
+
+#. line 88
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:196
+msgid "No hay exámenes a la vista"
+msgstr ""
+
+#. line 92
+#: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:203
+msgid "¡Descarga tu examen!"
 msgstr ""
