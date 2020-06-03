@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 09:34+0000\n"
-"PO-Revision-Date: 2020-06-01 13:26+0200\n"
+"POT-Creation-Date: 2020-06-03 08:18+0000\n"
+"PO-Revision-Date: 2020-06-03 10:26+0200\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: English\n"
 "Language: en_US\n"
@@ -26,17 +26,22 @@ msgid "¡Crear cuenta!"
 msgstr "Create account!"
 
 #. line 20
+#. line 51
 #. line 25
 #. line 56
 #. line 20
 #. line 49
 #. line 66
+#. line 23
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:71
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:145
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:147
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:90
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:183
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:79
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:158
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
+#: View/cache/cb/cbcb39fb8cb3055a70605ddec29f4dba49796cc5d08422c2b3b49f4a0219c26a.php:85
 msgid "Nombre"
 msgstr "First name"
 
@@ -72,8 +77,12 @@ msgid "Email"
 msgstr "Email"
 
 #. line 47
+#. line 35
 #. line 33
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:116
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:109
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:111
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:119
 #: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:87
 msgid "Contraseña"
 msgstr "Password"
@@ -220,6 +229,173 @@ msgstr "this is translated manin"
 msgid "foook"
 msgstr "sheiiiit"
 
+#. line 14
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:62
+msgid "Datos de usuario"
+msgstr "User data"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:75
+msgid "Sus datos no se guardarán con los del nuevo usuario"
+msgstr "Your data won’t be stored related  with the new  user"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:82
+msgid "Sus datos se guardarán como padre/madre/tutor del nuevo usuario"
+msgstr "Your data will be stored as parent of the new user"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:89
+msgid "Sus datos de alumno se guardarán con sus datos de usuario"
+msgstr "Your user data will be stored related with your profile data"
+
+#. line 32
+#. line 19
+#. line 48
+#. line 25
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:103
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:75
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:154
+#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:76
+msgid "Usuario"
+msgstr "Username"
+
+#. line 38
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:117
+msgid "Repetir"
+msgstr "Repeat"
+
+#. line 43
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:127
+msgid "Correo"
+msgstr "Mail"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:134
+msgid "Si no inserta un correo, se usará el suyo para las comunicaciones"
+msgstr "We will use your email for the communication if this field is empty"
+
+#. line 54
+#. line 57
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:153
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:161
+msgid "Apellido"
+msgstr "Lastname"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:155
+msgid "1º Apellido"
+msgstr "1st Last Name"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:163
+msgid "2º Apellido"
+msgstr "2nd Last name"
+
+#. line 65
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:174
+msgid "Datos de dirección"
+msgstr "Address info"
+
+#. line 69
+#. line 78
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:181
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:187
+msgid "Dirección"
+msgstr "Address"
+
+#. line 72
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:189
+msgid "Localidad"
+msgstr "locality"
+
+#. line 75
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:195
+msgid "Provincia"
+msgstr "province"
+
+#. line 80
+#. line 88
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:203
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:206
+msgid "Código Postal"
+msgstr "Postal Code"
+
+#. line 95
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:221
+msgid "Datos de alumno"
+msgstr "Judoka’s data"
+
+#. line 99
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:228
+msgid "DNI/NIE/PASAPORTE"
+msgstr "DNI/NIE/PASSPORT"
+
+#. line 102
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:236
+msgid "ID FANJYDA"
+msgstr "FANJYDA ID"
+
+#. line 105
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:242
+msgid "Fecha de Nacimiento"
+msgstr "Date of birth"
+
+#. line 110
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:250
+msgid "Teléfono de contacto"
+msgstr "Contact phone"
+
+#. line 113
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:256
+msgid "Categoría"
+msgstr "Category"
+
+#. line 115
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:261
+msgid "Seleccione uno"
+msgstr "Choose one"
+
+#. line 116
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:265
+msgid "Masculino"
+msgstr "Male"
+
+#. line 117
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:269
+msgid "Femenino"
+msgstr "Female"
+
+#. line 124
+#. line 101
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:279
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:225
+msgid "Información Médica"
+msgstr "Medical information"
+
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:281
+msgid "Por ejemplo: Asma"
+msgstr "For example: asthma"
+
+#. line 133
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:293
+msgid "Adjuntos"
+msgstr "Attachements"
+
+#. line 138
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:301
+msgid "Foto de Perfil"
+msgstr "Profile photo"
+
+#. line 141
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:307
+msgid "Frontal Identificación"
+msgstr "Front ID"
+
+#. line 143
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:312
+msgid "Reverso Identificación"
+msgstr "Back ID"
+
+#. line 150
+#: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:322
+msgid "Insertar datos"
+msgstr "Insert Data"
+
 #. line 11
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:51
 #: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:55
@@ -228,14 +404,14 @@ msgstr "Judokas"
 
 #. line 7
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:57
+#: View/cache/cb/cbcb39fb8cb3055a70605ddec29f4dba49796cc5d08422c2b3b49f4a0219c26a.php:55
 msgid "Club de Judo"
 msgstr "Judo club"
 
 #. line 15
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:74
-#, fuzzy
 msgid "Buscar Alumno"
-msgstr "Judoka"
+msgstr "Find Judoka"
 
 #. line 26
 #. line 57
@@ -269,13 +445,12 @@ msgstr "Gender"
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:106
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:199
 msgid "Cinturón"
-msgstr "belt"
+msgstr "Belt"
 
 #. line 32
 #. line 63
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:118
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:211
-#, fuzzy
 msgid "Información"
 msgstr "Medical information"
 
@@ -287,18 +462,8 @@ msgstr "Confirmations"
 
 #. line 7
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:57
-#, fuzzy
 msgid "Cuentas de usuarios"
-msgstr "Username"
-
-#. line 19
-#. line 48
-#. line 25
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:75
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:154
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:76
-msgid "Usuario"
-msgstr "username"
+msgstr "Users’ accounts"
 
 #. line 22
 #. line 51
@@ -310,14 +475,12 @@ msgid "Telefono"
 msgstr "Phone"
 
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:132
-#, fuzzy
 msgid "Confirmar"
-msgstr "Confirmations"
+msgstr "Confirm"
 
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:138
-#, fuzzy
 msgid "Borrar"
-msgstr "Delete notifications"
+msgstr "Delete"
 
 #. line 9
 #: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:47
@@ -413,11 +576,6 @@ msgstr "Username"
 msgid "Modificar datos"
 msgstr "Modify Data"
 
-#. line 78
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:187
-msgid "Dirección"
-msgstr "Address"
-
 #. line 82
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:194
 msgid "Calle"
@@ -427,16 +585,6 @@ msgstr "Street"
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:200
 msgid "Ciudad"
 msgstr "City"
-
-#. line 88
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:206
-msgid "Código Postal"
-msgstr "Postal Code"
-
-#. line 101
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:225
-msgid "Información Médica"
-msgstr "Medical information"
 
 #. line 107
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:234
@@ -492,7 +640,3 @@ msgstr "Public"
 #: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:101
 msgid "Publicar"
 msgstr "Publish"
-
-#, fuzzy
-#~ msgid "Apellidos"
-#~ msgstr "Last name(s)"

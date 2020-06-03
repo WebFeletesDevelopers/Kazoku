@@ -21,7 +21,9 @@ class newUserAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-
+        setlocale(LC_ALL, 'en_US.UTF-8');
+        bindtextdomain('kazoku', __DIR__ . '/../locale');
+        textdomain('kazoku');
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
         $compiledTwig = $this->render('newUser',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
