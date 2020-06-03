@@ -43,6 +43,5 @@ Deploy to server:
   environment:
     name: production
     url: https://kazoku.romeronet.es
-  when: manual
   only:
     - master
