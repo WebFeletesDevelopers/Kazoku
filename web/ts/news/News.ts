@@ -39,4 +39,9 @@ export class News {
     set public(value: boolean) {
         this._public = value;
     }
+
+    public validate(): boolean {
+        return this.title !== ''
+            && this._body !== '';
+    }
 }

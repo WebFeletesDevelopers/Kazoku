@@ -9,6 +9,7 @@ use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\loginAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
+use WebFeletesDevelopers\Kazoku\Action\News\CreateNewsAction;
 use WebFeletesDevelopers\Kazoku\Action\NewsCreatorAction;
 use WebFeletesDevelopers\Kazoku\Action\newUserAction;
 use WebFeletesDevelopers\Kazoku\Action\panelAction;
@@ -32,6 +33,10 @@ class Routes
     public static function registerRoutes(App $app): App
     {
         $app->get('/', HomeAction::class);
+
+        //news
+        $app->post('/news/add', CreateNewsAction::class);
+
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/profile', profileAction::class);
         $app->get('/judokas', judokasAction::class);

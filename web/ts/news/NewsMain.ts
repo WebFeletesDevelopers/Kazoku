@@ -1,16 +1,16 @@
 import { News } from "./News";
+import {NewsRequest} from "./NewsRequest";
 
 /**
  * News processing class.
  */
 export class NewsMain {
     public static handle(): void {
-        const isNewNewsPage: boolean = document.querySelector('[data-action="news-creator"]') !== null;
+        const isNewNewsPage: boolean = !! document.querySelector('[data-action="news-creator"]');
 
         if (isNewNewsPage) {
             this.handleNewsCreator();
         }
-
     }
 
     private static handleNewsCreator(): void {
@@ -25,19 +25,31 @@ export class NewsMain {
             parseInt(isPrivateInput.value) === 1
         );
 
+        this.validateCreateNewsButton(submitButton, news);
+
         titleInput.addEventListener('keyup', () => {
             news.title = titleInput.value;
+            this.validateCreateNewsButton(submitButton, news);
         });
         bodyInput.addEventListener('keyup', () => {
             news.body = bodyInput.value;
-        })
+            this.validateCreateNewsButton(submitButton, news);
+        });
         isPrivateInput.addEventListener('change', () => {
             news.public = parseInt(isPrivateInput.value) === 1;
-        })
+        });
 
         submitButton.addEventListener('click', e => {
             e.preventDefault();
-            console.log(news);
+            NewsRequest.addNews(news);
         });
+    }
+
+    private static validateCreateNewsButton(button: HTMLButtonElement, news: News): void {
+        if (news.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
     }
 }
