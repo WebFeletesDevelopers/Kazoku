@@ -2,12 +2,8 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
@@ -26,8 +22,21 @@ class HomeAction extends BaseTwigAction implements ActionInterface
         bindtextdomain('kazoku', __DIR__ . '/../locale');
         textdomain('kazoku'); */
         $body = $response->getBody();
-        //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('home',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0, 'rango => 0']);
+
+        $database = ConnectionHelper::getConnection();
+        $model = new NoticiaModel($database);
+        $controller = new NoticiaController($model);
+        $news = $controller->getLatestPublic();
+
+        $config = [
+            'title' => 'titulo',
+            'userName' => 'Alberto',
+            'userId' => 0,
+            'rango' => 0,
+            'news' => $news
+        ];
+
+        $compiledTwig = $this->render('home', $config);
         $body->write($compiledTwig);
         return $response;
     }
