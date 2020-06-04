@@ -1,6 +1,99 @@
 {% extends './partials/base.twig' %}
 
 {% block body %}
-    <h1>wacho manin</h1>
-    {{  nombrevariabletwig[0] }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row my-2">
+                <div class="col-md-2 col-sm-12">
+                    <h3 class="text-center my-2">
+                        {{ "Mi clase" | trans }}
+                    </h3>
+                </div>
+                <div class="col-md-8 col-sm-12 ">
+                    <div class="alert alert-info text-center" role="alert">
+                        {{ "Una alerta cualquiera, para avisar, por ejemplo de un cambio a largo plazo" }}
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12 text-center">
+                    <button type="button"  {% if pagarMensualidad != true %} disabled class="btn btn-secondary" {% else %} class="btn btn-primary" {% endif %}>
+                        {{"Pagar mensualidad" | trans}}
+                    </button>
+                </div>
+            </div>
+            <div class="container-fluid m-1 py-5 px-0 bg-white shadow text-center position-relative">
+                <iframe
+                        {% set centro = 2 %}
+                        {% if centro == 1 %}
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.8991899482944!2d-4.482760884817818!3d36.72498227996406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f0cca9e31e1b%3A0xdd9bbf07556713cc!2sCEIP%20Pintor%20F%C3%A9lix%20Revello%20de%20Toro!5e0!3m2!1ses!2ses!4v1591178989540!5m2!1ses!2ses"
+                        {% elseif centro == 2 %}
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.4443653492904!2d-4.630614949257935!3d36.543397179904105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72e23e67d1cd71%3A0xcb05ef625942312f!2sCLUB%20DE%20JUDO%20KODOKAN%20FUENGIROLA!5e0!3m2!1ses!2ses!4v1591181539782!5m2!1ses!2ses"
+                        {% endif %}
+                        width="100%" height="100%" frameborder="0" style="border:0; position: absolute; float: inherit; clear: both; left:0; top:0;  z-index: 0; background-repeat:  no-repeat"  id="maps" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="position-relative text-light w-100 " style="background: rgba(10,10,10, 0.2); text-shadow: rgb(0, 0, 0) 3px 0px 0px ">
+                    <strong>
+                        <h2 >
+                            {{ "Grupo Cadetes" }}
+                        </h2>
+                        <h2>
+                            {{ "Lunes, martes y miércoles" }} <br> {{ "15:00 - 16:00" }}
+                        </h2>
+
+                    </strong>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-center my-1">
+                        <h5 class="card-header">
+                            {{ "Mis faltas" | trans }}
+                        </h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {% if faltas >= 1 %}
+                               {{ "Has faltado" | trans }}
+                                {% else %}
+                                {{ "¡No has faltado este mes!" }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <button class="card-footer border-0">
+                            {{ "Ver todas" | trans }}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card my-1 text-center">
+                        <h5 class="card-header">
+                            {{ "Tu cinturón" | trans }}
+                        </h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <img class="card-img" src="/img/cintos/negro.png">
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            {{"Cinturón Negro"}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card my-1 text-center">
+                        <h5 class="card-header">
+                            {{ "Próximo examen" | trans }}
+                        </h5>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ "No hay exámenes a la vista" | trans }}
+                            </p>
+                        </div>
+                        <button class="card-footer border-0">
+                            {{ "¡Descarga tu examen!" | trans }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
