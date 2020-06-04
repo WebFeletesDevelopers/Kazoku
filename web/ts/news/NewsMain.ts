@@ -1,10 +1,14 @@
 import { News } from "./News";
 import {NewsRequest} from "./NewsRequest";
+import {ErrorHandler} from "../util/ErrorHandler";
 
 /**
  * News processing class.
  */
 export class NewsMain {
+    /**
+     * Main news handler.
+     */
     public static handle(): void {
         const isNewNewsPage: boolean = !! document.querySelector('[data-action="news-creator"]');
 
@@ -13,6 +17,9 @@ export class NewsMain {
         }
     }
 
+    /**
+     * Handle the news creator form.
+     */
     private static handleNewsCreator(): void {
         const form: HTMLFormElement = document.querySelector('div.form-signin');
         const titleInput: HTMLTextAreaElement = form.querySelector('textarea#titulo');
@@ -25,7 +32,7 @@ export class NewsMain {
             parseInt(isPrivateInput.value) === 1
         );
 
-        this.validateCreateNewsButton(submitButton, news);
+        NewsMain.validateCreateNewsButton(submitButton, news);
 
         titleInput.addEventListener('keyup', () => {
             news.title = titleInput.value;
@@ -41,15 +48,30 @@ export class NewsMain {
 
         submitButton.addEventListener('click', e => {
             e.preventDefault();
-            NewsRequest.addNews(news);
+            NewsMain.createNews(news);
         });
     }
 
+    /**
+     * Validator for enabling the submit button.
+     * @param button
+     * @param news
+     */
     private static validateCreateNewsButton(button: HTMLButtonElement, news: News): void {
         if (news.validate()) {
             button.disabled = false;
             return;
         }
         button.disabled = true;
+    }
+
+    private static createNews(news: News): void  {
+        NewsRequest.addNews(news).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/');
+            }
+        });
     }
 }

@@ -3,10 +3,12 @@
 namespace WebFeletesDevelopers\Kazoku\Action\News;
 
 use DateTime;
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
-use WebFeletesDevelopers\Kazoku\Action\BaseTwigAction;
+use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
+use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
@@ -16,7 +18,7 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  * Class for creating a News
  * @package WebFeletesDevelopers\Kazoku\Action\News
  */
-class CreateNewsAction extends BaseTwigAction implements ActionInterface
+class CreateNewsAction extends BaseJsonAction implements ActionInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -35,32 +37,39 @@ class CreateNewsAction extends BaseTwigAction implements ActionInterface
         $body = $data['body'];
         $isPublic = $data['public'] === 'true';
 
-        if (! $this->validateParameters($title, $body)) {
-            return $response->withStatus(400);
+        try {
+            $this->validateParameters($title, $body);
+            $controller->addNews(
+                $title,
+                $body,
+                new DateTime(),
+                'elautor',
+                $isPublic
+            );
+        } catch (InvalidParametersException $e) {
+            $data = ['message' => $e->getMessage()];
+            return $this->withJson($response, $data, 400);
+        } catch (Exception $e) {
+            $data = ['message' => $e->getMessage()];
+            return $this->withJson($response, $data, 500);
         }
 
-        $result = $controller->addNews(
-            $title,
-            $body,
-            new DateTime(),
-            'elautor',
-            $isPublic
-        );
-
-        return $result
-            ? $response->withStatus(201)
-            : $response->withStatus(500);
+        return $this->withJson($response, [], 201);
     }
 
     /**
      * @param string|null $title
      * @param string|null $body
-     * @param bool|null $isPublic
-     * @return bool
+     * @return void
+     * @throws InvalidParametersException
      */
-    private function validateParameters(?string $title, ?string $body): bool
+    private function validateParameters(?string $title, ?string $body): void
     {
-        return ($title !== null || $title !== '')
-            && ($body !== null || $body !== '');
+        if ($title === null || trim($title) === '') {
+            throw InvalidParametersException::fromInvalidParameter('title');
+        }
+        if ($body === null || trim($body) === '') {
+            throw InvalidParametersException::fromInvalidParameter('body');
+        }
     }
 }

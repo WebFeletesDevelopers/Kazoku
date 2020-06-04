@@ -14,7 +14,6 @@ class NewsCreatorAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-
         $body = $response->getBody();
         $arguments = [
             'title' => 'titulo',

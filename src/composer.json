@@ -26,7 +26,8 @@
     "twig/twig": "^2",
     "slim/psr7": "^1.1",
     "twig/extensions": "^1",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

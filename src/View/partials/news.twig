@@ -7,41 +7,44 @@
     {% endif %}
 </div>
 <div class="row">
-    <!-- Esto tiene que ser un foreach, pero para maquetar dejaremos el for -->
-    {% for i in 1..5  %}
-    <!-- solo se mostrarán noticias privadas si el usuario está registrado, siempre se mostrarán las públicas  -->
-    {% if 1 == 1 %}
-        <div class="col-md-6 col-xl-12 mb-4">
-            <div class="card shadow border-left-primary py-2">
-                <div class="card-body">
-                    <div class="row  no-gutters">
-                        <div class="col mr-2">
-                            <div class="text-uppercase text-secondary font-weight-bold text-xs mb-1">
-                                <h1>{{ "titulo noticia" }}</h1></div>
+    {% for new in news %}
+        <!-- solo se mostrarán noticias privadas si el usuario está registrado, siempre se mostrarán las públicas  -->
+        {% if 1 == 1 %}
+            <div class="col-md-6 col-xl-12 mb-4">
+                <div class="card shadow border-left-primary py-2">
+                    <div class="card-body">
+                        <div class="row  no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-secondary font-weight-bold text-xs mb-1">
+                                    <h1>{{ new.title }}</h1></div>
 
-                            <div class="text-dark font-weight-bold h5 mb-0"><span>{{ "Autor" }}</span></div>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="text-justify">{{ "El contenido de la noticia" }}</p>
-                        </div>
+                                <div class="text-dark font-weight-bold h5 mb-0"><span>{{ new.author }}</span></div>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="text-justify">{{ new.body }}</p>
+                            </div>
 
-                        <small class="text-right">
-                            {{ "la fecha pe: 20/3/2020" }}
-                            {{ "Pública/privada" }}
-                        </small>
+                            <small class="text-right">
+                                {{ new.date.format('d/m/Y') }}
+                                {% if new.isPublic %}
+                                    {% trans %}publica{% endtrans %}
+                                {% else %}
+                                    {% trans %}privada{% endtrans %}
+                                {% endif %}
+                            </small>
+                        </div>
                     </div>
+                    <!-- TODO: Si es un profesor o un administrador, mostrará la opción borrar noticia -->
+                    {% if 1 == 1 %}
+                        <a class="btn w-sm-25 ml-2" type="sumbit" href="">{{ "Borrar Noticia" | trans }}</a>
+                    {% endif
+                    %}
                 </div>
-                <!-- TODO: Si es un profesor o un administrador, mostrará la opción borrar noticia -->
-                {% if 1 == 1 %}
-                <a class="btn w-sm-25 ml-2" type="sumbit" href="">{{ "Borrar Noticia" | trans }}</a>
-                {% endif
-                %}
             </div>
-        </div>
 
-    {% else %}
-    <p class="alert alert-warning container-fluid text-center">{{ "No hay resultados" | trans }}</p>
-    {% endif %}
+        {% else %}
+            <p class="alert alert-warning container-fluid text-center">{{ "No hay resultados" | trans }}</p>
+        {% endif %}
     {% endfor %}
 
 </div>

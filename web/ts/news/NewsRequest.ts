@@ -1,11 +1,11 @@
-import {Request} from "../util/Request";
-import {News} from "./News";
+import { Request } from "../util/Request";
+import { News } from "./News";
+import { Response } from "../util/Response";
 
 export class NewsRequest {
-    public static addNews(news: News)
+    public static addNews(news: News): Promise<Response>
     {
         const data = `title=${news.title}&body=${news.body}&public=${news.public}`;
-        const promise = Request.post('/news/add', data);
-        promise.then(res => {console.log(res);console.log(news);});
+        return Request.post('/news/add', data);
     }
 }

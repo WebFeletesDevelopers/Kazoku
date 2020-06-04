@@ -1,3 +1,8 @@
 @import '../css/bootstrap';
 @import '../css/kazoku';
 @import '../css/fonts';
+@import './partials/error';
+
+body {
+  height: 100vh;
+}

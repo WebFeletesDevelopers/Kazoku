@@ -1,18 +1,22 @@
+import { Response } from "./Response";
+
 export class Request {
-    static post(url: string, data: string): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
+    static post(url: string, data: string): Promise<Response> {
+        return new Promise<Response>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.send(data);
             xhr.onload = function () {
+                const response = new Response(xhr.status, JSON.parse(xhr.response));
                 if (xhr.status >= 200 || xhr.status < 300) {
-                    resolve(xhr.response);
+                    resolve(response);
                 }
-                reject(xhr.response);
+                reject(response);
             }
             xhr.onerror = function () {
-                reject(xhr.response);
+                const response = new Response(xhr.status, xhr.response);
+                reject(response);
             }
         });
     }

@@ -17,12 +17,14 @@ use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 class NoticiaModel extends BaseModel
 {
     /**
+     * Insert a News into the database.
      * @param string $title
      * @param string $body
      * @param DateTime $date
      * @param string $author
      * @param bool $isPublic
      * @return bool
+     * @throws InsertException
      */
     public function add(
         string $title,
@@ -43,13 +45,9 @@ SQL;
             $isPublic
         ];
 
-        try {
-            $statement = $this->query($sql, $binds);
-            if ($statement === false) {
-                throw InsertException::fromFailedInsert($sql, $binds);
-            }
-        } catch (Exception $e) {
-            return false;
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw InsertException::fromFailedInsert($sql, $binds);
         }
 
         return true;
@@ -109,7 +107,7 @@ SQL;
             : ($page - 1) * $count;
 
         try {
-            $statement = $this->query($sql, [true, $offset, $count]);
+            $statement = $this->query($sql, [$offset, $count]);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];
