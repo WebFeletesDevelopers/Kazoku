@@ -1,3 +1,5 @@
+.PHONY: web
+
 build-dev:
 	docker-compose -f docker-compose-dev.yml pull
 	docker-compose -f docker-compose-dev.yml build
@@ -57,6 +59,9 @@ create-twig-translation-cache:
 
 web-dev:
 	docker-compose -f docker-compose-dev.yml run --rm node bash -c "cd web && yarn build-dev"
+
+web:
+	docker-compose -f docker-compose-dev.yml run --rm node bash -c "cd web && yarn build"
 
 watch:
 	docker-compose -f docker-compose-dev.yml run --rm node bash -c "cd web && yarn watch"
