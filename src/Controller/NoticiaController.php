@@ -62,4 +62,11 @@ class NoticiaController
     {
         return $this->model->getLatest($length);
     }
+
+    public function deleteNews(
+        int $codNot
+    ): bool {
+        return $this->model->delete($codNot);
+    }
+
 }

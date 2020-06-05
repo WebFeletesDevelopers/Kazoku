@@ -7,6 +7,7 @@ use Exception;
 use PDO;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\NoticiaFactory;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
+use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 
 /**
@@ -48,6 +49,30 @@ SQL;
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
             throw InsertException::fromFailedInsert($sql, $binds);
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a new from the Database
+     * @param int $CodNot
+     * @return bool
+     * @throws DeleteException
+     */
+    public function delete(
+        int $CodNot
+    ): bool {
+        $sql = <<<SQL
+        DELETE FROM noticias WHERE `CodNot` = ?;
+SQL;
+        $binds = [
+            $CodNot,
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw DeleteException::fromFailedDelete($sql, $binds);
         }
 
         return true;

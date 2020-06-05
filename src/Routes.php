@@ -8,14 +8,17 @@ use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\loginAction;
+use WebFeletesDevelopers\Kazoku\Action\logoutAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
 use WebFeletesDevelopers\Kazoku\Action\News\CreateNewsAction;
+use WebFeletesDevelopers\Kazoku\Action\News\DeleteNewsAction;
 use WebFeletesDevelopers\Kazoku\Action\NewsCreatorAction;
 use WebFeletesDevelopers\Kazoku\Action\newUserAction;
 use WebFeletesDevelopers\Kazoku\Action\panelAction;
 use WebFeletesDevelopers\Kazoku\Action\profileAction;
 use WebFeletesDevelopers\Kazoku\Action\PruebaTraduccionAction;
 use WebFeletesDevelopers\Kazoku\Action\registerAction;
+use WebFeletesDevelopers\Kazoku\Action\resetPasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
@@ -33,9 +36,11 @@ class Routes
     public static function registerRoutes(App $app): App
     {
         $app->get('/', HomeAction::class);
+        $app->get('/Home', HomeAction::class);
 
         //news
         $app->post('/news/add', CreateNewsAction::class);
+        $app->post('/news/delete', DeleteNewsAction::class);
 
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/profile', profileAction::class);

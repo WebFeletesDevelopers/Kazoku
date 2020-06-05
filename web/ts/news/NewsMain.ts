@@ -11,9 +11,13 @@ export class NewsMain {
      */
     public static handle(): void {
         const isNewNewsPage: boolean = !! document.querySelector('[data-action="news-creator"]');
+        const isHomePage: boolean = !! document.querySelector('[data-action=""]');
 
         if (isNewNewsPage) {
             this.handleNewsCreator();
+        }
+        if (isHomePage){
+            this.handleHome();
         }
     }
 
@@ -51,6 +55,23 @@ export class NewsMain {
             NewsMain.createNews(news);
         });
     }
+    private static handleHome(): void {
+        const deleteButtons: NodeListOf<Element> = document.querySelectorAll('button.borrar');
+
+        //NewsMain.validateCreateNewsButton(submitButton, news);
+        deleteButtons.forEach(function (deleteButton) {
+            deleteButton.addEventListener('click', e => {
+                const newId = deleteButton.getAttribute("data-id");
+                e.preventDefault();
+                var r = confirm("¿Eliminar?");
+                if (r == true) {
+                    NewsMain.deleteNew(newId);
+                }
+            });
+        })
+    }
+
+
 
     /**
      * Validator for enabling the submit button.
@@ -65,8 +86,22 @@ export class NewsMain {
         button.disabled = true;
     }
 
+    /**
+     * Sends the new reated to the back-end
+     * @param news
+     */
     private static createNews(news: News): void  {
         NewsRequest.addNews(news).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/');
+            }
+        });
+    }
+
+    private static deleteNew(id): void  {
+        NewsRequest.deleteNews(id).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {
