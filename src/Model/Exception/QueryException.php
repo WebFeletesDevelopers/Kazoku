@@ -5,24 +5,24 @@ namespace WebFeletesDevelopers\Kazoku\Model\Exception;
 use Exception;
 
 /**
- * Class DeleteException
- * Used for error while deleting in a model.
+ * Class QueryException
+ * Used for error while querying in a model.
  * @package WebFeletesDevelopers\Kazoku\Model\Exception
  */
-class DeleteException extends Exception
+class QueryException extends Exception
 {
-    private const DELETE_ERROR_MESSAGE = 'The query %s with values %s failed';
+    private const FAILED_QUERY_MESSAGE = 'The query %s with values %s failed';
 
     /**
-     * Return a delete exception.
+     * Return an insert exception.
      * @param string $query
      * @param array $binds
      * @return self
      */
-    public static function fromFailedDelete(string $query, array $binds): self
+    public static function fromFailedQuery(string $query, array $binds): self
     {
         return new self(sprintf(
-            self::DELETE_ERROR_MESSAGE,
+            self::FAILED_QUERY_MESSAGE,
             $query,
             implode(', ', $binds)
         ));

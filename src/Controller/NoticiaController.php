@@ -4,7 +4,7 @@ namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use DateTime;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 
 /**
@@ -32,7 +32,7 @@ class NoticiaController
      * @param string $author
      * @param bool $isPublic
      * @return bool
-     * @throws InsertException
+     * @throws QueryException
      */
     public function addNews(
         string $title,
