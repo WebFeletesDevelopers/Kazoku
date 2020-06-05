@@ -28,7 +28,7 @@
                     <tbody>
                     <!-- Foreach de los usuarios encontrados-->
                     {% for i in 1..5  %}
-                    <tr>
+                    <tr class="" id="tr{{ i }}">
                         <td id="username">{{ "username" }}</td>
                         <td>{{ "Nombre" }}</td>
                         <td>{{ "Apellido, Apellido" }}</td>
@@ -36,8 +36,8 @@
                         <td>{{"Email "}}</td>
                         <td class="text-center">
                             <div id="message"></div>
-                            <button class="btn-primary btn" onclick="" id="confirmar" value="{{ "username" }}">{{"Confirmar" | trans}}</button>
-                            <button class="btn-danger btn" onclick="" id="borrar" value="{{ "username" }}">{{"Borrar" | trans}}</button>
+                            <button class="btn-primary btn w-auto" onclick="animarSalida({{ i }})" id="confirmar" value="{{ "username" }}">{{"Confirmar" | trans}}</button>
+                            <button class="btn-danger btn w-auto" onclick="" id="borrar" value="{{ "username" }}">{{"Borrar" | trans}}</button>
                         </td>
 
                     </tr>

@@ -17,7 +17,7 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  * This class will generate the home.
  * @package WebFeletesDevelopers\Kazoku\Action
  */
-class myClassAction extends BaseTwigAction implements ActionInterface
+class resetPasswordAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {

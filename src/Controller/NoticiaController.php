@@ -45,6 +45,7 @@ class NoticiaController
     }
 
     /**
+     * Function that brings the  5 lasted news
      * @param int $length
      * @return Noticia[]
      */
