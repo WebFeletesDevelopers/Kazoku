@@ -6,14 +6,14 @@
         <button type="button" class="btn kaz-azul text-light btn-sm d-sm-inline-block my-1" data-toggle="modal" data-target="#exampleModal">
             {{"Añadir clase" | trans}}
         </button>
-</div>
-    {% for i in 0..0%}
+</div>{{ clases.name }}
+    {% for class in clases %}
         <div class="card">
             <div class="card-body pb-3">
                 <h4 class="card-title font-weight-bold">{{"Nombre centro"}}</h4>
                 <p class="card-text">{{ "Dirección" }}</p>
                 <div class="d-flex justify-content-between">
-                    <p class="display-2 degree">{{"Nombre clase"}}</p>
+                    <p class="display-2 degree">{{clase.name}}</p>
                 </div>
                 <div class="d-flex justify-content-between mb-4">
                     <p><i class="fas fa-user fa-lg text-info pr-2"></i>{{ "Numero de alumnos: 12" }}</p>

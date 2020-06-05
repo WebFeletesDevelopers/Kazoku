@@ -2,7 +2,10 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
-
+use DateTime;
+use Exception;
+use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\ClaseFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 
@@ -74,4 +77,56 @@ SQL;
 
         return true;
     }
+
+    /**
+     * Get classes
+     * @param int $count
+     * @param int $page
+     * @return Clases[]
+     */
+    public function getClases(int $count = 5, int $page = 1): array {
+        $rows = $this->getClassRows($count, $page);
+        return ClaseFactory::fromMysqlRows($rows);
+    }
+
+
+    /**
+     * Query builder for classes select
+     * @param int $count
+     * @param int $page
+     * @param bool $onlyPublic
+     * @return array
+     */
+    private function getClassRows(int $count, int $page): array
+    {
+        $preSql = <<<SQL
+        SELECT n.CodClase AS id,
+               n.Horario AS schedule,
+               n.Profesor AS trainer,
+               n.EdadMin AS minAge,
+               n.EdadMax AS maxAge,
+               n.Nombre AS name,
+               n.CodCentro AS centerId,
+               n.Dias AS days
+        FROM clase n
+        %s
+        ORDER BY n.CodClase
+        
+SQL;
+
+        $sql = sprintf($preSql, true);
+
+        $offset = $page === 1
+            ? 0
+            : ($page - 1) * $count;
+
+        try {
+            $statement = $this->query($sql, [$offset, $count]);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        return $rows;
+    }
+
 }

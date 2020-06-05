@@ -7,7 +7,7 @@ use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 
 /**
- * Class classes col-md-2 col-sm-6ntroller
+ * Class classes controller
  * Class controller.
  * @package WebFeletesDevelopers\Kazoku\Controller
  */
@@ -49,6 +49,16 @@ class ClaseController
             return $this->model->delete($classCode);
         } catch (DeleteException $e) {
         }
+    }
+
+    /**
+     * Function that brings the  classes
+     * @param int $length
+     * @return Clases[]
+     */
+    public function getClases(int $length = 5): array
+    {
+        return $this->model->getClases($length);
     }
 
 }
