@@ -7,6 +7,7 @@ use Exception;
 use PDO;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\NoticiaFactory;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
+use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
@@ -26,13 +27,8 @@ class NoticiaModel extends BaseModel
      * @return bool
      * @throws QueryException
      */
-    public function add(
-        string $title,
-        string $body,
-        DateTime $date,
-        string $author,
-        bool $isPublic
-    ): bool {
+    public function add(string $title, string $body, DateTime $date, User $author, bool $isPublic): bool
+    {
         $sql = <<<SQL
         INSERT INTO noticias(Titulo, Cuerpo, Fecha, Autor, Publica)
         VALUES (?, ?, ?, ?, ?);
@@ -41,7 +37,7 @@ SQL;
             $title,
             $body,
             $date->format(ConnectionHelper::MYSQL_DATE_FORMAT),
-            $author,
+            $author->username(),
             $isPublic
         ];
 

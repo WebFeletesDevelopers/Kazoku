@@ -11,7 +11,9 @@ use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class CreateNewsAction
@@ -29,24 +31,26 @@ class CreateNewsAction extends BaseJsonAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $db = ConnectionHelper::getConnection();
-        $model = new NoticiaModel($db);
-        $controller = new NoticiaController($model);
+        $newsModel = new NoticiaModel($db);
+        $userModel = new UserModel($db);
+        $controller = new NoticiaController($newsModel, $userModel);
 
         $data = $request->getParsedBody();
         $title = $data['title'];
         $body = $data['body'];
         $isPublic = $data['public'] === 'true';
+        $hash = $_COOKIE['hash'];
 
         try {
-            $this->validateParameters($title, $body);
+            $this->validateParameters($title, $body, $hash);
             $controller->addNews(
                 $title,
                 $body,
                 new DateTime(),
-                'elautor',
-                $isPublic
+                $isPublic,
+                $hash
             );
-        } catch (InvalidParametersException $e) {
+        } catch (InvalidParametersException | InvalidHashException $e) {
             $data = ['message' => $e->getMessage()];
             return $this->withJson($response, $data, 400);
         } catch (Exception $e) {
@@ -60,16 +64,20 @@ class CreateNewsAction extends BaseJsonAction implements ActionInterface
     /**
      * @param string|null $title
      * @param string|null $body
+     * @param string|null $hash
      * @return void
      * @throws InvalidParametersException
      */
-    private function validateParameters(?string $title, ?string $body): void
+    private function validateParameters(?string $title, ?string $body, ?string $hash): void
     {
         if ($title === null || trim($title) === '') {
             throw InvalidParametersException::fromInvalidParameter('title');
         }
         if ($body === null || trim($body) === '') {
             throw InvalidParametersException::fromInvalidParameter('body');
+        }
+        if ($hash === null || trim($hash) === '') {
+            throw InvalidParametersException::fromInvalidParameter('hash');
         }
     }
 }
