@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class HomeAction.
@@ -17,15 +18,12 @@ class HomeAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-        /*
-        setlocale(LC_ALL, 'en_US.UTF-8');
-        bindtextdomain('kazoku', __DIR__ . '/../locale');
-        textdomain('kazoku'); */
         $body = $response->getBody();
 
         $database = ConnectionHelper::getConnection();
         $model = new NoticiaModel($database);
-        $controller = new NoticiaController($model);
+        $userModel = new UserModel($database);
+        $controller = new NoticiaController($model, $userModel);
         $news = $controller->getLatestPublic();
 
         $config = [
