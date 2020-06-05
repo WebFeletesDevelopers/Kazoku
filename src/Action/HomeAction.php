@@ -33,7 +33,8 @@ class HomeAction extends BaseTwigAction implements ActionInterface
             'userName' => 'Alberto',
             'userId' => 0,
             'rango' => 0,
-            'news' => $news
+            'news' => $news,
+            'action' => 'home'
         ];
 
         $compiledTwig = $this->render('home', $config);

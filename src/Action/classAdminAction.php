@@ -17,14 +17,18 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  * This class will generate the home.
  * @package WebFeletesDevelopers\Kazoku\Action
  */
-class panelAction extends BaseTwigAction implements ActionInterface
+class classAdminAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-
         $body = $response->getBody();
-        //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('panel',['panel' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $arguments = [
+            'title' => 'classadmin',
+            'userName' => 'Alberto',
+            'userId' => 0,
+            'action' => 'class-admin'
+        ];
+        $compiledTwig = $this->render('classAdmin', $arguments);
         $body->write($compiledTwig);
         return $response;
     }
