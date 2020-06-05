@@ -1,6 +1,6 @@
 <?php
 
-namespace WebFeletesDevelopers\Kazoku\Action\News;
+namespace WebFeletesDevelopers\Kazoku\Action\Classes;
 
 use DateTime;
 use Exception;

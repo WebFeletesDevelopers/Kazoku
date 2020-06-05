@@ -1,6 +1,6 @@
 <?php
 
-namespace WebFeletesDevelopers\Kazoku\Action\classes;
+namespace WebFeletesDevelopers\Kazoku\Action\Classes;
 
 use Exception;
 use Psr\Http\Message\ResponseInterface;
