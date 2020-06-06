@@ -21,5 +21,7 @@ services:
       MYSQL_PASSWORD: ${KAZOKU_DATABASE_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
       MYSQL_DATABASE: ${KAZOKU_DATABASE_DATABASE}
+    ports:
+      - "30650:3306"
 volumes:
   kazoku_database:

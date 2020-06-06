@@ -1,68 +1,22 @@
 {% include 'partials/head.twig' %}
 
-{% block body %}
-    <div class="container py-3 animacion-entrada">
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image"
-                                     style="background-image: url('/img/logo/logoL.png');"></div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">{{"¡Bienvenido!" | trans}}</h4>
-                                    </div>
-                                    <div class="user">
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user"
-                                                   id="txt_uname1"
-                                                   name="txt_uname1"
-                                                   type="text"
-                                                   placeholder="{{"Usuario" | trans}}">
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user"
-                                                   id="txt_pwd1"
-                                                   name="txt_pwd1"
-                                                   type="password"
-                                                   id="exampleInputPassword"
-                                                   placeholder="{{"Contraseña"|trans}}">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check">
-                                                    <input class="form-check-input custom-control-input"
-                                                           type="checkbox"
-                                                           id="formCheck-1">
-                                                    <label
-                                                            class="form-check-label custom-control-label"
-                                                            for="formCheck-1">{{"Recuerdame"|trans}}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary btn-block text-white btn-user"
-                                                type="submit"
-                                                id="but_submit">{{"Iniciar sesión" | trans}}
-                                        </button>
-                                        <div class="alert alert-danger d-none text-center my-2" id="message"></div>
-                                        <!--                                        <hr><a class="btn btn-primary btn-block text-white btn-google btn-user" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a><a class="btn btn-primary btn-block text-white btn-facebook btn-user" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
-                                        -->
-                                        <hr>
-                                    </div>
-                                    <div class="text-center"><a class="small" href="/">{{"Volver al inicio" | trans}}</a></div>
-                                    <div class="text-center"><a class="small" href="/resetPassword">{{"¿olvidaste la contraseña?" | trans}}</a></div>
-                                    <div class="text-center"><a class="small" href="/register">{{"¡Crear cuenta!" | trans }}</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<body data-action="login">
+<div class="login-form">
+    <div class="left">
+        <div class="img">
+            <img src="/img/logo/logoL.png" alt="Kazoku Logo" />
         </div>
     </div>
-{% endblock %}
+    <div class="right">
+        <form>
+            <h2>{% trans %}¡Bienvenido!{% endtrans %}</h2>
+            <input name="username" placeholder="{% trans %}Usuario{% endtrans %}"/>
+            <input name="password" type="password" placeholder="{% trans %}Contraseña{% endtrans %}"/>
+            <button>{% trans %}Iniciar sesión{% endtrans %}</button>
+        </form>
+    </div>
+</div>
+
+{% include 'partials/scripts.twig' %}
+</body>
+

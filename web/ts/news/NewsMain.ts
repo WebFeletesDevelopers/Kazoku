@@ -1,4 +1,4 @@
-import { News } from "./News";
+import {News} from "./News";
 import {NewsRequest} from "./NewsRequest";
 import {ErrorHandler} from "../util/ErrorHandler";
 
@@ -61,17 +61,15 @@ export class NewsMain {
         //NewsMain.validateCreateNewsButton(submitButton, news);
         deleteButtons.forEach(function (deleteButton) {
             deleteButton.addEventListener('click', e => {
-                const newId = deleteButton.getAttribute("data-id");
+                const newId = parseInt(deleteButton.getAttribute("data-id"));
                 e.preventDefault();
-                var r = confirm("¿Eliminar?");
-                if (r == true) {
+                const r = confirm("¿Eliminar?");
+                if (r) {
                     NewsMain.deleteNew(newId);
                 }
             });
         })
     }
-
-
 
     /**
      * Validator for enabling the submit button.
@@ -100,7 +98,7 @@ export class NewsMain {
         });
     }
 
-    private static deleteNew(id): void  {
+    private static deleteNew(id: number): void  {
         NewsRequest.deleteNews(id).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);

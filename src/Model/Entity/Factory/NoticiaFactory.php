@@ -6,6 +6,10 @@ use DateTime;
 use Exception;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
 
+/**
+ * Class NoticiaFactory
+ * @package WebFeletesDevelopers\Kazoku\Model\Entity\Factory
+ */
 class NoticiaFactory
 {
     /**

@@ -7,8 +7,8 @@ use Exception;
 use PDO;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\NoticiaFactory;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
-use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
+use WebFeletesDevelopers\Kazoku\Model\Entity\User;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
  * Class NoticiaModel
@@ -25,15 +25,10 @@ class NoticiaModel extends BaseModel
      * @param string $author
      * @param bool $isPublic
      * @return bool
-     * @throws InsertException
+     * @throws QueryException
      */
-    public function add(
-        string $title,
-        string $body,
-        DateTime $date,
-        string $author,
-        bool $isPublic
-    ): bool {
+    public function add(string $title, string $body, DateTime $date, User $author, bool $isPublic): bool
+    {
         $sql = <<<SQL
         INSERT INTO noticias(Titulo, Cuerpo, Fecha, Autor, Publica)
         VALUES (?, ?, ?, ?, ?);
@@ -42,13 +37,13 @@ SQL;
             $title,
             $body,
             $date->format(ConnectionHelper::MYSQL_DATE_FORMAT),
-            $author,
+            $author->username(),
             $isPublic
         ];
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
@@ -58,7 +53,7 @@ SQL;
      * Deletes a new from the Database
      * @param int $CodNot
      * @return bool
-     * @throws DeleteException
+     * @throws QueryException
      */
     public function delete(
         int $CodNot
@@ -72,7 +67,7 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw DeleteException::fromFailedDelete($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
