@@ -1,3 +1,6 @@
+@import '../variables/animations';
+@import '../variables/variables';
+
 body[data-action="login"] {
   background-image: linear-gradient(180deg, #f8f9fc 10%,#c2cbe5);
 
@@ -14,13 +17,24 @@ body[data-action="login"] {
     background-color: white;
     border-radius: .5em;
     box-shadow: -1em 1em 4em rgba(0, 0, 0, 0.5);
+    transition: 0.4s box-shadow ease;
+
+    &.kazoku-error-shadow {
+      box-shadow: -1em 1em 2em rgba(255, 0, 0, 0.5);
+
+      &.animate {
+        animation: error-animation linear 0.2s 2;
+      }
+    }
 
     .left {
       flex-basis: 50%;
       height: 100%;
 
-      .img {
+      figure {
+        display: block;
         height: 100%;
+        margin: 0;
 
         img {
           display: block;
@@ -30,7 +44,20 @@ body[data-action="login"] {
         }
       }
 
+      @media(max-width: $mobile-breakpoint) {
+        margin-top: 10%;
 
+        figure {
+
+          img {
+            position: relative;
+            width: 100%;
+            height: unset;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
     }
 
     .right {
@@ -68,15 +95,31 @@ body[data-action="login"] {
           margin: 7.5% auto 0;
           padding: .5em 0;
           border-radius: .5em;
-          transition: 0.4s background-color ease;
+          transition: 0.4s background-color, color ease;
 
           &:hover {
             background-color: rgb(56, 84, 105);
           }
+
+          &:disabled {
+            background-color: rgb(169, 190, 202);
+            cursor: not-allowed;
+            color: black;
+          }
         }
       }
+
+      @media(max-width: $mobile-breakpoint) {
+        margin-bottom: 10%;
+      }
+    }
+
+    @media(max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: unset;
+      width: 80vw;
+      height: 80vh;
     }
   }
 }
-
-
