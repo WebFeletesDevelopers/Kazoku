@@ -117,8 +117,8 @@ SQL;
         LIMIT ?, ?
 SQL;
         $where = $onlyPublic === true
-            ? 'WHERE n.Publica = 1'
-            : '';
+        ? 'WHERE n.Publica = 1'
+        : '';
 
         $sql = sprintf($preSql, $where);
 

@@ -11,7 +11,7 @@ export class NewsMain {
      */
     public static handle(): void {
         const isNewNewsPage: boolean = !! document.querySelector('[data-action="news-creator"]');
-        const isHomePage: boolean = !! document.querySelector('[data-action=""]');
+        const isHomePage: boolean = !! document.querySelector('[data-action="home"]');
 
         if (isNewNewsPage) {
             this.handleNewsCreator();

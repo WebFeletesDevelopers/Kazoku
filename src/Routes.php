@@ -4,6 +4,12 @@ namespace WebFeletesDevelopers\Kazoku;
 
 use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
+use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
+use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
+use WebFeletesDevelopers\Kazoku\Action\Classes\CreateClassAction;
+use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
@@ -46,6 +52,14 @@ class Routes
         //user
         $app->post('/user/hash/get', GetLoginHashAction::class);
 
+        //class
+        $app->post('/class/add', CreateClassAction::class);
+        $app->post('/class/delete', DeleteClassAction::class);
+
+        //center
+        $app->post('/center/add', CreateCenterAction::class);
+        $app->post('/center/delete', DeleteCenterAction::class);
+
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/profile', profileAction::class);
         $app->get('/judokas', judokasAction::class);
@@ -61,6 +75,8 @@ class Routes
         $app->get('/newsCreator', NewsCreatorAction::class);
         $app->get('/confirmUser', confirmUserAction::class);
         $app->get('/verificate', verificateAction::class);
+        $app->get('/classAdmin', classAdminAction::class);
+        $app->get('/centerAdmin', centerAdminAction::class);
         return $app;
     }
 }

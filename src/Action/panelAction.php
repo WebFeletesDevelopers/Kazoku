@@ -24,7 +24,7 @@ class panelAction extends BaseTwigAction implements ActionInterface
 
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('home',['panel' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $compiledTwig = $this->render('panel',['panel' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);
         return $response;
     }
