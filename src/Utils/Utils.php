@@ -18,6 +18,7 @@ class Utils
      */
     public static function generateRandomString(int $length): string
     {
+        $length /= 2;
         try {
             return bin2hex(random_bytes($length));
         } catch (Exception $e) {

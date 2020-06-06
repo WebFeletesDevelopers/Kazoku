@@ -15,10 +15,10 @@ class LoginHashModel extends BaseModel
 {
     /**
      * @param User $user
-     * @return bool
+     * @return string
      * @throws QueryException
      */
-    public function createForUser(User $user): bool
+    public function createForUser(User $user): string
     {
         $sql = <<<SQL
         INSERT INTO login_hash(hash, user_id)
@@ -31,8 +31,7 @@ SQL;
         if ($statement === false) {
             throw QueryException::fromFailedQuery($sql, $binds);
         }
-
-        return true;
+        return $hash;
     }
 
     /**

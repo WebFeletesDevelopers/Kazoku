@@ -28,9 +28,6 @@ class HomeAction extends BaseTwigAction implements ActionInterface
 
         $config = [
             'title' => 'titulo',
-            'userName' => 'Alberto',
-            'userId' => 0,
-            'rango' => 0,
             'news' => $news
         ];
 
