@@ -1,3 +1,5 @@
+@import '../variables/variables';
+
 body {
   .has-error {
     background: black;
@@ -53,5 +55,10 @@ div.kazoku-error {
     &:hover {
       background-color: rgb(15, 54, 36);
     }
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    margin: 0 1em;
+    width: 90%;
   }
 }

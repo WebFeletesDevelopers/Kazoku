@@ -52,7 +52,8 @@ export class NewsMain {
 
         submitButton.addEventListener('click', e => {
             e.preventDefault();
-            NewsMain.createNews(news);
+            (e.target as HTMLButtonElement).disabled = true;
+            NewsMain.createNews(news, (e.target as HTMLButtonElement));
         });
     }
     private static handleHome(): void {
@@ -85,19 +86,26 @@ export class NewsMain {
     }
 
     /**
-     * Sends the new reated to the back-end
+     * Sends the new created to the back-end
      * @param news
+     * @param submitButton
      */
-    private static createNews(news: News): void  {
+    private static createNews(news: News, submitButton: HTMLButtonElement): void  {
         NewsRequest.addNews(news).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {
                 document.location.replace('/');
             }
+            submitButton.disabled = false;
         });
     }
 
+    /**
+     * Delete a new
+     * @param id
+     * @private
+     */
     private static deleteNew(id: number): void  {
         NewsRequest.deleteNews(id).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
