@@ -8,6 +8,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig_Extensions_Extension_I18n;
+use WebFeletesDevelopers\Kazoku\Model\Entity\User;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class BaseTwigAction
@@ -41,5 +45,24 @@ abstract class BaseTwigAction
     {
         $template .= '.twig';
         return $this->twig->render($template, $config);
+    }
+
+    /**
+     * @param UserModel $userModel
+     * @return User|null
+     * @throws QueryException
+     */
+    protected function validateUserSession(UserModel $userModel): ?User
+    {
+        $hash = $_COOKIE['hash'] ?? null;
+        try {
+            return $hash
+                ? $userModel->findByHash($_COOKIE['hash'])
+                : null;
+        } catch (InvalidHashException $e) {
+            setcookie('hash', null, -1);
+            header('Refresh: 0');
+            die;
+        }
     }
 }

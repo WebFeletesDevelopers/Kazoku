@@ -1,7 +1,8 @@
-import { NewsMain } from './news/NewsMain';
-import { LoginMain } from "./login/LoginMain";
-import { ClassMain } from './class/ClassMain';
-import { CenterMain } from './center/CenterMain';
+import {NewsMain} from './news/NewsMain';
+import {LoginMain} from "./login/LoginMain";
+import {ClassMain} from './class/ClassMain';
+import {CenterMain} from './center/CenterMain';
+import {GeneralMain} from "./general/GeneralMain";
 
 class Main {
     public static handle(): void {
@@ -9,6 +10,7 @@ class Main {
         LoginMain.handle();
         ClassMain.handle();
         CenterMain.handle();
+        GeneralMain.handle();
     }
 }
 
