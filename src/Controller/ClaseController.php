@@ -53,12 +53,21 @@ class ClaseController
 
     /**
      * Function that brings the  classes
-     * @param int $length
      * @return Clases[]
      */
-    public function getClases(int $length = 5): array
+    public function getClases(): array
     {
-        return $this->model->getClases($length);
+        return $this->model->getClases();
     }
+
+    /**
+     * Get all classes with more data
+     * @return array
+     */
+    public function getClasesAllData(): array
+    {
+        return $this->model->getClasesAllData();
+    }
+
 
 }

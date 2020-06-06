@@ -84,20 +84,17 @@ SQL;
      * @param int $page
      * @return Clases[]
      */
-    public function getClases(int $count = 5, int $page = 1): array {
-        $rows = $this->getClassRows($count, $page);
+    public function getClases(): array {
+        $rows = $this->getClassRows();
         return ClaseFactory::fromMysqlRows($rows);
     }
 
 
     /**
      * Query builder for classes select
-     * @param int $count
-     * @param int $page
-     * @param bool $onlyPublic
      * @return array
      */
-    private function getClassRows(int $count, int $page): array
+    private function getClassRows(): array
     {
         $preSql = <<<SQL
         SELECT n.CodClase AS id,
@@ -109,19 +106,49 @@ SQL;
                n.CodCentro AS centerId,
                n.Dias AS days
         FROM clase n
-        %s
         ORDER BY n.CodClase
-        
 SQL;
 
         $sql = sprintf($preSql, true);
-
-        $offset = $page === 1
-            ? 0
-            : ($page - 1) * $count;
-
         try {
-            $statement = $this->query($sql, [$offset, $count]);
+            $statement = $this->query($sql);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        return $rows;
+    }
+
+    /**
+     * Get all classes with more data
+     * @return array
+     */
+    public function getClasesAllData(): array
+    {
+        $preSql = <<<SQL
+        SELECT cl.CodClase AS id,
+               cl.Horario AS schedule,
+               cl.Profesor AS trainer,
+               cl.EdadMin AS minAge,
+               cl.EdadMax AS maxAge,
+               cl.Nombre AS name,
+               cl.CodCentro AS centerId,
+               cl.Dias AS days,
+                c.Nombre AS centerName,
+                c.Direccion AS centerSt,
+                c.Telefono as centerTel,
+        (
+        SELECT count(*) as judokas from  alumno a where a.CodClase = cl.CodClase
+        )
+        
+        FROM clase cl  
+            join centro c on cl.CodCentro = c.CodCentro 
+        ORDER BY cl.CodClase
+SQL;
+
+        $sql = sprintf($preSql, true);
+        try {
+            $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];

@@ -6,18 +6,27 @@
         <button type="button" class="btn kaz-azul text-light btn-sm d-sm-inline-block my-1" data-toggle="modal" data-target="#exampleModal">
             {{"Añadir clase" | trans}}
         </button>
-</div>{{ clases.name }}
+</div>
     {% for class in clases %}
         <div class="card">
             <div class="card-body pb-3">
-                <h4 class="card-title font-weight-bold">{{"Nombre centro"}}</h4>
-                <p class="card-text">{{ "Dirección" }}</p>
+                <h4 class="card-title font-weight-bold">{{class.centerName}}</h4>
+                <p class="card-text">{{ class.centerSt }}</p>
                 <div class="d-flex justify-content-between">
-                    <p class="display-2 degree">{{clase.name}}</p>
+                    <p class="display-3 degree">{{class.name}}</p>
                 </div>
                 <div class="d-flex justify-content-between mb-4">
-                    <p><i class="fas fa-user fa-lg text-info pr-2"></i>{{ "Numero de alumnos: 12" }}</p>
-                    <p><i class="fas fa-address-book-o fa-lg grey-text pr-2"></i>{{ "Edades: 18-22" }}</p>
+                    <p><i class="fas fa-user fa-lg text-info pr-2"></i>{{ class | last }}</p>
+                    <p><i class="fas fa-address-book-o fa-lg grey-text pr-2">
+
+                        </i>
+                        {{ "Edades " | trans }}
+                        {{ class.minAge }}
+                        {{ "-" }}
+                        {{ class.maxAge }}
+                        {{ "Años " | trans }}
+
+                    </p>
                 </div>
                 <div class="row d-flex justify-content-between font-small text-muted mb-4">
                     <button id="classDetail" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE"}}</button>
@@ -115,7 +124,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"Cerrar" | trans}}</button>
-                    <button id="createClass" type="button" class="btn btn-primary">{{ "Crear clase" | trans }}</button>
+                    <button id="createClass" type="button" disabled class="btn btn-primary">{{ "Crear clase" | trans }}</button>
                 </div>
             </div>
         </div>

@@ -70,31 +70,26 @@ export class ClassMain {
         createName.addEventListener('keyup', () => {
             newClass.name = createName.value;
             this.validateCreateClassButton(createClass, newClass);
-            console.log(newClass);
 
         });
         createMinAge.addEventListener('keyup', () => {
             newClass.minAge = parseInt(createMinAge.value);
             this.validateCreateClassButton(createClass, newClass);
-            console.log(newClass);
 
         });
         createMaxAge.addEventListener('keyup', () => {
             newClass.maxAge = parseInt(createMaxAge.value);
             this.validateCreateClassButton(createClass, newClass);
-            console.log(newClass);
 
         });
         createStartTime.addEventListener('keyup', () => {
             newClass.schedule = createStartTime.value+'-'+createEndTime;
             this.validateCreateClassButton(createClass, newClass);
-            console.log(newClass);
 
         });
         createEndTime.addEventListener('keyup', () => {
             newClass.schedule = createStartTime.value+'-'+createEndTime.value;
             this.validateCreateClassButton(createClass, newClass);
-            console.log(newClass);
 
         });
 
@@ -107,7 +102,6 @@ export class ClassMain {
                     createThu.checked,
                     createFri.checked);
                 newClass.days = days;
-                console.log(newClass);
             });
 
         });

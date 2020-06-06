@@ -3,6 +3,8 @@
 namespace WebFeletesDevelopers\Kazoku\Model\Entity\Factory;
 
 use WebFeletesDevelopers\Kazoku\Model\Entity\Clase;
+use Exception;
+
 
 class ClaseFactory
 {
@@ -14,6 +16,7 @@ class ClaseFactory
     {
         return array_map(static function (array $row) {
             return new Clase(
+                $row['id'],
                 $row['schedule'],
                 $row['trainer'],
                 $row['minAge'],
