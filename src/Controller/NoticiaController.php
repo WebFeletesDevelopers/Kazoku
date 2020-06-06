@@ -4,8 +4,10 @@ namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use DateTime;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Noticia;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class NoticiaController
@@ -14,34 +16,41 @@ use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
  */
 class NoticiaController
 {
-    private NoticiaModel $model;
+    private NoticiaModel $noticiaModel;
+    private UserModel $userModel;
 
     /**
      * NoticiaController constructor.
-     * @param NoticiaModel $model
+     * @param NoticiaModel $noticiaModel
+     * @param UserModel $userModel
      */
-    public function __construct(NoticiaModel $model)
-    {
-        $this->model = $model;
+    public function __construct(
+        NoticiaModel $noticiaModel,
+        UserModel $userModel
+    ) {
+        $this->noticiaModel = $noticiaModel;
+        $this->userModel = $userModel;
     }
 
     /**
      * @param string $title
      * @param string $body
      * @param DateTime $date
-     * @param string $author
      * @param bool $isPublic
+     * @param string $userHash
      * @return bool
-     * @throws InsertException
+     * @throws QueryException
+     * @throws InvalidHashException
      */
     public function addNews(
         string $title,
         string $body,
         DateTime $date,
-        string $author,
-        bool $isPublic
+        bool $isPublic,
+        string $userHash
     ): bool {
-        return $this->model->add($title, $body, $date, $author, $isPublic);
+        $user = $this->userModel->findByHash($userHash);
+        return $this->noticiaModel->add($title, $body, $date, $user, $isPublic);
     }
 
     /**
@@ -51,7 +60,7 @@ class NoticiaController
      */
     public function getLatestPublic(int $length = 5): array
     {
-        return $this->model->getLatestPublic($length);
+        return $this->noticiaModel->getLatestPublic($length);
     }
 
     /**
@@ -60,13 +69,13 @@ class NoticiaController
      */
     public function getLatest(int $length = 5): array
     {
-        return $this->model->getLatest($length);
+        return $this->noticiaModel->getLatest($length);
     }
 
     public function deleteNews(
         int $codNot
     ): bool {
-        return $this->model->delete($codNot);
+        return $this->noticiaModel->delete($codNot);
     }
 
 }

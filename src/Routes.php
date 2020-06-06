@@ -7,7 +7,7 @@ use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
-use WebFeletesDevelopers\Kazoku\Action\loginAction;
+use WebFeletesDevelopers\Kazoku\Action\LoginAction;
 use WebFeletesDevelopers\Kazoku\Action\logoutAction;
 use WebFeletesDevelopers\Kazoku\Action\myClassAction;
 use WebFeletesDevelopers\Kazoku\Action\News\CreateNewsAction;
@@ -19,6 +19,7 @@ use WebFeletesDevelopers\Kazoku\Action\profileAction;
 use WebFeletesDevelopers\Kazoku\Action\PruebaTraduccionAction;
 use WebFeletesDevelopers\Kazoku\Action\registerAction;
 use WebFeletesDevelopers\Kazoku\Action\resetPasswordAction;
+use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
 use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
@@ -42,6 +43,9 @@ class Routes
         $app->post('/news/add', CreateNewsAction::class);
         $app->post('/news/delete', DeleteNewsAction::class);
 
+        //user
+        $app->post('/user/hash/get', GetLoginHashAction::class);
+
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/profile', profileAction::class);
         $app->get('/judokas', judokasAction::class);
@@ -50,7 +54,7 @@ class Routes
         $app->get('/virtualClass', virtualClassAction::class);
         $app->get('/newUser', newUserAction::class);
         $app->get('/panel', panelAction::class);
-        $app->get('/login', loginAction::class);
+        $app->get('/login', LoginAction::class);
         $app->get('/register', registerAction::class);
         $app->get('/resetPassword', resetPasswordAction::class);
         $app->get('/logout', logoutAction::class);

@@ -10,7 +10,7 @@ use PDOStatement;
  * Base class for PDO models with useful functions.
  * @package WebFeletesDevelopers\Kazoku\Model
  */
-class BaseModel
+abstract class BaseModel
 {
     private PDO $db;
 
