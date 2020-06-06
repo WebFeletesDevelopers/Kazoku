@@ -43,21 +43,6 @@ body[data-action="login"] {
           width: auto;
         }
       }
-
-      @media(max-width: $mobile-breakpoint) {
-        margin-top: 10%;
-
-        figure {
-
-          img {
-            position: relative;
-            width: 100%;
-            height: unset;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
-      }
     }
 
     .right {
@@ -108,10 +93,6 @@ body[data-action="login"] {
           }
         }
       }
-
-      @media(max-width: $mobile-breakpoint) {
-        margin-bottom: 10%;
-      }
     }
 
     @media(max-width: $mobile-breakpoint) {
@@ -120,6 +101,26 @@ body[data-action="login"] {
       align-items: unset;
       width: 80vw;
       height: 80vh;
+
+      .left {
+        margin-top: 10%;
+
+        figure {
+
+          img {
+            position: relative;
+            width: auto;
+            height: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      .right {
+        margin-bottom: 10%;
+      }
+
     }
   }
 }
