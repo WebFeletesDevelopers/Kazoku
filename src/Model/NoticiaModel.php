@@ -22,7 +22,7 @@ class NoticiaModel extends BaseModel
      * @param string $title
      * @param string $body
      * @param DateTime $date
-     * @param string $author
+     * @param User $author
      * @param bool $isPublic
      * @return bool
      * @throws QueryException
@@ -30,14 +30,14 @@ class NoticiaModel extends BaseModel
     public function add(string $title, string $body, DateTime $date, User $author, bool $isPublic): bool
     {
         $sql = <<<SQL
-        INSERT INTO noticias(Titulo, Cuerpo, Fecha, Autor, Publica)
+        INSERT INTO noticias(Titulo, Cuerpo, Fecha, user_id, Publica)
         VALUES (?, ?, ?, ?, ?);
 SQL;
         $binds = [
             $title,
             $body,
             $date->format(ConnectionHelper::MYSQL_DATE_FORMAT),
-            $author->username(),
+            $author->id(),
             $isPublic
         ];
 
@@ -80,47 +80,20 @@ SQL;
      * @return Noticia[]
      */
     public function getLatestPublic(int $count = 5, int $page = 1): array {
-        $rows = $this->getNewsRows($count, $page, true);
-        return NoticiaFactory::fromMysqlRows($rows);
-    }
-
-    /**
-     * Get last news
-     * @param int $count
-     * @param int $page
-     * @return array
-     */
-    public function getLatest(int $count = 5, int $page = 1): array {
-        $rows = $this->getNewsRows($count, $page, false);
-        return NoticiaFactory::fromMysqlRows($rows);
-    }
-
-    /**
-     * Query builder for news select
-     * @param int $count
-     * @param int $page
-     * @param bool $onlyPublic
-     * @return array
-     */
-    private function getNewsRows(int $count, int $page, bool $onlyPublic): array
-    {
-        $preSql = <<<SQL
+        $sql = <<<SQL
         SELECT n.CodNot AS id,
                n.Titulo AS title,
                n.Cuerpo AS body,
                n.Fecha AS date,
-               n.Autor AS author,
+               u.name AS author,
                n.Publica AS public
         FROM noticias n
-        %s
+        INNER JOIN users u
+            ON n.user_id = u.CodUsu
+        WHERE n.Publica = 1
         ORDER BY n.Fecha DESC
         LIMIT ?, ?
 SQL;
-        $where = $onlyPublic === true
-        ? 'WHERE n.Publica = 1'
-        : '';
-
-        $sql = sprintf($preSql, $where);
 
         $offset = $page === 1
             ? 0
@@ -132,6 +105,40 @@ SQL;
         } catch (Exception $e) {
             $rows = [];
         }
-        return $rows;
+        return NoticiaFactory::fromMysqlRows($rows);
+    }
+
+    /**
+     * Get last news
+     * @param int $count
+     * @param int $page
+     * @return array
+     */
+    public function getLatest(int $count = 5, int $page = 1): array {
+        $sql = <<<SQL
+        SELECT n.CodNot AS id,
+               n.Titulo AS title,
+               n.Cuerpo AS body,
+               n.Fecha AS date,
+               u.name AS author,
+               n.Publica AS public
+        FROM noticias n
+        INNER JOIN users u
+            ON n.user_id = u.CodUsu
+        ORDER BY n.Fecha DESC
+        LIMIT ?, ?
+SQL;
+
+        $offset = $page === 1
+            ? 0
+            : ($page - 1) * $count;
+
+        try {
+            $statement = $this->query($sql, [$offset, $count]);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        return NoticiaFactory::fromMysqlRows($rows);
     }
 }

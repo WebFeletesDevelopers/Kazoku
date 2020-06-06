@@ -24,9 +24,12 @@ class HomeAction extends BaseTwigAction implements ActionInterface
         $model = new NoticiaModel($database);
         $userModel = new UserModel($database);
         $controller = new NoticiaController($model, $userModel);
-        $news = $controller->getLatestPublic();
 
         $loggedInUser = $this->validateUserSession($userModel);
+
+        $news = $loggedInUser
+            ? $controller->getLatest()
+            : $controller->getLatestPublic();
 
         $config = [
             'title' => 'titulo',
