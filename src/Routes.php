@@ -6,7 +6,9 @@ use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
+use WebFeletesDevelopers\Kazoku\Action\CenterDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\classDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\CreateClassAction;
@@ -81,6 +83,8 @@ class Routes
         $app->get('/centerAdmin', centerAdminAction::class);
         $app->post('/center/add', CreateCenterAction::class);
         $app->post('/center/delete', DeleteCenterAction::class);
+        $app->get('/centerDetail/{id}', CenterDetailAction::class);
+        $app->get('/center/modify', ModifyCenterAction::class);
 
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/judokas', judokasAction::class);

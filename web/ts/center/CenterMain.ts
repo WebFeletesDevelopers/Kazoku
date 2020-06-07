@@ -12,9 +12,13 @@ export class CenterMain {
      */
     public static handle(): void {
         const isCenterAdminPage: boolean = !! document.querySelector('[data-action="center-admin"]');
+        const isCenterDetailPage: boolean = !! document.querySelector('[data-action="center-detail"]');
         if (isCenterAdminPage) {
             console.log(isCenterAdminPage);
             this.handleCenterAdmin();
+        }
+        if (isCenterDetailPage){
+            this.handleCenterDetail();
         }
     }
 
@@ -57,28 +61,28 @@ export class CenterMain {
         createName.addEventListener('keyup', () => {
             newCenter.name = createName.value;
             this.validateCreateCenterButton(createCenter, newCenter);
-            console.log(newCenter);
+            
 
 
         });
         createDirection.addEventListener('keyup', () => {
             newCenter.direction = createDirection.value;
             this.validateCreateCenterButton(createCenter, newCenter);
-            console.log(newCenter);
+            
 
 
         });
         createZip.addEventListener('keyup', () => {
             newCenter.zip = parseInt(createZip.value);
             this.validateCreateCenterButton(createCenter, newCenter);
-            console.log(newCenter);
+            
 
 
         });
         createPhone.addEventListener('keyup', () => {
             newCenter.phone = parseInt(createPhone.value);
             this.validateCreateCenterButton(createCenter, newCenter);
-            console.log(newCenter);
+            
 
         });
 
@@ -89,6 +93,80 @@ export class CenterMain {
 
     }
 
+    /**
+     * Handles center detail page
+     */
+    private static handleCenterDetail(): void {
+        const allButtons: NodeListOf<Element> = document.querySelectorAll('button.classes');
+        allButtons.forEach(function (button) {
+            button.addEventListener('click', e => {
+                const centerId = button.getAttribute("data-id");
+                const name = button.getAttribute("data-name");
+
+            });
+        });
+
+        // Buttons
+        const modifyCenter: HTMLButtonElement  = document.querySelector('button#modifyCenter');
+        const seeClasses: HTMLButtonElement   = document.querySelector('button#seeClasses');
+        const addClass: HTMLButtonElement    = document.querySelector('button#addClass');
+        const deleteCenter: HTMLButtonElement  = document.querySelector('button#deleteCenter');
+
+        // modify form
+        const modifyName: HTMLInputElement =      document.querySelector('#modify-name');
+        const modifyDirection: HTMLInputElement =    document.querySelector('#modify-direction');
+        const modifyZip: HTMLInputElement =    document.querySelector('#modify-zip');
+        const modifyPhone: HTMLInputElement = document.querySelector('#modify-phone');
+
+        const modCenter: Center = new Center(
+            modifyName.value,
+            modifyDirection.value,
+            parseInt(modifyZip.value),
+            parseInt(modifyPhone.value)
+        );
+        modifyName.addEventListener('keyup', () => {
+            modCenter.name = modifyName.value;
+            this.validateModifyCenterButton(modifyCenter, modCenter);
+            
+
+
+        });
+        modifyDirection.addEventListener('keyup', () => {
+            modCenter.direction = modifyDirection.value;
+            this.validateModifyCenterButton(modifyCenter, modCenter);
+            
+
+
+        });
+        modifyZip.addEventListener('keyup', () => {
+            modCenter.zip = parseInt(modifyZip.value);
+            this.validateModifyCenterButton(modifyCenter, modCenter);
+            
+
+
+        });
+        modifyPhone.addEventListener('keyup', () => {
+            modCenter.phone = parseInt(modifyPhone.value);
+            this.validateModifyCenterButton(modifyCenter, modCenter);
+            
+
+        });
+
+        modifyCenter.addEventListener('click', e => {
+            e.preventDefault();
+            const $centerId = parseInt(modifyCenter.getAttribute("data-id"));
+            CenterMain.modifyCenter(modCenter,$centerId);
+        });
+
+    }
+
+    private static validateModifyCenterButton(button: HTMLButtonElement, center: Center): void {
+        if (center.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
     private static validateCreateCenterButton(button: HTMLButtonElement, center: Center): void {
         if (center.validate()) {
             button.disabled = false;
@@ -106,6 +184,15 @@ export class CenterMain {
                 ErrorHandler.handle(res.message['message']);
             } else {
                 document.location.replace('/centerAdmin');
+            }
+        });
+    }
+    private static modifyCenter(centro: Center, centerId: number): void  {
+        CenterRequest.modifyCenter(centro,centerId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/centerDetail/'+centerId);
             }
         });
     }
