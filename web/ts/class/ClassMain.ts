@@ -236,7 +236,8 @@ export class ClassMain {
         });
         modifyClass.addEventListener('click', e => {
             e.preventDefault();
-            const $classId = parseInt(modifyClass.getAttribute("data-name"));
+            const $classId = parseInt(modifyClass.getAttribute("data-id"));
+            alert($classId);
             ClassMain.modifyClass(editedClass,$classId);
         });
 

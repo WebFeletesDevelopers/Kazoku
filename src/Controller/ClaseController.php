@@ -53,7 +53,6 @@ class ClaseController
     }
 
     /**
-     * @param int $classId
      * @param string $schedule
      * @param string $trainer
      * @param int $minAge
@@ -61,19 +60,20 @@ class ClaseController
      * @param string $name
      * @param int $centerCode
      * @param int $days
+     * @param int $classId
      * @return bool
      */
     public function modify(
-        int $classId,
         string $schedule,
         string $trainer,
         int $minAge,
         int $maxAge,
         string $name,
         int $centerCode,
-        int $days
+        int $days,
+        int $classId
     ): bool {
-        return $this->model->modify($classId,$schedule, $trainer, $minAge, $maxAge, $name, $centerCode, $days);
+        return $this->model->modify($schedule, $trainer, $minAge, $maxAge, $name, $centerCode, $days,$classId);
     }
 
 

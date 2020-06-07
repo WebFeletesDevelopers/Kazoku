@@ -63,6 +63,7 @@ class Routes
         $app->post('/news/add', CreateNewsAction::class);
         $app->post('/news/delete', DeleteNewsAction::class);
 
+
         //user
         $app->post('/user/hash/get', GetLoginHashAction::class);
 
