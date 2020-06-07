@@ -22,4 +22,10 @@ class Rank
         'pupil' => self::PUPIL,
         'unregistered' => self::UNREGISTERED,
     ];
+
+    public const VALID_RANKS_FOR_REGISTER = [
+        self::TRAINER,
+        self::PARENT,
+        self::PUPIL
+    ];
 }

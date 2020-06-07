@@ -107,9 +107,6 @@ export class User {
     }
 
     public validate(): boolean {
-        console.log(Rank);
-        console.log(Rank.PUPIL);
-        console.log(Rank.INVALID);
         return !! this.name
             && !! this.surname
             && !! this.secondSurname

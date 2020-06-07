@@ -1,6 +1,6 @@
-import {Request} from "../util/Request";
-import {News} from "./News";
-import {Response} from "../util/Response";
+import { Request } from "../util/Request";
+import { News } from "./News";
+import { Response } from "../util/Response";
 
 export class NewsRequest {
     /**

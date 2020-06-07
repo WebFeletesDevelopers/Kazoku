@@ -16,7 +16,7 @@ class UserFactory
      */
     public static function fromMysqlRows(array &$rows): array
     {
-        return array_map(static function (array $row) {
+        return array_map(static function (array &$row) {
             return new User(
                 $row['confirmed'] === '1',
                 $row['rank'],
@@ -28,7 +28,7 @@ class UserFactory
                 $row['secondSurname'],
                 $row['password'],
                 $row['email'],
-                $row['confirmedEmail'] === '1'
+                $row['confirmedMail'] === '1'
             );
         }, $rows);
     }

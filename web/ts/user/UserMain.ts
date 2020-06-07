@@ -1,5 +1,6 @@
 import { User } from './User';
 import { numberToRank } from './Rank'
+import { UserRequest } from "./UserRequest";
 
 export class UserMain {
     public static handle(): void {
@@ -37,48 +38,62 @@ export class UserMain {
 
         UserMain.validateRegisterButton(user, buttonElement);
 
+        registerContainer.addEventListener('animationend', e => {
+            (e.target as HTMLDivElement).classList.remove('animate');
+        });
+
+        //fixme Simplificar
         nameElement.addEventListener('keyup', e => {
             user.name = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         surnameElement.addEventListener('keyup', e => {
             user.surname = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         secondSurnameElement.addEventListener('keyup', e => {
             user.secondSurname = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         usernameElement.addEventListener('keyup', e => {
             user.username = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         phoneElement.addEventListener('keyup', e => {
             user.phone = parseInt((e.target as HTMLInputElement).value);
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         emailElement.addEventListener('keyup', e => {
             user.email = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         passwordElement.addEventListener('keyup', e => {
             user.password = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         repeatedPaswordElement.addEventListener('keyup', e => {
             user.repeatedPassword = (e.target as HTMLInputElement).value;
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
         rankElement.addEventListener('change', e => {
             const select = (e.target as HTMLSelectElement);
             const input = parseInt(select.options[select.selectedIndex].value);
             user.rank = numberToRank(input);
             UserMain.validateRegisterButton(user, buttonElement);
+            registerContainer.classList.remove('kazoku-error-shadow');
         });
 
         buttonElement.addEventListener('click', e => {
             e.preventDefault();
-            console.log(user);
+            UserMain.createUser(user, registerContainer, buttonElement);
         });
     }
 
@@ -88,5 +103,21 @@ export class UserMain {
             return;
         }
         button.disabled = true;
+    }
+
+    private static createUser(
+        user: User,
+        registerContainer: HTMLDivElement,
+        registerButton: HTMLButtonElement
+    ): void {
+        registerButton.disabled = true;
+        UserRequest.register(user).then(res => {
+            if (res.statusCode === 201) {
+                document.location.replace('/');
+            } else {
+                registerContainer.classList.add('kazoku-error-shadow', 'animate');
+            }
+            registerButton.disabled = false;
+        });
     }
 }

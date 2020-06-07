@@ -7,6 +7,7 @@ use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\User\UserNotConfirmedException;
 use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
@@ -61,8 +62,9 @@ SQL;
      * @return User
      * @throws QueryException
      * @throws InvalidCredentialsException
+     * @throws UserNotConfirmedException
      */
-    public function findByLoginData(string $user, string $password): User
+    public function findConfirmedByLoginData(string $user, string $password): User
     {
         $sql = <<<SQL
         SELECT u.Confirmado AS confirmed,
@@ -94,13 +96,17 @@ SQL;
 
         $rows = $statement->fetchAll();
 
-        return UserFactory::fromMysqlRows($rows)[0];
+        $user = UserFactory::fromMysqlRows($rows)[0];
+
+        if ($user->confirmed() === false || $user->confirmedMail() === false) {
+            throw UserNotConfirmedException::fromNotConfirmedUser($user->username());
+        }
+        return $user;
     }
 
     /**
      * Add an user to the database.
      * @param int $rank
-     * @param int $id
      * @param string $username
      * @param string $name
      * @param string $phone
@@ -113,7 +119,6 @@ SQL;
      */
     public function create(
         int $rank,
-        int $id,
         string $username,
         string $name,
         string $phone,
@@ -123,14 +128,13 @@ SQL;
         string $email
     ): bool {
         $sql = <<<SQL
-        INSERT INTO users(Rango, CodUsu, username, name, Telefono, Apellido1, Apellido2, password, Email)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO users(Rango, username, name, Telefono, Apellido1, Apellido2, password, Email)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $hash = Utils::hashPassword($password);
         $binds = [
             $rank,
-            $id,
             $username,
             $name,
             $phone,

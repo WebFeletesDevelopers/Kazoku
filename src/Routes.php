@@ -51,6 +51,7 @@ class Routes
 
         //user
         $app->post('/user/hash/get', GetLoginHashAction::class);
+        $app->post('/xhr/user/register', Action\User\RegisterAction::class);
 
         //class
         $app->post('/class/add', CreateClassAction::class);

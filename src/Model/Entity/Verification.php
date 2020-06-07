@@ -9,36 +9,24 @@ namespace WebFeletesDevelopers\Kazoku\Model\Entity;
  */
 class Verification
 {
-    private string $code;
     private int $id;
-    private string $uname;
-    private bool $confirmed;
+    private string $code;
+    private int $user_id;
 
     /**
      * Verification constructor.
      * @param string $code
      * @param int $id
-     * @param string $uname
-     * @param bool $confirmed
+     * @param int $user_id
      */
     public function __construct(
         string $code,
         int $id,
-        string $uname,
-        bool $confirmed
+        int $user_id
     ) {
         $this->code = $code;
         $this->id = $id;
-        $this->uname = $uname;
-        $this->confirmed = $confirmed;
-    }
-
-    /**
-     * @return string
-     */
-    public function code(): string
-    {
-        return $this->code;
+        $this->user_id = $user_id;
     }
 
     /**
@@ -52,16 +40,16 @@ class Verification
     /**
      * @return string
      */
-    public function uname(): string
+    public function code(): string
     {
-        return $this->uname;
+        return $this->code;
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function confirmed(): bool
+    public function userId(): int
     {
-        return $this->confirmed;
+        return $this->user_id;
     }
 }
