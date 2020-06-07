@@ -11,7 +11,7 @@ use PDO;
  */
 class ConnectionHelper
 {
-    private const MYSQL_DSN = 'mysql:host=%s;dbname=%s';
+    private const MYSQL_DSN = 'mysql:host=%s;dbname=%s;charset=utf8';
     public const MYSQL_DATE_FORMAT = 'Y-m-d';
 
     /**
