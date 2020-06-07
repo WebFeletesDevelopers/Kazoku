@@ -1,6 +1,6 @@
-import {Login} from "./Login";
-import {LoginRequest} from "./LoginRequest";
-import {Cookie} from "../util/Cookie";
+import { Login } from "./Login";
+import { LoginRequest } from "./LoginRequest";
+import { Cookie } from "../../util/Cookie";
 
 export class LoginMain {
     public static handle(): void {

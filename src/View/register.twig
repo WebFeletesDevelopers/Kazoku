@@ -1,82 +1,45 @@
 {% include 'partials/head.twig' %}
-
-{% block body %}
-    <div class="container py-3">
-        <div class="card shadow-lg o-hidden border-0 ">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-flex">
-                        <div href="index.php" class="flex-grow-1 bg-register-image"
-                             style="background-image: url('/img/logo/logoL.png'); padding: 10%; background-size: contain; background-repeat: no-repeat "></div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4">{{ "¡Crear cuenta!" | trans }}</h4>
-                            </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-4 mb-3 mb-sm-0 my-1"><input class="form-control form-control-user"
-                                                                              type="text" placeholder="{{ "Nombre" | trans}}"
-                                                                              id="txt_name" name="txt_name" required>
-                                    </div>
-                                    <div class="col-sm-4 my-1"><input class="form-control form-control-user" type="text"
-                                                                 id="txt_lastname1" name="txt_lastname1"
-                                                                 placeholder="{{ "Primer Apellido" | trans }}" required></div>
-                                    <div class="col-sm-4 my-1"><input class="form-control form-control-user" type="text"
-                                                                 id="txt_lastname2" name="txt_lastname2"
-                                                                 placeholder="{{ "Segundo Apellido" | trans }}"></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-7 mb-3 mb-sm-0"><input class="form-control form-control-user"
-                                                                              type="text"
-                                                                              placeholder="{{"Nombre de Usuario" | trans}}"
-                                                                              id="txt_uname" name="txt_uname" required>
-                                    </div>
-                                    <div class="col-sm-5"><input class="form-control form-control-user" type="text"
-                                                                 id="txt_phone" name="txt_phone" placeholder="{{"Teléfono" | trans}}">
-                                    </div>
-                                </div>
-                                <div class="form-group"><input class="form-control form-control-user" type="email"
-                                                               id="txt_email" name="txt_email"
-                                                               aria-describedby="emailHelp" placeholder="{{"Email" | trans}}" required>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"
-                                                                              type="password" id="txt_pwd"
-                                                                              name="txt_pwd" placeholder="{{"Contraseña" | trans}}"
-                                                                              required></div>
-                                    <div class="col-sm-6"><input class="form-control form-control-user" type="password"
-                                                                 id="txt_pwd2" name="txt_pwd2"
-                                                                 placeholder="{{"Repetir Contraseña" | trans }}" required></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">{{"Soy..." | trans}}</label>
-                                    <select id="txt_rango" name="txt_rango" class="form-control"
-                                            id="exampleFormControlSelect1">
-                                        <option value="3" class="form-control form-control-user" selected>{{"Alumno" | trans}}
-                                        </option>
-                                        <option value="2" class="form-control form-control-user">{{"Padre" | trans}}</option>
-                                        <option value="1" class="form-control form-control-user">{{"Profesor" | trans}}</option>
-
-                                    </select>
-                                </div>
-                                <p class="text-center mx-2 text-danger" style="color: red">{{"Recibirás un correo electrónico para verificarlo. Una vez se verifique tendrás que esperar a que confirmemos tu identidad. Esta versión del programa está todavía en desarrollo, se pueden presentar fallos." |trans}}</p>
-                                <div id="message"></div>
-                                <button name="but_submit2" id="but_submit2"
-                                        class="btn btn-primary btn-block text-white btn-user" type="submit">{{"Registrarse" | trans}}
-                                </button>
-
-                                <!--                                <hr><a class="btn btn-primary btn-block text-white btn-google btn-user" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a><a class="btn btn-primary btn-block text-white btn-facebook btn-user" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
-                                -->
-                                <hr>
-                            </form>
-                            <div class="text-center"><a class="small" href="/login">{{"¿Ya tienes cuenta? ¡Inicia sesión!" | trans}}</a></div>
-                            <div class="text-center"><a class="small" href="/">{{"Volver al inicio" | trans}}</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body data-action="register">
+<div class="register-form">
+    <div class="left">
+        <figure>
+            <img src="/img/logo/logoL.png" alt="Kazoku Logo" />
+        </figure>
     </div>
-{% endblock %}
+    <div class="right">
+        <form>
+            <h2>{% trans %}Registro{% endtrans %}</h2>
+
+            <div class="form-row">
+                <input name="name" placeholder="{% trans %}Nombre{% endtrans %}" />
+                <input name="surname" placeholder="{% trans %}Primer apellido{% endtrans %}" />
+                <input name="second-surname" placeholder="{% trans %}Segundo apellido{% endtrans %}" />
+            </div>
+
+            <div class="form-row">
+                <input name="username" placeholder="{% trans %}Nombre de usuario{% endtrans %}" />
+                <input name="phone" placeholder="{% trans %}Teléfono{% endtrans %}" />
+                <input name="email" placeholder="{% trans %}Correo electrónico{% endtrans %}" />
+            </div>
+
+            <div class="form-row">
+                <input name="password" type="password" placeholder="{% trans %}Contraseña{% endtrans %}" />
+                <input name="repeated-password" type="password" placeholder="{% trans %}Repite la contraseña{% endtrans %}" />
+            </div>
+
+            <hr />
+
+            <span>Eres...</span>
+            <select name="rank">
+                <option value="-1" selected disabled>Selecciona una opción</option>
+                <option value="3">Alumno</option>
+                <option value="2">Padre</option>
+                <option value="1">Profesor</option>
+            </select>
+
+            <button>{% trans %}Registrarse{% endtrans %}</button>
+        </form>
+    </div>
+</div>
+</body>
+{% include 'partials/scripts.twig' %}

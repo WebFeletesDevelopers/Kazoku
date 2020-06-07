@@ -7,6 +7,7 @@ use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException;
+use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
  * Class UserModel
@@ -80,7 +81,7 @@ SQL;
           AND u.password = ?
 SQL;
 
-        $hash = hash('sha3-256', $password);
+        $hash = Utils::hashPassword($password);
         $binds = [$user, $hash];
 
         $statement = $this->query($sql, $binds);
@@ -94,5 +95,56 @@ SQL;
         $rows = $statement->fetchAll();
 
         return UserFactory::fromMysqlRows($rows)[0];
+    }
+
+    /**
+     * Add an user to the database.
+     * @param int $rank
+     * @param int $id
+     * @param string $username
+     * @param string $name
+     * @param string $phone
+     * @param string $surname
+     * @param string $secondSurname
+     * @param string $password
+     * @param string $email
+     * @return bool
+     * @throws QueryException
+     */
+    public function create(
+        int $rank,
+        int $id,
+        string $username,
+        string $name,
+        string $phone,
+        string $surname,
+        string $secondSurname,
+        string $password,
+        string $email
+    ): bool {
+        $sql = <<<SQL
+        INSERT INTO users(Rango, CodUsu, username, name, Telefono, Apellido1, Apellido2, password, Email)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+SQL;
+
+        $hash = Utils::hashPassword($password);
+        $binds = [
+            $rank,
+            $id,
+            $username,
+            $name,
+            $phone,
+            $surname,
+            $secondSurname,
+            $hash,
+            $email
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
     }
 }

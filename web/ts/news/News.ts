@@ -45,9 +45,8 @@ export class News {
      */
     public validate(): boolean {
         return this.title !== ''
-            && this._body !== ''
+            && this.body !== ''
             && this.title.length < 255
-            && this._body.length > 5
-            ;
+            && this.body.length > 5;
     }
 }
