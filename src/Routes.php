@@ -84,7 +84,7 @@ class Routes
         $app->post('/center/add', CreateCenterAction::class);
         $app->post('/center/delete', DeleteCenterAction::class);
         $app->get('/centerDetail/{id}', CenterDetailAction::class);
-        $app->get('/center/modify', ModifyCenterAction::class);
+        $app->post('/center/modify', ModifyCenterAction::class);
 
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/judokas', judokasAction::class);
