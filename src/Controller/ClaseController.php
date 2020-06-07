@@ -2,8 +2,6 @@
 
 namespace WebFeletesDevelopers\Kazoku\Controller;
 
-use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 
 /**
@@ -45,10 +43,7 @@ class ClaseController
     public function deleteClass(
         int $classCode
     ): bool {
-        try {
             return $this->model->delete($classCode);
-        } catch (DeleteException $e) {
-        }
     }
 
     /**

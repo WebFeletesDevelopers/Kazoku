@@ -27,8 +27,14 @@ export class ClassMain {
         allButtons.forEach(function (button) {
             button.addEventListener('click', e => {
                 const classId = button.getAttribute("data-id");
+                const name = button.getAttribute("data-name");
                 e.preventDefault();
-                alert(classId);
+                switch (name) {
+                    case "deleteClass":
+                        alert("Borrar");
+                        ClassMain.deleteClass(parseInt(classId));
+                        break;
+                }
             });
         })
 
@@ -57,6 +63,7 @@ export class ClassMain {
         const createThu: HTMLInputElement =       document.querySelector('#create-j');
         const createFri: HTMLInputElement =       document.querySelector('#create-v');
         const createDays: NodeListOf<Element> =      document.querySelectorAll('.create-check');
+
         let days = 0;
         const newClass: Classes = new Classes(
             createName.value,
@@ -118,6 +125,10 @@ export class ClassMain {
             ClassMain.createClass(newClass);
         });
 
+        deleteClass.addEventListener('click', e => {
+            e.preventDefault();
+            ClassMain.createClass(newClass);
+        });
     }
 
     private static validateCreateClassButton(button: HTMLButtonElement, classes: Classes): void {
@@ -156,9 +167,27 @@ export class ClassMain {
         return  result;
     }
 
+    /**
+     * send the request to add a class
+     * @param classes
+     */
     private static createClass(classes: Classes): void  {
         console.log(classes);
         ClassRequest.addClass(classes).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/classAdmin');
+            }
+        });
+    }
+
+    /**
+     * send the request to delete a class
+     * @param classId
+     */
+    private static deleteClass(classId: number): void  {
+        ClassRequest.deleteClass(classId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {

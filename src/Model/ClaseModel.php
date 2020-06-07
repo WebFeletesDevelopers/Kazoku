@@ -71,10 +71,6 @@ SQL;
         ];
 
         $statement = $this->query($sql, $binds);
-        if ($statement === false) {
-            throw DeleteException::fromFailedDelete($sql, $binds);
-        }
-
         return true;
     }
 
