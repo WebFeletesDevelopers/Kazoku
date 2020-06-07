@@ -38,6 +38,45 @@ SQL;
     }
 
     /**
+     * Modifies a center from database
+     * @param string $name
+     * @param string $direction
+     * @param int $zip
+     * @param int $phone
+     * @param int $centerId
+     * @return bool
+     */
+    public function modify(
+        string $name,
+        string $direction,
+        int $zip,
+        int $phone,
+        int $centerId
+    ): bool {
+        $sql = <<<SQL
+        UPDATE centro c
+        SET c.Nombre = ?, c.Direccion = ?, c.CodPostal = ?, c.Telefono = ?
+        WHERE c.CodCentro = ?
+SQL;
+        $binds = [
+            $name,
+            $direction,
+            $zip,
+            $phone,
+            $centerId
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw InsertException::fromFailedInsert($sql, $binds);
+        }
+
+        return true;
+    }
+
+
+
+    /**
      * Deletes a center from the Database
      * @param int $CodCentro
      * @return bool
@@ -61,6 +100,9 @@ SQL;
         return true;
     }
 
+
+
+
     /**
      * Get centers
      * @param int $count
@@ -72,6 +114,33 @@ SQL;
         return CentroFactory::fromMysqlRows($rows);
     }
 
+
+
+    public function getCentro(
+        int $centerId
+    ): array {
+        $sql = <<<SQL
+        SELECT c.CodCentro AS id,
+               c.Nombre AS name,
+               c.Direccion AS direction,
+               c.CodPostal AS zip,
+               c.Telefono AS phone
+        FROM centro c
+        WHERE c.CodCentro = ?;
+SQL;
+        $binds = [
+            $centerId,
+        ];
+        try {
+            $statement = $this->query($sql, $binds);
+            $rows = $statement->fetch(PDO::FETCH_ASSOC);
+        }
+      catch (Exception $e) {
+            $rows = [];
+        }
+        return $rows;
+
+    }
 
     /**
      * Query builder for center select
