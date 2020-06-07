@@ -55,7 +55,7 @@ SQL;
     }
 
     /**
-     * Modifys a class of the DB
+     * Modifies a class of the DB
      * @param int $classId
      * @param string $schedule
      * @param string $trainer
@@ -67,19 +67,19 @@ SQL;
      * @return bool
      */
     public function modify(
-        int $classId,
         string $schedule,
         string $trainer,
         int $minAge,
         int $maxAge,
         string $name,
         int $centerCode,
-        int $days
+        int $days,
+        int $classId
     ): bool {
         $sql = <<<SQL
-        UPDATE clase
-        SET Horario = ?, Profesor = ?, EdadMin = ?, EdadMax = ?, Nombre ?, CodCentro = ?, Dias = ?
-        WHERE CodClase = ?;
+        UPDATE clase c
+        SET c.Horario = ?, c.Profesor = ?, c.EdadMin = ?, c.EdadMax = ?, c.Nombre = ?, c.CodCentro = ?, c.Dias = ?
+        WHERE c.CodClase = ?
 SQL;
         $binds = [
             $schedule,

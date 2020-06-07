@@ -32,7 +32,6 @@ class ModifyClassAction extends BaseJsonAction implements ActionInterface
         $controller = new ClaseController($model);
 
         $data = $request->getParsedBody();
-        $classId = $data['classId'];
         $schedule = $data['schedule'];
         $name = $data['name'];
         $trainer = $data['trainer'];
@@ -40,18 +39,19 @@ class ModifyClassAction extends BaseJsonAction implements ActionInterface
         $minAge = $data['minAge'];
         $maxAge = $data['maxAge'];
         $centerId = $data['centerId'];
+        $classId = $data['classId'];
 
         try {
             $this->validateParameters($name,$schedule,$trainer,$days,$minAge,$maxAge,$centerId);
             $controller->modify(
-                $classId,
                 $schedule,
                 $trainer,
                 $minAge,
                 $maxAge,
                 $name,
                 $centerId,
-                $days
+                $days,
+                $classId,
             );
         } catch (InvalidParametersException $e) {
             $data = ['message' => $e->getMessage()];

@@ -10,7 +10,7 @@ export class ClassRequest {
     public static addClass(classes: Classes): Promise<Response>
     {
         const data = `name=${classes.name}&trainer=${classes.trainer}&days=${classes.days}&schedule=${classes.schedule}&minAge=${classes.minAge}&maxAge=${classes.maxAge}&centerId=${classes.centerId}`;
-        return Request.post('/class/modify', data);
+        return Request.post('/class/add', data);
     }
 
     /**
@@ -20,7 +20,7 @@ export class ClassRequest {
      */
     public static modifyClass(classes: Classes, classId: number): Promise<Response>
     {
-        const data = `classId=${classId}&name=${classes.name}&trainer=${classes.trainer}&days=${classes.days}&schedule=${classes.schedule}&minAge=${classes.minAge}&maxAge=${classes.maxAge}&centerId=${classes.centerId}`;
+        const data = `name=${classes.name}&trainer=${classes.trainer}&days=${classes.days}&schedule=${classes.schedule}&minAge=${classes.minAge}&maxAge=${classes.maxAge}&centerId=${classes.centerId}&classId=${classId}`;
         return Request.post('/class/modify', data);
     }
     /**
