@@ -9,14 +9,16 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
+use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
+use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 
 /**
- * Class CreateNewsAction
- * Class for creating a News
- * @package WebFeletesDevelopers\Kazoku\Action\News
+ * Class DeleteClassAction
+ * Class for deleting a class
+ * @package WebFeletesDevelopers\Kazoku\Action\Classes
  */
 class DeleteClassAction extends BaseJsonAction implements ActionInterface
 {
@@ -29,17 +31,17 @@ class DeleteClassAction extends BaseJsonAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $db = ConnectionHelper::getConnection();
-        $model = new NoticiaModel($db);
-        $controller = new NoticiaController($model);
+        $model = new ClaseModel($db);
+        $controller = new ClaseController($model);
 
         $data = $request->getParsedBody();
 
-        $codNot = $data['codNot'];
+        $codClase = $data['codClase'];
 
         try {
-            //$this->validateParameters($title, $body);
-            $controller->deleteNews(
-                $codNot
+            $this->validateParameters($codClase);
+            $controller->deleteClass(
+                $codClase
             );
         } catch (Exception $e) {
             $data = ['message' => $e->getMessage()];
@@ -50,18 +52,14 @@ class DeleteClassAction extends BaseJsonAction implements ActionInterface
     }
 
     /**
-     * @param string|null $title
-     * @param string|null $body
+     * @param string|null $codClase
      * @return void
      * @throws InvalidParametersException
      */
-    private function validateParameters(?string $title, ?string $body): void
+    private function validateParameters(?string $codClase): void
     {
-        if ($title === null || trim($title) === '') {
-            throw InvalidParametersException::fromInvalidParameter('title');
-        }
-        if ($body === null || trim($body) === '') {
-            throw InvalidParametersException::fromInvalidParameter('body');
+        if ($codClase === null || trim($codClase) === '') {
+            throw InvalidParametersException::fromInvalidParameter('codClase');
         }
     }
 }
