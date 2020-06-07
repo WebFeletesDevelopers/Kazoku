@@ -40,11 +40,42 @@ class ClaseController
     ): bool {
         return $this->model->add($schedule, $trainer, $minAge, $maxAge, $name, $centerCode, $days);
     }
+
+    /**
+     * Delete the given class from the database
+     * @param int $classCode
+     * @return bool
+     */
     public function deleteClass(
         int $classCode
     ): bool {
             return $this->model->delete($classCode);
     }
+
+    /**
+     * @param int $classId
+     * @param string $schedule
+     * @param string $trainer
+     * @param int $minAge
+     * @param int $maxAge
+     * @param string $name
+     * @param int $centerCode
+     * @param int $days
+     * @return bool
+     */
+    public function modify(
+        int $classId,
+        string $schedule,
+        string $trainer,
+        int $minAge,
+        int $maxAge,
+        string $name,
+        int $centerCode,
+        int $days
+    ): bool {
+        return $this->model->modify($classId,$schedule, $trainer, $minAge, $maxAge, $name, $centerCode, $days);
+    }
+
 
     /**
      * Function that brings the  classes
@@ -62,6 +93,11 @@ class ClaseController
     public function getClasesAllData(): array
     {
         return $this->model->getClasesAllData();
+    }
+
+    public function getClass($classId): array
+    {
+        return $this->model->getClass($classId);
     }
 
 

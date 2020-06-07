@@ -29,7 +29,7 @@
                     </p>
                 </div>
                 <div class="row d-flex justify-content-between font-small text-muted mb-4">
-                    <button id="classDetail" data-name="classDetail" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE"}}</button>
+                        <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE"}}</a>
                     <button id="modifyClass" data-name="modifyClass" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CLASE" }}</button>
                     <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS"}}</button>
                     <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO"}}</button>

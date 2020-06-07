@@ -68,7 +68,7 @@ SQL;
      * @return Centros[]
      */
     public function getCentros(): array {
-        $rows = $this->getClassRows();
+        $rows = $this->getCenterRows();
         return CentroFactory::fromMysqlRows($rows);
     }
 

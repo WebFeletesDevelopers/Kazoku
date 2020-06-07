@@ -105,7 +105,7 @@ export class CenterMain {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {
-                document.location.replace('/classAdmin');
+                document.location.replace('/centerAdmin');
             }
         });
     }

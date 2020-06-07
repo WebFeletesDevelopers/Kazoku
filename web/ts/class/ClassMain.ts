@@ -13,9 +13,12 @@ export class ClassMain {
      */
     public static handle(): void {
         const isClassAdminPage: boolean = !! document.querySelector('[data-action="class-admin"]');
+        const isClassDetailPage: boolean = !! document.querySelector('[data-action="class-detail"]');
         if (isClassAdminPage) {
-
             this.handleClassAdmin();
+        }
+        if (isClassDetailPage){
+            this.handleClassDetail();
         }
     }
 
@@ -28,15 +31,14 @@ export class ClassMain {
             button.addEventListener('click', e => {
                 const classId = button.getAttribute("data-id");
                 const name = button.getAttribute("data-name");
-                e.preventDefault();
                 switch (name) {
                     case "deleteClass":
-                        alert("Borrar");
+                        e.preventDefault();
                         ClassMain.deleteClass(parseInt(classId));
                         break;
                 }
             });
-        })
+        });
 
         // Buttons
         const createClass: HTMLButtonElement  = document.querySelector('button#createClass');
@@ -125,11 +127,122 @@ export class ClassMain {
             ClassMain.createClass(newClass);
         });
 
-        deleteClass.addEventListener('click', e => {
-            e.preventDefault();
-            ClassMain.createClass(newClass);
-        });
     }
+
+    private static handleClassDetail(): void {
+        const allButtons: NodeListOf<Element> = document.querySelectorAll('button.classes');
+        allButtons.forEach(function (button) {
+            button.addEventListener('click', e => {
+                const classId = button.getAttribute("data-id");
+                const name = button.getAttribute("data-name");
+                switch (name) {
+                    case "deleteClass":
+                        e.preventDefault();
+                        ClassMain.deleteClass(parseInt(classId));
+                        break;
+                }
+            });
+        });
+
+        // Buttons
+        const modifyClass: HTMLButtonElement  = document.querySelector('button#modifyClass');
+        const seeJudokas: HTMLButtonElement   = document.querySelector('button#seeJudokas');
+        const addJudoka: HTMLButtonElement    = document.querySelector('button#addJudoka');
+        const deleteClass: HTMLButtonElement  = document.querySelector('button#deleteClass');
+
+
+
+        // Create form
+        const modifyName: HTMLInputElement =      document.querySelector('#modify-name');
+        const modifyMinAge: HTMLInputElement =    document.querySelector('#modify-minAge');
+        const modifyMaxAge: HTMLInputElement =    document.querySelector('#modify-maxAge');
+        const modifyStartTime: HTMLInputElement = document.querySelector('#modify-startTime');
+        const modifyEndTime: HTMLInputElement =   document.querySelector('#modify-endTime');
+        const modifyTrainer: HTMLSelectElement =  document.querySelector('#modify-trainer');
+        const modifyCenter: HTMLSelectElement =   document.querySelector('#modify-center');
+        const modifyMon: HTMLInputElement =       document.querySelector('#modify-l');
+        const modifyTue: HTMLInputElement =       document.querySelector('#modify-m');
+        const modifyWen: HTMLInputElement =       document.querySelector('#modify-x');
+        const modifyThu: HTMLInputElement =       document.querySelector('#modify-j');
+        const modifyFri: HTMLInputElement =       document.querySelector('#modify-v');
+        const modifyDays: NodeListOf<Element> =      document.querySelectorAll('.modify-check');
+
+        let days = 0;
+
+        const editedClass: Classes = new Classes(
+            modifyName.value,
+            modifyTrainer.value,
+            days,
+            (modifyStartTime.value+'-'+modifyEndTime.value),
+            parseInt(modifyMinAge.value),
+            parseInt(modifyMaxAge.value)
+
+        );
+
+        days = ClassMain.dayChecked(
+            modifyMon.checked,
+            modifyTue.checked,
+            modifyWen.checked,
+            modifyThu.checked,
+            modifyFri.checked);
+        editedClass.days = days;
+        editedClass.centerId = parseInt(modifyCenter.value);
+
+        modifyName.addEventListener('keyup', () => {
+            editedClass.name = modifyName.value;
+            this.validateModifyClassButton(modifyClass, editedClass);
+
+        });
+        modifyMinAge.addEventListener('keyup', () => {
+            editedClass.minAge = parseInt(modifyMinAge.value);
+            this.validateModifyClassButton(modifyClass, editedClass);
+
+        });
+        modifyMaxAge.addEventListener('keyup', () => {
+            editedClass.maxAge = parseInt(modifyMaxAge.value);
+            this.validateModifyClassButton(modifyClass, editedClass);
+
+        });
+        modifyStartTime.addEventListener('keyup', () => {
+            editedClass.schedule = modifyStartTime.value+'-'+modifyEndTime;
+            this.validateModifyClassButton(modifyClass, editedClass);
+
+        });
+        modifyEndTime.addEventListener('keyup', () => {
+            editedClass.schedule = modifyStartTime.value+'-'+modifyEndTime.value;
+            this.validateModifyClassButton(modifyClass, editedClass);
+
+        });
+
+        modifyDays.forEach(function (day) {
+            day.addEventListener('click', e => {
+                days = ClassMain.dayChecked(
+                    modifyMon.checked,
+                    modifyTue.checked,
+                    modifyWen.checked,
+                    modifyThu.checked,
+                    modifyFri.checked);
+                editedClass.days = days;
+            });
+
+        });
+
+        modifyTrainer.addEventListener('change', () => {
+            editedClass.trainer = modifyTrainer.value ;
+        });
+
+        modifyCenter.addEventListener('change', () => {
+            editedClass.centerId = parseInt(modifyCenter.value);
+        });
+        modifyClass.addEventListener('click', e => {
+            e.preventDefault();
+            const $classId = parseInt(modifyClass.getAttribute("data-name"));
+            ClassMain.modifyClass(editedClass,$classId);
+        });
+
+    }
+
+
 
     private static validateCreateClassButton(button: HTMLButtonElement, classes: Classes): void {
         if (classes.validate()) {
@@ -138,7 +251,13 @@ export class ClassMain {
         }
         button.disabled = true;
     }
-
+    private static validateModifyClassButton(button: HTMLButtonElement, classes: Classes): void {
+        if (classes.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
     /**
      * Returns the days that are gonna be classes converted.
      * @param mon
@@ -183,6 +302,22 @@ export class ClassMain {
     }
 
     /**
+     * send the request to modify a class
+     * @param classes
+     * @param classId
+     */
+    private static modifyClass(classes: Classes, classId: number): void  {
+        console.log(classes);
+        ClassRequest.modifyClass(classes,classId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/classAdmin');
+            }
+        });
+    }
+
+    /**
      * send the request to delete a class
      * @param classId
      */
@@ -195,5 +330,4 @@ export class ClassMain {
             }
         });
     }
-
 }
