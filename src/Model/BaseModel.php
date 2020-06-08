@@ -12,7 +12,7 @@ use PDOStatement;
  */
 abstract class BaseModel
 {
-    private PDO $db;
+    protected PDO $db;
 
     /**
      * BaseModel constructor.

@@ -3,11 +3,10 @@
 @import '../variables/mixins';
 
 body[data-action="login"] {
-  background-image: linear-gradient(180deg, #f8f9fc 10%,#c2cbe5);
+  background-image: $form-page-background;
 
   div.login-form {
     @include full-page-form;
-    @include full-page-form-button;
     width: 50vw;
     height: 45vh;
 
@@ -29,6 +28,10 @@ body[data-action="login"] {
           text-align: center;
         }
       }
+    }
+
+    button {
+      @include full-page-form-button;
     }
 
     @media(max-width: $mobile-breakpoint) {

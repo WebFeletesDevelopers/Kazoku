@@ -105,6 +105,48 @@ SQL;
     }
 
     /**
+     * Find user by email activation token
+     * @param string $code
+     * @return User
+     * @throws InvalidCredentialsException
+     * @throws QueryException
+     */
+    public function findByEmailActivation(string $code): User
+    {
+        $sql = <<<SQL
+        SELECT u.Confirmado AS confirmed,
+               u.Rango AS `rank`,
+               u.CodUsu AS id,
+               u.username AS username,
+               u.name AS name,
+               u.Telefono AS phone,
+               u.Apellido1 AS surname,
+               u.Apellido2 AS secondSurname,
+               u.password AS password,
+               u.Email AS email,
+               u.EmailConfirmado AS confirmedMail
+        FROM users u
+        INNER JOIN verification v on u.CodUsu = v.user_id
+        WHERE v.code = ?
+SQL;
+
+        $binds = [$code];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+        if ($statement->rowCount() === 0) {
+            throw InvalidCredentialsException::fromInvalidCredentials();
+        }
+
+        $rows = $statement->fetchAll();
+
+        return UserFactory::fromMysqlRows($rows)[0];
+    }
+
+
+    /**
      * Add an user to the database.
      * @param int $rank
      * @param string $username
@@ -114,7 +156,7 @@ SQL;
      * @param string $secondSurname
      * @param string $password
      * @param string $email
-     * @return bool
+     * @return User Inserted user
      * @throws QueryException
      */
     public function create(
@@ -126,7 +168,7 @@ SQL;
         string $secondSurname,
         string $password,
         string $email
-    ): bool {
+    ): User {
         $sql = <<<SQL
         INSERT INTO users(Rango, username, name, Telefono, Apellido1, Apellido2, password, Email)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -149,6 +191,64 @@ SQL;
             throw QueryException::fromFailedQuery($sql, $binds);
         }
 
-        return true;
+        return new User(
+            false,
+            $rank,
+            $this->db->lastInsertId(),
+            $username,
+            $name,
+            $phone,
+            $surname,
+            $secondSurname,
+            $hash,
+            $email,
+            false
+        );
+    }
+
+    /**
+     * Update an user without checking the requester login hash.
+     * @param User $user
+     * @return User
+     * @throws QueryException
+     */
+    public function updateWithoutHash(
+        User $user
+    ): User {
+        $sql =<<<SQL
+        UPDATE users SET
+            Confirmado = ?,
+            Rango = ?,
+            username = ?,
+            name = ?,
+            Telefono = ?,
+            Apellido1 = ?,
+            Apellido2 = ?,
+            password = ?,
+            Email = ?,
+            EmailConfirmado = ?
+        WHERE CodUsu = ?
+SQL;
+
+        $binds = [
+            $user->confirmed(),
+            $user->rank(),
+            $user->username(),
+            $user->name(),
+            $user->phone(),
+            $user->surname(),
+            $user->secondSurname(),
+            $user->password(),
+            $user->email(),
+            $user->confirmedMail(),
+            $user->id(),
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return $user;
     }
 }

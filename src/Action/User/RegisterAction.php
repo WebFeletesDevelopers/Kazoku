@@ -12,6 +12,8 @@ use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
+use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
+use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
 
 class RegisterAction extends BaseJsonAction implements ActionInterface
 {
@@ -19,7 +21,9 @@ class RegisterAction extends BaseJsonAction implements ActionInterface
     {
         $pdo = ConnectionHelper::getConnection();
         $userModel = new UserModel($pdo);
-        $userController = new UserController($userModel);
+        $verificationModel = new VerificationModel($pdo);
+        $mailService = new SendMailService();
+        $userController = new UserController($userModel, $verificationModel, $mailService);
 
         $data = $request->getParsedBody();
         $name = $data['name'];

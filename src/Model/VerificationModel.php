@@ -2,9 +2,10 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
-use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\VerificationFactory;
+use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Verification;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
+use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
  * Class VerificationModel
@@ -13,24 +14,27 @@ use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
  */
 class VerificationModel extends BaseModel
 {
-    public function getFromCode(string $code): Verification
+    /**
+     * Create a verification code for an user.
+     * @param User $user
+     * @return Verification
+     * @throws QueryException
+     */
+    public function createForUser(User $user): Verification
     {
         $sql = <<<SQL
-        SELECT v.id AS id,
-               v.code AS code,
-               v.user_id AS user_id
-        FROM verification v
-        WHERE v.code = ?
+        INSERT INTO verification(code, user_id)
+        VALUES (?, ?)
 SQL;
 
-        $binds = [$code];
+        $code = Utils::generateRandomString(64);
+        $binds = [$code, $user->id()];
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
             throw QueryException::fromFailedQuery($sql, $binds);
         }
 
-        $rows = $statement->fetchAll();
-        return VerificationFactory::fromMysqlRows($rows)[0];
+        return new Verification($code, $this->db->lastInsertId(), $user->id());
     }
 }

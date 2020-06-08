@@ -26,10 +26,13 @@ body[data-action="register"] {
       }
 
       form {
-        @include full-page-form-button;
         @include full-page-form-input-multirow;
         @include magic-center;
         position: relative;
+
+        button {
+          @include full-page-form-button;
+        }
 
         hr {
           border: none;

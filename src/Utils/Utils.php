@@ -35,4 +35,13 @@ class Utils
     {
         return hash('sha3-256', $password);
     }
+
+    /**
+     * Get the function URL.
+     * @return string
+     */
+    public static function getBaseUrl(): string
+    {
+        return 'https://' . $_SERVER['HTTP_HOST'];
+    }
 }

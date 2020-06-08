@@ -6,6 +6,7 @@ use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Verification;
+use WebFeletesDevelopers\Kazoku\Utils\Utils;
 use WebFeletesDevelopers\MailSail\Application\UseCase\SendEmailUseCase\SendEmailArguments;
 use WebFeletesDevelopers\MailSail\Application\UseCase\SendEmailUseCase\SendEmailUseCase;
 use WebFeletesDevelopers\MailSail\Domain\EmailServer\BaseEmailServer;
@@ -14,11 +15,19 @@ use WebFeletesDevelopers\MailSail\Domain\SMTPLoginData\SMTPLoginData;
 use WebFeletesDevelopers\MailSail\Infrastructure\Email\PHPMailerEmailService;
 use WebFeletesDevelopers\MailSail\Infrastructure\Logger\NullLogger;
 
+/**
+ * Class SendMailService
+ * Class to send mails.
+ * @package WebFeletesDevelopers\Kazoku\Service\Mail
+ */
 class SendMailService
 {
     private SendEmailUseCase $useCase;
     private BaseEmailServer $emailServer;
 
+    /**
+     * SendMailService constructor.
+     */
     public function __construct() {
         $this->emailServer = new CustomEmailServer(
             'smtp.dondominio.com',
@@ -42,9 +51,10 @@ class SendMailService
      * @throws Exception
      */
     public function sendRegisterMail(User $user, Verification $verification): bool {
-        $preBody = _('<p>Bienvenido al club Kazoku, para confirmar su cuenta haga click <a href="%s">aquí</a>.<br />'
+        $validationUrl = Utils::getBaseUrl() . '/user/activate?token=' . $verification->code();
+        $preBody = _('<p>Bienvenido al club Kazoku, %s. Para confirmar su cuenta haga click <a href="%s">aquí</a>.<br />'
             . 'Si el enlace anterior no funciona, use este vínculo: <a href="%s">%s</a></p>');
-        $body = sprintf($preBody, 'https://www.google.es', 'https://www.google.es', 'https://www.google.es');
+        $body = sprintf($preBody, $user->name(), $validationUrl, $validationUrl, $validationUrl);
 
         $arguments = new SendEmailArguments(
             getenv('KAZOKU_MAIL_USER'),
