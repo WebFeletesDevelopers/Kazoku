@@ -30,7 +30,7 @@ class centerAdminAction extends BaseTwigAction implements ActionInterface
             'centers' => $allCenters,
             'action' => 'center-admin'
         ];
-        $compiledTwig = $this->render('centerAdmin', $arguments);
+        $compiledTwig = $this->render('CenterAdmin', $arguments);
         $body->write($compiledTwig);
         return $response;
     }

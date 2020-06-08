@@ -4,6 +4,7 @@ namespace WebFeletesDevelopers\Kazoku\Action;
 
 use JsonException;
 use Psr\Http\Message\ResponseInterface;
+use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 
 /**
  * Class BaseJsonAction
@@ -36,5 +37,21 @@ abstract class BaseJsonAction
         return $response
             ->withStatus($status)
             ->withHeader('Content-Type', self::JSON_CONTENT_TYPE);
+    }
+
+    /**
+     * @param array<string,mixed> $parameters
+     * @throws InvalidParametersException
+     */
+    protected function validateFromArray(array $parameters): void {
+        foreach ($parameters as $name => $value) {
+            $type = gettype($value);
+            if ($type === 'null') {
+                throw InvalidParametersException::fromInvalidParameter($name);
+            }
+            if ($type === 'string' && $value === '') {
+                throw InvalidParametersException::fromInvalidParameter($name);
+            }
+        }
     }
 }

@@ -29,6 +29,7 @@ use WebFeletesDevelopers\Kazoku\Action\profileAction;
 use WebFeletesDevelopers\Kazoku\Action\PruebaTraduccionAction;
 use WebFeletesDevelopers\Kazoku\Action\registerAction;
 use WebFeletesDevelopers\Kazoku\Action\resetPasswordAction;
+use WebFeletesDevelopers\Kazoku\Action\User\ActivateUserAction;
 use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
 use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
@@ -68,6 +69,8 @@ class Routes
 
         //user
         $app->post('/user/hash/get', GetLoginHashAction::class);
+        $app->post('/xhr/user/register', Action\User\RegisterAction::class);
+        $app->get('/user/activate', ActivateUserAction::class);
 
         //class
         $app->get('/classAdmin', classAdminAction::class);

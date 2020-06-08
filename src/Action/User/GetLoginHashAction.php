@@ -11,6 +11,7 @@ use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\LoginHashController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\User\UserNotConfirmedException;
 use WebFeletesDevelopers\Kazoku\Model\LoginHashModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -38,8 +39,10 @@ class GetLoginHashAction extends BaseJsonAction implements ActionInterface
         $username = $data['username'];
         $password = $data['password'];
 
+        $parametersToValidate = ['username' => $username, 'password' => $password];
+
         try {
-            $this->validateParameters($username, $password);
+            $this->validateFromArray($parametersToValidate);
             $hash = $hashController->getHashFromLoginData($username, $password);
         } catch (InvalidCredentialsException $e) {
             $data = ['message' => 'Invalid credentials'];
@@ -47,6 +50,9 @@ class GetLoginHashAction extends BaseJsonAction implements ActionInterface
         } catch (InvalidParametersException $e) {
             $data = ['message' => $e->getMessage()];
             return $this->withJson($response, $data, 400);
+        } catch (UserNotConfirmedException $e) {
+            $data = ['message' => $e->getMessage()];
+            return $this->withJson($response, $data, 403);
         } catch (Exception $e) {
             $data = ['message' => $e->getMessage()];
             return $this->withJson($response, $data, 500);
@@ -54,21 +60,5 @@ class GetLoginHashAction extends BaseJsonAction implements ActionInterface
 
         $data = ['hash' => $hash];
         return $this->withJson($response, $data, 200);
-    }
-
-    /**
-     * @param string|null $username
-     * @param string|null $password
-     * @return void
-     * @throws InvalidParametersException
-     */
-    private function validateParameters(?string $username, ?string $password): void
-    {
-        if ($username === null || trim($username) === '') {
-            throw InvalidParametersException::fromInvalidParameter('username');
-        }
-        if ($password === null || trim($password) === '') {
-            throw InvalidParametersException::fromInvalidParameter('password');
-        }
     }
 }
