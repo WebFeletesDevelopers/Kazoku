@@ -23,7 +23,7 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $model = new JudokaModel($database);
         $controller = new JudokaController($model);
         $allJudokas = $controller->getJudokas();
-
+        $judoka = null;
         $body = $response->getBody();
         $arguments = [
             'title' => 'classadmin',
