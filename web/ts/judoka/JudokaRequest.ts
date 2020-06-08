@@ -4,7 +4,7 @@ import {Response} from "../util/Response";
 
 export class JudokaRequest {
     /**
-     * Add a new to the database
+     * Add a judoka to the database
      * @param news
      */
     public static addNews(search: string): Promise<Response> {
@@ -13,12 +13,12 @@ export class JudokaRequest {
     }
 
     /**
-     * Delete a new from the database.
-     * @param codNot
+     * Delete a judoka from the database.
+     * @param judokaId
      */
-    public static deleteNews(codNot: number): Promise<Response>
+    public static deleteJudoka(judokaId: number): Promise<Response>
     {
-        const data = `codNot=${codNot}`;
-        return Request.post('/news/delete', data);
+        const data = `judokaId=${judokaId}`;
+        return Request.post('/judoka/delete', data);
     }
 }

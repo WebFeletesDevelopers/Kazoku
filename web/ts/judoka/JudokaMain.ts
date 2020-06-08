@@ -1,6 +1,7 @@
 import {Judoka} from "./Judoka";
 import {JudokaRequest} from "./JudokaRequest";
 import {ErrorHandler} from "../util/ErrorHandler";
+import {ClassRequest} from "../class/ClassRequest";
 
 /**
  * News processing class.
@@ -26,6 +27,19 @@ export class JudokaMain {
      * Handle the news creator form.
      */
     private static handleJudokasPage(): void {
+        const allButtons: NodeListOf<Element> = document.querySelectorAll('button.judokaBtn');
+        allButtons.forEach(function (button) {
+            button.addEventListener('click', e => {
+                const judokaId = button.getAttribute("data-id");
+                const name = button.getAttribute("data-name");
+                switch (name) {
+                    case "delete-judoka":
+                        e.preventDefault();
+                        JudokaMain.deleteJudoka(parseInt(judokaId));
+                        break;
+                }
+            });
+        });
         const tableButtons: NodeListOf<Element> =      document.querySelectorAll('.tablaBtn');
         tableButtons.forEach(function (button) {
             button.addEventListener('click', e => {
@@ -37,6 +51,20 @@ export class JudokaMain {
         });
 
 
+    }
+
+    /**
+     * delete a judoka from the database
+     * @param judokaId
+     */
+    private static deleteJudoka(judokaId: number): void  {
+        JudokaRequest.deleteJudoka(judokaId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/judokas');
+            }
+        });
     }
 
     /**

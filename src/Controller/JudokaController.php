@@ -126,4 +126,14 @@ class JudokaController
     {
         return $this->model->getAllJudokas();
     }
+
+    /**
+     * Gets one judoka
+     * @param $judokaId
+     * @return array
+     */
+    public function getOneJudoka($judokaId): array
+    {
+        return $this->model->getOneJudoka($judokaId);
+    }
 }

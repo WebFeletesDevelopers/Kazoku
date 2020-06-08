@@ -45,7 +45,10 @@
                         <td class="text-center">{{ judoka.beltId }}</td>
                         <td class="text-center">{{ judoka.fanjydaId }}</td>
                         <td class="text-center">{{ judoka.dni }}</td>
-                        <td class="text-center"><a href="/judokaPanel" class="container-fluid btn btn-sm btn-info rounded-0 inline-block m-1"><i class="fas fa-info"></i></a></td>
+                        <td class="text-center row">
+                            <a href="/judokaDetail/{{ judoka.judokaId }}" class="col-6 container-fluid btn btn-sm btn-info rounded-0 inline-block "><i class="fas fa-info"></i></a>
+                            <button data-id="{{ judoka.judokaId }}" data-name="delete-judoka"  class="judokaBtn col-6 container-fluid btn btn-sm btn-danger rounded-0 inline-block "><i class="fas fa-eraser"></i></button>
+                        </td>
                     </tr>
 
                     {% endfor %}
