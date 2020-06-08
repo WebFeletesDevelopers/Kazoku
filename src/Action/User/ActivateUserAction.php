@@ -38,7 +38,6 @@ class ActivateUserAction extends BaseTwigAction implements ActionInterface
 
         $userController->activateByEmail($params['token']);
 
-
         $config = [
             'title' => 'titulo',
         ];

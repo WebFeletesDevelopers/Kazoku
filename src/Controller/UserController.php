@@ -3,6 +3,9 @@
 namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidUserIdException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
@@ -68,10 +71,8 @@ class UserController
             $email
         );
         if ($user) {
-            var_dump($user);
              $verification = $this->verificationModel->createForUser($user);
              if ($verification) {
-                 var_dump($verification);
                 $this->mailService->sendRegisterMail($user, $verification);
              }
         }
@@ -91,7 +92,47 @@ class UserController
         if ($user) {
             $user->setConfirmedMail(true);
             $this->model->updateWithoutHash($user);
+            $this->verificationModel->deleteByCode($code);
         }
         return $user;
+    }
+
+    /**
+     * Activate an user.
+     * @param string $userId
+     * @param string $hash
+     * @return User
+     * @throws QueryException
+     * @throws InvalidHashException
+     * @throws InvalidUserIdException
+     */
+    public function activateByTrainer(string $userId, string $hash): User
+    {
+        $trainer = $this->model->findByHash($hash);
+        if (! in_array($trainer->rank(), Rank::TRAINER_RANKS, true)) {
+            //fixme 403
+            die;
+        }
+        $user = $this->model->findById($userId);
+        $user->setConfirmed(true);
+        $this->model->updateWithoutHash($user);
+        return $user;
+    }
+
+    /**
+     * List not confirmed users.
+     * @param string $hash
+     * @return array
+     * @throws InvalidHashException
+     * @throws QueryException
+     */
+    public function listNotConfirmed(string $hash): array
+    {
+        $trainer = $this->model->findByHash($hash);
+        if (! in_array($trainer->rank(), Rank::TRAINER_RANKS, true)) {
+            //fixme 403
+            die;
+        }
+        return $this->model->find();
     }
 }

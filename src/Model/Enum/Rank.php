@@ -28,4 +28,9 @@ class Rank
         self::PARENT,
         self::PUPIL
     ];
+
+    public const TRAINER_RANKS = [
+        self::TRAINER,
+        self::ADMIN
+    ];
 }
