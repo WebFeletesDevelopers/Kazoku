@@ -23,8 +23,13 @@ class judokasAction extends BaseTwigAction implements ActionInterface
     {
 
         $body = $response->getBody();
-        //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('judokas',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+        $arguments = [
+            'title' => 'classadmin',
+            'userName' => 'Alberto',
+            'userId' => 0,
+            'action' => 'judokas'
+        ];
+        $compiledTwig = $this->render('classAdmin', $arguments);
         $body->write($compiledTwig);
         return $response;
     }
