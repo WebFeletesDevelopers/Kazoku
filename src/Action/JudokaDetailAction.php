@@ -51,7 +51,7 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'days' => $classDays,
             'classDays' => $classDays,
             'center' => $center,
-            'action' => 'judokas'
+            'action' => 'judoka-detail'
         ];
         $compiledTwig = $this->render('judokaDetail', $arguments);
         $body->write($compiledTwig);

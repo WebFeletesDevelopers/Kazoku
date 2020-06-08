@@ -32,7 +32,6 @@ use WebFeletesDevelopers\Kazoku\Action\PruebaTraduccionAction;
 use WebFeletesDevelopers\Kazoku\Action\registerAction;
 use WebFeletesDevelopers\Kazoku\Action\resetPasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
-use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 

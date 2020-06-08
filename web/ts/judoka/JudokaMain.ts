@@ -12,13 +12,13 @@ export class JudokaMain {
      */
     public static handle(): void {
         const isJudokasPage: boolean = !! document.querySelector('[data-action="judokas"]');
-        const isJudokaPanelPage: boolean = !! document.querySelector('[data-action="judoka-panel"]');
+        const isJudokaDetailPage: boolean = !! document.querySelector('[data-action="judoka-detail"]');
 
         if (isJudokasPage) {
             this.handleJudokasPage();
         }
-        if (isJudokaPanelPage){
-
+        if (isJudokaDetailPage){
+            this.handleJudokaDetailPage();
         }
     }
 
@@ -53,11 +53,46 @@ export class JudokaMain {
 
     }
 
+    private static handleJudokaDetailPage(): void {
+        const updateButton: HTMLButtonElement = document.querySelector('button#updateData');
+
+        updateButton.addEventListener('click', e => {
+                const judokaId = updateButton.getAttribute("data-id");
+                const name = updateButton.getAttribute("data-name");
+                if(name == "updatedata"){
+                    e.preventDefault();
+                    JudokaMain.updateJudoka(parseInt(judokaId));
+                };
+        });
+        const tableButtons: NodeListOf<Element> =      document.querySelectorAll('.tablaBtn');
+        tableButtons.forEach(function (button) {
+            button.addEventListener('click', e => {
+                const classId = button.getAttribute("data-id");
+                const column = button.getAttribute("data-name");
+                JudokaMain.sortTable(column);
+            });
+
+        });
+
+
+    }
+
+
     /**
      * delete a judoka from the database
      * @param judokaId
      */
     private static deleteJudoka(judokaId: number): void  {
+        JudokaRequest.deleteJudoka(judokaId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/judokas');
+            }
+        });
+    }
+
+    private static updateJudoka(judoka: judoka, judokaId: number): void  {
         JudokaRequest.deleteJudoka(judokaId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
