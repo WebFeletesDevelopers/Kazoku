@@ -86,9 +86,16 @@ class Routes
         $app->get('/centerDetail/{id}', CenterDetailAction::class);
         $app->post('/center/modify', ModifyCenterAction::class);
 
-        $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
+        //judokas
         $app->get('/judokas', judokasAction::class);
         $app->get('/assistance', assistanceAction::class);
+        $app->get('/judokaDetail/{id}', JudokaDetailAction::class);
+        $app->post('/judoka/add', AddJudokaAction::class);
+        $app->post('/judoka/modify', ModifyJudokaAction::class);
+        $app->post('/judoka/delete', DeleteJudokaAction::class);
+
+
+        $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/panel', panelAction::class);
 
 

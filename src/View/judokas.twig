@@ -34,17 +34,17 @@
                     </thead>
                     <tbody>
                     <!-- Foreach de alumnos-->
-                    {% for i in 1..5  %}
+                    {% for judoka in judokas  %}
 
                     <tr>
-                        <td><img src="/img/profile/{% if judoka.userId is defined %}{{ userId }}{% else %}generic{% endif %}.png" width="30" height="30"></td>
-                        <td>{{"Nombre"}}</td>
-                        <td>{{"Apellidos"}}</td>
-                        <td>{{ "10/10/2000" }}</td>
-                        <td>{{ "Masculino/Femenino" }}</td>
-                        <td>{{ "Negro" }}</td>
-                        <td>{{ 00000 }}</td>
-                        <td>{{ "12345678X" }}</td>
+                        <td><img src="/img/profile/{% if judoka.judokaId is defined %}{{ judoka.judokaId }}.jpg{% else %}generic{% endif %}" width="30" height="30"></td>
+                        <td>{{judoka.name}}</td>
+                        <td>{{judoka.lastName1}} {{ judoka.lastName2 }}</td>
+                        <td>{{ judoka.birthDate }}</td>
+                        <td>{{ judoka.sex }}</td>
+                        <td>{{ judoka.beltId }}</td>
+                        <td>{{ judoka.fanjydaId }}</td>
+                        <td>{{ judoka.dni }}</td>
                         <td><a href="/judokaPanel" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-info"></i></a></td>
                     </tr>
 
