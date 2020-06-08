@@ -73,6 +73,10 @@
     padding: .25em .5em;
     transition: 0.2s box-shadow ease;
   }
+
+  @media (max-width: $mobile-breakpoint) {
+    width: 90%;
+  }
 }
 
 @mixin half-width-full-height-container {
@@ -126,6 +130,24 @@
 
       &:last-of-type {
         margin-right: 0;
+      }
+    }
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    div.form-row {
+      flex-direction: column;
+      margin: 0;
+
+      > input {
+        margin: .5em auto;
+        width: 90%;
+
+        &:first-of-type,
+        &:last-of-type {
+          margin: .5em auto;
+        }
+
       }
     }
   }
