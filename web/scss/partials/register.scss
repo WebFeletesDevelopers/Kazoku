@@ -32,6 +32,10 @@ body[data-action="register"] {
         max-height: 100%;
         overflow-y: scroll;
 
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
         button {
           @include full-page-form-button;
         }
