@@ -6,10 +6,14 @@ use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
+use WebFeletesDevelopers\Kazoku\Action\CenterDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
+use WebFeletesDevelopers\Kazoku\Action\classDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\CreateClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteClassAction;
+use WebFeletesDevelopers\Kazoku\Action\Classes\ModifyClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
@@ -46,9 +50,22 @@ class Routes
         $app->get('/', HomeAction::class);
         $app->get('/Home', HomeAction::class);
 
+        //users
+        $app->get('/login', LoginAction::class);
+        $app->get('/register', registerAction::class);
+        $app->get('/resetPassword', resetPasswordAction::class);
+        $app->get('/logout', logoutAction::class);
+        $app->get('/confirmUser', confirmUserAction::class);
+        $app->get('/verificate', verificateAction::class);
+        $app->get('/profile', profileAction::class);
+        $app->get('/newUser', newUserAction::class);
+
+
         //news
+        $app->get('/newsCreator', NewsCreatorAction::class);
         $app->post('/news/add', CreateNewsAction::class);
         $app->post('/news/delete', DeleteNewsAction::class);
+
 
         //user
         $app->post('/user/hash/get', GetLoginHashAction::class);
@@ -56,30 +73,28 @@ class Routes
         $app->get('/user/activate', ActivateUserAction::class);
 
         //class
+        $app->get('/classAdmin', classAdminAction::class);
+        $app->get('/classDetail/{id}', classDetailAction::class);
         $app->post('/class/add', CreateClassAction::class);
+        $app->post('/class/modify', ModifyClassAction::class);
         $app->post('/class/delete', DeleteClassAction::class);
 
+        $app->get('/virtualClass', virtualClassAction::class);
+        $app->get('/myClass', myClassAction::class);
+
         //center
+        $app->get('/centerAdmin', centerAdminAction::class);
         $app->post('/center/add', CreateCenterAction::class);
         $app->post('/center/delete', DeleteCenterAction::class);
+        $app->get('/centerDetail/{id}', CenterDetailAction::class);
+        $app->post('/center/modify', ModifyCenterAction::class);
 
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
-        $app->get('/profile', profileAction::class);
         $app->get('/judokas', judokasAction::class);
         $app->get('/assistance', assistanceAction::class);
-        $app->get('/myClass', myClassAction::class);
-        $app->get('/virtualClass', virtualClassAction::class);
-        $app->get('/newUser', newUserAction::class);
         $app->get('/panel', panelAction::class);
-        $app->get('/login', LoginAction::class);
-        $app->get('/register', registerAction::class);
-        $app->get('/resetPassword', resetPasswordAction::class);
-        $app->get('/logout', logoutAction::class);
-        $app->get('/newsCreator', NewsCreatorAction::class);
-        $app->get('/confirmUser', confirmUserAction::class);
-        $app->get('/verificate', verificateAction::class);
-        $app->get('/classAdmin', classAdminAction::class);
-        $app->get('/centerAdmin', centerAdminAction::class);
+
+
         return $app;
     }
 }

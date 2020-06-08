@@ -12,6 +12,13 @@ export class CenterRequest {
         const data = `name=${center.name}&direction=${center.direction}&zip=${center.zip}&phone=${center.phone}`;
         return Request.post('/center/add', data);
     }
+
+    public static modifyCenter(center: Center, $centerId: number): Promise<Response>
+    {
+        const data = `name=${center.name}&direction=${center.direction}&zip=${center.zip}&phone=${center.phone}&centerId=${$centerId}`;
+        return Request.post('/center/modify', data);
+    }
+
     public static deleteCenter(codCenter): Promise<Response>
     {
         const data = `centerId=${codCenter}`;

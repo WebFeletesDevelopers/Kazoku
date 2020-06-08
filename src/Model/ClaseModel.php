@@ -55,6 +55,53 @@ SQL;
     }
 
     /**
+     * Modifies a class of the DB
+     * @param int $classId
+     * @param string $schedule
+     * @param string $trainer
+     * @param int $minAge
+     * @param int $maxAge
+     * @param string $name
+     * @param int $centerCode
+     * @param int $days
+     * @return bool
+     */
+    public function modify(
+        string $schedule,
+        string $trainer,
+        int $minAge,
+        int $maxAge,
+        string $name,
+        int $centerCode,
+        int $days,
+        int $classId
+    ): bool {
+        $sql = <<<SQL
+        UPDATE clase c
+        SET c.Horario = ?, c.Profesor = ?, c.EdadMin = ?, c.EdadMax = ?, c.Nombre = ?, c.CodCentro = ?, c.Dias = ?
+        WHERE c.CodClase = ?
+SQL;
+        $binds = [
+            $schedule,
+            $trainer,
+            $minAge,
+            $maxAge,
+            $name,
+            $centerCode,
+            $days,
+            $classId
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw InsertException::fromFailedInsert($sql, $binds);
+        }
+
+        return true;
+    }
+
+
+    /**
      * Deletes a class from the Database
      * @param int $CodClass
      * @return bool
@@ -71,10 +118,6 @@ SQL;
         ];
 
         $statement = $this->query($sql, $binds);
-        if ($statement === false) {
-            throw DeleteException::fromFailedDelete($sql, $binds);
-        }
-
         return true;
     }
 
@@ -150,10 +193,47 @@ SQL;
         try {
             $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         } catch (Exception $e) {
             $rows = [];
         }
+
+
         return $rows;
     }
+    public function getClass($classId): array
+    {
+        $preSql = <<<SQL
+        SELECT cl.CodClase AS id,
+               cl.Horario AS schedule,
+               cl.Profesor AS trainer,
+               cl.EdadMin AS minAge,
+               cl.EdadMax AS maxAge,
+               cl.Nombre AS name,
+               cl.CodCentro AS centerId,
+               cl.Dias AS days,
+                c.Nombre AS centerName,
+                c.Direccion AS centerSt,
+                c.Telefono as centerTel,
+        (
+        SELECT count(*) as judokas from  alumno a where a.CodClase = cl.CodClase
+        )
+        
+        FROM clase cl  
+            join centro c on cl.CodCentro = c.CodCentro 
+        WHERE cl.CodClase = ?
+        
+  SQL;
 
+        $sql = sprintf($preSql, true);
+        try {
+            $statement = $this->query($sql, $classId);
+            $rows = $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+
+
+        return $rows;
+    }
 }

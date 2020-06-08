@@ -1,0 +1,33 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+<div class="d-sm-flex justify-content-between mb-4">
+    <h2 class="d-sm-inline-block">{{ "Gestión del centro" | trans }} {{ center.name }}</h2>
+</div>
+
+        <div class="card">
+            <div class="card-body pb-3">
+                <div class="form-group">
+                    <label class="form-check-label"  for="modify-name">{{ "Nombre" | trans }}</label>
+                    <input class="display-1 form-control degree" id="modify-name" value="{{center.name}}"/>
+                    <label class="form-check-label"  for="">{{ "Dirección y código postal" | trans }}</label>
+                    <div class="row">
+                        <br>
+                        <input class="col-md-10  my-1 col-sm-12 display-1 form-control degree" id="modify-direction" value="{{center.direction}}"/>
+                    <input class="col-md-2 my-1 text-center col-sm-12 display-1 form-control degree" id="modify-zip" value="{{center.zip}}"/>
+                    </div>
+                    <br>
+                    <label class="form-check-label"  for="modify-name">{{ "Teléfono" | trans }}</label>
+                    <div class="d-flex justify-content-between my-2">
+                    <input type="number" class="display-1 form-control degree" id="modify-phone" value="{{center.phone}}"/>
+                </div>
+                <div class="row d-flex justify-content-between font-small text-muted mb-4">
+                    <button id="modifyCenter" data-name="modifyCenter" data-id="{{ center.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CENTRO" }}</button>
+                    <button id="seeClasses"  data-name="seeClasses" data-id="{{ center.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER CLASES"}}</button>
+                    <button id="addClass"   data-name="addClass" data-id="{{ center.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR CLASE"}}</button>
+                    <button id="deleteCenter" data-name="deleteCenter" data-id="{{ center.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CENTRO"}}</button>
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

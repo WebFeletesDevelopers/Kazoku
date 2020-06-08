@@ -21,7 +21,14 @@ class CentroController
         $this->model = $model;
     }
 
-
+    /**
+     * Adds a center to the database
+     * @param string $name
+     * @param string $direction
+     * @param int $zip
+     * @param int $phone
+     * @return bool
+     */
     public function addCenter(
         string $name,
         string $direction,
@@ -30,6 +37,31 @@ class CentroController
     ): bool {
         return $this->model->add($name, $direction, $zip, $phone);
     }
+
+    /**
+     * Modifies a center from the database
+     * @param string $name
+     * @param string $direction
+     * @param int $zip
+     * @param int $phone
+     * @param int $centerId
+     * @return bool
+     */
+    public function modifyCenter(
+        string $name,
+        string $direction,
+        int $zip,
+        int $phone,
+        int $centerId
+    ): bool {
+        return $this->model->modify($name, $direction, $zip, $phone, $centerId);
+    }
+
+    /**
+     * Deletes a center from the database
+     * @param int $centerCode
+     * @return bool
+     */
     public function deleteCenter(
         int $centerCode
     ): bool {
@@ -37,6 +69,17 @@ class CentroController
             return $this->model->delete($centerCode);
         } catch (DeleteException $e) {
         }
+    }
+
+
+    /**
+     * Get a center
+     * @param $centerId
+     * @return array
+     */
+    public function getCenter($centerId): array
+    {
+        return $this->model->getCentro($centerId);
     }
 
     /**
@@ -47,7 +90,6 @@ class CentroController
     {
         return $this->model->getCentros();
     }
-
     /**
      * Get all centers with more data
      * @return array
