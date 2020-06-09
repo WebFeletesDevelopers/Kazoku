@@ -55,8 +55,9 @@ class JudokaController
         if($parentId == ''){
             $parentId = null;
         }
-        $birthDate = strtotime($birthDate);
-
+        if($addressId == ''){
+            $addressId = null;
+        }
         try {
             return $this->model->add($name, $lastName1, $lastName2, $sex, $userId, $fanjydaId, $dni, $birthDate, $phone, $email, $illness, $parentId, $beltId, $addressId, $classid);
         } catch (QueryException $e) {

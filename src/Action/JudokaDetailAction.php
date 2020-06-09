@@ -24,20 +24,35 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
     {
         $body = $response->getBody();
         $judokaId = $args['id'];
-        $database = ConnectionHelper::getConnection();
-        $model = new JudokaModel($database);
-        $controller = new JudokaController($model);
-        $allJudokaInfo = $controller->getOneJudoka($judokaId);
+        if($judokaId > 0){
+            $database = ConnectionHelper::getConnection();
+            $model = new JudokaModel($database);
+            $controller = new JudokaController($model);
+            $allJudokaInfo = $controller->getOneJudoka($judokaId);
 
-        $modelClase = new ClaseModel($database);
-        $controllerClase = new ClaseController($modelClase);
-        $allClasses = $controllerClase->getClases();
-        $value = intval($allJudokaInfo['classId']);
-        $clase = $controllerClase->getClass([$value]);
+            $modelClase = new ClaseModel($database);
+            $controllerClase = new ClaseController($modelClase);
+            $allClasses = $controllerClase->getClases();
+            $value = intval($allJudokaInfo['classId']);
+            $clase = $controllerClase->getClass([$value]);
+            $modelCenter = new CentroModel($database);
+            $controllerCenter = new CentroController($modelCenter);
+            $center = $controllerCenter->getCenter($clase['centerId']);
+        }
+        else{
+            $database = ConnectionHelper::getConnection();
+            $modelClase = new ClaseModel($database);
+            $controllerClase = new ClaseController($modelClase);
+            $allClasses = $controllerClase->getClases();
+            $clase = $controllerClase->getClasesAllData();
 
-        $modelCenter = new CentroModel($database);
-        $controllerCenter = new CentroController($modelCenter);
-        $center = $controllerCenter->getCenter($clase['centerId']);
+            $modelCenter = new CentroModel($database);
+            $controllerCenter = new CentroController($modelCenter);
+            $center = $controllerCenter->getCentersAllData();
+        }
+
+
+
 
         $classDays['daySplit'] = str_split(sprintf("%05d", decbin($clase['days'])));
         $body = $response->getBody();

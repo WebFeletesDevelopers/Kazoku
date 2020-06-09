@@ -63,7 +63,7 @@ export class JudokaMain {
         const modifyLastName2:      HTMLInputElement = document.querySelector('#mod-lastname2');
         const modifyDni:            HTMLInputElement = document.querySelector('#mod-dni');
         const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
-        const modifyParentId:       HTMLInputElement = document.querySelector('#mod-parentId');
+        const modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
         const modifyBirthDate:      HTMLInputElement = document.querySelector('#mod-birthDate');
         const modifyEmail:          HTMLInputElement = document.querySelector('#mod-email');
         const modifyPhone:          HTMLSelectElement = document.querySelector('#mod-phone');
@@ -144,6 +144,11 @@ export class JudokaMain {
             this.validateModJudoka(updateDataButton, editedJudoka);
             console.log(editedJudoka);
         });
+        modifyParentId.addEventListener('change', () => {
+            editedJudoka.codTutor = parseInt(modifyParentId.value);
+            this.validateModJudoka(updateDataButton, editedJudoka);
+            console.log(editedJudoka);
+        });
         modifySex.addEventListener('change', () => {
             editedJudoka.sex = parseInt(modifySex.value);
             this.validateModJudoka(updateDataButton, editedJudoka);
@@ -154,9 +159,14 @@ export class JudokaMain {
         updateButton.addEventListener('click', e => {
             const judokaId = updateButton.getAttribute("data-id");
             const name = updateButton.getAttribute("data-name");
+            alert(name);
             if (name == "updateData") {
                 e.preventDefault();
                 JudokaMain.updateJudoka(editedJudoka,parseInt(judokaId));
+            }
+            else if (name == "addJudoka"){
+                e.preventDefault();
+                JudokaMain.addJudoka(editedJudoka);
             }
             ;
         });
@@ -209,6 +219,20 @@ export class JudokaMain {
      */
     private static updateJudoka(judoka: Judoka, judokaId: number): void {
         JudokaRequest.modifyJudoka(judoka, judokaId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/judokas');
+            }
+        });
+    }
+
+    /**
+     * Adds a judoka to the database
+     * @param judoka
+     */
+    private static addJudoka(judoka: Judoka): void {
+        JudokaRequest.addJudoka(judoka).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {

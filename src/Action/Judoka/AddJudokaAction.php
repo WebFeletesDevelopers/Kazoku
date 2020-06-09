@@ -14,11 +14,11 @@ use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 
 /**
- * Class modifyJudoka
- * Class for modify a judoka
- * @package WebFeletesDevelopers\Kazoku\Action\Juoka
+ * Class AddJudoka
+ * Class for add a judoka
+ * @package WebFeletesDevelopers\Kazoku\Action\Judoka
  */
-class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
+class AddJudokaAction extends BaseJsonAction implements ActionInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -49,9 +49,6 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         $beltId = intval($data['beltId']);
         $classId = intval($data['classId']);
         $judokaId = intval($data['judokaId']);
-        $judokaId = intval($judokaId);
-
-
         try {
             $this->validateParameters(
                 $name,
@@ -67,27 +64,25 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
                 $addressId,
                 $beltId,
                 $classId,
-                $judokaId,
                 $phone,
                 $fanjydaId
             );
-            $controller->modifyJudoka(
+            $controller->addJudoka(
                 $name,
                 $lastname1,
                 $lastname2,
-                $dni,
-                $email,
-                $illness,
-                $birthDate,
                 $sex,
                 $userId,
-                $parentId,
-                $addressId,
-                $beltId,
-                $classId,
-                $judokaId,
+                $fanjydaId,
+                $dni,
+                $birthDate,
                 $phone,
-                $fanjydaId
+                $email,
+                $illness,
+                $parentId,
+                $beltId,
+                $addressId,
+                $classId
             );
         } catch (InvalidParametersException $e) {
             $data = ['message' => $e->getMessage()];
@@ -114,7 +109,6 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
      * @param int|null $addressId
      * @param int|null $beltId
      * @param int|null $classId
-     * @param int|null $judokaId
      * @param int|null $phone
      * @param int|null $fanjydaId
      * @return void
@@ -133,7 +127,6 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
                                         ?int $addressId,
                                         ?int $beltId,
                                         ?int $classId,
-                                        ?int $judokaId,
                                         ?int $phone,
                                         ?int $fanjydaId
     ): void
@@ -164,9 +157,6 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         }
         if ($classId === null || $classId = 0) {
             throw InvalidParametersException::fromInvalidParameter('classId');
-        }
-        if ($judokaId === null || $judokaId = 0) {
-            throw InvalidParametersException::fromInvalidParameter('judokaId');
         }
         if ($phone === null || $phone = 0) {
             throw InvalidParametersException::fromInvalidParameter('phone');

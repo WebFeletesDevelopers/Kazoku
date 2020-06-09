@@ -39,18 +39,18 @@ class JudokaModel extends BaseModel
     public function add(
         string $name,
         string $lastName1,
-        string $lastName2,
+        ?string $lastName2,
         int $sex,
-        int $userId,
-        int $fanjydaId,
-        string $dni,
-        DateTime $birthDate,
+        ?int $userId,
+        ?int $fanjydaId,
+        ?string $dni,
+        string $birthDate,
         int $phone,
-        string $email,
-        string $illness,
-        int $parentId,
+        ?string $email,
+        ?string $illness,
+        ?int $parentId,
         int $beltId,
-        int $addressId,
+        ?int $addressId,
         int $classid
     ): bool
     {
@@ -66,7 +66,7 @@ SQL;
             $userId,
             $fanjydaId,
             $dni,
-            $birthDate->format(ConnectionHelper::MYSQL_DATE_FORMAT),
+            $birthDate,
             $phone,
             $email,
             $illness,
@@ -92,7 +92,7 @@ SQL;
      * @param int $userId
      * @param int $fanjydaId
      * @param string $dni
-     * @param DateTime $birthDate
+     * @param string $birthDate
      * @param int $phone
      * @param string $email
      * @param string $illness
@@ -153,6 +153,8 @@ SQL;
 
         return true;
     }
+
+
 
 
     /**
