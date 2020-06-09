@@ -26,7 +26,7 @@
                     </p>
                 </div>
                 <div class="row d-flex justify-content-between font-small text-muted mb-4">
-                    <button id="centerDetail" data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CENTRO"  | trans}}</button>
+                    <a href="/centerDetail/{{ center.id }}" id="centerDetail" data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CENTRO"  | trans}}</a>
                     <button id="modifyCenter" data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CENTRO" | trans }}</button>
                     <button id="seeClasses"  data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER CLASES" | trans }}</button>
                     <button id="addClass"   data-id="{{ center.id}}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR CLASE" | trans}}</button>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-03 11:19+0000\n"
+"POT-Creation-Date: 2020-06-08 06:47+0000\n"
 "PO-Revision-Date: 2020-05-24 20:00+0000\n"
 "Last-Translator: root <root@d8b5f53730d4>\n"
 "Language-Team: Spanish\n"
@@ -17,10 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: Action/Exception/InvalidParametersException.php:20
+#, php-format
+msgid "The parameter %s is invalid!"
+msgstr ""
+
 #. line 15
-#. line 59
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:63
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:128
 msgid "¡Crear cuenta!"
 msgstr ""
 
@@ -38,7 +41,7 @@ msgstr ""
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:90
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:183
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:79
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:158
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:162
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:166
 #: View/cache/cb/cbcb39fb8cb3055a70605ddec29f4dba49796cc5d08422c2b3b49f4a0219c26a.php:85
 msgid "Nombre"
@@ -60,7 +63,9 @@ msgid "Nombre de Usuario"
 msgstr ""
 
 #. line 37
+#. line 59
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:100
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:186
 msgid "Teléfono"
 msgstr ""
 
@@ -70,19 +75,19 @@ msgstr ""
 #. line 61
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:108
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:91
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:170
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:174
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:158
 msgid "Email"
 msgstr ""
 
 #. line 47
 #. line 35
-#. line 33
+#. line 14
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:116
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:109
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:111
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:119
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:87
+#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:59
 msgid "Contraseña"
 msgstr ""
 
@@ -107,8 +112,10 @@ msgid "Padre"
 msgstr ""
 
 #. line 60
+#. line 89
 #. line 31
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:144
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:241
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:110
 msgid "Profesor"
 msgstr ""
@@ -132,10 +139,23 @@ msgid "¿Ya tienes cuenta? ¡Inicia sesión!"
 msgstr ""
 
 #. line 75
-#. line 57
 #: View/cache/66/66dba5a87c9f42058827f41dd3627a52f517d8e2437a67d44f2ab58c3ab19dcc.php:171
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:120
+#: View/cache/38/38a6effd1d2aea131c5355a9169bfb2cecb08849fb292b3ab854f4ce6119d323.php:47
 msgid "Volver al inicio"
+msgstr ""
+
+#. line 3
+#: View/cache/57/57fb1e33275ed4eccc63f8a3f1c47731f72b77a4f1068b92a1987693cd63f665.php:41
+msgid "Ha ocurrido un error"
+msgstr ""
+
+#. line 5
+#. line 65
+#. line 126
+#: View/cache/57/57fb1e33275ed4eccc63f8a3f1c47731f72b77a4f1068b92a1987693cd63f665.php:46
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:200
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:308
+msgid "Cerrar"
 msgstr ""
 
 #. line 2
@@ -148,70 +168,82 @@ msgstr ""
 msgid "Añadir noticia"
 msgstr ""
 
-#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:110
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:101
+msgid "publica"
+msgstr ""
+
+#. line 32
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:107
+#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:89
+msgid "privada"
+msgstr ""
+
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:123
 msgid "Borrar Noticia"
 msgstr ""
 
-#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:122
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:181
+#: View/cache/bb/bbae6c918d3351b207799f19180ff53edf97cd037c9f142ac42e1eda8ff5135d.php:135
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:185
 msgid "No hay resultados"
 msgstr ""
 
-#. line 4
-#. line 13
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:42
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:54
+#. line 7
+#. line 19
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:45
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:60
 msgid "Buscar"
 msgstr ""
 
-#. line 24
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:71
+#. line 33
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:80
 msgid "Notificaciones"
 msgstr ""
 
-#. line 48
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:98
+#. line 67
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:117
 msgid "Mostrar Notificaciones"
 msgstr ""
 
-#. line 55
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:108
+#. line 78
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:131
 msgid "Mensajes"
 msgstr ""
 
-#. line 91
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:147
+#. line 126
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:182
 msgid "Mostrar mensajes"
 msgstr ""
 
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:166
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:199
 msgid "¡Registrate!"
 msgstr ""
 
-#. line 108
+#. line 142
 #. line 5
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:185
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:221
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:53
 msgid "Perfil"
 msgstr ""
 
-#. line 111
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:191
+#. line 146
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:228
 msgid "Configuración"
 msgstr ""
 
-#. line 114
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:197
+#. line 150
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:235
 msgid "Actividad"
 msgstr ""
 
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:204
+#. line 155
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:243
 msgid "Cerrar sesión"
 msgstr ""
 
-#. line 50
-#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:210
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:110
+#. line 160
+#. line 15
+#: View/cache/ab/ab198815cbf1a2048a7e0581a2d431d6ee803bbcc1a550c1f042e9fcabbb015d.php:253
+#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:63
 msgid "Iniciar sesión"
 msgstr ""
 
@@ -245,11 +277,11 @@ msgstr ""
 #. line 32
 #. line 19
 #. line 48
-#. line 25
+#. line 13
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:103
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:75
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:154
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:76
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:158
+#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:55
 msgid "Usuario"
 msgstr ""
 
@@ -305,8 +337,12 @@ msgid "Provincia"
 msgstr ""
 
 #. line 80
+#. line 23
+#. line 56
 #. line 88
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:203
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:96
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:180
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:206
 msgid "Código Postal"
 msgstr ""
@@ -342,7 +378,11 @@ msgid "Categoría"
 msgstr ""
 
 #. line 115
+#. line 92
+#. line 103
 #: View/cache/c6/c6ea033d4a92ca040db8e4805681c9524340c3cfe63e49ab078d21c68a49238e.php:261
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:247
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:270
 msgid "Seleccione uno"
 msgstr ""
 
@@ -417,7 +457,7 @@ msgstr ""
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:94
 #: View/cache/7c/7ce96b4d50cd9df89397cdbfbe8a2dc30fda9a857b86e6ee3840a6f16ba529df.php:187
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:83
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:162
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:166
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:172
 msgid "Apellido(s)"
 msgstr ""
@@ -450,6 +490,73 @@ msgstr ""
 msgid "Información"
 msgstr ""
 
+#. line 5
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:53
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:53
+#: View/cache/de/de00ccb4cf004e5d00c5f98ce01581e2b736b26ee45b368237baf4f307429a59.php:51
+msgid "Gestión de clases"
+msgstr ""
+
+#. line 7
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:58
+msgid "Añadir centro"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:89
+msgid "Clases"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:112
+msgid "VER CENTRO"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:118
+msgid "MODIFICAR CENTRO"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:124
+msgid "VER CLASES"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:130
+msgid "AÑADIR CLASE"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:136
+msgid "BORRAR CENTRO"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:142
+msgid "EXTRA CENTRO"
+msgstr ""
+
+#. line 46
+#. line 66
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:162
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:204
+msgid "Crear centro"
+msgstr ""
+
+#. line 53
+#. line 27
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:172
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:103
+msgid "Nombre del centro"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:174
+msgid "Ejemplo: Gimnasio"
+msgstr ""
+
+#. line 62
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:192
+msgid "Dirección del centro"
+msgstr ""
+
+#: View/cache/89/89cddc6eaea506063c27913e169310e8017fca4c9873a338272cd5a5008ca17f.php:194
+msgid "Ejemplo: Calle Falsa 123"
+msgstr ""
+
 #. line 10
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:51
 #: View/cache/62/6209190c2cffd490133357bdc3df217097fbf1a011bf7a39e1ad39dff1203604.php:51
@@ -465,17 +572,27 @@ msgstr ""
 #. line 51
 #. line 38
 #: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:87
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:166
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:170
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:123
 msgid "Telefono"
 msgstr ""
 
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:132
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:136
 msgid "Confirmar"
 msgstr ""
 
-#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:138
+#: View/cache/86/8644a8b09da95aa5b93dd1fe3cd0316d447ea3f28d350004a6703f2567f05f13.php:142
 msgid "Borrar"
+msgstr ""
+
+#. line 3
+#: View/cache/38/38a6effd1d2aea131c5355a9169bfb2cecb08849fb292b3ab854f4ce6119d323.php:41
+msgid "MATTE!"
+msgstr ""
+
+#. line 4
+#: View/cache/38/38a6effd1d2aea131c5355a9169bfb2cecb08849fb292b3ab854f4ce6119d323.php:45
+msgid "Esta página está todavía en construcción"
 msgstr ""
 
 #. line 9
@@ -508,19 +625,124 @@ msgstr ""
 msgid "Panel"
 msgstr ""
 
-#. line 17
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:65
+#. line 12
+#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:51
 msgid "¡Bienvenido!"
 msgstr ""
 
-#. line 43
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:100
-msgid "Recuerdame"
+#. line 7
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:58
+msgid "Añadir clase"
 msgstr ""
 
-#. line 58
-#: View/cache/6d/6db67e175ea75e1e80acd27fb1ce7c21bf3af853411417e2d39fdfe125551cf4.php:124
-msgid "¿olvidaste la contraseña?"
+#. line 23
+#. line 30
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:94
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:114
+msgid "Edades "
+msgstr ""
+
+#. line 27
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:110
+msgid "Años "
+msgstr ""
+
+#. line 49
+#. line 127
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:172
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:312
+msgid "Crear clase"
+msgstr ""
+
+#. line 56
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:182
+msgid "Nombre de la clase"
+msgstr ""
+
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:184
+msgid "Ejemplo: Cadetes"
+msgstr ""
+
+#. line 59
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:190
+msgid "Edad mínima"
+msgstr ""
+
+#. line 62
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:196
+msgid "Edad máxima"
+msgstr ""
+
+#. line 68
+#. line 48
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:205
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:155
+msgid "Lunes"
+msgstr ""
+
+#. line 72
+#. line 52
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:212
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:167
+msgid "Martes"
+msgstr ""
+
+#. line 76
+#. line 56
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:219
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:179
+msgid "Miércoles"
+msgstr ""
+
+#. line 80
+#. line 60
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:226
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:191
+msgid "Jueves"
+msgstr ""
+
+#. line 84
+#. line 64
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:233
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:203
+msgid "Viernes"
+msgstr ""
+
+#. line 93
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:251
+msgid "Alberto"
+msgstr ""
+
+#. line 94
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:255
+msgid "Fran"
+msgstr ""
+
+#. line 100
+#. line 24
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:264
+#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:94
+msgid "Centro"
+msgstr ""
+
+#. line 104
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:274
+msgid "Felix Revello de Toro"
+msgstr ""
+
+#. line 105
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:278
+msgid "Kodokan Fuengirola"
+msgstr ""
+
+#. line 112
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:288
+msgid "Hora de inicio"
+msgstr ""
+
+#. line 119
+#: View/cache/d3/d321f694d9ea8fab4ba915dba873867cdb7548f4c1849dff7f92738225f7d732.php:298
+msgid "Hora de fin"
 msgstr ""
 
 #. line 10
@@ -538,19 +760,9 @@ msgstr ""
 msgid "Nombre clase"
 msgstr ""
 
-#. line 24
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:94
-msgid "Centro"
-msgstr ""
-
 #. line 25
 #: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:98
 msgid "Calle del centro"
-msgstr ""
-
-#. line 27
-#: View/cache/d4/d45c860267ff8f39eae7bd0c9867fb502263b5157aa3c831fdc34b0974738d2d.php:103
-msgid "Nombre del centro"
 msgstr ""
 
 #. line 52
@@ -607,6 +819,11 @@ msgstr ""
 msgid "Inicio"
 msgstr ""
 
+#. line 5
+#: View/cache/de/de00ccb4cf004e5d00c5f98ce01581e2b736b26ee45b368237baf4f307429a59.php:55
+msgid "Gestión de centros"
+msgstr ""
+
 #. line 11
 #: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:59
 msgid "Escribir nueva noticia"
@@ -622,11 +839,6 @@ msgstr ""
 msgid "Cuerpo de la noticia"
 msgstr ""
 
-#. line 32
-#: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:89
-msgid "privada"
-msgstr ""
-
 #. line 33
 #: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:93
 msgid "pública"
@@ -635,6 +847,16 @@ msgstr ""
 #. line 38
 #: View/cache/ea/ea2122f7c29d88d4a2c17f2589155862e52e30e32755cfd6be5eb564510c2d62.php:101
 msgid "Publicar"
+msgstr ""
+
+#. line 5
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:53
+msgid "Gestión de la clase"
+msgstr ""
+
+#. line 37
+#: View/cache/79/79c8f92cc39a69c17cd33b1e7e07bd655e7328b9cc1db144f6433dbe90859f50.php:130
+msgid "Horario"
 msgstr ""
 
 #. line 9
@@ -679,4 +901,8 @@ msgstr ""
 #. line 92
 #: View/cache/24/246c7843c642eef8fa206cc7b70deded87c33329244e180998c560770dd429cb.php:203
 msgid "¡Descarga tu examen!"
+msgstr ""
+
+#: Model/Exception/User/InvalidCredentialsException.php:15
+msgid "Credenciales invalidas"
 msgstr ""

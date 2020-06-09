@@ -6,7 +6,9 @@ use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
-use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\CenterDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
@@ -16,6 +18,7 @@ use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\ModifyClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
+use WebFeletesDevelopers\Kazoku\Action\JudokaDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\LoginAction;
 use WebFeletesDevelopers\Kazoku\Action\logoutAction;
@@ -33,7 +36,6 @@ use WebFeletesDevelopers\Kazoku\Action\User\ActivateUserAction;
 use WebFeletesDevelopers\Kazoku\Action\User\ActivateUserByTrainerAction;
 use WebFeletesDevelopers\Kazoku\Action\User\DeleteUserByTrainerAction;
 use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
-use WebFeletesDevelopers\Kazoku\Action\userCheckAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 
@@ -91,11 +93,19 @@ class Routes
         $app->post('/center/add', CreateCenterAction::class);
         $app->post('/center/delete', DeleteCenterAction::class);
         $app->get('/centerDetail/{id}', CenterDetailAction::class);
-        $app->post('/center/modify', ModifyCenterAction::class);
+        $app->post('/center/modify', ModifyJudokaAction::class);
 
-        $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
+        //judokas
         $app->get('/judokas', judokasAction::class);
         $app->get('/assistance', assistanceAction::class);
+        $app->get('/judokaDetail/{id}', JudokaDetailAction::class);
+        $app->get('/judokaDetail/', JudokaDetailAction::class);
+        $app->post('/judoka/add', AddJudokaAction::class);
+        $app->post('/judoka/modify', ModifyJudokaAction::class);
+        $app->post('/judoka/delete', DeleteJudokaAction::class);
+
+
+        $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/panel', panelAction::class);
 
 

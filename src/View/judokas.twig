@@ -1,7 +1,13 @@
 {% extends './partials/base.twig' %}
 
 {% block body %}
-    <h3 class="text-dark mb-4">{{"Alumnos" | trans}}</h3>
+    <div class="justify-content-between d-flex py-3">
+        <h3 class="text-dark my-1 d-inline-block">{{"Alumnos" | trans}}</h3>
+        <a class="btn kaz-azul text-light btn-sm d-sm-inline-block mt-1" role="button" href="/judokaDetail/">
+            <i class="fas fa-plus fa-sm text-white-50" ></i> {{ "Añadir Alumno" | trans }}
+        </a>
+    </div>
+
     <div class="card shadow">
         <div class="card-header py-3">
             <p class="text-primary m-0 font-weight-bold">{{ "Club de Judo" | trans }}{% if title is defined %}  {{ title }}{% else%}Kazoku{% endif %} </p>
@@ -21,46 +27,68 @@
                 <table class="table dataTable my-0" id="tablaAlumnos">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th>{{"Nombre" | trans}}</th>
-                        <th>{{"Apellido(s)" | trans}}</th>
-                        <th>{{"Fecha Nacimiento" | trans}}</th>
-                        <th>{{"Sexo" | trans}}</th>
-                        <th>{{"Cinturón" | trans}}</th>
-                        <th>{{"ID Fanjyda"}}</th>
-                        <th>{{"DNI/NIE/PAS"}}</th>
-                        <th>{{"Información" | trans}}</th>
+                        <th class="px-0 bg-primary"  ></th>
+                        <th class="px-0 bg-primary" ><button data-name="1" data-id="name" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Nombre" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="2" data-id="surname" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Apellido(s)" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="3" data-id="birth" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Fecha Nacimiento" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="4" data-id="sex" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Sexo" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="5" data-id="belt" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Cinturón" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="6" data-id="fanjyda" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"ID Fanjyda"}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="7" data-id="dni" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"DNI/NIE/PAS"}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="8" data-id="info" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Información" | trans}}</button></th>
                     </tr>
                     </thead>
                     <tbody>
                     <!-- Foreach de alumnos-->
-                    {% for i in 1..5  %}
+                    {% for judoka in judokas  %}
 
                     <tr>
-                        <td><img src="/img/profile/{% if judoka.userId is defined %}{{ userId }}{% else %}generic{% endif %}.png" width="30" height="30"></td>
-                        <td>{{"Nombre"}}</td>
-                        <td>{{"Apellidos"}}</td>
-                        <td>{{ "10/10/2000" }}</td>
-                        <td>{{ "Masculino/Femenino" }}</td>
-                        <td>{{ "Negro" }}</td>
-                        <td>{{ 00000 }}</td>
-                        <td>{{ "12345678X" }}</td>
-                        <td><a href="/judokaPanel" class="container-fluid btn btn-sm btn-primary inline-block m-1"><i class="fas fa-info"></i></a></td>
+                        <td class="text-center"><img src="/img/profile/{% if judoka.judokaIdNo is defined %}{{ judoka.judokaId }}.jpg{% else %}generic.png{% endif %}" width="50" height="50"></td>
+                        <td class="text-center">{{judoka.name}}</td>
+                        <td class="text-center">{{judoka.lastName1}} {{ judoka.lastName2 }}</td>
+                        <td class="text-center"><input class="text-center border-0" type="date" disabled value="{{ judoka.birthDate  }}"></td>
+                        <td class="text-center">{% if judoka.sex == 1 %}{{ "Masculino" | trans }}{% else %}{{ "Femenino" | trans }}{% endif %}</td>
+                        <td class="text-center">
+                            {% if judoka.beltId == 1  %}{{ "Blanco" }}
+                            {% elseif judoka.beltId == 2 %}{{ "Blanco-Amarillo" }}
+                            {% elseif judoka.beltId == 3 %}{{ "Amarillo" }}
+                            {% elseif judoka.beltId == 4 %}{{ "Amarillo-Naranja" }}
+                            {% elseif judoka.beltId == 5 %}{{ "Naranja" }}
+                            {% elseif judoka.beltId == 6 %}{{ "Naranja-verde" }}
+                            {% elseif judoka.beltId == 7 %}{{ "Verde" }}
+                            {% elseif judoka.beltId == 8 %}{{ "Verde-Azul" }}
+                            {% elseif judoka.beltId == 9 %}{{ "Azul" }}
+                            {% elseif judoka.beltId == 10 %}{{ "Azul-marrón" }}
+                            {% elseif judoka.beltId == 11 %}{{ "Marrón" }}
+                            {% elseif judoka.beltId == 12 %}{{ "1º DAN" }}
+                            {% elseif judoka.beltId == 13 %}{{ "2º DAN" }}
+                            {% elseif judoka.beltId == 14 %}{{ "3º DAN" }}
+                            {% elseif judoka.beltId == 15 %}{{ "4º DAN" }}
+                            {% elseif judoka.beltId == 16 %}{{ "5º DAN" }}
+                            {% elseif judoka.beltId == 17 %}{{ "Blanco-Rojo" }}
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ judoka.fanjydaId }}</td>
+                        <td class="text-center">{{ judoka.dni }}</td>
+                        <td class="text-center row">
+                            <a href="/judokaDetail/{{ judoka.judokaId }}" class="col-6 container-fluid btn btn-sm btn-info rounded-0 inline-block "><i class="fas fa-info"></i></a>
+                            <button data-id="{{ judoka.judokaId }}" id="" data-name="delete-judoka"  class="judokaBtn col-6 container-fluid btn btn-sm btn-danger rounded-0 inline-block "><i class="fas fa-eraser"></i></button>
+                        </td>
                     </tr>
 
                     {% endfor %}
                     </tbody>
                     <tfoot>
                     <tr>
-                        </th>
-                        <th>{{"Nombre" | trans}}</th>
-                        <th>{{"Apellido(s)" | trans}}</th>
-                        <th>{{"Fecha Nacimiento" | trans}}</th>
-                        <th>{{"Sexo" | trans}}</th>
-                        <th>{{"Cinturón" | trans}}</th>
-                        <th>{{"ID Fanjyda"}}</th>
-                        <th>{{"DNI/NIE/PAS"}}</th>
-                        <th>{{"Información" | trans}}</th>
+                        <th class="px-0 bg-primary"> </th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Nombre" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Apellido(s)" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Fecha Nacimiento" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Sexo" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Cinturón" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"ID Fanjyda"}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"DNI/NIE/PAS"}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Información" | trans}}</button></th>
                     </tr>
                     </tfoot>
                 </table>

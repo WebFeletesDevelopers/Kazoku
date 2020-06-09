@@ -4,6 +4,7 @@ import { ClassMain } from './class/ClassMain';
 import { CenterMain } from './center/CenterMain';
 import { GeneralMain } from "./general/GeneralMain";
 import { UserMain } from "./user/UserMain";
+import { JudokaMain } from './judoka/JudokaMain';
 import { TrainerMain } from "./trainer/TrainerMain";
 
 class Main {
@@ -12,6 +13,7 @@ class Main {
         LoginMain.handle();
         ClassMain.handle();
         CenterMain.handle();
+        JudokaMain.handle();
         GeneralMain.handle();
         UserMain.handle();
         TrainerMain.handle();

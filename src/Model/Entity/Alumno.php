@@ -12,8 +12,8 @@ use DateTime;
 class Alumno
 {
     private string $name;
-    private string $surname;
-    private string $secondSurname;
+    private string $lastname;
+    private string $secondLastname;
     private int $gender;
     private int $id;
     private int $userId;
@@ -22,8 +22,8 @@ class Alumno
     private DateTime $birthDate;
     private int $phone;
     private string $email;
-    private string $diseases;
-    private int $trainerId;
+    private string $illness;
+    private int $parentId;
     private int $beltId;
     private int $addressId;
     private int $classId;
@@ -31,43 +31,43 @@ class Alumno
     /**
      * Alumno constructor.
      * @param string $name
-     * @param string $surname
-     * @param string $secondSurname
+     * @param string $lastname
+     * @param string $secondLastname
      * @param int $gender
      * @param int $id
      * @param int $userId
      * @param int $fanjydaId
      * @param string $dni
-     * @param DateTime $birthDate
+     * @param string $birthDate
      * @param int $phone
      * @param string $email
-     * @param string $diseases
-     * @param int $trainerId
+     * @param string $illness
+     * @param int $parentId
      * @param int $beltId
      * @param int $addressId
      * @param int $classId
      */
     public function __construct(
         string $name,
-        string $surname,
-        string $secondSurname,
+        string $lastname,
+        string $secondLastname,
         int $gender,
         int $id,
-        int $userId,
-        int $fanjydaId,
-        string $dni,
-        DateTime $birthDate,
+        ?int $userId,
+        ?int $fanjydaId,
+        ?string $dni,
+        string $birthDate,
         int $phone,
         string $email,
-        string $diseases,
-        int $trainerId,
+        ?string $illness,
+        ?int $parentId,
         int $beltId,
         int $addressId,
         int $classId
     ) {
         $this->name = $name;
-        $this->surname = $surname;
-        $this->secondSurname = $secondSurname;
+        $this->lastname = $lastname;
+        $this->secondLastname = $secondLastname;
         $this->gender = $gender;
         $this->id = $id;
         $this->userId = $userId;
@@ -76,8 +76,8 @@ class Alumno
         $this->birthDate = $birthDate;
         $this->phone = $phone;
         $this->email = $email;
-        $this->diseases = $diseases;
-        $this->trainerId = $trainerId;
+        $this->illness = $illness;
+        $this->parentId = $parentId;
         $this->beltId = $beltId;
         $this->addressId = $addressId;
         $this->classId = $classId;
@@ -94,17 +94,17 @@ class Alumno
     /**
      * @return string
      */
-    public function surname(): string
+    public function lastname(): string
     {
-        return $this->surname;
+        return $this->lastname;
     }
 
     /**
      * @return string
      */
-    public function secondSurname(): string
+    public function secondLastname(): string
     {
-        return $this->secondSurname;
+        return $this->secondLastname;
     }
 
     /**
@@ -174,17 +174,17 @@ class Alumno
     /**
      * @return string
      */
-    public function diseases(): string
+    public function illness(): string
     {
-        return $this->diseases;
+        return $this->illness;
     }
 
     /**
      * @return int
      */
-    public function trainerId(): int
+    public function parentId(): int
     {
-        return $this->trainerId;
+        return $this->parentId;
     }
 
     /**
