@@ -56,7 +56,8 @@ CREATE TABLE `guardian` (
     `DNI` varchar(9) DEFAULT NULL,
     `address_id` int(11) NOT NULL,
     `email` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE (`DNI`)
 ) CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `login_hash` (
@@ -93,7 +94,8 @@ CREATE TABLE `pupil` (
     `belt_id` int(11) DEFAULT 1,
     `address_id` int(11) DEFAULT NULL,
     `class_id` int(11) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE (`DNI`)
 ) CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `users` (
@@ -108,7 +110,9 @@ CREATE TABLE `users` (
     `password` varchar(64) NOT NULL,
     `email` varchar(255) DEFAULT NULL,
     `email_confirmed` tinyint(1) DEFAULT 0,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE (`username`),
+    UNIQUE (`email`)
 ) CHARSET=utf8 COLLATE=utf8_general_ci;
 
 CREATE TABLE `verification` (
