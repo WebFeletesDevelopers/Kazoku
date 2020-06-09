@@ -4,6 +4,7 @@ import { ClassMain } from './class/ClassMain';
 import { CenterMain } from './center/CenterMain';
 import { GeneralMain } from "./general/GeneralMain";
 import { UserMain } from "./user/UserMain";
+import { TrainerMain } from "./trainer/TrainerMain";
 
 class Main {
     public static handle(): void {
@@ -13,6 +14,7 @@ class Main {
         CenterMain.handle();
         GeneralMain.handle();
         UserMain.handle();
+        TrainerMain.handle();
     }
 }
 

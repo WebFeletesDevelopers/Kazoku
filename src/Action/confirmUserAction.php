@@ -2,15 +2,13 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
+use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
+use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
+use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
 
 /**
  * Class HomeAction.
@@ -21,10 +19,21 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-
         $body = $response->getBody();
-        //$compiledTwig = $this->render('home');
-        $compiledTwig = $this->render('confirmUser',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
+
+        $pdo = ConnectionHelper::getConnection();
+        $userModel = new UserModel($pdo);
+        $verificationModel = new VerificationModel($pdo);
+        $mailService = new SendMailService();
+        $userController = new UserController($userModel, $verificationModel, $mailService);
+        $users = $userController->listNotConfirmed($_COOKIE['hash']);
+
+        $config = [
+            'title' => _('Confirmar usuarios'),
+            'users' => $users,
+            'action' => 'confirm-users-by-trainer'
+        ];
+        $compiledTwig = $this->render('confirmUser', $config);
         $body->write($compiledTwig);
         return $response;
     }

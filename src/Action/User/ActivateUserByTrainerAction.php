@@ -2,10 +2,11 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\User;
 
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
-use WebFeletesDevelopers\Kazoku\Action\BaseTwigAction;
+use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
@@ -13,11 +14,11 @@ use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
 use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
 
 /**
- * Class ActivateUserAction
- * Action to activate an user account.
+ * Class ActivateUserByTrainerAction
+ * Action used to activate an user by a trainer
  * @package WebFeletesDevelopers\Kazoku\Action\User
  */
-class ActivateUserAction extends BaseTwigAction implements ActionInterface
+class ActivateUserByTrainerAction extends BaseJsonAction implements ActionInterface
 {
     /**
      * @param ServerRequestInterface $request
@@ -27,24 +28,22 @@ class ActivateUserAction extends BaseTwigAction implements ActionInterface
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-        $body = $response->getBody();
-        $params = $request->getQueryParams();
-
         $pdo = ConnectionHelper::getConnection();
         $userModel = new UserModel($pdo);
         $verificationModel = new VerificationModel($pdo);
-        $emailService = new SendMailService();
-        $userController = new UserController($userModel, $verificationModel, $emailService);
+        $mailService = new SendMailService();
+        $userController = new UserController($userModel, $verificationModel, $mailService);
 
-        $userController->activateByEmail($params['token']);
+        $data = $request->getParsedBody();
+        $userId = $data['userId'];
 
-        $config = [
-            'title' => 'titulo',
-        ];
+        try {
+            $userController->activateByTrainer($userId, $_COOKIE['hash']);
+        } catch (Exception $e) {
+            $data = ['message' => $e->getMessage()];
+            return $this->withJson($response, $data, 500);
+        }
 
-        $compiledTwig = $this->render('user/activate', $config);
-        $body->write($compiledTwig);
-
-        return $response;
+        return $this->withJson($response, [], 200);
     }
 }

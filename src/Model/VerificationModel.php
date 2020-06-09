@@ -37,4 +37,26 @@ SQL;
 
         return new Verification($code, $this->db->lastInsertId(), $user->id());
     }
+
+    /**
+     * @param string $code
+     * @return bool
+     * @throws QueryException
+     */
+    public function deleteByCode(string $code): bool
+    {
+        $sql = <<<SQL
+        DELETE FROM verification
+        WHERE code = ?
+SQL;
+
+        $binds = [$code];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
 }

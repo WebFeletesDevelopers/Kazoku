@@ -8,6 +8,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig_Extensions_Extension_I18n;
+use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
@@ -20,16 +21,21 @@ use WebFeletesDevelopers\Kazoku\Model\UserModel;
 abstract class BaseTwigAction
 {
     private Environment $twig;
+    private ?User $loggedUser = null;
 
     /**
      * BaseTwigAction constructor.
      * This class is used to reduce boilerplate code in Twig actions.
+     * @throws QueryException
      */
     public function __construct()
     {
         $loader = new FilesystemLoader(__DIR__ . '/../View');
         $this->twig = new Environment($loader);
         $this->twig->addExtension(new Twig_Extensions_Extension_I18n());
+        //fixme esto es una ñapa
+        $userModel = new UserModel(ConnectionHelper::getConnection());
+        $this->loggedUser = $this->validateUserSession($userModel);
     }
 
     /**
@@ -44,6 +50,7 @@ abstract class BaseTwigAction
     protected function render(string $template, array $config = []): string
     {
         $template .= '.twig';
+        $config = array_merge(['user' => $this->loggedUser], $config);
         return $this->twig->render($template, $config);
     }
 
