@@ -27,19 +27,19 @@ class UserModel extends BaseModel
     public function findByHash(string $hash): User
     {
         $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
-        INNER JOIN login_hash lh ON u.CodUsu = lh.user_id
+        INNER JOIN login_hash lh ON u.id = lh.user_id
         WHERE lh.hash = ?;
 SQL;
         $binds = [$hash];
@@ -68,17 +68,17 @@ SQL;
     public function findConfirmedByLoginData(string $user, string $password): User
     {
         $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
         WHERE u.username = ?
           AND u.password = ?
@@ -115,19 +115,19 @@ SQL;
     public function findByEmailActivation(string $code): User
     {
         $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
-        INNER JOIN verification v on u.CodUsu = v.user_id
+        INNER JOIN verification v on u.id = v.user_id
         WHERE v.code = ?
 SQL;
 
@@ -170,7 +170,7 @@ SQL;
         string $email
     ): User {
         $sql = <<<SQL
-        INSERT INTO users(Rango, username, name, Telefono, Apellido1, Apellido2, password, Email)
+        INSERT INTO users(`rank`, username, name, phone, surname, second_surname, password, email)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
@@ -217,17 +217,17 @@ SQL;
     ): User {
         $sql =<<<SQL
         UPDATE users SET
-            Confirmado = ?,
-            Rango = ?,
+            confirmed = ?,
+            rank = ?,
             username = ?,
             name = ?,
-            Telefono = ?,
-            Apellido1 = ?,
-            Apellido2 = ?,
+            phone = ?,
+            surname = ?,
+            second_surname = ?,
             password = ?,
-            Email = ?,
-            EmailConfirmado = ?
-        WHERE CodUsu = ?
+            email = ?,
+            email_confirmed = ?
+        WHERE id = ?
 SQL;
 
         $binds = [
@@ -261,19 +261,19 @@ SQL;
     public function findById(int $userId): User
     {
         $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
-        WHERE u.CodUsu = ?
+        WHERE u.id = ?
 SQL;
         $binds = [$userId];
 
@@ -297,19 +297,19 @@ SQL;
     public function find(): array
     {
         $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
-        WHERE u.Confirmado = 0
+        WHERE u.confirmed = 0
 SQL;
 
         $statement = $this->query($sql, []);
@@ -331,19 +331,19 @@ SQL;
     {
         {
             $sql = <<<SQL
-        SELECT u.Confirmado AS confirmed,
-               u.Rango AS `rank`,
-               u.CodUsu AS id,
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
                u.username AS username,
                u.name AS name,
-               u.Telefono AS phone,
-               u.Apellido1 AS surname,
-               u.Apellido2 AS secondSurname,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
                u.password AS password,
-               u.Email AS email,
-               u.EmailConfirmado AS confirmedMail
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
         FROM users u
-        WHERE u.Rango = ?
+        WHERE u.rank = ?
 SQL;
 
             $binds = [$rank];
@@ -368,7 +368,7 @@ SQL;
     {
         $sql =<<<SQL
         DELETE FROM users
-        WHERE CodUsu = ?
+        WHERE id = ?
 SQL;
 
         $binds = [$user->id()];
