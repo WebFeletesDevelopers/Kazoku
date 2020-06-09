@@ -68,10 +68,8 @@ class UserController
             $email
         );
         if ($user) {
-            var_dump($user);
              $verification = $this->verificationModel->createForUser($user);
              if ($verification) {
-                 var_dump($verification);
                 $this->mailService->sendRegisterMail($user, $verification);
              }
         }
