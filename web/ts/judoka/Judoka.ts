@@ -46,6 +46,110 @@ export class Judoka {
         this._codAddress = codAddress;
     }
 
+    get name(): string {
+        return this._name;
+    }
+
+    set name(value: string) {
+        this._name = value;
+    }
+
+    get lastName1(): string {
+        return this._lastName1;
+    }
+
+    set lastName1(value: string) {
+        this._lastName1 = value;
+    }
+
+    get lastName2(): string {
+        return this._lastName2;
+    }
+
+    set lastName2(value: string) {
+        this._lastName2 = value;
+    }
+
+    get sex(): number {
+        return this._sex;
+    }
+
+    set sex(value: number) {
+        this._sex = value;
+    }
+
+    get idFanjyda(): number {
+        return this._idFanjyda;
+    }
+
+    set idFanjyda(value: number) {
+        this._idFanjyda = value;
+    }
+
+    get dni(): string {
+        return this._dni;
+    }
+
+    set dni(value: string) {
+        this._dni = value;
+    }
+
+    get birthDate(): string {
+        return this._birthDate;
+    }
+
+    set birthDate(value: string) {
+        this._birthDate = value;
+    }
+
+    get phone(): number {
+        return this._phone;
+    }
+
+    set phone(value: number) {
+        this._phone = value;
+    }
+
+    get email(): string {
+        return this._email;
+    }
+
+    set email(value: string) {
+        this._email = value;
+    }
+
+    get illness(): string {
+        return this._illness;
+    }
+
+    set illness(value: string) {
+        this._illness = value;
+    }
+
+    get codUsu(): number {
+        return this._codUsu;
+    }
+
+    set codUsu(value: number) {
+        this._codUsu = value;
+    }
+
+    get codTutor(): number {
+        return this._codTutor;
+    }
+
+    set codTutor(value: number) {
+        this._codTutor = value;
+    }
+
+    get codAddress(): number {
+        return this._codAddress;
+    }
+
+    set codAddress(value: number) {
+        this._codAddress = value;
+    }
+
     /**
      * Check if the email is ok
      */
@@ -76,6 +180,7 @@ export class Judoka {
             && this._sex >= 0
             && this._phone > 0
             && this._codAddress > 0
+            && ((this._dni == null) || this._dni.length == 9 )
             ;
     }
 }

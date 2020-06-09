@@ -1,7 +1,6 @@
 import {Judoka} from "./Judoka";
 import {JudokaRequest} from "./JudokaRequest";
 import {ErrorHandler} from "../util/ErrorHandler";
-import {ClassRequest} from "../class/ClassRequest";
 
 /**
  * News processing class.
@@ -11,13 +10,13 @@ export class JudokaMain {
      * Main news handler.
      */
     public static handle(): void {
-        const isJudokasPage: boolean = !! document.querySelector('[data-action="judokas"]');
-        const isJudokaDetailPage: boolean = !! document.querySelector('[data-action="judoka-detail"]');
+        const isJudokasPage: boolean = !!document.querySelector('[data-action="judokas"]');
+        const isJudokaDetailPage: boolean = !!document.querySelector('[data-action="judoka-detail"]');
 
         if (isJudokasPage) {
             this.handleJudokasPage();
         }
-        if (isJudokaDetailPage){
+        if (isJudokaDetailPage) {
             this.handleJudokaDetailPage();
         }
     }
@@ -27,6 +26,10 @@ export class JudokaMain {
      * Handle the news creator form.
      */
     private static handleJudokasPage(): void {
+
+
+
+
         const allButtons: NodeListOf<Element> = document.querySelectorAll('button.judokaBtn');
         allButtons.forEach(function (button) {
             button.addEventListener('click', e => {
@@ -40,7 +43,7 @@ export class JudokaMain {
                 }
             });
         });
-        const tableButtons: NodeListOf<Element> =      document.querySelectorAll('.tablaBtn');
+        const tableButtons: NodeListOf<Element> = document.querySelectorAll('.tablaBtn');
         tableButtons.forEach(function (button) {
             button.addEventListener('click', e => {
                 const classId = button.getAttribute("data-id");
@@ -55,16 +58,53 @@ export class JudokaMain {
 
     private static handleJudokaDetailPage(): void {
         const updateButton: HTMLButtonElement = document.querySelector('button#updateData');
+        const modifyName:      HTMLInputElement = document.querySelector('#mod-name');
+        const modifyLastName1:    HTMLInputElement = document.querySelector('#mod-lastname1');
+        const modifyLastName2:    HTMLInputElement = document.querySelector('#mod-lastname2');
+        const modifyDni: HTMLInputElement = document.querySelector('#mod-dni');
+        const modifyFanjydaId:   HTMLInputElement = document.querySelector('#mod-fanjydaId');
+        const modifyParentId:   HTMLInputElement = document.querySelector('#mod-parentId');
+        const modifyBirthDate:   HTMLInputElement = document.querySelector('#mod-birthDate');
+        const modifyEmail:   HTMLInputElement = document.querySelector('#mod-email');
+        const modifyPhone:    HTMLSelectElement = document.querySelector('#mod-phone');
+        const modifyIllness:       HTMLTextAreaElement = document.querySelector('#mod-illness');
+        const modifyClassId:       HTMLSelectElement = document.querySelector('#mod-classId');
+        const modifySex:       HTMLSelectElement = document.querySelector('#mod-sex');
+        const modifyBeltId:       HTMLSelectElement = document.querySelector('#mod-beltId');
+        const updateDataButton:       HTMLButtonElement = document.querySelector('#updateData');
+        const updateAddress:       HTMLButtonElement = document.querySelector('#mod-address');
+        const editedJudoka: Judoka = new Judoka(
+            modifyName.value,
+            modifyLastName1.value,
+            modifyLastName2.value,
+            parseInt(modifySex.value),
+            parseInt(modifyFanjydaId.value),
+            modifyDni.value,
+            modifyBirthDate.value,
+            parseInt(modifyPhone.value),
+            modifyEmail.value,
+            modifyIllness.value,
+            parseInt(updateDataButton.getAttribute("data-id")),
+            parseInt(modifyParentId.value),
+            parseInt(updateAddress.getAttribute("data-id"))
+        );
+        modifyName.addEventListener('keyup', () => {
+            editedJudoka.name = modifyName.value;
+            this.validateModJudoka(updateDataButton, editedJudoka);
+            console.log(editedJudoka);
+        });
+
 
         updateButton.addEventListener('click', e => {
-                const judokaId = updateButton.getAttribute("data-id");
-                const name = updateButton.getAttribute("data-name");
-                if(name == "updatedata"){
-                    e.preventDefault();
-                    JudokaMain.updateJudoka(parseInt(judokaId));
-                };
+            const judokaId = updateButton.getAttribute("data-id");
+            const name = updateButton.getAttribute("data-name");
+            if (name == "updatedata") {
+                e.preventDefault();
+                JudokaMain.updateJudoka(editedJudoka,parseInt(judokaId));
+            }
+            ;
         });
-        const tableButtons: NodeListOf<Element> =      document.querySelectorAll('.tablaBtn');
+        const tableButtons: NodeListOf<Element> = document.querySelectorAll('.tablaBtn');
         tableButtons.forEach(function (button) {
             button.addEventListener('click', e => {
                 const classId = button.getAttribute("data-id");
@@ -77,12 +117,24 @@ export class JudokaMain {
 
     }
 
+    /**
+     * Validates judoka params
+     * @param button
+     * @param judoka
+     */
+    private static validateModJudoka(button: HTMLButtonElement, judoka: Judoka): void {
+        if (judoka.validate() && judoka.validateEmail() && judoka.validateBirtday()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
 
     /**
      * delete a judoka from the database
      * @param judokaId
      */
-    private static deleteJudoka(judokaId: number): void  {
+    private static deleteJudoka(judokaId: number): void {
         JudokaRequest.deleteJudoka(judokaId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
@@ -92,8 +144,13 @@ export class JudokaMain {
         });
     }
 
-    private static updateJudoka(judoka: judoka, judokaId: number): void  {
-        JudokaRequest.deleteJudoka(judokaId).then(res => {
+    /**
+     * Updates a judoka
+     * @param judoka
+     * @param judokaId
+     */
+    private static updateJudoka(judoka: Judoka, judokaId: number): void {
+        JudokaRequest.modifyJudoka(judoka, judokaId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {

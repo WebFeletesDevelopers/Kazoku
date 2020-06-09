@@ -40,14 +40,33 @@
                         <td class="text-center"><img src="/img/profile/{% if judoka.judokaIdNo is defined %}{{ judoka.judokaId }}.jpg{% else %}generic.png{% endif %}" width="50" height="50"></td>
                         <td class="text-center">{{judoka.name}}</td>
                         <td class="text-center">{{judoka.lastName1}} {{ judoka.lastName2 }}</td>
-                        <td class="text-center">{{ judoka.birthDate  }}</td>
-                        <td class="text-center">{{ judoka.sex }}</td>
-                        <td class="text-center">{{ judoka.beltId }}</td>
+                        <td class="text-center"><input class="text-center border-0" type="date" disabled value="{{ judoka.birthDate  }}"></td>
+                        <td class="text-center">{% if judoka.sex == 1 %}{{ "Masculino" | trans }}{% else %}{{ "Femenino" | trans }}{% endif %}</td>
+                        <td class="text-center">
+                            {% if judoka.beltId == 1  %}{{ "Blanco" }}
+                            {% elseif judoka.beltId == 2 %}{{ "Blanco-Amarillo" }}
+                            {% elseif judoka.beltId == 3 %}{{ "Amarillo" }}
+                            {% elseif judoka.beltId == 4 %}{{ "Amarillo-Naranja" }}
+                            {% elseif judoka.beltId == 5 %}{{ "Naranja" }}
+                            {% elseif judoka.beltId == 6 %}{{ "Naranja-verde" }}
+                            {% elseif judoka.beltId == 7 %}{{ "Verde" }}
+                            {% elseif judoka.beltId == 8 %}{{ "Verde-Azul" }}
+                            {% elseif judoka.beltId == 9 %}{{ "Azul" }}
+                            {% elseif judoka.beltId == 10 %}{{ "Azul-marrón" }}
+                            {% elseif judoka.beltId == 11 %}{{ "Marrón" }}
+                            {% elseif judoka.beltId == 12 %}{{ "1º DAN" }}
+                            {% elseif judoka.beltId == 13 %}{{ "2º DAN" }}
+                            {% elseif judoka.beltId == 14 %}{{ "3º DAN" }}
+                            {% elseif judoka.beltId == 15 %}{{ "4º DAN" }}
+                            {% elseif judoka.beltId == 16 %}{{ "5º DAN" }}
+                            {% elseif judoka.beltId == 17 %}{{ "Blanco-Rojo" }}
+                            {% endif %}
+                        </td>
                         <td class="text-center">{{ judoka.fanjydaId }}</td>
                         <td class="text-center">{{ judoka.dni }}</td>
                         <td class="text-center row">
                             <a href="/judokaDetail/{{ judoka.judokaId }}" class="col-6 container-fluid btn btn-sm btn-info rounded-0 inline-block "><i class="fas fa-info"></i></a>
-                            <button data-id="{{ judoka.judokaId }}" data-name="delete-judoka"  class="judokaBtn col-6 container-fluid btn btn-sm btn-danger rounded-0 inline-block "><i class="fas fa-eraser"></i></button>
+                            <button data-id="{{ judoka.judokaId }}" id="" data-name="delete-judoka"  class="judokaBtn col-6 container-fluid btn btn-sm btn-danger rounded-0 inline-block "><i class="fas fa-eraser"></i></button>
                         </td>
                     </tr>
 

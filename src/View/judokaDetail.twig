@@ -73,7 +73,7 @@
                                             <div class="form-group"><label for="username"><strong>{{ "Nombre" | trans}}</strong></label><input id="mod-name" class="judoka form-control" type="text" value="{{ judoka.name }}" name="username" /></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="email"><strong>{{ "Fecha Nacimiento" | trans}}</strong></label><input id="mod-birthDate" class="judoka form-control" type="email" value="{{ judoka.birthDate }}" name="email" /></div>
+                                            <div class="form-group"><label for="email"><strong>{{ "Fecha Nacimiento" | trans}}</strong></label><input id="mod-birthDate" class="judoka form-control" type="date" value="{{ judoka.birthDate }}" name="email" /></div>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -84,12 +84,29 @@
                                             <div class="form-group"><label for="last_name"><strong>{{ "Apellido 2" | trans}}</strong></label><input id="mod-lastname2" class="judoka form-control" type="text" value="{{ judoka.lastName2 }}" name="last_name" /></div>
                                         </div>
                                     </div>
+                                    <div class="form-row mb-2">
+                                        <div class="col my-1">
+                                            <label for="first_name"><strong>{{ "Cinturón" | trans}}</strong></label>
+                                            <Select id="mod-beltId" class="judoka form-control"  name="sex" >
+                                                <option value="1"  {% if judoka.sex == 1 %}selected {% endif %} >{{"Blanco" | trans}}</option>
+                                            </Select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-row">
                                         <div class="col">
                                           <div class="form-group"><label for="first_name"><strong>{{ "DNI/NIE/PASAPORTE" | trans}}</strong></label><input id="mod-dni" class="judoka form-control" type="text" value="{{judoka.dni}}" name="first_name" /></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="last_name"><strong>{{ "ID Fanjyda" | trans}}</strong></label><input id="mod-fanjydaId" class="judoka form-control" type="text" value="{{ judoka.fanjydaId }}" name="last_name" /></div>
+                                            <div class="form-group"><label for="last_name"><strong>{{ "ID Fanjyda" | trans}}</strong></label><input id="mod-fanjydaId" class="judoka form-control" type="number" maxlength="5" value="{{ judoka.fanjydaId }}" name="last_name" /></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group"><label for="last_name"><strong>{{ "Categoría" | trans}}</strong></label>
+                                                <Select id="mod-sex" class="judoka form-control"  name="sex" >
+                                                    <option value="1"  {% if judoka.sex == 1 %}selected {% endif %} >{{"Masculino" | trans}}</option>
+                                                    <option value="0 " {% if judoka.sex == 0 %}selected {% endif %}>{{"Femenino" | trans}}</option>
+                                                </Select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -97,7 +114,7 @@
                                             <div class="form-group"><label for="first_name"><strong>{{ "Email" | trans}}</strong></label><input id="mod-email" class="judoka form-control" type="text" value="{{judoka.email}}" name="first_name" /></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>{{ "Teléfono" | trans}}</strong></label><input id="mod-phone" class="judoka form-control" type="text" value="{{judoka.phone}}" name="first_name" /></div>
+                                            <div class="form-group"><label for="first_name"><strong>{{ "Teléfono" | trans}}</strong></label><input id="mod-phone" class="judoka form-control" type="number" maxlength="9" value="{{judoka.phone}}" name="first_name" /></div>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -110,6 +127,7 @@
                 </div>
             </div>
         </div>
+        <input id="mod-parentId" value="{{ judoka.parentId }}" />
         <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.id}}">{{"Actualizar datos" | trans}}</button>
         {% if judoka.addressId !=0 %}
             <div class="card shadow">
@@ -127,7 +145,7 @@
                                 <div class="form-group"><label for="zip"><strong>{{ "Código Postal" | trans}}</strong></label><input class="form-control" type="text" placeholder="29003" name="zip" /></div>
                             </div>
                         </div>
-                        <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
+                        <div class="form-group"><button id="mod-address" data-id="{{ judoka.CodAddress }}" class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
                         <small class="text-danger">{{ "Si modificas esta dirección, los cambios se aplicarán a las personas que están registradas en tu misma dirección" | trans }}</small>
                     </form>
                 </div>
