@@ -9,11 +9,11 @@ namespace WebFeletesDevelopers\Kazoku\Model\Enum;
  */
 class Rank
 {
-    private const ADMIN = 0;
-    private const TRAINER = 1;
-    private const PARENT = 2;
-    private const PUPIL = 3;
-    private const UNREGISTERED = 4;
+    public const ADMIN = 0;
+    public const TRAINER = 1;
+    public const PARENT = 2;
+    public const PUPIL = 3;
+    public const UNREGISTERED = 4;
 
     private const RANK_TO_NUMBER = [
         'admin' => self::ADMIN,

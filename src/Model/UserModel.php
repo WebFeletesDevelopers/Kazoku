@@ -323,6 +323,43 @@ SQL;
     }
 
     /**
+     * @param int $rank
+     * @return User[]
+     * @throws QueryException
+     */
+    public function findByRank(int $rank): array
+    {
+        {
+            $sql = <<<SQL
+        SELECT u.Confirmado AS confirmed,
+               u.Rango AS `rank`,
+               u.CodUsu AS id,
+               u.username AS username,
+               u.name AS name,
+               u.Telefono AS phone,
+               u.Apellido1 AS surname,
+               u.Apellido2 AS secondSurname,
+               u.password AS password,
+               u.Email AS email,
+               u.EmailConfirmado AS confirmedMail
+        FROM users u
+        WHERE u.Rango = ?
+SQL;
+
+            $binds = [$rank];
+
+            $statement = $this->query($sql, $binds);
+            if ($statement === false) {
+                throw QueryException::fromFailedQuery($sql, []);
+            }
+
+            $rows = $statement->fetchAll();
+
+            return UserFactory::fromMysqlRows($rows);
+        }
+    }
+
+    /**
      * @param User $user
      * @return bool
      * @throws QueryException
