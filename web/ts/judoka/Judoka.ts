@@ -15,6 +15,8 @@ export class Judoka {
     private _codUsu: number;
     private _codTutor: number;
     private _codAddress: number;
+    private _codBelt: number;
+    private _codClass: number;
 
     constructor(
         name: string,
@@ -29,7 +31,9 @@ export class Judoka {
         illness: string,
         codUsu: number,
         codTutor: number,
-        codAddress: number
+        codAddress: number,
+        codBelt: number,
+        codClass: number
     ) {
         this._name = name;
         this._lastName1 = lastName1;
@@ -44,6 +48,24 @@ export class Judoka {
         this._codUsu = codUsu;
         this._codTutor = codTutor;
         this._codAddress = codAddress;
+        this._codBelt = codBelt;
+        this._codClass = codClass;
+    }
+
+    get codBelt(): number {
+        return this._codBelt;
+    }
+
+    set codBelt(value: number) {
+        this._codBelt = value;
+    }
+
+    get codClass(): number {
+        return this._codClass;
+    }
+
+    set codClass(value: number) {
+        this._codClass = value;
     }
 
     get name(): string {
@@ -166,8 +188,8 @@ export class Judoka {
      */
     public validateBirtday(): boolean {
         return this._birthDate.length == 10
-            && this._birthDate.includes('/', 2)
-            && this._birthDate.includes('/', 5)
+            && this._birthDate.includes('-', 4)
+            && this._birthDate.includes('-', 7)
     }
 
     /**
@@ -177,6 +199,8 @@ export class Judoka {
         return this._name !== ''
             && this._lastName1 !== ''
             && this._sex <= 1
+            && this._sex >= 0
+            && this._codBelt > 0
             && this._sex >= 0
             && this._phone > 0
             && this._codAddress > 0

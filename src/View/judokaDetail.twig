@@ -65,7 +65,13 @@
                     <div class="col h-100">
                         <div class="card shadow mb-3">
                             <div class="card-header py-3">
-                                <p class="text-primary m-0 font-weight-bold">{{ "Datos" | trans}}</p>
+                                <p class="text-primary m-0 font-weight-bold">{{ "Datos" | trans}}
+                                {% if judoka.userId > 0 %}
+                                    - <small id="userId" data-id="{{ judoka.userId }}" class="text-success">{{ "Cuenta enlazada" | trans }}</small>
+                                {% else %}
+                                    - <small class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
+                                {% endif %}
+                                </p>
                             </div>
                             <div class="card-body">
                                     <div class="form-row">
@@ -127,8 +133,9 @@
                 </div>
             </div>
         </div>
-        <input id="mod-parentId" value="{{ judoka.parentId }}" />
-        <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.id}}">{{"Actualizar datos" | trans}}</button>
+        <!--  TODO: cuando esté el buscar padre, se incorporará una tarjeta con la información del padre-->
+        <input id="mod-parentId" value="{{ judoka.parentId }}" hidden />
+        <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.judokaId}}">{{"Actualizar datos" | trans}}</button>
         {% if judoka.addressId !=0 %}
             <div class="card shadow">
                 <div class="card-header py-3">
@@ -145,7 +152,7 @@
                                 <div class="form-group"><label for="zip"><strong>{{ "Código Postal" | trans}}</strong></label><input class="form-control" type="text" placeholder="29003" name="zip" /></div>
                             </div>
                         </div>
-                        <div class="form-group"><button id="mod-address" data-id="{{ judoka.CodAddress }}" class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
+                        <div class="form-group"><button id="mod-address" data-id="{{ judoka.addressId }}" class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
                         <small class="text-danger">{{ "Si modificas esta dirección, los cambios se aplicarán a las personas que están registradas en tu misma dirección" | trans }}</small>
                     </form>
                 </div>

@@ -20,20 +20,8 @@ export class JudokaRequest {
     public static modifyJudoka(judoka: Judoka, judokaId: number): Promise<Response> {
 
         const data = `name=${judoka.name}
-        &lastName1=${judoka.lastName1}
-        &lastName2=${judoka.lastName2}
-        &sex=${judoka.sex}
-        &idFanjyda=${judoka.idFanjyda}
-        &dni=${judoka.dni}
-        &brithDate=${judoka.birthDate}
-        &phone=${judoka.phone}
-        &email=${judoka.email}
-        &illness=${judoka.illness}
-        &userId=${judoka.codUsu}
-        &parentId=${judoka.codTutor}
-        &address=${judoka.codAddress}
-        &judokaId=${judokaId}`;
-        return Request.post('/judoka/find', data);
+        &lastName1=${judoka.lastName1}&lastName2=${judoka.lastName2}&sex=${judoka.sex}&idFanjyda=${judoka.idFanjyda}&dni=${judoka.dni}&birthDate=${judoka.birthDate}&phone=${judoka.phone}&email=${judoka.email}&illness=${judoka.illness}&userId=${judoka.codUsu}&parentId=${judoka.codTutor}&addressId=${judoka.codAddress}&beltId=${judoka.codBelt}&classId=${judoka.codClass}&judokaId=${judokaId}`;
+        return Request.post('/judoka/modify', data);
     }
 
     /**

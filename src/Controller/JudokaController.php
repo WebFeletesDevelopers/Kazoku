@@ -28,7 +28,7 @@ class JudokaController
         int $userId,
         int $fanjydaId,
         string $dni,
-        DateTime $birthDate,
+        string $birthDate,
         int $phone,
         string $email,
         string $illness,
@@ -55,7 +55,7 @@ class JudokaController
         if($parentId == ''){
             $parentId = null;
         }
-
+        $birthDate = strtotime($birthDate);
 
         try {
             return $this->model->add($name, $lastName1, $lastName2, $sex, $userId, $fanjydaId, $dni, $birthDate, $phone, $email, $illness, $parentId, $beltId, $addressId, $classid);
@@ -73,23 +73,23 @@ class JudokaController
     }
 
 
-    public function modify(
+    public function modifyJudoka(
         string $name,
         string $lastName1,
-        string $lastName2,
-        int $sex,
-        int $userId,
-        int $fanjydaId,
-        string $dni,
-        DateTime $birthDate,
-        int $phone,
+        ?string $lastName2,
+        ?string $dni,
         string $email,
-        string $illness,
-        int $parentId,
-        int $beltId,
+        ?string $illness,
+        string $birthDate,
+        int $sex,
+        ?int $userId,
+        ?int $parentId,
         int $addressId,
+        int $beltId,
         int $classid,
-        int $judokaId
+        int $judokaId,
+        int $phone,
+        ?int $fanjydaId
     ): bool {
         if($lastName2 == ''){
             $lastName2 = null;
@@ -109,7 +109,6 @@ class JudokaController
         if($parentId == ''){
             $parentId = null;
         }
-
 
         try {
             return $this->model->modify($name, $lastName1, $lastName2, $sex, $userId, $fanjydaId, $dni, $birthDate, $phone, $email, $illness, $parentId, $beltId, $addressId, $classid, $judokaId);

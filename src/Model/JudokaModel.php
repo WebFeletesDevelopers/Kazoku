@@ -106,16 +106,16 @@ SQL;
     public function modify(
         string $name,
         string $lastName1,
-        string $lastName2,
+        ?string $lastName2,
         int $sex,
-        int $userId,
-        int $fanjydaId,
-        string $dni,
-        DateTime $birthDate,
+        ?int $userId,
+        ?int $fanjydaId,
+        ?string $dni,
+        string $birthDate,
         int $phone,
         string $email,
         string $illness,
-        int $parentId,
+        ?int $parentId,
         int $beltId,
         int $addressId,
         int $classid,
@@ -135,7 +135,7 @@ SQL;
             $userId,
             $fanjydaId,
             $dni,
-            $birthDate->format(ConnectionHelper::MYSQL_DATE_FORMAT),
+            $birthDate,
             $phone,
             $email,
             $illness,
@@ -143,7 +143,7 @@ SQL;
             $beltId,
             $addressId,
             $classid,
-            $judokaId
+            $judokaId,
         ];
 
         $statement = $this->query($sql, $binds);
