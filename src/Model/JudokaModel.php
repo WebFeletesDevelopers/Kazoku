@@ -114,7 +114,7 @@ SQL;
         string $birthDate,
         int $phone,
         string $email,
-        string $illness,
+        ?string $illness,
         ?int $parentId,
         int $beltId,
         int $addressId,

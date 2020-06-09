@@ -36,19 +36,19 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         $name = $data['name'];
         $lastname1 = $data['lastName1'];
         $lastname2 = $data['lastName2'];
-        $sex = $data['sex'];
-        $fanjydaId = $data['fanjydaId'];
+        $sex = intval($data['sex']);
+        $fanjydaId = intval($data['idFanjyda']);
         $dni = $data['dni'];
         $birthDate = $data['birthDate'];
-        $phone = $data['phone'];
+        $phone = intval($data['phone']);
         $email = $data['email'];
         $illness = $data['illness'];
-        $userId = $data['userId'];
-        $parentId = $data['parentId'];
-        $addressId = $data['addressId'];
-        $beltId = $data['beltId'];
-        $classId = $data['classId'];
-        $judokaId = $data['judokaId'];
+        $userId = intval($data['userId']);
+        $parentId = intval($data['parentId']);
+        $addressId = intval($data['addressId']);
+        $beltId = intval($data['beltId']);
+        $classId = intval($data['classId']);
+        $judokaId = intval($data['judokaId']);
         $judokaId = intval($judokaId);
 
 
@@ -147,7 +147,7 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         if ($birthDate === null || trim($birthDate) === '') {
             throw InvalidParametersException::fromInvalidParameter('birthdate');
         }
-        if ($email === null || trim($email) === '') {
+        if ($email === null || trim($email) === '-') {
             throw InvalidParametersException::fromInvalidParameter('email');
         }
         if ($sex === null || $sex = 0) {

@@ -75,6 +75,8 @@ export class JudokaMain {
         const updateDataButton:     HTMLButtonElement = document.querySelector('#updateData');
         const updateAddress:        HTMLButtonElement = document.querySelector('#mod-address');
 
+
+
         const editedJudoka: Judoka = new Judoka(
             modifyName.value,
             modifyLastName1.value,
@@ -177,11 +179,13 @@ export class JudokaMain {
      * @param judoka
      */
     private static validateModJudoka(button: HTMLButtonElement, judoka: Judoka): void {
-        if (judoka.validate() && judoka.validateEmail() && judoka.validateBirtday()) {
+        if (judoka.validate()) {
             button.disabled = false;
             return;
         }
-        button.disabled = true;
+        else{
+            button.disabled = true;
+        }
     }
 
     /**

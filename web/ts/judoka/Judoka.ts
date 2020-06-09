@@ -176,17 +176,18 @@ export class Judoka {
      * Check if the email is ok
      */
     public validateEmail(): boolean {
-        return this._email.includes('@')
-            && this._email.includes('.')
-            && this._email.length > 5
-            && !(this._email.includes(' '))
+        return (this._email.includes('@')
+              && this._email.includes('.')
+             && this._email.length > 5
+            && !(this._email.includes(' ')))
+            || this._email == null
 
     }
 
     /**
      * Validates data format
      */
-    public validateBirtday(): boolean {
+    public validateBirthData(): boolean {
         return this._birthDate.length == 10
             && this._birthDate.includes('-', 4)
             && this._birthDate.includes('-', 7)
@@ -201,10 +202,6 @@ export class Judoka {
             && this._sex <= 1
             && this._sex >= 0
             && this._codBelt > 0
-            && this._sex >= 0
-            && this._phone > 0
-            && this._codAddress > 0
-            && ((this._dni == null) || this._dni.length == 9 )
             ;
     }
 }

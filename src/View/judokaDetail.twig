@@ -69,7 +69,7 @@
                                 {% if judoka.userId > 0 %}
                                     - <small id="userId" data-id="{{ judoka.userId }}" class="text-success">{{ "Cuenta enlazada" | trans }}</small>
                                 {% else %}
-                                    - <small class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
+                                    - <small id="userId" data-id="NaN" class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
                                 {% endif %}
                                 </p>
                             </div>
@@ -104,7 +104,7 @@
                                           <div class="form-group"><label for="first_name"><strong>{{ "DNI/NIE/PASAPORTE" | trans}}</strong></label><input id="mod-dni" class="judoka form-control" type="text" value="{{judoka.dni}}" name="first_name" /></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="last_name"><strong>{{ "ID Fanjyda" | trans}}</strong></label><input id="mod-fanjydaId" class="judoka form-control" type="number" maxlength="5" value="{{ judoka.fanjydaId }}" name="last_name" /></div>
+                                            <div class="form-group"><label for="last_name"><strong>{{ "ID Fanjyda" | trans}}</strong></label><input id="mod-fanjydaId" class="judoka form-control" type="text" maxlength="5" value="{{ judoka.fanjydaId }}" name="last_name" /></div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-group"><label for="last_name"><strong>{{ "Categoría" | trans}}</strong></label>
@@ -136,7 +136,6 @@
         <!--  TODO: cuando esté el buscar padre, se incorporará una tarjeta con la información del padre-->
         <input id="mod-parentId" value="{{ judoka.parentId }}" hidden />
         <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.judokaId}}">{{"Actualizar datos" | trans}}</button>
-        {% if judoka.addressId !=0 %}
             <div class="card shadow">
                 <div class="card-header py-3">
                     <p class="text-primary m-0 font-weight-bold">{{ "Dirección" | trans}}</p>
@@ -157,6 +156,5 @@
                     </form>
                 </div>
             </div>
-        {% endif %}
     </div>
 {% endblock %}
