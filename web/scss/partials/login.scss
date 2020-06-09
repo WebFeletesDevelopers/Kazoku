@@ -1,54 +1,25 @@
 @import '../variables/animations';
 @import '../variables/variables';
+@import '../variables/mixins';
 
 body[data-action="login"] {
-  background-image: linear-gradient(180deg, #f8f9fc 10%,#c2cbe5);
+  background-image: $form-page-background;
 
   div.login-form {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 6vh;
-    margin: 0 auto;
+    @include full-page-form;
     width: 50vw;
     height: 45vh;
-    background-color: white;
-    border-radius: .5em;
-    box-shadow: -1em 1em 4em rgba(0, 0, 0, 0.5);
-    transition: 0.4s box-shadow ease;
-
-    &.kazoku-error-shadow {
-      box-shadow: -1em 1em 2em rgba(255, 0, 0, 0.5);
-
-      &.animate {
-        animation: error-animation linear 0.2s 2;
-      }
-    }
 
     .left {
-      flex-basis: 50%;
-      height: 100%;
-
-      figure {
-        display: block;
-        height: 100%;
-        margin: 0;
-
-        img {
-          display: block;
-          margin: 0 auto;
-          height: 100%;
-          width: auto;
-        }
-      }
+      @include half-width-full-height-container;
+      @include form-logo;
     }
 
     .right {
       flex-basis: 50%;
 
       form {
+        @include full-page-form-input;
         padding: 2em;
 
         h2 {
@@ -56,71 +27,21 @@ body[data-action="login"] {
           font-size: 1.75em;
           text-align: center;
         }
-
-        input {
-          display: block;
-          width: 80%;
-          margin: 1em auto;
-          border: 1px solid rgb(136, 136, 136);
-          border-radius: .5em;
-          padding: .25em .5em;
-          transition: 0.2s box-shadow ease;
-
-          &:focus {
-            box-shadow: 0 0 .4em rgb(81, 110, 191);
-          }
-        }
-
-        button {
-          display: block;
-          background-color: #224abd;
-          color: white;
-          border: none;
-          width: 70%;
-          margin: 7.5% auto 0;
-          padding: .5em 0;
-          border-radius: .5em;
-          transition: 0.4s background-color, color ease;
-
-          &:hover {
-            background-color: rgb(56, 84, 105);
-          }
-
-          &:disabled {
-            background-color: rgb(169, 190, 202);
-            cursor: not-allowed;
-            color: black;
-          }
-        }
       }
     }
 
+    button {
+      @include full-page-form-button;
+    }
+
     @media(max-width: $mobile-breakpoint) {
-      flex-direction: column;
-      align-items: unset;
       width: 80vw;
       height: 80vh;
-
-      .left {
-        max-height: 50%;
-        height: unset;
-
-        figure {
-
-          img {
-            width: auto;
-            max-width: 100%;
-            height: auto;
-            max-height: 100%;
-          }
-        }
-      }
 
       .right {
         max-height: 50%;
         max-width: 100%;
       }
-
     }
   }
 }

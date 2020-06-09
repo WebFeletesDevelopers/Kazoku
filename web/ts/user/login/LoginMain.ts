@@ -1,6 +1,6 @@
-import {Login} from "./Login";
-import {LoginRequest} from "./LoginRequest";
-import {Cookie} from "../util/Cookie";
+import { Login } from "./Login";
+import { LoginRequest } from "./LoginRequest";
+import { Cookie } from "../../util/Cookie";
 
 export class LoginMain {
     public static handle(): void {
@@ -38,7 +38,6 @@ export class LoginMain {
 
         loginButton.addEventListener('click', e => {
             e.preventDefault();
-            (e.target as HTMLButtonElement).disabled = true;
             LoginMain.login(loginData, loginContainer, loginButton);
         });
     }
@@ -47,7 +46,8 @@ export class LoginMain {
         loginData: Login,
         loginContainer: HTMLDivElement,
         loginButton: HTMLButtonElement
-    ) {
+    ): void {
+        loginButton.disabled = true;
         LoginRequest.getLoginHash(loginData).then(res => {
             if (res.statusCode === 200) {
                 const hash = res.message['hash']

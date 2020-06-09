@@ -1,0 +1,160 @@
+@import './variables';
+
+@mixin full-page-form {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6vh;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: .5em;
+  box-shadow: -1em 1em 4em rgba(0, 0, 0, 0.5);
+  transition: 0.4s box-shadow ease;
+
+  &.kazoku-error-shadow {
+    box-shadow: -1em 1em 2em rgba(255, 0, 0, 0.5);
+
+    &.animate {
+      animation: error-animation linear 0.2s 2;
+    }
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    flex-direction: column;
+    align-items: unset;
+  }
+}
+
+@mixin full-page-form-button {
+  display: block;
+  background-color: #224abd;
+  color: white;
+  border: none;
+  width: 70%;
+  margin: 7.5% auto 0;
+  padding: .5em 0;
+  border-radius: .5em;
+  transition: 0.4s background-color, color ease;
+
+  &:hover {
+    background-color: rgb(56, 84, 105);
+  }
+
+  &:disabled {
+    background-color: rgb(169, 190, 202);
+    cursor: not-allowed;
+    color: black;
+  }
+}
+
+@mixin full-page-form-input {
+  input {
+    display: block;
+    width: 80%;
+    margin: 1em auto;
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: .5em;
+    padding: .25em .5em;
+    transition: 0.2s box-shadow ease;
+
+    &:focus {
+      box-shadow: 0 0 .4em rgb(81, 110, 191);
+    }
+  }
+
+  select {
+    display: block;
+    width: 100%;
+    margin: 1em auto;
+    border: 1px solid rgb(136, 136, 136);
+    border-radius: .5em;
+    padding: .25em .5em;
+    transition: 0.2s box-shadow ease;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@mixin half-width-full-height-container {
+  flex-basis: 50%;
+  height: 100%;
+
+  @media(max-width: $mobile-breakpoint) {
+    max-height: 50%;
+    height: 50%;
+  }
+}
+
+@mixin form-logo {
+  figure {
+    display: block;
+    height: 100%;
+    margin: 0;
+
+    img {
+      @include magic-center;
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+@mixin full-page-form-input-multirow {
+  @include full-page-form-input;
+
+  div.form-row {
+    display: flex;
+    margin: 2em 0;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    > input {
+      flex: 1 0 0;
+      min-width: 0;
+      margin: 0 .30em;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    div.form-row {
+      flex-direction: column;
+      margin: 0;
+
+      > input {
+        margin: .5em auto;
+        width: 90%;
+
+        &:first-of-type,
+        &:last-of-type {
+          margin: .5em auto;
+        }
+
+      }
+    }
+  }
+}
+
+@mixin magic-center {
+  top: 50%;
+  transform: translateY(-50%);
+}

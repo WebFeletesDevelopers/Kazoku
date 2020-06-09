@@ -4,6 +4,7 @@ namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\User\UserNotConfirmedException;
 use WebFeletesDevelopers\Kazoku\Model\LoginHashModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -36,10 +37,11 @@ class LoginHashController
      * @return string
      * @throws QueryException
      * @throws InvalidCredentialsException
+     * @throws UserNotConfirmedException
      */
     public function getHashFromLoginData(string $username, string $password): string
     {
-        $user = $this->userModel->findByLoginData($username, $password);
+        $user = $this->userModel->findConfirmedByLoginData($username, $password);
         return $this->hashModel->createForUser($user);
     }
 }

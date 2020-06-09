@@ -1,9 +1,11 @@
-import {NewsMain} from './news/NewsMain';
-import {LoginMain} from "./login/LoginMain";
-import {ClassMain} from './class/ClassMain';
-import {CenterMain} from './center/CenterMain';
-import {JudokaMain} from './judoka/JudokaMain';
-import {GeneralMain} from "./general/GeneralMain";
+import { NewsMain } from './news/NewsMain';
+import { LoginMain } from "./user/login/LoginMain";
+import { ClassMain } from './class/ClassMain';
+import { CenterMain } from './center/CenterMain';
+import { GeneralMain } from "./general/GeneralMain";
+import { UserMain } from "./user/UserMain";
+import { JudokaMain } from './judoka/JudokaMain';
+import { TrainerMain } from "./trainer/TrainerMain";
 
 class Main {
     public static handle(): void {
@@ -13,6 +15,8 @@ class Main {
         CenterMain.handle();
         JudokaMain.handle();
         GeneralMain.handle();
+        UserMain.handle();
+        TrainerMain.handle();
     }
 }
 

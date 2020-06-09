@@ -148,4 +148,92 @@ class User
     {
         return $this->confirmedMail;
     }
+
+    /**
+     * @param bool $confirmed
+     */
+    public function setConfirmed(bool $confirmed): void
+    {
+        $this->confirmed = $confirmed;
+    }
+
+    /**
+     * @param int $rank
+     */
+    public function setRank(int $rank): void
+    {
+        $this->rank = $rank;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @param string $surname
+     */
+    public function setSurname(string $surname): void
+    {
+        $this->surname = $surname;
+    }
+
+    /**
+     * @param string $secondSurname
+     */
+    public function setSecondSurname(string $secondSurname): void
+    {
+        $this->secondSurname = $secondSurname;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param bool $confirmedMail
+     */
+    public function setConfirmedMail(bool $confirmedMail): void
+    {
+        $this->confirmedMail = $confirmedMail;
+    }
 }
