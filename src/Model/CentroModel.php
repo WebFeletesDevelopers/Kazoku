@@ -4,14 +4,25 @@ namespace WebFeletesDevelopers\Kazoku\Model;
 
 use Exception;
 use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Centro;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\CentroFactory;
-use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
-
+/**
+ * Class CentroModel
+ * Center model
+ * @package WebFeletesDevelopers\Kazoku\Model
+ */
 class CentroModel extends BaseModel
 {
-
+    /**
+     * @param string $name
+     * @param string $direction
+     * @param int $zip
+     * @param int $phone
+     * @return bool
+     * @throws QueryException
+     */
     public function add(
         string $name,
         string $direction,
@@ -19,7 +30,7 @@ class CentroModel extends BaseModel
         int $phone
     ): bool {
         $sql = <<<SQL
-        INSERT INTO centro(Nombre, Direccion, CodPostal, Telefono)
+        INSERT INTO center(name, address, zip_code, phone)
         VALUES (?, ?, ?, ?);
 SQL;
         $binds = [
@@ -31,7 +42,7 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
@@ -45,6 +56,7 @@ SQL;
      * @param int $phone
      * @param int $centerId
      * @return bool
+     * @throws QueryException
      */
     public function modify(
         string $name,
@@ -54,9 +66,9 @@ SQL;
         int $centerId
     ): bool {
         $sql = <<<SQL
-        UPDATE centro c
-        SET c.Nombre = ?, c.Direccion = ?, c.CodPostal = ?, c.Telefono = ?
-        WHERE c.CodCentro = ?
+        UPDATE center c
+        SET c.name = ?, c.address = ?, c.zip_code = ?, c.phone = ?
+        WHERE c.id = ?
 SQL;
         $binds = [
             $name,
@@ -68,25 +80,23 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
     }
 
-
-
     /**
      * Deletes a center from the Database
      * @param int $CodCentro
      * @return bool
-     * @throws DeleteException
+     * @throws QueryException
      */
     public function delete(
         int $CodCentro
     ): bool {
         $sql = <<<SQL
-        DELETE FROM centro WHERE `CodCentro` = ?;
+        DELETE FROM center WHERE `id` = ?;
 SQL;
         $binds = [
             $CodCentro,
@@ -94,39 +104,36 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw DeleteException::fromFailedDelete($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
     }
 
-
-
-
     /**
      * Get centers
-     * @param int $count
-     * @param int $page
-     * @return Centros[]
+     * @return Centro[]
      */
     public function getCentros(): array {
         $rows = $this->getCenterRows();
         return CentroFactory::fromMysqlRows($rows);
     }
 
-
-
+    /**
+     * @param int $centerId
+     * @return Centro[]
+     */
     public function getCentro(
         int $centerId
     ): array {
         $sql = <<<SQL
-        SELECT c.CodCentro AS id,
-               c.Nombre AS name,
-               c.Direccion AS direction,
-               c.CodPostal AS zip,
-               c.Telefono AS phone
-        FROM centro c
-        WHERE c.CodCentro = ?;
+        SELECT c.id AS id,
+               c.name AS name,
+               c.address AS direction,
+               c.zip_code AS zip,
+               c.phone AS phone
+        FROM center c
+        WHERE c.id = ?;
 SQL;
         $binds = [
             $centerId,
@@ -144,21 +151,20 @@ SQL;
 
     /**
      * Query builder for center select
-     * @return array
+     * @return Centro[]
      */
     private function getCenterRows(): array
     {
-        $preSql = <<<SQL
-        SELECT c.CodCentro AS id,
-               c.Nombre AS name,
-               c.Direccion AS direction,
-               c.CodPostal AS zip,
-               c.Telefono AS phone
-        FROM centro c
-        ORDER BY c.CodCentro
+        $sql = <<<SQL
+        SELECT c.id AS id,
+               c.name AS name,
+               c.address AS direction,
+               c.zip_code AS zip,
+               c.phone AS phone
+        FROM center c
+        ORDER BY c.id
 SQL;
 
-        $sql = sprintf($preSql, true);
         try {
             $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -170,24 +176,23 @@ SQL;
 
     /**
      * Get all centers with more data
-     * @return array
+     * @return Centro[]
      */
     public function getCenterAllData(): array
     {
-        $preSql = <<<SQL
-        SELECT c.CodCentro AS id,
-               c.Nombre AS name,
-               c.Direccion AS direction,
-               c.CodPostal AS zip,
-               c.Telefono AS phone,
+        $sql = <<<SQL
+        SELECT c.id AS id,
+               c.name AS name,
+               c.address AS direction,
+               c.zip_code AS zip,
+               c.phone AS phone,
         (
-        SELECT count(*) as classes from  clase cl where c.CodCentro = cl.CodCentro
+        SELECT count(*) as classes from class cl where c.id = cl.center_id
         )
-        FROM centro c 
-        ORDER BY c.CodCentro
+        FROM center c 
+        ORDER BY c.id
 SQL;
 
-        $sql = sprintf($preSql, true);
         try {
             $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);

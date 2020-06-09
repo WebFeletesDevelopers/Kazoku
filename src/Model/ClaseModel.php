@@ -2,14 +2,16 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
-use DateTime;
 use Exception;
 use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Clase;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\ClaseFactory;
-use WebFeletesDevelopers\Kazoku\Model\Exception\DeleteException;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InsertException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
-
+/**
+ * Class ClaseModel
+ * @package WebFeletesDevelopers\Kazoku\Model
+ */
 class ClaseModel extends BaseModel
 {
     /**
@@ -21,7 +23,7 @@ class ClaseModel extends BaseModel
      * @param int $centerCode
      * @param int $days
      * @return bool
-     * @throws InsertException
+     * @throws QueryException
      */
     public function add(
         string $schedule,
@@ -33,7 +35,7 @@ class ClaseModel extends BaseModel
         int $days
     ): bool {
         $sql = <<<SQL
-        INSERT INTO clase(Horario, Profesor, EdadMin, EdadMax, Nombre, CodCentro, Dias)
+        INSERT INTO class(schedule, trainer, minimum_age, maximum_age, name, center_id, days)
         VALUES (?, ?, ?, ?, ?, ?, ?);
 SQL;
         $binds = [
@@ -48,7 +50,7 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
@@ -65,6 +67,7 @@ SQL;
      * @param int $centerCode
      * @param int $days
      * @return bool
+     * @throws QueryException
      */
     public function modify(
         string $schedule,
@@ -77,9 +80,9 @@ SQL;
         int $classId
     ): bool {
         $sql = <<<SQL
-        UPDATE clase c
-        SET c.Horario = ?, c.Profesor = ?, c.EdadMin = ?, c.EdadMax = ?, c.Nombre = ?, c.CodCentro = ?, c.Dias = ?
-        WHERE c.CodClase = ?
+        UPDATE class c
+        SET c.schedule = ?, c.trainer = ?, c.minimum_age = ?, c.maximum_age = ?, c.name = ?, c.center_id = ?, c.days = ?
+        WHERE c.id = ?
 SQL;
         $binds = [
             $schedule,
@@ -94,7 +97,7 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
@@ -105,27 +108,28 @@ SQL;
      * Deletes a class from the Database
      * @param int $CodClass
      * @return bool
-     * @throws DeleteException
+     * @throws QueryException
      */
     public function delete(
         int $CodClass
     ): bool {
         $sql = <<<SQL
-        DELETE FROM clase WHERE `CodClase` = ?;
+        DELETE FROM class WHERE `id` = ?;
 SQL;
         $binds = [
             $CodClass,
         ];
 
         $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
         return true;
     }
 
     /**
      * Get classes
-     * @param int $count
-     * @param int $page
-     * @return Clases[]
+     * @return Clase[]
      */
     public function getClases(): array {
         $rows = $this->getClassRows();
@@ -139,20 +143,19 @@ SQL;
      */
     private function getClassRows(): array
     {
-        $preSql = <<<SQL
-        SELECT n.CodClase AS id,
-               n.Horario AS schedule,
-               n.Profesor AS trainer,
-               n.EdadMin AS minAge,
-               n.EdadMax AS maxAge,
-               n.Nombre AS name,
-               n.CodCentro AS centerId,
-               n.Dias AS days
-        FROM clase n
-        ORDER BY n.CodClase
+        $sql = <<<SQL
+        SELECT c.id AS id,
+               c.schedule AS schedule,
+               c.trainer AS trainer,
+               c.minimum_age AS minAge,
+               c.maximum_age AS maxAge,
+               c.name AS name,
+               c.center_id AS centerId,
+               c.days AS days
+        FROM class c
+        ORDER BY c.id
 SQL;
 
-        $sql = sprintf($preSql, true);
         try {
             $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -168,28 +171,27 @@ SQL;
      */
     public function getClasesAllData(): array
     {
-        $preSql = <<<SQL
-        SELECT cl.CodClase AS id,
-               cl.Horario AS schedule,
-               cl.Profesor AS trainer,
-               cl.EdadMin AS minAge,
-               cl.EdadMax AS maxAge,
-               cl.Nombre AS name,
-               cl.CodCentro AS centerId,
-               cl.Dias AS days,
-                c.Nombre AS centerName,
-                c.Direccion AS centerSt,
-                c.Telefono as centerTel,
+        $sql = <<<SQL
+        SELECT cl.id AS id,
+               cl.schedule AS schedule,
+               cl.trainer AS trainer,
+               cl.minimum_age AS minAge,
+               cl.maximum_age AS maxAge,
+               cl.name AS name,
+               cl.center_id AS centerId,
+               cl.days AS days,
+                c.name AS centerName,
+                c.address AS centerSt,
+                c.phone as centerTel,
         (
-        SELECT count(*) as judokas from  alumno a where a.CodClase = cl.CodClase
+        SELECT count(*) as judokas from pupil p where p.class_id = cl.id
         )
         
-        FROM clase cl  
-            join centro c on cl.CodCentro = c.CodCentro 
-        ORDER BY cl.CodClase
+        FROM class cl  
+            join center c on cl.center_id = c.id 
+        ORDER BY cl.id
 SQL;
 
-        $sql = sprintf($preSql, true);
         try {
             $statement = $this->query($sql);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -203,36 +205,34 @@ SQL;
     }
     public function getClass($classId): array
     {
-        $preSql = <<<SQL
-        SELECT cl.CodClase AS id,
-               cl.Horario AS schedule,
-               cl.Profesor AS trainer,
-               cl.EdadMin AS minAge,
-               cl.EdadMax AS maxAge,
-               cl.Nombre AS name,
-               cl.CodCentro AS centerId,
-               cl.Dias AS days,
-                c.Nombre AS centerName,
-                c.Direccion AS centerSt,
-                c.Telefono as centerTel,
+        $sql = <<<SQL
+        SELECT cl.id AS id,
+               cl.schedule AS schedule,
+               cl.trainer AS trainer,
+               cl.minimum_age AS minAge,
+               cl.maximum_age AS maxAge,
+               cl.name AS name,
+               cl.center_id AS centerId,
+               cl.days AS days,
+                c.name AS centerName,
+                c.address AS centerSt,
+                c.phone as centerTel,
         (
-        SELECT count(*) as judokas from  alumno a where a.CodClase = cl.CodClase
+        SELECT count(*) as judokas from pupil p where p.class_id = cl.id
         )
         
-        FROM clase cl  
-            join centro c on cl.CodCentro = c.CodCentro 
-        WHERE cl.CodClase = ?
+        FROM class cl  
+            join center c on cl.center_id = c.id 
+        WHERE cl.id = ?
         
   SQL;
 
-        $sql = sprintf($preSql, true);
         try {
             $statement = $this->query($sql, $classId);
             $rows = $statement->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];
         }
-
 
         return $rows;
     }

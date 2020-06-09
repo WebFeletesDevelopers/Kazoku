@@ -2,16 +2,13 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
-use DateTime;
 use Exception;
 use PDO;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\JudokaFactory;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Judoka;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
- * Class NoticiaModel
- * News model.
+ * Class JudokaModel.
+ * Judoka model.
  * @package WebFeletesDevelopers\Kazoku\Model
  */
 class JudokaModel extends BaseModel
@@ -25,7 +22,7 @@ class JudokaModel extends BaseModel
      * @param int $userId
      * @param int $fanjydaId
      * @param string $dni
-     * @param DateTime $birthDate
+     * @param string $birthDate
      * @param int $phone
      * @param string $email
      * @param string $illness
@@ -52,10 +49,25 @@ class JudokaModel extends BaseModel
         int $beltId,
         ?int $addressId,
         int $classid
-    ): bool
-    {
+    ): bool {
         $sql = <<<SQL
-        INSERT INTO alumno(nombre, apellido1, apellido2, sexo, codusu, idfanjyda, dni, fechanacimiento, telefono, email, enfermedad, codtut, codcinturon, coddireccion, codclase)
+        INSERT INTO pupil(
+            name,
+            surname,
+            second_surname,
+            gender,
+            user_id,
+            fanjyda_id,
+            DNI,
+            birth_date,
+            phone,
+            email,
+            extra_info,
+            guardian_id,
+            belt_id,
+            address_id,
+            class_id
+        )
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
 SQL;
         $binds = [
@@ -102,6 +114,7 @@ SQL;
      * @param int $classid
      * @param int $judokaId
      * @return bool
+     * @throws QueryException
      */
     public function modify(
         string $name,
@@ -123,9 +136,22 @@ SQL;
     ): bool
     {
         $sql = <<<SQL
-        UPDATE alumno 
-        SET nombre = ?, apellido1 = ?, apellido2 = ?, sexo = ?, codusu = ?, idfanjyda = ?, dni = ?, fechanacimiento = ?, telefono = ?, email = ?, enfermedad = ?, codtut = ?, codcinturon = ?, coddireccion = ?, codclase = ?
-        WHERE CodAlumno = ?
+        UPDATE pupil SET
+            name = ?,
+            surname = ?,
+            second_surname = ?,
+            gender = ?,
+            fanjyda_id = ?,
+            DNI = ?,
+            birth_date = ?,
+            phone = ?,
+            email = ?,
+            extra_info = ?,
+            guardian_id = ?,
+            belt_id = ?,
+            address_id = ?,
+            class_id = ?      
+        WHERE id = ?
 SQL;
         $binds = [
             $name,
@@ -148,14 +174,11 @@ SQL;
 
         $statement = $this->query($sql, $binds);
         if ($statement === false) {
-            throw InsertException::fromFailedInsert($sql, $binds);
+            throw QueryException::fromFailedQuery($sql, $binds);
         }
 
         return true;
     }
-
-
-
 
     /**
      * Deteles a judoka from the database
@@ -168,7 +191,7 @@ SQL;
     ): bool
     {
         $sql = <<<SQL
-        DELETE FROM alumno WHERE `CodAlumno` = ?;
+        DELETE FROM pupil WHERE `id` = ?;
 SQL;
         $binds = [
             $codJudoka,
@@ -182,7 +205,6 @@ SQL;
         return true;
     }
 
-
     /**
      * Get all judokas from database
      * @return array
@@ -190,23 +212,23 @@ SQL;
     public function getAllJudokas(): array
     {
         $sql = <<<SQL
-        SELECT a.Nombre AS name,
-                a.Apellido1 AS lastName1,
-                a.Apellido2 AS lastName2,
-                a.Sexo AS sex,
-                a.CodAlumno as judokaId,
-                a.CodUsu as userId,
-                a.IdFanjyda as fanjydaId,
-                a.dni AS dni,
-                a.FechaNacimiento as birthDate,
-                a.Telefono as phone,
-                a.Email as email,
-                a.Enfermedad as illness,
-                a.CodTut as parentId,
-                a.CodCinturon as beltId,
-                a.CodDireccion as addressId,
-                a.CodClase as classId
-        FROM alumno a
+        SELECT p.name AS name,
+            p.surname AS lastName1,
+            p.second_surname AS lastName2,
+            p.gender AS sex,
+            p.id as judokaId,
+            p.user_id as userId,
+            p.fanjyda_id as fanjydaId,
+            p.DNI AS dni,
+            p.birth_date as birthDate,
+            p.phone as phone,
+            p.email as email,
+            p.extra_info as illness,
+            p.guardian_id as parentId,
+            p.belt_id as beltId,
+            p.address_id as addressId,
+            p.class_id as classId
+        FROM pupil p
 SQL;
 
         try {
@@ -227,24 +249,24 @@ SQL;
     public function getOneJudoka($judokaId): array
     {
         $sql = <<<SQL
-        SELECT a.Nombre AS name,
-                a.Apellido1 AS lastName1,
-                a.Apellido2 AS lastName2,
-                a.Sexo AS sex,
-                a.CodAlumno as judokaId,
-                a.CodUsu as userId,
-                a.IdFanjyda as fanjydaId,
-                a.dni AS dni,
-                a.FechaNacimiento as birthDate,
-                a.Telefono as phone,
-                a.Email as email,
-                a.Enfermedad as illness,
-                a.CodTut as parentId,
-                a.CodCinturon as beltId,
-                a.CodDireccion as addressId,
-                a.CodClase as classId
-        FROM alumno a
-        WHERE a.CodAlumno = ?
+        SELECT p.name AS name,
+            p.surname AS lastName1,
+            p.second_surname AS lastName2,
+            p.gender AS sex,
+            p.id as judokaId,
+            p.user_id as userId,
+            p.fanjyda_id as fanjydaId,
+            p.DNI AS dni,
+            p.birth_date as birthDate,
+            p.phone as phone,
+            p.email as email,
+            p.extra_info as illness,
+            p.guardian_id as parentId,
+            p.belt_id as beltId,
+            p.address_id as addressId,
+            p.class_id as classId
+        FROM pupil p
+        WHERE p.id = ?
 SQL;
         $binds = [
             $judokaId,

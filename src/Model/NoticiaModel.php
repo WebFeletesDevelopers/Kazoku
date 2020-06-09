@@ -30,7 +30,7 @@ class NoticiaModel extends BaseModel
     public function add(string $title, string $body, DateTime $date, User $author, bool $isPublic): bool
     {
         $sql = <<<SQL
-        INSERT INTO noticias(Titulo, Cuerpo, Fecha, user_id, Publica)
+        INSERT INTO news(title, body, date, user_id, public)
         VALUES (?, ?, ?, ?, ?);
 SQL;
         $binds = [
@@ -59,7 +59,7 @@ SQL;
         int $CodNot
     ): bool {
         $sql = <<<SQL
-        DELETE FROM noticias WHERE `CodNot` = ?;
+        DELETE FROM news WHERE `id` = ?;
 SQL;
         $binds = [
             $CodNot,
@@ -81,17 +81,17 @@ SQL;
      */
     public function getLatestPublic(int $count = 5, int $page = 1): array {
         $sql = <<<SQL
-        SELECT n.CodNot AS id,
-               n.Titulo AS title,
-               n.Cuerpo AS body,
-               n.Fecha AS date,
+        SELECT n.id AS id,
+               n.title AS title,
+               n.body AS body,
+               n.date AS date,
                u.name AS author,
-               n.Publica AS public
-        FROM noticias n
+               n.public AS public
+        FROM news n
         INNER JOIN users u
-            ON n.user_id = u.CodUsu
-        WHERE n.Publica = 1
-        ORDER BY n.Fecha DESC
+            ON n.user_id = u.id
+        WHERE n.public = 1
+        ORDER BY n.date DESC
         LIMIT ?, ?
 SQL;
 
@@ -116,16 +116,16 @@ SQL;
      */
     public function getLatest(int $count = 5, int $page = 1): array {
         $sql = <<<SQL
-        SELECT n.CodNot AS id,
-               n.Titulo AS title,
-               n.Cuerpo AS body,
-               n.Fecha AS date,
+         SELECT n.id AS id,
+               n.title AS title,
+               n.body AS body,
+               n.date AS date,
                u.name AS author,
-               n.Publica AS public
-        FROM noticias n
+               n.public AS public
+        FROM news n
         INNER JOIN users u
-            ON n.user_id = u.CodUsu
-        ORDER BY n.Fecha DESC
+            ON n.user_id = u.id
+        ORDER BY n.date DESC
         LIMIT ?, ?
 SQL;
 
