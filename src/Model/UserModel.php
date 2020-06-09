@@ -321,4 +321,26 @@ SQL;
 
         return UserFactory::fromMysqlRows($rows);
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     * @throws QueryException
+     */
+    public function delete(User $user): bool
+    {
+        $sql =<<<SQL
+        DELETE FROM users
+        WHERE CodUsu = ?
+SQL;
+
+        $binds = [$user->id()];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
 }

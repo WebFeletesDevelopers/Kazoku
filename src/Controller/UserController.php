@@ -120,6 +120,26 @@ class UserController
     }
 
     /**
+     * @param string $userId
+     * @param string $hash
+     * @return bool
+     * @throws InvalidHashException
+     * @throws InvalidUserIdException
+     * @throws QueryException
+     */
+    public function deleteByTrainer(string $userId, string $hash): bool
+    {
+        $trainer = $this->model->findByHash($hash);
+        if (! in_array($trainer->rank(), Rank::TRAINER_RANKS, true)) {
+            //fixme 403
+            die;
+        }
+        $user = $this->model->findById($userId);
+        $this->model->delete($user);
+        return true;
+    }
+
+    /**
      * List not confirmed users.
      * @param string $hash
      * @return array

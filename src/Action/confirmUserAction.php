@@ -26,11 +26,12 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
         $verificationModel = new VerificationModel($pdo);
         $mailService = new SendMailService();
         $userController = new UserController($userModel, $verificationModel, $mailService);
-        $users = $userController->listNotConfirmed($_COOKIE['hash'] ?? '');
+        $users = $userController->listNotConfirmed($_COOKIE['hash']);
 
         $config = [
             'title' => _('Confirmar usuarios'),
-            'users' => $users
+            'users' => $users,
+            'action' => 'confirm-users-by-trainer'
         ];
         $compiledTwig = $this->render('confirmUser', $config);
         $body->write($compiledTwig);
