@@ -105,7 +105,7 @@ CREATE TABLE `users` (
     `phone` int(9) DEFAULT NULL,
     `surname` varchar(50) DEFAULT NULL,
     `second_surname` varchar(50) DEFAULT NULL,
-    `password` varchar(60) NOT NULL,
+    `password` varchar(64) NOT NULL,
     `email` varchar(255) DEFAULT NULL,
     `email_confirmed` tinyint(1) DEFAULT 0,
     PRIMARY KEY (`id`)
@@ -120,24 +120,24 @@ CREATE TABLE `verification` (
 
 
 ALTER TABLE class
-    ADD FOREIGN KEY (`center_id`) REFERENCES center(`id`);
+    ADD FOREIGN KEY (`center_id`) REFERENCES center(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE login_hash
-    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`);
+    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE news
-    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`);
+    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE pupil
     ADD UNIQUE (`DNI`),
-    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`),
-    ADD FOREIGN KEY (`guardian_id`) REFERENCES guardian(`id`),
-    ADD FOREIGN KEY (`belt_id`) REFERENCES belt(`id`),
-    ADD FOREIGN KEY (`address_id`) REFERENCES address(`id`),
-    ADD FOREIGN KEY (`class_id`) REFERENCES class(`id`);
+    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    ADD FOREIGN KEY (`guardian_id`) REFERENCES guardian(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    ADD FOREIGN KEY (`belt_id`) REFERENCES belt(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    ADD FOREIGN KEY (`address_id`) REFERENCES address(`id`) ON UPDATE CASCADE ON DELETE SET NULL,
+    ADD FOREIGN KEY (`class_id`) REFERENCES class(`id`) ON UPDATE CASCADE ON DELETE SET NULL;
 
 ALTER TABLE verification
-    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`);
+    ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
