@@ -6,6 +6,7 @@ use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
+use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
@@ -93,7 +94,7 @@ class Routes
         $app->post('/center/add', CreateCenterAction::class);
         $app->post('/center/delete', DeleteCenterAction::class);
         $app->get('/centerDetail/{id}', CenterDetailAction::class);
-        $app->post('/center/modify', ModifyJudokaAction::class);
+        $app->post('/center/modify', ModifyCenterAction::class);
 
         //judokas
         $app->get('/judokas', judokasAction::class);
