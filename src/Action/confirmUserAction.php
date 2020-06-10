@@ -27,7 +27,6 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
         $mailService = new SendMailService();
         $userController = new UserController($userModel, $verificationModel, $mailService);
         $users = $userController->listNotConfirmed($_COOKIE['hash']);
-
         $config = [
             'title' => _('Confirmar usuarios'),
             'users' => $users,
