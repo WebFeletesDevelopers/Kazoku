@@ -148,10 +148,10 @@ export class JudokaMain {
 
         });
         modifyClassId.addEventListener('keyup', () => {
-                alert("Nope, no nos vas hackear wei");
+                alert("Whoops... Esto no debería haber pasado, ¡portate bien!");
         });
         modifyParentId.addEventListener('change', () => {
-            alert("Nope, no nos vas hackear wei");
+            alert("Whoops... Esto no debería haber pasado, ¡portate bien!");
         });
         modifySex.addEventListener('change', () => {
             editedJudoka.sex = parseInt(modifySex.value);
