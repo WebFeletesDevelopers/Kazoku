@@ -15,11 +15,11 @@ body[data-action="update-password-recovery"] {
     }
 
     .right {
+      @include scroll-with-hidden-bars;
       flex-basis: 50%;
 
       form {
         @include full-page-form-input;
-        @include scroll-with-hidden-bars;
         padding: 2em;
 
         h2 {

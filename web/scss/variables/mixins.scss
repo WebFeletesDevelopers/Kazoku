@@ -160,6 +160,7 @@
 }
 
 @mixin scroll-with-hidden-bars {
+  max-height: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
 
