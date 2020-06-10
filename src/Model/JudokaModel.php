@@ -277,7 +277,9 @@ SQL;
         } catch (Exception $e) {
             $rows = [];
         }
-
+        if($rows == false){
+            $rows = [];
+        }
         return $rows;
     }
 
