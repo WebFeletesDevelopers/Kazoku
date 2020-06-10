@@ -158,3 +158,12 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+@mixin scroll-with-hidden-bars {
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

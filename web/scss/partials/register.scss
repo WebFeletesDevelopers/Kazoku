@@ -28,13 +28,9 @@ body[data-action="register"] {
       form {
         @include full-page-form-input-multirow;
         @include magic-center;
+        @include scroll-with-hidden-bars;
         position: relative;
         max-height: 100%;
-        overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-          display: none;
-        }
 
         button {
           @include full-page-form-button;
