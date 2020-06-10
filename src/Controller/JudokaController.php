@@ -19,7 +19,25 @@ class JudokaController
         $this->model = $model;
     }
 
-
+    /**
+     * Adds a judoka
+     * @param string $name
+     * @param string $lastName1
+     * @param string $lastName2
+     * @param int $sex
+     * @param int $userId
+     * @param int $fanjydaId
+     * @param string $dni
+     * @param string $birthDate
+     * @param int $phone
+     * @param string $email
+     * @param string $illness
+     * @param int $parentId
+     * @param int $beltId
+     * @param int $addressId
+     * @param int $classid
+     * @return bool
+     */
     public function addJudoka(
         string $name,
         string $lastName1,
@@ -64,6 +82,31 @@ class JudokaController
         }
     }
 
+    /**
+     * Adds a judoka to BD from register
+     * @param string $name
+     * @param string $lastName1
+     * @param int $phone
+     * @param string $email
+     * @return bool
+     */
+    public function addJudokaFromRegister(
+        string $name,
+        string $lastName1,
+        int $phone,
+        string $email
+    ): bool {
+        try {
+            return $this->model->addJudokaFromRegister($name, $lastName1, $phone, $email);
+        } catch (QueryException $e) {
+        }
+    }
+
+    /**
+     * delete a judoka from BD
+     * @param int $judokaId
+     * @return bool
+     */
     public function deleteJudoka(
         int $judokaId
     ): bool {
@@ -73,7 +116,26 @@ class JudokaController
         }
     }
 
-
+    /**
+     * Modifies a judoka
+     * @param string $name
+     * @param string $lastName1
+     * @param string|null $lastName2
+     * @param string|null $dni
+     * @param string $email
+     * @param string|null $illness
+     * @param string $birthDate
+     * @param int $sex
+     * @param int|null $userId
+     * @param int|null $parentId
+     * @param int $addressId
+     * @param int $beltId
+     * @param int $classid
+     * @param int $judokaId
+     * @param int $phone
+     * @param int|null $fanjydaId
+     * @return bool
+     */
     public function modifyJudoka(
         string $name,
         string $lastName1,

@@ -95,6 +95,35 @@ SQL;
         return true;
     }
 
+    public function addJudokaFromRegister(
+        string $name,
+        string $lastName1,
+        int $phone,
+        ?string $email
+    ): bool {
+        $sql = <<<SQL
+        INSERT INTO pupil(
+            name,
+            surname,
+            phone,
+            email
+        )
+        VALUES (?,?,?,?);
+SQL;
+        $binds = [
+            $name,
+            $lastName1,
+            $phone,
+            $email
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+        return true;
+    }
+
     /**
      * Modifies a judoka from the database
      * @param string $name

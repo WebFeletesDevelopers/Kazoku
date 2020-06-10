@@ -12,6 +12,8 @@ export class UserRequest {
             `&username=${user.username}&phone=${user.phone}&email=${user.email}&password=${user.password}` +
             `&repeatPassword=${user.repeatedPassword}&rank=${user.rank}`;
         return Request.post('/xhr/user/register', data);
+
+
     }
 
     /**
