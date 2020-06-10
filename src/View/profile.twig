@@ -15,6 +15,7 @@
                     <div class="card-body text-center shadow">
                         <img class="rounded-circle mb-3 mt-4" src="/img/profile/{% if judoka.userIdNo is defined %}{{ judoka.userId }}{% else%}generic{% endif %}.png" width="160" height="160" />
                         <img class="card-img mb-3 mt-4" src="/img/cintos/{{ judoka.beltId }}.png" />
+                        <input type="hidden" id="mod-beltId" value="{{ judoka.beltId }}">
                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">{{ "Cambiar Foto" | trans  }}</button></div>
                     </div>
                 </div>
@@ -58,29 +59,12 @@
 
                             </div>
                         </li>
+                        <input type="hidden"  id="mod-classId" class=" my-0 text-center" value="{{ class.id }}"/>
                     {% else %}
                         <div class="alert alert-danger text-center">{{ "No tienes clase asignada" | trans }}<br><small>{{ "Si es un error, contacta con tu profesor" | trans }}</small></div>
                     {% endif %}
                 </ul>
-                {% if judoka.parentId == '' %}
-                <ul class="list-group mb-3 p-1  ">
-                    <li>
-                        <div class="">
-                            <label class="text-success">{{ "Padre/Madre/tutor" | trans}}</label>
-                            <h6 class="my-0">{{ parent.name }}</h6>
-                            <select class="custom-select" id="mod-parent">
-                                <option value="1"  {% if judoka.parentId == 1 %} selected {% endif %} >Predeterminada (1)</option>
-                                <!-- esto no tendría que estar trampeado-->
-                            </select>
-                            <select class="custom-select" id="mod-classId">
-                                {% for class in classes  %}
-                                    <option class="my-0 text-center" {% if class.id == judoka.classId %} selected{% endif %} value="{{ class.id }}">{{ class.name }}{% if class.id == judoka.classId %}<small> ({{ "Actual" | trans }})</small>{% endif %} </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </li>
-                </ul>
-                {% endif %}
+
             </div>
             <div class="col-lg-8 order-sm-first order-md-last h-100">
                 <div class="row h-100">
@@ -140,13 +124,28 @@
                                     <div class="form-group col"><label for="illness"><strong>{{"Información Médica" | trans }}</strong></label><br><textarea class="span6 w-100 form-control" rows="6" value="" name="illness" id="mod-illness" >{{ judoka.illness }}</textarea>
                                     </div>
                                 </div>
+                                {% if parent is null %}
+                                <ul class="list-group mb-3 p-1  ">
+                                    <li class="list-unstyled">
+                                        <div class="">
+                                            <!--  TODO: cuando esté el buscar padre, se incorporará una tarjeta con la información del padre-->
+
+                                            <div class="form-group"><label class="text-success" for="first_name"><strong>{{ "Padre/Madre/tutor" | trans}}</strong></label><input disabled class="judoka form-control" type="text" id="mod-parent" value="{% if parent.id is not null %}{{parent.id}}{% else %}{% endif %}" name="first_name" /></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                {% endif %}
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--  TODO: cuando esté el buscar padre, se incorporará una tarjeta con la información del padre-->
+
+        {% if judoka.parentId == '' %}
+
+        {% endif %}
         {% if judoka.judokaId != '' %}
             <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.judokaId}}">{{"Actualizar datos" | trans}}</button>
         {% else %}

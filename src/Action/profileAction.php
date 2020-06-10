@@ -59,9 +59,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
             // get profile pic
             $fileRoute = parent::getProfilePic($loggedInUser);
             // get address
-            $model = new AddressModel($database);
-            $controller = new JudokaController($model);
-            $allJudokaInfo = $controller->getOneJudoka($judokaId);
+
 
         }
 
