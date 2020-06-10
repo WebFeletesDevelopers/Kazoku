@@ -21,7 +21,7 @@ use WebFeletesDevelopers\Kazoku\Model\UserModel;
 abstract class BaseTwigAction
 {
     private Environment $twig;
-    private ?User $loggedUser = null;
+    protected ?User $loggedUser = null;
 
     /**
      * BaseTwigAction constructor.
