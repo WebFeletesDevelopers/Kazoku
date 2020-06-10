@@ -3,6 +3,7 @@ import { numberToRank } from './Rank'
 import { UserRequest } from "./UserRequest";
 import { RecoveryData } from "./RecoveryData";
 import { RecoveryUpdateData } from "./RecoveryUpdateData";
+import { JudokaRequest } from "../judoka/JudokaRequest";
 
 export class UserMain {
     public static handle(): void {
@@ -125,6 +126,11 @@ export class UserMain {
         registerButton: HTMLButtonElement
     ): void {
         registerButton.disabled = true;
+        if(user.rank == 3){
+            JudokaRequest.createFromRegister(user).then(r => {
+
+            });
+        }
         UserRequest.register(user).then(res => {
             if (res.statusCode === 201) {
                 document.location.replace('/');
