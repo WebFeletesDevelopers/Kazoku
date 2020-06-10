@@ -47,19 +47,6 @@ CREATE TABLE `class` (
     PRIMARY KEY (`id`)
 ) CHARSET=utf8 COLLATE=utf8_general_ci;
 
-CREATE TABLE `guardian` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(50) NOT NULL,
-    `surname` varchar(50) NOT NULL,
-    `second_surname` varchar(50) DEFAULT NULL,
-    `phone` int(11) DEFAULT NULL,
-    `DNI` varchar(9) DEFAULT NULL,
-    `address_id` int(11) NOT NULL,
-    `email` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE (`DNI`)
-) CHARSET=utf8 COLLATE=utf8_general_ci;
-
 CREATE TABLE `login_hash` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `hash` CHAR(64) NOT NULL,
@@ -79,7 +66,7 @@ CREATE TABLE `news` (
 
 CREATE TABLE `pupil` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) NOT NULL,
+    `user_id` int(11) DEFAULT NULL,
     `name` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT 'Nombre',
     `surname` varchar(64) CHARACTER SET utf8 NOT NULL DEFAULT 'Apellido',
     `second_surname` varchar(64) CHARACTER SET utf8 DEFAULT NULL,
@@ -135,7 +122,7 @@ ALTER TABLE news
 ALTER TABLE pupil
     ADD UNIQUE (`DNI`),
     ADD FOREIGN KEY (`user_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-    ADD FOREIGN KEY (`guardian_id`) REFERENCES guardian(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+    ADD FOREIGN KEY (`guardian_id`) REFERENCES users(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     ADD FOREIGN KEY (`belt_id`) REFERENCES belt(`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     ADD FOREIGN KEY (`address_id`) REFERENCES address(`id`) ON UPDATE CASCADE ON DELETE SET NULL,
     ADD FOREIGN KEY (`class_id`) REFERENCES class(`id`) ON UPDATE CASCADE ON DELETE SET NULL;
