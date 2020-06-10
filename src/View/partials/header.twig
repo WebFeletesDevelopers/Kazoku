@@ -22,7 +22,7 @@
                     </form>
                 </div>
             </li>
-            {% if user is not null %}
+            {% if (user is not null) %}
                 <li class="nav-item dropdown no-arrow mx-1" role="presentation">
                     <div class="nav-item dropdown no-arrow">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
@@ -31,6 +31,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in" id="alertsCenter" role="menu">
                             <h6 class="dropdown-header">{{ "Notificaciones" | trans }}</h6>
+
                             <a class="d-flex align-items-center dropdown-item" href="#">
                                 <div class="mr-3">
                                     <div class="bg-primary icon-circle">
@@ -38,30 +39,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="small text-gray-500">December 12, 2019</span>
-                                    <p>A new monthly report is ready to download!</p>
-                                </div>
-                            </a>
-                            <a class="d-flex align-items-center dropdown-item" href="#">
-                                <div class="mr-3">
-                                    <div class="bg-success icon-circle">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="small text-gray-500">December 7, 2019</span>
-                                    <p>$290.29 has been deposited into your account!</p>
-                                </div>
-                            </a>
-                            <a class="d-flex align-items-center dropdown-item" href="#">
-                                <div class="mr-3">
-                                    <div class="bg-warning icon-circle">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="small text-gray-500">December 2, 2019</span>
-                                    <p>Spending Alert: We've noticed unusually high spending for your account.</p>
+                                    <span class="small text-gray-500">Permanente</span>
+                                    <p>{{ "Esta función está deshabilitada por motivos de mantenimiento" | trans }}</p>
                                 </div>
                             </a>
                             <a class="text-center dropdown-item small text-gray-500" href="#">{{ "Mostrar Notificaciones" | trans }}</a>
@@ -78,49 +57,13 @@
                         <h6 class="dropdown-header">{{ "Mensajes" | trans }}</h6>
                         <a class="d-flex align-items-center dropdown-item" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="/assets/img/avatars/avatar4.jpeg">
+                                <img class="rounded-circle" src="img/profile/generic.png">
                                 <div class="bg-success status-indicator"></div>
                             </div>
                             <div class="font-weight-bold">
                                 <div class="text-truncate">
-                                    <span>Hi there! I am wondering if you can help me with a problem I've been having.</span>
-                                </div>
-                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center dropdown-item" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="/assets/img/avatars/avatar2.jpeg">
-                                <div class="status-indicator"></div>
-                            </div>
-                            <div class="font-weight-bold">
-                                <div class="text-truncate">
-                                    <span>I have the photos that you ordered last month!</span>
-                                </div>
-                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center dropdown-item" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="/assets/img/avatars/avatar3.jpeg">
-                                <div class="bg-warning status-indicator"></div>
-                            </div>
-                            <div class="font-weight-bold">
-                                <div class="text-truncate">
-                                    <span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span>
-                                </div>
-                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center dropdown-item" href="#">
-                            <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="/assets/img/avatars/avatar5.jpeg">
-                                <div class="bg-success status-indicator"></div>
-                            </div>
-                            <div class="font-weight-bold">
-                                <div class="text-truncate">
-                                    <span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                    <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
+                                    <span>{{ "¡Bienvenido!" | trans }}</span></div>
+                                    <p class="small text-gray-500 mb-0">Club Kazoku</p>
                             </div>
                         </a>
                         <a class="text-center dropdown-item small text-gray-500" href="#">{{ "Mostrar mensajes" | trans }}</a></div>
@@ -133,7 +76,14 @@
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                         <span class="d-none d-lg-inline mr-2 text-gray-600 small">{% if user is not null %}{{ user.name }}{% else %}{{ "¡Registrate!" | trans }} {% endif %}</span>
-                        <img class="border rounded-circle img-profile" src="/img/profile/{% if user is not null %}{{ user.id }}{% else %}generic{% endif %}.png" width="20px">
+                        <img class="border rounded-circle img-profile"
+                            {% if user is not null %}
+
+                                src="{{ photoRoute }}"
+                            {% else %}
+                                src="/img/profile/generic.png"
+                            {% endif %}
+                                width="20px">
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                         {% if user is not null %}
@@ -150,8 +100,7 @@
                                 {{ "Actividad" | trans }}
                             </a>
                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" data-action="logout-button" role="presentation" href="#">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item text-center" data-action="logout-button" role="presentation" href="#">
                                 {{ "Cerrar sesión" | trans }}
                             </a>
                         {% else %}

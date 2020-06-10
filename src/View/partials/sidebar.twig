@@ -13,7 +13,7 @@
                 <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/login"><i class="fas fa-user"></i><span>{{ "Iniciar Sesión" | trans }}</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/register"><i class="fas fa-user-plus"></i><span>{{ "Registrarse" | trans }}</span></a></li>
             {% endif %}
-            {% if ( user.rank is defined ) and ( ( user.rank == 10) or ( user.rank == 11) ) %}
+            {% if ( user.rank is defined ) and ( ( user.rank == 0) or ( user.rank == 1) ) %}
                 <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/confirmUser"><i class="fas fa-table"></i><span>{{ "Confirmaciones" | trans }}</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/judokas"><i class="far fa-address-book"></i><span>{{ "Alumnos" | trans }}</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/assistance"><i class="fas fa-user-circle "></i><span>{{ "Pasar Lista" | trans }}</span></a></li>

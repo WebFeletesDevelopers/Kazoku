@@ -30,9 +30,25 @@ class HomeAction extends BaseTwigAction implements ActionInterface
             ? $controller->getLatest()
             : $controller->getLatestPublic();
 
+        $filename1 = '/img/profile' . $loggedInUser->id() . '.jpg';
+        $filename2 = '/img/profile' . $loggedInUser->id() . '.jpg';
+        $generic = "/img/profile/generic.png";
+        $fileRoute = "";
+
+        if (file_exists($filename1)) {
+            $fileRoute = $filename1;
+        } else if (file_exists($filename2)) {
+            $fileRoute = $filename2;
+        }
+        else{
+            $fileRoute = $generic;
+        }
+
+
         $config = [
             'title' => 'titulo',
             'news' => $news,
+            'photoRoute' => $fileRoute,
             'action' => 'home',
             'user' => $loggedInUser
         ];

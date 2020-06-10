@@ -37,6 +37,7 @@ abstract class BaseTwigAction
         //fixme esto es una ñapa
         $userModel = new UserModel(ConnectionHelper::getConnection());
         $this->loggedUser = $this->validateUserSession($userModel);
+
     }
 
     /**
