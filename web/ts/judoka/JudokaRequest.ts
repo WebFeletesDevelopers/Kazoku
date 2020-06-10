@@ -1,6 +1,7 @@
 import {Judoka} from "./Judoka";
 import {Request} from "../util/Request";
 import {Response} from "../util/Response";
+import {User} from "../user/User";
 
 export class JudokaRequest {
     /**
@@ -32,4 +33,14 @@ export class JudokaRequest {
         const data = `judokaId=${judokaId}`;
         return Request.post('/judoka/delete', data);
     }
+
+    /**
+     * Creates a judoka from register form
+     * @param user
+     */
+    public static createFromRegister(user: User){
+        const data = `name=${user.name}&lastName1=${user.surname}&lastName2=${user.secondSurname}&phone=${user.phone}&email=${user.email}`;
+        return Request.post('/judoka/addFromRegister', data);
+    }
+
 }
