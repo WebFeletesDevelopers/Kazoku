@@ -8,7 +8,6 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig_Extensions_Extension_I18n;
-use  WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
@@ -66,11 +65,11 @@ abstract class BaseTwigAction
         $hash = $_COOKIE['hash'] ?? null;
         try {
             return $hash
-                ? $userModel->findByHash($_COOKIE['hash'])
+                ? $userModel->findByHash($hash)
                 : null;
         } catch (InvalidHashException $e) {
             setcookie('hash', null, -1);
-            header('Refresh: 0');
+            header('Location: /');
             die;
         }
     }
@@ -82,25 +81,22 @@ abstract class BaseTwigAction
          */
     protected function getProfilePic(?User $loggedInUser): ?String
     {
-        if($loggedInUser !== null){
+        if($loggedInUser !== null) {
             $filename1 = '/img/profile' . $loggedInUser->id() . '.jpg';
             $filename2 = '/img/profile' . $loggedInUser->id() . '.jpg';
             $generic = "/img/profile/generic.png";
-            $fileRoute = "";
 
             if (file_exists($filename1)) {
                 $fileRoute = $filename1;
-            } else if (file_exists($filename2)) {
+            } elseif (file_exists($filename2)) {
                 $fileRoute = $filename2;
-            }
-            else{
+            } else {
                 $fileRoute = $generic;
             }
-        }
-        else{
+        } else {
             $generic = "/img/profile/generic.png";
             $fileRoute = $generic;
         }
-        return  $fileRoute;
+        return $fileRoute;
     }
 }

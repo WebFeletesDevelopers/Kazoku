@@ -11,6 +11,7 @@ use WebFeletesDevelopers\Kazoku\Model\Exception\User\InvalidCredentialsException
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
 use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
+use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
  * Class UserController
@@ -171,6 +172,25 @@ class UserController
             if ($verification) {
                 $this->mailService->sendRecoveryMail($user, $verification);
             }
+        }
+        return $user;
+    }
+
+    /**
+     * Update an user password for recovery.
+     * @param string $hash
+     * @param string $password
+     * @return User
+     * @throws InvalidCredentialsException
+     * @throws QueryException
+     */
+    public function updatePasswordFromRecovery(string $hash, string $password): User
+    {
+        $user = $this->model->findByEmailActivation($hash);
+        if ($user) {
+            $user->setPassword(Utils::hashPassword($password));
+            $this->model->updateWithoutHash($user);
+            $this->verificationModel->deleteByCode($hash);
         }
         return $user;
     }
