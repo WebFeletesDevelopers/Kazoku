@@ -8,6 +8,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig_Extensions_Extension_I18n;
+use  WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
@@ -36,6 +37,7 @@ abstract class BaseTwigAction
         //fixme esto es una ñapa
         $userModel = new UserModel(ConnectionHelper::getConnection());
         $this->loggedUser = $this->validateUserSession($userModel);
+
     }
 
     /**
@@ -71,5 +73,34 @@ abstract class BaseTwigAction
             header('Refresh: 0');
             die;
         }
+    }
+
+        /**
+         * Gets the profile photo's url
+         * @param User $loggedInUser
+         * @return String|null
+         */
+    protected function getProfilePic(User $loggedInUser): ?String
+    {
+        if($loggedInUser !== null){
+            $filename1 = '/img/profile' . $loggedInUser->id() . '.jpg';
+            $filename2 = '/img/profile' . $loggedInUser->id() . '.jpg';
+            $generic = "/img/profile/generic.png";
+            $fileRoute = "";
+
+            if (file_exists($filename1)) {
+                $fileRoute = $filename1;
+            } else if (file_exists($filename2)) {
+                $fileRoute = $filename2;
+            }
+            else{
+                $fileRoute = $generic;
+            }
+        }
+        else{
+            $generic = "/img/profile/generic.png";
+            $fileRoute = $generic;
+        }
+        return  $fileRoute;
     }
 }

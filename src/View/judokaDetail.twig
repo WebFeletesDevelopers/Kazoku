@@ -124,7 +124,18 @@
                                         <div class="col my-1">
                                             <label for="first_name"><strong>{{ "Cinturón" | trans}}</strong></label>
                                             <Select id="mod-beltId" class="judoka form-control"  name="sex" >
-                                                <option value="1"  {% if judoka.sex == 1 %}selected {% endif %} >{{"Blanco" | trans}}</option>
+                                                <option value="1"  {% if judoka.beltId == 1 %}selected {% endif %} >{{"Blanco" | trans}}</option>
+                                                <option value="2"  {% if judoka.beltId == 2 %}selected {% endif %} >{{"Blanco-amarillo" | trans}}</option>
+                                                <option value="3"  {% if judoka.beltId == 3 %}selected {% endif %} >{{"Amarillo" | trans}}</option>
+                                                <option value="4"  {% if judoka.beltId == 4 %}selected {% endif %} >{{"Amarillo-Naranja" | trans}}</option>
+                                                <option value="5"  {% if judoka.beltId == 5 %}selected {% endif %} >{{"naranja" | trans}}</option>
+                                                <option value="6"  {% if judoka.beltId == 6 %}selected {% endif %} >{{"naranja-verde" | trans}}</option>
+                                                <option value="7"  {% if judoka.beltId == 7 %}selected {% endif %} >{{"Verde" | trans}}</option>
+                                                <option value="8"  {% if judoka.beltId == 8 %}selected {% endif %} >{{"Verde-azul" | trans}}</option>
+                                                <option value="9"  {% if judoka.beltId == 9 %}selected {% endif %} >{{"Azul" | trans}}</option>
+                                                <option value="10"  {% if judoka.beltId == 10 %}selected {% endif %} >{{"Azul-marrón" | trans}}</option>
+                                                <option value="11"  {% if judoka.beltId == 11 %}selected {% endif %} >{{"marrón" | trans}}</option>
+                                                <option value="12"  {% if judoka.beltId == 12 %}selected {% endif %} >{{"negro" | trans}}</option>
                                             </Select>
                                         </div>
                                     </div>
