@@ -54,6 +54,9 @@ export class LoginMain {
                 Cookie.set('hash', hash);
                 document.location.replace('/');
             } else {
+                if (res.statusCode === 403) {
+                    alert('Su cuenta no ha sido activada.');
+                }
                 loginContainer.classList.add('kazoku-error-shadow', 'animate');
             }
             loginButton.disabled = false;
