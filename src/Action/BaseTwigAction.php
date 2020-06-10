@@ -80,7 +80,7 @@ abstract class BaseTwigAction
          * @param User $loggedInUser
          * @return String|null
          */
-    protected function getProfilePic(User $loggedInUser): ?String
+    protected function getProfilePic(?User $loggedInUser): ?String
     {
         if($loggedInUser !== null){
             $filename1 = '/img/profile' . $loggedInUser->id() . '.jpg';
