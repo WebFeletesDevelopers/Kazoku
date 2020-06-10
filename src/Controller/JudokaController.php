@@ -128,6 +128,16 @@ class JudokaController
     }
 
     /**
+     * Gets one judoka by user id
+     * @param $userId
+     * @return array
+     */
+    public function getOneJudokaByuserId($userId): array
+    {
+        return $this->model->getOneJudokaByUserId($userId);
+    }
+
+    /**
      * Gets one judoka
      * @param $judokaId
      * @return array

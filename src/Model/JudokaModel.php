@@ -158,7 +158,6 @@ SQL;
             $lastName1,
             $lastName2,
             $sex,
-            $userId,
             $fanjydaId,
             $dni,
             $birthDate,
@@ -242,7 +241,48 @@ SQL;
     }
 
     /**
-     * Gets one judoka
+     * Gets one judoka by user id
+     * @param $userId
+     * @return array
+     */
+    public function getOneJudokaByUserId($userId): array
+    {
+        $sql = <<<SQL
+        SELECT p.name AS name,
+            p.surname AS lastName1,
+            p.second_surname AS lastName2,
+            p.gender AS sex,
+            p.id as judokaId,
+            p.user_id as userId,
+            p.fanjyda_id as fanjydaId,
+            p.DNI AS dni,
+            p.birth_date as birthDate,
+            p.phone as phone,
+            p.email as email,
+            p.extra_info as illness,
+            p.guardian_id as parentId,
+            p.belt_id as beltId,
+            p.address_id as addressId,
+            p.class_id as classId
+        FROM pupil p
+        WHERE p.user_id = ?
+SQL;
+        $binds = [
+            $userId,
+        ];
+
+        try {
+            $statement = $this->query($sql,$binds);
+            $rows = $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+
+        return $rows;
+    }
+
+    /**
+     * Gets one judoka by id
      * @param $judokaId
      * @return array
      */

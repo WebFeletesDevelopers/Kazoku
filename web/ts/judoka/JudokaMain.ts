@@ -12,12 +12,13 @@ export class JudokaMain {
     public static handle(): void {
         const isJudokasPage: boolean = !!document.querySelector('[data-action="judokas"]');
         const isJudokaDetailPage: boolean = !!document.querySelector('[data-action="judoka-detail"]');
+        const isMyProfilePage: boolean = !!document.querySelector('[data-action="judoka-myProfile"]');
 
         if (isJudokasPage) {
             this.handleJudokasPage();
         }
-        if (isJudokaDetailPage) {
-            this.handleJudokaDetailPage();
+        if (isJudokaDetailPage || isMyProfilePage) {
+            this.handleJudokaDetailPage(isMyProfilePage);
         }
     }
 
@@ -56,25 +57,25 @@ export class JudokaMain {
 
     }
 
-    private static handleJudokaDetailPage(): void {
+    private static handleJudokaDetailPage(isMyProfilePage: boolean): void {
         const updateButton:         HTMLButtonElement = document.querySelector('button#updateData');
         const modifyName:           HTMLInputElement = document.querySelector('#mod-name');
         const modifyLastName1:      HTMLInputElement = document.querySelector('#mod-lastname1');
         const modifyLastName2:      HTMLInputElement = document.querySelector('#mod-lastname2');
         const modifyDni:            HTMLInputElement = document.querySelector('#mod-dni');
-        const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
-        const modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
         const modifyBirthDate:      HTMLInputElement = document.querySelector('#mod-birthDate');
         const modifyEmail:          HTMLInputElement = document.querySelector('#mod-email');
         const modifyPhone:          HTMLSelectElement = document.querySelector('#mod-phone');
         const modifyIllness:        HTMLTextAreaElement = document.querySelector('#mod-illness');
-        const modifyClassId:        HTMLSelectElement = document.querySelector('#mod-classId');
         const modifySex:            HTMLSelectElement = document.querySelector('#mod-sex');
-        const modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
-        const userId:               HTMLElement = document.querySelector('#userId');
         const updateDataButton:     HTMLButtonElement = document.querySelector('#updateData');
         const updateAddress:        HTMLButtonElement = document.querySelector('#mod-address');
 
+        const modifyClassId:        HTMLSelectElement = document.querySelector('#mod-classId');
+        const userId:               HTMLElement = document.querySelector('#userId');
+        const modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
+        const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
+        const modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
 
 
         const editedJudoka: Judoka = new Judoka(
@@ -97,62 +98,65 @@ export class JudokaMain {
         modifyName.addEventListener('keyup', () => {
             editedJudoka.name = modifyName.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyLastName1.addEventListener('keyup', () => {
             editedJudoka.lastName1 = modifyLastName1.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyLastName2.addEventListener('keyup', () => {
             editedJudoka.lastName2 = modifyLastName2.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyDni.addEventListener('keyup', () => {
             editedJudoka.dni = modifyDni.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyEmail.addEventListener('keyup', () => {
             editedJudoka.email = modifyEmail.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyIllness.addEventListener('keyup', () => {
             editedJudoka.illness = modifyIllness.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyFanjydaId.addEventListener('keyup', () => {
             editedJudoka.idFanjyda = parseInt(modifyFanjydaId.value);
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyPhone.addEventListener('keyup', () => {
             editedJudoka.phone =   parseInt(modifyPhone.value),
                 this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyBirthDate.addEventListener('keyup', () => {
             editedJudoka.birthDate = modifyBirthDate.value;
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
         modifyClassId.addEventListener('change', () => {
-            editedJudoka.codClass = parseInt(modifyClassId.value);
-            this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+            if(!isMyProfilePage){
+                editedJudoka.codClass = parseInt(modifyClassId.value);
+                this.validateModJudoka(updateDataButton, editedJudoka);
+            }
+
         });
         modifyParentId.addEventListener('change', () => {
-            editedJudoka.codTutor = parseInt(modifyParentId.value);
-            this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+            if(!isMyProfilePage) {
+                editedJudoka.codTutor = parseInt(modifyParentId.value);
+                this.validateModJudoka(updateDataButton, editedJudoka);
+            }
         });
         modifySex.addEventListener('change', () => {
             editedJudoka.sex = parseInt(modifySex.value);
             this.validateModJudoka(updateDataButton, editedJudoka);
-            console.log(editedJudoka);
+
         });
 
 
