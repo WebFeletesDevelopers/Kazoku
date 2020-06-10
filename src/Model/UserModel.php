@@ -360,6 +360,45 @@ SQL;
     }
 
     /**
+     * Find an user by it's email.
+     * @param string $email
+     * @return User
+     * @throws QueryException
+     * @throws InvalidCredentialsException
+     */
+    public function findByEmail(string $email): User
+    {
+        $sql = <<<SQL
+        SELECT u.id AS id,
+               u.confirmed AS confirmed,
+               u.rank AS `rank`,
+               u.username AS username,
+               u.name AS name,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
+               u.password AS password,
+               u.email AS email,
+               u.email_confirmed AS confirmedMail
+        FROM users u
+        WHERE u.email = ?
+SQL;
+        $binds = [$email];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+        if ($statement->rowCount() === 0) {
+            throw InvalidCredentialsException::fromInvalidCredentials();
+        }
+
+        $rows = $statement->fetchAll();
+
+        return UserFactory::fromMysqlRows($rows)[0];
+    }
+
+    /**
      * @param User $user
      * @return bool
      * @throws QueryException

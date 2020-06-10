@@ -155,4 +155,23 @@ class UserController
         }
         return $this->model->find();
     }
+
+    /**
+     * Start a mail recovery.
+     * @param string $email
+     * @return User
+     * @throws InvalidCredentialsException
+     * @throws QueryException
+     */
+    public function startMailRecovery(string $email): User
+    {
+        $user = $this->model->findByEmail($email);
+        if ($user) {
+            $verification = $this->verificationModel->createForUser($user);
+            if ($verification) {
+                $this->mailService->sendRecoveryMail($user, $verification);
+            }
+        }
+        return $user;
+    }
 }

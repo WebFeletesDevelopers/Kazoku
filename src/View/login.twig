@@ -1,4 +1,5 @@
-{% include 'partials/head.twig' %}
+<html>
+#{% include 'partials/head.twig' %}
 
 <body data-action="login">
 <div class="login-form">
@@ -17,6 +18,8 @@
         <div class="text-center">
             <a href="/register">{{ "¿no tienes cuenta? Regístrate" | trans }}</a>
             <br>
+            <a href="/user/startPasswordRecovery">{{ "He olvidado mi contraseña" | trans }}</a>
+            <br>
             <a href="/">{{ "Volver al inicio" | trans }}</a>
         </div>
 
@@ -25,4 +28,4 @@
 
 {% include 'partials/scripts.twig' %}
 </body>
-
+</html>

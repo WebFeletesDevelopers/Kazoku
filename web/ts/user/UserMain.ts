@@ -1,15 +1,23 @@
 import { User } from './User';
 import { numberToRank } from './Rank'
 import { UserRequest } from "./UserRequest";
+import { RecoveryData } from "./RecoveryData";
 
 export class UserMain {
     public static handle(): void {
         const isRegisterPage: boolean = !! document.querySelector('[data-action="register"]');
+        const isRecoveryPage: boolean = !! document.querySelector('[data-action="start-password-recovery"]');
 
         if (isRegisterPage) {
             UserMain.handleRegisterForm();
         }
+
+        if (isRecoveryPage) {
+            UserMain.handleRecoveryForm();
+        }
     }
+
+    /* Register */
 
     private static handleRegisterForm(): void {
         const registerContainer: HTMLDivElement = document.querySelector('div.register-form');
@@ -118,6 +126,59 @@ export class UserMain {
                 registerContainer.classList.add('kazoku-error-shadow', 'animate');
             }
             registerButton.disabled = false;
+        });
+    }
+
+    /* Recovery */
+
+    private static handleRecoveryForm(): void {
+        const recoveryContainer: HTMLDivElement = document.querySelector('div.recovery-form');
+        const formElement: HTMLFormElement = recoveryContainer.querySelector('form');
+        const mailElement: HTMLInputElement = formElement.querySelector('input[name="email"]');
+        const buttonElement: HTMLButtonElement = formElement.querySelector('button');
+        const recoveryData: RecoveryData = new RecoveryData(
+            mailElement.value
+        );
+
+        UserMain.validateRecoveryButton(recoveryData, buttonElement);
+
+        mailElement.addEventListener('keyup', e => {
+            recoveryData.email = (e.target as HTMLInputElement).value;
+            UserMain.validateRecoveryButton(recoveryData, buttonElement);
+            recoveryContainer.classList.remove('kazoku-error-shadow');
+        })
+
+        buttonElement.addEventListener('click', e => {
+            e.preventDefault();
+            UserMain.startRecovery(recoveryData, recoveryContainer, buttonElement);
+        });
+    }
+
+    private static validateRecoveryButton(recoveryData: RecoveryData, button: HTMLButtonElement): void {
+        if (recoveryData.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
+
+    private static startRecovery(
+        recoveryData: RecoveryData,
+        recoveryContainer: HTMLDivElement,
+        recoveryButton: HTMLButtonElement
+    ): void {
+        recoveryButton.disabled = true;
+        UserRequest.startRecovery(recoveryData).then(res => {
+            if (res.statusCode === 200) {
+                alert('Email enviado correctamente, revise su correo.');
+                document.location.replace('/');
+            } else if (res.statusCode === 404) {
+                alert('No hemos encontrado este email en la base de datos.');
+                recoveryContainer.classList.add('kazoku-error-shadow', 'animate');
+            } else {
+                recoveryContainer.classList.add('kazoku-error-shadow', 'animate');
+            }
+            recoveryButton.disabled = false;
         });
     }
 }

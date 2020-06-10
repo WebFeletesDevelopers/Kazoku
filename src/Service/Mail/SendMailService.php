@@ -71,4 +71,28 @@ class SendMailService
         }
         return $response->success();
     }
+
+    public function sendRecoveryMail(User $user, Verification $verification): bool
+    {
+        $recoveryUrl = Utils::getBaseUrl() . '/user/finalRecovery?token=' . $verification->code();
+        $preBody = _('<p>Ha solicitado un cambio de contraseña para su cuenta en el club Kazoku. Para actualizarla, pulse <a href="%s">aquí</a>.<br />'
+            . 'Si el enlace anterior no funciona, use este vínculo: <a href="%s">%s</a>.<br />'
+            . 'Si no ha solicitado este cambio, contacte inmediatamente con nosotros.</p>');
+        $body = sprintf($preBody, $recoveryUrl, $recoveryUrl, $recoveryUrl);
+
+        $arguments = new SendEmailArguments(
+            getenv('KAZOKU_MAIL_USER'),
+            $user->email(),
+            _('Cambio de contraseña en el club Kazoku'),
+            $body,
+            $this->emailServer
+        );
+
+        $response = $this->useCase->handle($arguments);
+
+        if ($error = $response->error()) {
+            throw $error;
+        }
+        return $response->success();
+    }
 }
