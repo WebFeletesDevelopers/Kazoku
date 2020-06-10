@@ -8,6 +8,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig_Extensions_Extension_I18n;
+use  WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
