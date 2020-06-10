@@ -1,16 +1,30 @@
 import { User } from './User';
 import { numberToRank } from './Rank'
 import { UserRequest } from "./UserRequest";
-import {JudokaRequest} from "../judoka/JudokaRequest";
+import { RecoveryData } from "./RecoveryData";
+import { RecoveryUpdateData } from "./RecoveryUpdateData";
+import { JudokaRequest } from "../judoka/JudokaRequest";
 
 export class UserMain {
     public static handle(): void {
         const isRegisterPage: boolean = !! document.querySelector('[data-action="register"]');
+        const isRecoveryPage: boolean = !! document.querySelector('[data-action="start-password-recovery"]');
+        const isUpdateRecoveryPage: boolean = !! document.querySelector('[data-action="update-password-recovery"]');
 
         if (isRegisterPage) {
             UserMain.handleRegisterForm();
         }
+
+        if (isRecoveryPage) {
+            UserMain.handleRecoveryForm();
+        }
+
+        if (isUpdateRecoveryPage) {
+            UserMain.handleRecoveryUpdateForm();
+        }
     }
+
+    /* Register */
 
     private static handleRegisterForm(): void {
         const registerContainer: HTMLDivElement = document.querySelector('div.register-form');
@@ -124,6 +138,122 @@ export class UserMain {
                 registerContainer.classList.add('kazoku-error-shadow', 'animate');
             }
             registerButton.disabled = false;
+        });
+    }
+
+    /* Recovery */
+
+    private static handleRecoveryForm(): void {
+        const recoveryContainer: HTMLDivElement = document.querySelector('div.recovery-form');
+        const formElement: HTMLFormElement = recoveryContainer.querySelector('form');
+        const mailElement: HTMLInputElement = formElement.querySelector('input[name="email"]');
+        const buttonElement: HTMLButtonElement = formElement.querySelector('button');
+        const recoveryData: RecoveryData = new RecoveryData(
+            mailElement.value
+        );
+
+        UserMain.validateRecoveryButton(recoveryData, buttonElement);
+
+        mailElement.addEventListener('keyup', e => {
+            recoveryData.email = (e.target as HTMLInputElement).value;
+            UserMain.validateRecoveryButton(recoveryData, buttonElement);
+            recoveryContainer.classList.remove('kazoku-error-shadow');
+        });
+
+        buttonElement.addEventListener('click', e => {
+            e.preventDefault();
+            UserMain.startRecovery(recoveryData, recoveryContainer, buttonElement);
+        });
+    }
+
+    private static validateRecoveryButton(recoveryData: RecoveryData, button: HTMLButtonElement): void {
+        if (recoveryData.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
+
+    private static startRecovery(
+        recoveryData: RecoveryData,
+        recoveryContainer: HTMLDivElement,
+        recoveryButton: HTMLButtonElement
+    ): void {
+        recoveryButton.disabled = true;
+        UserRequest.startRecovery(recoveryData).then(res => {
+            if (res.statusCode === 200) {
+                alert('Email enviado correctamente, revise su correo.');
+                document.location.replace('/');
+            } else if (res.statusCode === 404) {
+                alert('No hemos encontrado este email en la base de datos.');
+                recoveryContainer.classList.add('kazoku-error-shadow', 'animate');
+            } else {
+                recoveryContainer.classList.add('kazoku-error-shadow', 'animate');
+            }
+            recoveryButton.disabled = false;
+        });
+    }
+
+    /* Recovery update */
+
+    private static handleRecoveryUpdateForm() {
+        const recoveryContainer: HTMLDivElement = document.querySelector('div.recovery-form');
+        const formElement: HTMLFormElement = recoveryContainer.querySelector('form');
+        const hashElement: HTMLInputElement = formElement.querySelector('input[name="hash"]');
+        const passwordElement: HTMLInputElement = formElement.querySelector('input[name="password"]');
+        const repeatPasswordElement: HTMLInputElement = formElement.querySelector('input[name="repeatPassword"]');
+        const buttonElement: HTMLButtonElement = formElement.querySelector('button');
+        const recoveryUpdateData: RecoveryUpdateData = new RecoveryUpdateData(
+            hashElement.value,
+            passwordElement.value,
+            repeatPasswordElement.value
+        );
+
+        UserMain.validateRecoveryUpdateButton(recoveryUpdateData, buttonElement);
+
+        passwordElement.addEventListener('keyup', e => {
+            recoveryUpdateData.password = (e.target as HTMLInputElement).value;
+            UserMain.validateRecoveryUpdateButton(recoveryUpdateData, buttonElement);
+            recoveryContainer.classList.remove('kazoku-error-shadow');
+        });
+
+        repeatPasswordElement.addEventListener('keyup', e => {
+            recoveryUpdateData.repeatPassword = (e.target as HTMLInputElement).value;
+            UserMain.validateRecoveryUpdateButton(recoveryUpdateData, buttonElement);
+            recoveryContainer.classList.remove('kazoku-error-shadow');
+        });
+
+        buttonElement.addEventListener('click', e => {
+            e.preventDefault();
+            UserMain.recoveryUpdate(recoveryUpdateData, recoveryContainer, buttonElement);
+        });
+    }
+
+    private static validateRecoveryUpdateButton(recoveryUpdateData: RecoveryUpdateData, button: HTMLButtonElement): void {
+        if (recoveryUpdateData.validate()) {
+            button.disabled = false;
+            return;
+        }
+        button.disabled = true;
+    }
+
+    private static recoveryUpdate(
+        recoveryUpdateData: RecoveryUpdateData,
+        recoveryUpdateContainer: HTMLDivElement,
+        recoveryUpdateButton: HTMLButtonElement
+    ): void {
+        recoveryUpdateButton.disabled = true;
+        UserRequest.updateForRecovery(recoveryUpdateData).then(res => {
+            if (res.statusCode === 200) {
+                alert('Contraseña actualizada.');
+                document.location.replace('/');
+            } else if (res.statusCode === 404) {
+                alert('No hemos encontrado este hash.');
+                recoveryUpdateContainer.classList.add('kazoku-error-shadow', 'animate');
+            } else {
+                recoveryUpdateContainer.classList.add('kazoku-error-shadow', 'animate');
+            }
+            recoveryUpdateButton.disabled = false;
         });
     }
 }

@@ -1,0 +1,27 @@
+<html>
+{% include 'partials/head.twig' %}
+
+<body data-action="update-password-recovery">
+<div class="recovery-form">
+    <div class="left">
+        <figure>
+            <img src="/img/logo/logoL.png" alt="Kazoku Logo" />
+        </figure>
+    </div>
+    <div class="right">
+        <form>
+            <h2>{% trans %}Recuperación de contraseña{% endtrans %}</h2>
+            <input type="hidden" name="hash" style="display: none;" value="{{ updateHash }}"/>
+            <input autocomplete="off" type="password" name="password" placeholder="{% trans %}Contraseña{% endtrans %}"/>
+            <input autocomplete="off" type="password" name="repeatPassword" placeholder="{% trans %}Repite la contraseña{% endtrans %}"/>
+            <button>{% trans %}Actualizar contraseña{% endtrans %}</button>
+        </form>
+        <div class="text-center">
+            <a href="/">{{ "Volver al inicio" | trans }}</a>
+        </div>
+    </div>
+</div>
+
+{% include 'partials/scripts.twig' %}
+</body>
+</html>

@@ -1,6 +1,8 @@
 import { Response } from "../util/Response";
 import { User } from "./User";
 import { Request } from "../util/Request";
+import { RecoveryData } from "./RecoveryData";
+import { RecoveryUpdateData } from "./RecoveryUpdateData";
 
 export class UserRequest {
     /**
@@ -32,5 +34,19 @@ export class UserRequest {
     public static deleteByTrainer(userId: number): Promise<Response> {
         const data = `userId=${userId}`;
         return Request.post('/xhr/user/deletebytrainer', data);
+    }
+
+    /**
+     * Start an user password recovery.
+     * @param recoveryData
+     */
+    public static startRecovery(recoveryData: RecoveryData): Promise<Response> {
+        const data = `email=${recoveryData.email}`;
+        return Request.post('/xhr/user/startRecovery', data);
+    }
+
+    public static updateForRecovery(recoveryUpdateData: RecoveryUpdateData): Promise<Response> {
+        const data = `hash=${recoveryUpdateData.hash}&password=${recoveryUpdateData.password}`;
+        return Request.post('/xhr/user/updatePasswordFromRecovery', data);
     }
 }

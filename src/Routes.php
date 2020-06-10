@@ -38,6 +38,10 @@ use WebFeletesDevelopers\Kazoku\Action\User\ActivateUserAction;
 use WebFeletesDevelopers\Kazoku\Action\User\ActivateUserByTrainerAction;
 use WebFeletesDevelopers\Kazoku\Action\User\DeleteUserByTrainerAction;
 use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
+use WebFeletesDevelopers\Kazoku\Action\User\PasswordForgottenAction;
+use WebFeletesDevelopers\Kazoku\Action\User\UpdatePasswordAction;
+use WebFeletesDevelopers\Kazoku\Action\User\XHR\StartRecoveryAction;
+use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdatePasswordForRecoveryAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 
@@ -65,20 +69,22 @@ class Routes
         $app->get('/verificate', verificateAction::class);
         $app->get('/profile', profileAction::class);
         $app->get('/newUser', newUserAction::class);
+        $app->get('/user/activate', ActivateUserAction::class);
+        $app->get('/user/startPasswordRecovery', PasswordForgottenAction::class);
+        $app->get('/user/finalRecovery', UpdatePasswordAction::class);
+
+        $app->post('/xhr/user/startRecovery', StartRecoveryAction::class);
+        $app->post('/xhr/user/updatePasswordFromRecovery', UpdatePasswordForRecoveryAction::class);
+        $app->post('/user/hash/get', GetLoginHashAction::class);
+        $app->post('/xhr/user/register', Action\User\RegisterAction::class);
+        $app->post('/xhr/user/activatebytrainer', ActivateUserByTrainerAction::class);
+        $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
 
 
         //news
         $app->get('/newsCreator', NewsCreatorAction::class);
         $app->post('/news/add', CreateNewsAction::class);
         $app->post('/news/delete', DeleteNewsAction::class);
-
-
-        //user
-        $app->post('/user/hash/get', GetLoginHashAction::class);
-        $app->post('/xhr/user/register', Action\User\RegisterAction::class);
-        $app->get('/user/activate', ActivateUserAction::class);
-        $app->post('/xhr/user/activatebytrainer', ActivateUserByTrainerAction::class);
-        $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
 
         //class
         $app->get('/classAdmin', classAdminAction::class);
