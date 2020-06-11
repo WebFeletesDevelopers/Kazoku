@@ -343,6 +343,46 @@ SQL;
         }
         return $rows[0];
     }
+    
+    public function getJudokasByClassId($classId): array
+    {
+        $sql = <<<SQL
+        SELECT p.name AS name,
+            p.surname AS lastName1,
+            p.second_surname AS lastName2,
+            p.gender AS sex,
+            p.id as judokaId,
+            p.user_id as userId,
+            p.fanjyda_id as fanjydaId,
+            p.DNI AS dni,
+            p.birth_date as birthDate,
+            p.phone as phone,
+            p.email as email,
+            p.extra_info as illness,
+            p.guardian_id as parentId,
+            p.belt_id as beltId,
+            p.address_id as addressId,
+            p.class_id as classId
+        FROM pupil p
+        WHERE p.class_id = ?
+SQL;
+        $binds = [
+            $classId,
+        ];
+
+        try {
+            $statement = $this->query($sql,$binds);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        if($rows == false){
+            $rows= [];
+        }
+        return $rows;
+    }
+
+
 
     /**
      * Finds a judoka by some basics data

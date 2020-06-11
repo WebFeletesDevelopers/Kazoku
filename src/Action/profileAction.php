@@ -77,9 +77,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
 
         $body = $response->getBody();
         $arguments = [
-            'title' => 'classadmin',
-            'userName' => 'Alberto',
-            'userId' => 0,
+            'title' => 'Kazoku | Perfil',
             'judoka' => $judoka,
             'class' => $clase,
             'days' => $classDays,

@@ -1,0 +1,106 @@
+<div class="card shadow">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 font-weight-bold">{{ "Club de Judo" | trans }}{% if title is defined %}  {{ title }}{% else%}Kazoku{% endif %} </p>
+    </div>
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-md-6">
+                <!-- FINDER -->
+                <form class="container-fluid" role="search" action="/findJudoka">
+                    <input type="text" name="s" class="form-control " placeholder="{{"Buscar Alumno" | trans}}">
+                    <button type="submit" class="btn btn-secondary d" hidden>&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;</button>
+                </form>
+            </div>
+            {% if 1==1 %}
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table dataTable my-0" id="tablaAlumnos">
+                    <thead>
+                    <tr>
+                        <th class="px-0 bg-primary"  ></th>
+                        <th class="px-0 bg-primary" ><button data-name="1" data-id="name" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Nombre" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="2" data-id="surname" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Apellido(s)" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="3" data-id="birth" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Fecha Nacimiento" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="4" data-id="sex" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Sexo" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="5" data-id="belt" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Cinturón" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="6" data-id="fanjyda" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"ID Fanjyda"}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="7" data-id="dni" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"DNI/NIE/PAS"}}</button></th>
+                        <th class="px-0 bg-primary"> <button data-name="8" data-id="info" class="tablaBtn container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Información" | trans}}</button></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Foreach de alumnos-->
+                    {% for judoka in judokas  %}
+
+                        <tr>
+                            <td class="text-center"><img src="/img/profile/{% if judoka.judokaIdNo is defined %}{{ judoka.judokaId }}.jpg{% else %}generic.png{% endif %}" width="50" height="50"></td>
+                            <td class="text-center">{{judoka.name}}</td>
+                            <td class="text-center">{{judoka.lastName1}} {{ judoka.lastName2 }}</td>
+                            <td class="text-center"><input class="text-center border-0" type="date" disabled value="{{ judoka.birthDate  }}"></td>
+                            <td class="text-center">{% if judoka.sex == 1 %}{{ "Masculino" | trans }}{% else %}{{ "Femenino" | trans }}{% endif %}</td>
+                            <td class="text-center">
+                                {% if judoka.beltId == 1  %}{{ "Blanco" }}
+                                {% elseif judoka.beltId == 2 %}{{ "Blanco-Amarillo" }}
+                                {% elseif judoka.beltId == 3 %}{{ "Amarillo" }}
+                                {% elseif judoka.beltId == 4 %}{{ "Amarillo-Naranja" }}
+                                {% elseif judoka.beltId == 5 %}{{ "Naranja" }}
+                                {% elseif judoka.beltId == 6 %}{{ "Naranja-verde" }}
+                                {% elseif judoka.beltId == 7 %}{{ "Verde" }}
+                                {% elseif judoka.beltId == 8 %}{{ "Verde-Azul" }}
+                                {% elseif judoka.beltId == 9 %}{{ "Azul" }}
+                                {% elseif judoka.beltId == 10 %}{{ "Azul-marrón" }}
+                                {% elseif judoka.beltId == 11 %}{{ "Marrón" }}
+                                {% elseif judoka.beltId == 12 %}{{ "1º DAN" }}
+                                {% elseif judoka.beltId == 13 %}{{ "2º DAN" }}
+                                {% elseif judoka.beltId == 14 %}{{ "3º DAN" }}
+                                {% elseif judoka.beltId == 15 %}{{ "4º DAN" }}
+                                {% elseif judoka.beltId == 16 %}{{ "5º DAN" }}
+                                {% elseif judoka.beltId == 17 %}{{ "Blanco-Rojo" }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">{{ judoka.fanjydaId }}</td>
+                            <td class="text-center">{{ judoka.dni }}</td>
+                            <td class="text-center row">
+                                <a href="/judokaDetail/{{ judoka.judokaId }}" class="col-6 container-fluid btn btn-sm btn-info rounded-0 inline-block "><i class="fas fa-info"></i></a>
+                                <button data-id="{{ judoka.judokaId }}" id="" data-name="delete-judoka"  class="judokaBtn col-6 container-fluid btn btn-sm btn-danger rounded-0 inline-block "><i class="fas fa-eraser"></i></button>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th class="px-0 bg-primary"> </th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Nombre" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Apellido(s)" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Fecha Nacimiento" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Sexo" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Cinturón" | trans}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"ID Fanjyda"}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"DNI/NIE/PAS"}}</button></th>
+                        <th class="px-0 bg-primary"> <button class="container-fluid rounded-0 btn btn-primary px-1 my-1 text-center">{{"Información" | trans}}</button></th>
+                    </tr>
+                    </tfoot>
+                </table>
+                {% else %}
+                    <p class="alert alert-warning">No hay resultados</p>
+                {% endif %}
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><<</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">>></span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>-->
+        </div>
+    </div>

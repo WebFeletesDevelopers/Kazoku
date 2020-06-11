@@ -199,6 +199,17 @@ class JudokaController
         return $this->model->getOneJudokaByUserId($userId);
     }
 
+
+    /**
+     * Gets all judokas from a specific class
+     * @param $classId
+     * @return array
+     */
+    public function getJudokaByClass($classId): array
+    {
+        return $this->model->getJudokasByClassId($classId);
+    }
+
     /**
      * Finds a judoka by some basic data
      * @param $name

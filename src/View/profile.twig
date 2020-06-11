@@ -14,7 +14,7 @@
                 <div class="card mb-3">
                     <div class="card-body text-center shadow">
                         <img class="rounded-circle mb-3 mt-4" src="/img/profile/{% if judoka.userIdNo is defined %}{{ judoka.userId }}{% else%}generic{% endif %}.png" width="160" height="160" />
-                        <img class="card-img mb-3 mt-4" src="/img/cintos/{{ judoka.beltId }}.png" />
+                        <img class="card-img mb-3 mt-4" src="/img/cintos/{% if judoka.beltId is not null %}{{ judoka.beltId }}{% else %}{{ "1" }}{% endif %}.png" />
                         <input type="hidden" id="mod-beltId" value="{{ judoka.beltId }}">
                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">{{ "Cambiar Foto" | trans  }}</button></div>
                     </div>
