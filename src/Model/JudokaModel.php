@@ -208,6 +208,29 @@ SQL;
         return true;
     }
 
+
+    public function deleteFromClass(
+        int $judokaId
+    ): bool
+    {
+        $sql = <<<SQL
+        UPDATE pupil SET
+            class_id = null      
+        WHERE id = ?
+SQL;
+        $binds = [
+            $judokaId,
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
+
+
     /**
      * Links a judoka with his user account
      * @param int|null $userId
@@ -343,7 +366,7 @@ SQL;
         }
         return $rows[0];
     }
-    
+
     public function getJudokasByClassId($classId): array
     {
         $sql = <<<SQL

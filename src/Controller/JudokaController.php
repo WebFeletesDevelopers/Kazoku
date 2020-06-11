@@ -116,6 +116,15 @@ class JudokaController
         }
     }
 
+    public function deleteFromClass(
+        int $judokaId
+    ): bool {
+        try {
+            return $this->model->deleteFromClass($judokaId);
+        } catch (QueryException $e) {
+        }
+    }
+
     /**
      * Modifies a judoka
      * @param string $name

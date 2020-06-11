@@ -34,7 +34,12 @@ export class ClassMain {
                 switch (name) {
                     case "deleteClass":
                         e.preventDefault();
-                        ClassMain.deleteClass(parseInt(classId));
+                        var r = confirm("¿Realmente desea borrar esta clase?");
+                        if (r == true) {
+                            e.preventDefault();
+                            ClassMain.deleteClass(parseInt(classId));
+                        }
+
                         break;
                 }
             });
@@ -133,12 +138,21 @@ export class ClassMain {
         const allButtons: NodeListOf<Element> = document.querySelectorAll('button.classes');
         allButtons.forEach(function (button) {
             button.addEventListener('click', e => {
-                const classId = button.getAttribute("data-id");
+                const dataId = button.getAttribute("data-id");
                 const name = button.getAttribute("data-name");
                 switch (name) {
                     case "deleteClass":
                         e.preventDefault();
-                        ClassMain.deleteClass(parseInt(classId));
+                        var r = confirm("¿Realmente desea borrar este centro?");
+                        if (r == true) {
+                            ClassMain.deleteClass(parseInt(dataId));
+                        }
+                        break;
+                    case "delete-judoka":
+                        var r = confirm("¿Realmente desea borrar el judoka de la clase?");
+                        if (r == true) {
+                            ClassMain.deleteJudokaFromClass(parseInt(dataId));
+                        }
                         break;
                 }
             });
@@ -149,7 +163,9 @@ export class ClassMain {
         const seeJudokas: HTMLButtonElement   = document.querySelector('button#seeJudokas');
         const addJudoka: HTMLButtonElement    = document.querySelector('button#addJudoka');
         const deleteClass: HTMLButtonElement  = document.querySelector('button#deleteClass');
-
+        const judokaCard: HTMLDivElement  = document.querySelector('#judokaCard');
+        judokaCard.hidden = true;
+        const deleteFromClass: NodeListOf<Element> =      document.querySelectorAll('.delete-judoka');
 
 
         // Create form
@@ -166,8 +182,8 @@ export class ClassMain {
         const modifyThu: HTMLInputElement =       document.querySelector('#modify-j');
         const modifyFri: HTMLInputElement =       document.querySelector('#modify-v');
         const modifyDays: NodeListOf<Element> =      document.querySelectorAll('.modify-check');
-
         let days = 0;
+
 
         const editedClass: Classes = new Classes(
             modifyName.value,
@@ -240,8 +256,20 @@ export class ClassMain {
             ClassMain.modifyClass(editedClass,$classId);
         });
 
-    }
+        seeJudokas.addEventListener('click', e => {
+            e.preventDefault();
+            this.showJudokaList(judokaCard);
 
+        });
+
+    }
+    private static showJudokaList(card: HTMLDivElement): void {
+        if (card.hidden == true) {
+            card.hidden = false;
+            return;
+        }
+        card.hidden = true;
+    }
 
 
     private static validateCreateClassButton(button: HTMLButtonElement, classes: Classes): void {
@@ -330,4 +358,19 @@ export class ClassMain {
             }
         });
     }
+
+    /**
+     * Deletes a judoka from a class
+     * @param classId
+     */
+    private static deleteJudokaFromClass(judokaId: number): void  {
+        ClassRequest.deleteJudokaFromClass(judokaId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/classAdmin');
+            }
+        });
+    }
+
 }
