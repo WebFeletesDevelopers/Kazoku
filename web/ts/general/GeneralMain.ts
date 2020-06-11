@@ -15,7 +15,7 @@ export class GeneralMain {
         logoutLink.addEventListener('click', e => {
             e.preventDefault();
             Cookie.delete('hash');
-            document.location.reload();
+            document.location.replace('/');
         });
     }
 }

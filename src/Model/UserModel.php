@@ -291,6 +291,43 @@ SQL;
     }
 
     /**
+     * Finds an user by his/her ID but with less data returned
+     * @param int $userId
+     * @return array
+     * @throws InvalidUserIdException
+     * @throws QueryException
+     */
+    public function findByIdmin(int $userId): array
+    {
+        $sql = <<<SQL
+        SELECT u.id AS id,
+               u.rank AS `rank`,
+               u.username AS username,
+               u.name AS name,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
+               u.email AS email
+        FROM users u
+        WHERE u.id = ?
+SQL;
+        $binds = [$userId];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+        if ($statement->rowCount() === 0) {
+            throw InvalidUserIdException::fromInvalidId($userId);
+        }
+
+        $rows = $statement->fetchAll();
+
+        return $rows[0];
+    }
+
+
+    /**
      * @return User[]
      * @throws QueryException
      */

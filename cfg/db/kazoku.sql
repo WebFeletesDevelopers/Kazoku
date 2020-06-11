@@ -75,7 +75,7 @@ CREATE TABLE `pupil` (
     `DNI` varchar(9) CHARACTER SET utf8 DEFAULT NULL,
     `birth_date` date DEFAULT NULL,
     `phone` int(11) DEFAULT NULL,
-    `email` varchar(22) CHARACTER SET utf8 DEFAULT NULL,
+    `email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
     `extra_info` longtext CHARACTER SET utf8 DEFAULT NULL,
     `guardian_id` int(11) DEFAULT NULL,
     `belt_id` int(11) DEFAULT 1,

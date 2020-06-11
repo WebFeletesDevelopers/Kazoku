@@ -29,27 +29,28 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
             $allJudokaInfo = $controller->getOneJudoka($judokaId);
+            if($allJudokaInfo['classId'] != null){
+                $modelClase = new ClaseModel($database);
+                $controllerClase = new ClaseController($modelClase);
+                $allClasses = $controllerClase->getClases();
+                $value = intval($allJudokaInfo['classId']);
+                $clase = $controllerClase->getClass([$value]);
+                if($clase != null){
+                    $modelCenter = new CentroModel($database);
+                    $controllerCenter = new CentroController($modelCenter);
+                    $center = $controllerCenter->getCenter($clase['centerId']);
+                }
+            }
 
-            $modelClase = new ClaseModel($database);
-            $controllerClase = new ClaseController($modelClase);
-            $allClasses = $controllerClase->getClases();
-            $value = intval($allJudokaInfo['classId']);
-            $clase = $controllerClase->getClass([$value]);
-            $modelCenter = new CentroModel($database);
-            $controllerCenter = new CentroController($modelCenter);
-            $center = $controllerCenter->getCenter($clase['centerId']);
         }
-        else{
             $database = ConnectionHelper::getConnection();
             $modelClase = new ClaseModel($database);
             $controllerClase = new ClaseController($modelClase);
-            $allClasses = $controllerClase->getClases();
-            $clase = $controllerClase->getClasesAllData();
+            $allClasses = $controllerClase->getClasesAllData();
 
             $modelCenter = new CentroModel($database);
             $controllerCenter = new CentroController($modelCenter);
-            $center = $controllerCenter->getCentersAllData();
-        }
+            $centers = $controllerCenter->getCentersAllData();
 
 
 
@@ -66,6 +67,7 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'days' => $classDays,
             'classDays' => $classDays,
             'center' => $center,
+            'centers' => $center,
             'action' => 'judoka-detail'
         ];
         $compiledTwig = $this->render('judokaDetail', $arguments);

@@ -8,10 +8,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use WebFeletesDevelopers\Kazoku\Controller\AddressController;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
+use WebFeletesDevelopers\Kazoku\Model\AddressModel;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
@@ -53,15 +55,21 @@ class profileAction extends BaseTwigAction implements ActionInterface
                 $claseController = new ClaseController($claseModel);
                 $value = intval($allJudokaInfo['classId']);
                 $clase = $claseController->getClass([$value]);
+                $classDays['daySplit'] = str_split(sprintf("%05d", decbin($clase['days'])));
                 // get center
-                $modelCenter = new CentroModel($database);
-                $controllerCenter = new CentroController($modelCenter);
-                $center = $controllerCenter->getCenter($clase['centerId']);
+                if($clase != null){
+                    $modelCenter = new CentroModel($database);
+                    $controllerCenter = new CentroController($modelCenter);
+                    $center = $controllerCenter->getCenter($clase['centerId']);
+                }
                 // get profile pic
                 $fileRoute = parent::getProfilePic($loggedInUser);
                 // get address
-                $classDays['daySplit'] = str_split(sprintf("%05d", decbin($clase['days'])));
-
+                if($judoka['addressId'] != null){
+                    $addressModel = new AddressModel($database);
+                    $addressController = new AddressController($addressModel);
+                    $address = $addressController->getAddressById($judoka['addressId']);
+                }
             }
         }
 
@@ -78,6 +86,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
             'photoRoute' => $fileRoute,
             'classDays' => $classDays,
             'center' => $center,
+            'address' => $address,
             'action' => 'judoka-myProfile'
         ];
 

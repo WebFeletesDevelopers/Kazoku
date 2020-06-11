@@ -35,10 +35,9 @@
                         </div>
                     </div>
                     <!-- TODO: Si es un profesor o un administrador, mostrará la opción borrar noticia -->
-                    {% if 1 == 1 %}
+                    {% if (( user is not null) and (user.rank < 2) ) %}
                         <button class="btn w-sm-25 ml-2 borrar" data-id="{{ new.id }}" type="sumbit" href="">{{ "Borrar Noticia" | trans }}</button>
-                    {% endif
-                    %}
+                    {% endif %}
                 </div>
             </div>
 

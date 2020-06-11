@@ -49,8 +49,6 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
             $controller->addJudokaFromRegister(
                 $name,
                 $lastname1,
-                $lastname2,
-                $dni,
                 $phone,
                 $email
             );

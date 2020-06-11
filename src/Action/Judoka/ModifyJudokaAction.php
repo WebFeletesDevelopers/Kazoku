@@ -16,7 +16,7 @@ use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 /**
  * Class modifyJudoka
  * Class for modify a judoka
- * @package WebFeletesDevelopers\Kazoku\Action\Juoka
+ * @package WebFeletesDevelopers\Kazoku\Action\Judoka
  */
 class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
 {
@@ -50,8 +50,6 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         $classId = intval($data['classId']);
         $judokaId = intval($data['judokaId']);
         $judokaId = intval($judokaId);
-
-
         try {
             $this->validateParameters(
                 $name,

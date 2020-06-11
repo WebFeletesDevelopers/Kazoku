@@ -95,7 +95,7 @@ class ClaseController
         return $this->model->getClasesAllData();
     }
 
-    public function getClass($classId): array
+    public function getClass($classId): ?array
     {
         return $this->model->getClass($classId);
     }

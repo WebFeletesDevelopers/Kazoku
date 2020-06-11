@@ -154,22 +154,22 @@ class JudokaController
         int $phone,
         ?int $fanjydaId
     ): bool {
-        if($lastName2 == ''){
+        if($lastName2 == '' or $lastName2 == 'NaN'){
             $lastName2 = null;
         }
-        if($userId == ''){
+        if($userId == '' or $userId == 'NaN' ){
             $userId = null;
         }
-        if($fanjydaId == ''){
+        if($fanjydaId == '' or $fanjydaId == 'NaN'){
             $fanjydaId = null;
         }
-        if($dni == ''){
+        if($dni == '' or $dni == 'NaN'){
             $dni = null;
         }
-        if($illness == ''){
+        if($illness == '' or $illness == 'NaN'){
             $illness = null;
         }
-        if($parentId == ''){
+        if($parentId == '' or $parentId == 'NaN'){
             $parentId = null;
         }
 
@@ -197,6 +197,30 @@ class JudokaController
     public function getOneJudokaByuserId($userId): array
     {
         return $this->model->getOneJudokaByUserId($userId);
+    }
+
+    /**
+     * Finds a judoka by some basic data
+     * @param $name
+     * @param $surname
+     * @param $email
+     * @return array
+     */
+    public function findJudoka($name,$surname,$email): array
+    {
+        return $this->model->findJudoka($name,$surname,$email);
+    }
+
+    /**
+     * Links one judoka with his ID
+     * @param $userId
+     * @param $judokaId
+     * @return bool
+     * @throws QueryException
+     */
+    public function linkUser($userId,$judokaId): bool
+    {
+        return $this->model->linkWithUser($userId,$judokaId);
     }
 
     /**
