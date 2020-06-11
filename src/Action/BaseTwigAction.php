@@ -99,4 +99,30 @@ abstract class BaseTwigAction
         }
         return $fileRoute;
     }
+
+    /**
+     * Get's the profile photo from the user but parsing only it's id
+     * @param int|null $userId
+     * @return String|null
+     */
+    protected function getProfilePicById(?int $userId): ?String
+    {
+        if($userId !== null) {
+            $filename1 = '/img/profile' . $userId . '.jpg';
+            $filename2 = '/img/profile' . $userId . '.jpg';
+            $generic = "/img/profile/generic.png";
+
+            if (file_exists($filename1)) {
+                $fileRoute = $filename1;
+            } elseif (file_exists($filename2)) {
+                $fileRoute = $filename2;
+            } else {
+                $fileRoute = $generic;
+            }
+        } else {
+            $generic = "/img/profile/generic.png";
+            $fileRoute = $generic;
+        }
+        return $fileRoute;
+    }
 }

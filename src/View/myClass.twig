@@ -11,9 +11,11 @@
                     </h3>
                 </div>
                 <div class="col-md-8 col-sm-12 ">
+                    {% if alerta == true %}
                     <div class="alert alert-info text-center" role="alert">
                         {{ "Una alerta cualquiera, para avisar, por ejemplo de un cambio a largo plazo" }}
                     </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-2 col-sm-12 text-center">
                     <button type="button"  {% if pagarMensualidad != true %} disabled class="btn btn-secondary" {% else %} class="btn btn-primary" {% endif %}>
@@ -23,20 +25,27 @@
             </div>
             <div class="container-fluid m-1 py-5 px-0 bg-white shadow text-center position-relative">
                 <iframe
-                        {% set centro = 2 %}
-                        {% if centro == 1 %}
+                        {% if class.centerId == 1 %}
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.8991899482944!2d-4.482760884817818!3d36.72498227996406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f0cca9e31e1b%3A0xdd9bbf07556713cc!2sCEIP%20Pintor%20F%C3%A9lix%20Revello%20de%20Toro!5e0!3m2!1ses!2ses!4v1591178989540!5m2!1ses!2ses"
-                        {% elseif centro == 2 %}
+                        {% elseif class.centerId  == 2 %}
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.4443653492904!2d-4.630614949257935!3d36.543397179904105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72e23e67d1cd71%3A0xcb05ef625942312f!2sCLUB%20DE%20JUDO%20KODOKAN%20FUENGIROLA!5e0!3m2!1ses!2ses!4v1591181539782!5m2!1ses!2ses"
+                        {% else %}
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204558.78532792846!2d-4.564274390208133!3d36.76502499171308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f6698d30d151%3A0x403d278a576e680!2zTcOhbGFnYQ!5e0!3m2!1ses!2ses!4v1591891560309!5m2!1ses!2ses"
                         {% endif %}
                         width="100%" height="100%" frameborder="0" style="border:0; position: absolute; float: inherit; clear: both; left:0; top:0;  z-index: 0; background-repeat:  no-repeat"  id="maps" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 <div class="position-relative text-light w-100 " style="background: rgba(10,10,10, 0.2); text-shadow: rgb(0, 0, 0) 3px 0px 0px ">
                     <strong>
                         <h2 >
-                            {{ "Grupo Cadetes" }}
+                            {{ class.name }}
                         </h2>
                         <h2>
-                            {{ "Lunes, martes y miércoles" }} <br> {{ "15:00 - 16:00" }}
+                            {% if days.daySplit[4] == 1 %}{{ "Lunes" | trans }}{% endif %}
+                            {% if days.daySplit[3] == 1 %}{{ "Martes" | trans }}{% endif %}
+                            {% if days.daySplit[2] == 1 %}{{ "Miércoles" | trans }}{% endif %}
+                            {% if days.daySplit[1] == 1 %}{{ "Jueves" | trans }}{% endif %}
+                            {% if days.daySplit[0] == 1 %}{{ "Viernes" | trans }}{% endif %}
+                            <br>
+                            {{ class.schedule }}
                         </h2>
 
                     </strong>
@@ -53,15 +62,15 @@
                         <div class="card-body">
                             <p class="card-text">
                                 {% if faltas >= 1 %}
-                               {{ "Has faltado" | trans }}
+                               {{ "Has faltado" | trans }} {{ faltasCount }} {{ "Dias este mes" | trans }}
                                 {% else %}
                                 {{ "¡No has faltado este mes!" }}
                                 {% endif %}
                             </p>
                         </div>
-                        <button class="card-footer border-0">
+                        <a class="card-footer border-0" href="/misFaltas">
                             {{ "Ver todas" | trans }}
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -71,11 +80,22 @@
                         </h5>
                         <div class="card-body">
                             <p class="card-text">
-                                <img class="card-img" src="/img/cintos/negro.png">
+                                <img class="card-img" src="/img/cintos/{{ judoka.beltId }}.png">
                             </p>
                         </div>
                         <div class="card-footer">
-                            {{"Cinturón Negro"}}
+                            {% if judoka.beltId == 1 %}  {{"Blanco" | trans}} {% endif %}
+                            {% if judoka.beltId == 2 %}  {{"Blanco-amarillo" | trans}}{% endif %}
+                            {% if judoka.beltId == 3 %}  {{"Amarillo" | trans}}{% endif %}
+                            {% if judoka.beltId == 4 %}  {{"Amarillo-Naranja" | trans}}{% endif %}
+                            {% if judoka.beltId == 5 %}  {{"naranja" | trans}}{% endif %}
+                            {% if judoka.beltId == 6 %}  {{"naranja-verde" | trans}}{% endif %}
+                            {% if judoka.beltId == 7 %}  {{"Verde" | trans}}{% endif %}
+                            {% if judoka.beltId == 8 %}  {{"Verde-azul" | trans}}{% endif %}
+                            {% if judoka.beltId == 9 %}  {{"Azul" | trans}}{% endif %}
+                            {% if judoka.beltId == 10 %}  {{"Azul-marrón" | trans}}{% endif %}
+                            {% if judoka.beltId == 11 %}  {{"marrón" | trans}}{% endif %}
+                            {% if judoka.beltId == 12 %}  {{"Negro" | trans}}{% endif %}
                         </div>
                     </div>
                 </div>

@@ -82,8 +82,9 @@
                         <div class="">
                             <label class="text-success">{{ "Seleccionar padre/madre/tutor" | trans}}</label>
                             <select class="custom-select" id="mod-parent">
-                                <option value="1"  {% if judoka.parentId == 1 %} selected {% endif %} >Predeterminada (1)</option>
-                                <!-- foreach de padres -->
+                                {% for parents in allParents %}
+                                <option value="{{parents.id}}"  {% if judoka.parentId == parents.id %} selected {% endif %}>{{ parents.name }} {{ parents.surname }} {{ parents.secondSurname }} {% if judoka.parentId == parents.id %}(*){%endif %} </option>
+                                {% endfor %}
                             </select>
                         </div>
                     </li>

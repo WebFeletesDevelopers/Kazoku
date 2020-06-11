@@ -154,14 +154,14 @@ SQL;
         ?int $fanjydaId,
         ?string $dni,
         string $birthDate,
-        int $phone,
-        string $email,
+        ?int $phone,
+        ?string $email,
         ?string $illness,
         ?int $parentId,
         int $beltId,
-        int $addressId,
-        int $classid,
-        int $judokaId
+        ?int $addressId,
+        ?int $classid,
+        ?int $judokaId
     ): bool
     {
         $sql = <<<SQL
