@@ -3,6 +3,7 @@
 namespace WebFeletesDevelopers\Kazoku\Model;
 
 use WebFeletesDevelopers\Kazoku\Model\Entity\Absence;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AbsenceFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
@@ -177,7 +178,7 @@ SQL;
         if($rows == false){
             $rows[] = [];
         }
-        return $rows;
+        return AbsenceFactory::fromMysqlRows($rows);
     }
 
 }

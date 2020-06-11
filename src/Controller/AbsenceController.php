@@ -5,6 +5,7 @@ namespace WebFeletesDevelopers\Kazoku\Controller;
 
 use WebFeletesDevelopers\Kazoku\Model\AbsenceModel;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Absence;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\ClaseFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
@@ -95,6 +96,9 @@ class AbsenceController
     public function getAll(): array {
         return $this->model->getAll();
     }
+
+
+
 
 
 

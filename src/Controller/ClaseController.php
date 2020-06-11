@@ -28,6 +28,7 @@ class ClaseController
      * @param int $days
      * @return bool
      * @throws InsertException
+     * @throws \WebFeletesDevelopers\Kazoku\Model\Exception\QueryException
      */
     public function addClass(
         string $schedule,
@@ -45,6 +46,7 @@ class ClaseController
      * Delete the given class from the database
      * @param int $classCode
      * @return bool
+     * @throws \WebFeletesDevelopers\Kazoku\Model\Exception\QueryException
      */
     public function deleteClass(
         int $classCode
@@ -62,6 +64,7 @@ class ClaseController
      * @param int $days
      * @param int $classId
      * @return bool
+     * @throws \WebFeletesDevelopers\Kazoku\Model\Exception\QueryException
      */
     public function modify(
         string $schedule,
@@ -100,5 +103,48 @@ class ClaseController
         return $this->model->getClass($classId);
     }
 
+    public function getCurrentClassId(): int{
+        $class = null;
+        $classes = $this->model->getClasesAllData();
+        $res = 0;
+        foreach($class as $classes) {
+            if ($this->isClassToday($class['days'])) {
+                if ($this->isOnTime($class['schedule'])) {
+                    $res = $class['id'];
+                } else {
+                    $res =  0;
+                }
+            } else {
+                $res = 0;
+            }
+        }
+        return $res;
+    }
+
+    private function isOnTime($schedule): bool{
+        $hours = explode(' - ',$schedule);
+        if ( strtotime( date('H:i')) - strtotime($hours[0]) >= 0){
+            if( strtotime( date('H:i')) - strtotime($hours[1]) >= 0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    private function isClassToday($days):bool{
+        $daysAr = array_reverse(str_split(sprintf("%05d", decbin($days))));
+        $today = date('N')-1;
+        if ($daysAr[$today] === 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 }
