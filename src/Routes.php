@@ -3,24 +3,25 @@
 namespace WebFeletesDevelopers\Kazoku;
 
 use Slim\App;
+use WebFeletesDevelopers\Kazoku\Action\Address\XHR\AutocompleteAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
-use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteJudokaFromClassAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaFromRegisterAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\CenterDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\classDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\CreateClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteClassAction;
+use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteJudokaFromClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\ModifyClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaFromRegisterAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\JudokaDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\LoginAction;
@@ -119,6 +120,7 @@ class Routes
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/panel', panelAction::class);
 
+        $app->post('/xhr/address/autocomplete', AutocompleteAddressAction::class);
 
         return $app;
     }

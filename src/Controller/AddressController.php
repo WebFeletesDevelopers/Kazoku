@@ -2,11 +2,9 @@
 
 namespace WebFeletesDevelopers\Kazoku\Controller;
 
-use DateTime;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Direccion;
-use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
-use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\AddressModel;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Direccion;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
  * Class AddressController
@@ -67,4 +65,12 @@ class AddressController
         return $this->addressModel->delete($id);
     }
 
+    /**
+     * @param string $input
+     * @return Direccion[]
+     */
+    public function getAddressByUserInput(string $input): array
+    {
+        return $this->addressModel->getByNaturalSearch($input);
+    }
 }

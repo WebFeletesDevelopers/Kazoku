@@ -122,6 +122,9 @@ ALTER TABLE absence
     ADD FOREIGN key (`classId`) REFERENCES class (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
     ADD FOREIGN KEY (`userId`) REFERENCES pupil (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
+ALTER TABLE address
+    ADD FULLTEXT(`address`);
+
 ALTER TABLE class
     ADD FOREIGN KEY (`center_id`) REFERENCES center(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 
@@ -146,30 +149,35 @@ ALTER TABLE verification
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+INSERT INTO `address` (zip_code, locality, province, address) VALUES
+    (29011, 'Málaga', 'Málaga', 'Plaza de los Verdiales'),
+    (29006, 'Málaga', 'Málaga', 'Plaza de Manuel Azaña'),
+    (29008, 'Málaga', 'Málaga', 'Calle Carretería'),
+    (29015, 'Málaga', 'Málaga', 'Calle Granada');
+
+INSERT INTO `belt` (`id`, `name`) VALUES
+    (1, 'Blanco'),
+    (2, 'Blanco-Amarillo'),
+    (3, 'Amarillo'),
+    (4, 'Amarillo'),
+    (5, 'Amarillo-Naranja'),
+    (6, 'Naranja'),
+    (7, 'Naranja-Verde'),
+    (8, 'Verde'),
+    (9, 'Verde-Azul'),
+    (10, 'Azul'),
+    (11, 'Azul-Marrón'),
+    (12, 'Marrón'),
+    (13, '1º DAN'),
+    (14, '2º DAN'),
+    (15, '3º DAN'),
+    (16, '4º DAN'),
+    (17, '5º DAN'),
+    (18, 'BLANCO-ROJO');
 
 INSERT INTO `center` (`id`, `name`, `address`, `zip_code`, `phone`) VALUES
 (2, 'CEIP Félix Revello de Toro\r\n', 'Calle Navarro Ledesma, 168', 29010, 951298573),
 (1, 'Fuengirola', 'Calle Boquetillo, S/N', 29640, 672716467);
-
-INSERT INTO `belt` (`id`, `name`) VALUES
-(1, 'Blanco'),
-(2, 'Blanco-Amarillo'),
-(3, 'Amarillo'),
-(4, 'Amarillo'),
-(5, 'Amarillo-Naranja'),
-(6, 'Naranja'),
-(7, 'Naranja-Verde'),
-(8, 'Verde'),
-(9, 'Verde-Azul'),
-(10, 'Azul'),
-(11, 'Azul-Marrón'),
-(12, 'Marrón'),
-(13, '1º DAN'),
-(14, '2º DAN'),
-(15, '3º DAN'),
-(16, '4º DAN'),
-(17, '5º DAN'),
-(18, 'BLANCO-ROJO');
 
 INSERT INTO `class` (`id`, `schedule`, `trainer`, `minimum_age`, `maximum_age`, `name`, `center_id`, `days`) VALUES
 (1, '16:30-17:30', 'José David', 4, 8, 'Mini-Benjamines y Pre-Benjamines', 1, 10),
