@@ -139,7 +139,7 @@ INSERT INTO `center` (`id`, `name`, `address`, `zip_code`, `phone`) VALUES
 (2, 'CEIP Félix Revello de Toro\r\n', 'Calle Navarro Ledesma, 168', 29010, 951298573),
 (1, 'Fuengirola', 'Calle Boquetillo, S/N', 29640, 672716467);
 
-INSERT INTO `belt` (`id`, `belt`) VALUES
+INSERT INTO `belt` (`id`, `name`) VALUES
 (1, 'Blanco'),
 (2, 'Blanco-Amarillo'),
 (3, 'Amarillo'),
