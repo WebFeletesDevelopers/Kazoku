@@ -16,17 +16,17 @@ class Alumno
     private string $secondLastname;
     private int $gender;
     private int $id;
-    private int $userId;
-    private int $fanjydaId;
-    private string $dni;
+    private ?int $userId;
+    private ?int $fanjydaId;
+    private ?string $dni;
     private DateTime $birthDate;
-    private int $phone;
-    private string $email;
-    private string $illness;
-    private int $parentId;
+    private ?int $phone;
+    private ?string $email;
+    private ?string $illness;
+    private ?int $parentId;
     private int $beltId;
-    private int $addressId;
-    private int $classId;
+    private ?int $addressId;
+    private ?int $classId;
 
     /**
      * Alumno constructor.
@@ -35,17 +35,17 @@ class Alumno
      * @param string $secondLastname
      * @param int $gender
      * @param int $id
-     * @param int $userId
-     * @param int $fanjydaId
-     * @param string $dni
+     * @param int|null $userId
+     * @param int|null $fanjydaId
+     * @param string|null $dni
      * @param string $birthDate
-     * @param int $phone
-     * @param string $email
-     * @param string $illness
-     * @param int $parentId
+     * @param int|null $phone
+     * @param string|null $email
+     * @param string|null $illness
+     * @param int|null $parentId
      * @param int $beltId
-     * @param int $addressId
-     * @param int $classId
+     * @param int|null $addressId
+     * @param int|null $classId
      */
     public function __construct(
         string $name,
@@ -57,13 +57,13 @@ class Alumno
         ?int $fanjydaId,
         ?string $dni,
         string $birthDate,
-        int $phone,
-        string $email,
+        ?int $phone,
+        ?string $email,
         ?string $illness,
         ?int $parentId,
         int $beltId,
-        int $addressId,
-        int $classId
+        ?int $addressId,
+        ?int $classId
     ) {
         $this->name = $name;
         $this->lastname = $lastname;
@@ -73,7 +73,7 @@ class Alumno
         $this->userId = $userId;
         $this->fanjydaId = $fanjydaId;
         $this->dni = $dni;
-        $this->birthDate = $birthDate;
+        $this->birthDate = new DateTime($birthDate);
         $this->phone = $phone;
         $this->email = $email;
         $this->illness = $illness;
@@ -124,25 +124,25 @@ class Alumno
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function userId(): int
+    public function userId(): ?int
     {
         return $this->userId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function fanjydaId(): int
+    public function fanjydaId(): ?int
     {
         return $this->fanjydaId;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function dni(): string
+    public function dni(): ?string
     {
         return $this->dni;
     }
@@ -156,33 +156,33 @@ class Alumno
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function phone(): int
+    public function phone(): ?int
     {
         return $this->phone;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function email(): string
+    public function email(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function illness(): string
+    public function illness(): ?string
     {
         return $this->illness;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function parentId(): int
+    public function parentId(): ?int
     {
         return $this->parentId;
     }
@@ -196,18 +196,146 @@ class Alumno
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function addressId(): int
+    public function addressId(): ?int
     {
         return $this->addressId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function classId(): int
+    public function classId(): ?int
     {
         return $this->classId;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname(string $lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @param string $secondLastname
+     */
+    public function setSecondLastname(string $secondLastname): void
+    {
+        $this->secondLastname = $secondLastname;
+    }
+
+    /**
+     * @param int $gender
+     */
+    public function setGender(int $gender): void
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param int|null $userId
+     */
+    public function setUserId(?int $userId): void
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @param int|null $fanjydaId
+     */
+    public function setFanjydaId(?int $fanjydaId): void
+    {
+        $this->fanjydaId = $fanjydaId;
+    }
+
+    /**
+     * @param string|null $dni
+     */
+    public function setDni(?string $dni): void
+    {
+        $this->dni = $dni;
+    }
+
+    /**
+     * @param DateTime $birthDate
+     */
+    public function setBirthDate(DateTime $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    /**
+     * @param int|null $phone
+     */
+    public function setPhone(?int $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param string|null $illness
+     */
+    public function setIllness(?string $illness): void
+    {
+        $this->illness = $illness;
+    }
+
+    /**
+     * @param int|null $parentId
+     */
+    public function setParentId(?int $parentId): void
+    {
+        $this->parentId = $parentId;
+    }
+
+    /**
+     * @param int $beltId
+     */
+    public function setBeltId(int $beltId): void
+    {
+        $this->beltId = $beltId;
+    }
+
+    /**
+     * @param int|null $addressId
+     */
+    public function setAddressId(?int $addressId): void
+    {
+        $this->addressId = $addressId;
+    }
+
+    /**
+     * @param int|null $classId
+     */
+    public function setClassId(?int $classId): void
+    {
+        $this->classId = $classId;
     }
 }

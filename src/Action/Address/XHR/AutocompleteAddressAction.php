@@ -38,8 +38,10 @@ class AutocompleteAddressAction extends BaseJsonAction implements ActionInterfac
 
         foreach ($addresses as $address) {
             $data[] = [
-                'addressName' => $address->address(),
                 'id' => $address->id(),
+                'address' => $address->address(),
+                'zip_code' => $address->zipCode(),
+                'city' => $address->city(),
             ];
         }
 

@@ -4,6 +4,7 @@ namespace WebFeletesDevelopers\Kazoku\Model;
 
 use Exception;
 use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Alumno;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
@@ -497,5 +498,57 @@ SQL;
         }
 
         return $rows;
+    }
+
+    /**
+     * Update a judoka.
+     * @param Alumno $judoka
+     * @return Alumno
+     * @throws QueryException
+     */
+    public function update(Alumno $judoka): Alumno
+    {
+        $sql = <<<SQL
+        UPDATE pupil SET
+            name = ?,
+            surname = ?,
+            second_surname = ?,
+            gender = ?,
+            fanjyda_id = ?,
+            DNI = ?,
+            birth_date = ?,
+            phone = ?,
+            email = ?,
+            extra_info = ?,
+            guardian_id = ?,
+            belt_id = ?,
+            address_id = ?,
+            class_id = ?      
+        WHERE id = ?
+SQL;
+        $binds = [
+            $judoka->name(),
+            $judoka->lastname(),
+            $judoka->secondLastname(),
+            $judoka->gender(),
+            $judoka->fanjydaId(),
+            $judoka->dni(),
+            $judoka->birthDate()->format(ConnectionHelper::MYSQL_DATE_FORMAT),
+            $judoka->phone(),
+            $judoka->email(),
+            $judoka->illness(),
+            $judoka->parentId(),
+            $judoka->beltId(),
+            $judoka->addressId(),
+            $judoka->classId(),
+            $judoka->id()
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return $judoka;
     }
 }

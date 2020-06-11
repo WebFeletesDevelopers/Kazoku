@@ -4,6 +4,7 @@ namespace WebFeletesDevelopers\Kazoku\Model;
 
 use Exception;
 use PDO;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Direccion;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AddressFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
@@ -23,7 +24,7 @@ class AddressModel extends BaseModel
      * @return bool
      * @throws QueryException
      */
-    public function add(int $zip, string $locality, string $province, string $address): bool
+    public function add(int $zip, string $locality, string $province, string $address): Direccion
     {
         $sql = <<<SQL
         INSERT INTO address(zip_code, locality, province, address)
@@ -41,7 +42,13 @@ SQL;
             throw QueryException::fromFailedQuery($sql, $binds);
         }
 
-        return true;
+        return new Direccion(
+            $this->db->lastInsertId(),
+            $zip,
+            $locality,
+            $province,
+            $address
+        );
     }
 
     /**

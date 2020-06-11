@@ -43,6 +43,7 @@ use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
 use WebFeletesDevelopers\Kazoku\Action\User\PasswordForgottenAction;
 use WebFeletesDevelopers\Kazoku\Action\User\UpdatePasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\StartRecoveryAction;
+use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdateAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdatePasswordForRecoveryAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
@@ -81,6 +82,8 @@ class Routes
         $app->post('/xhr/user/register', Action\User\RegisterAction::class);
         $app->post('/xhr/user/activatebytrainer', ActivateUserByTrainerAction::class);
         $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
+        $app->post('/xhr/user/updateAddress', UpdateAddressAction::class);
+
 
 
         //news

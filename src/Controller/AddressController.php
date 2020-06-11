@@ -26,11 +26,11 @@ class AddressController
         string $locality,
         string $province,
         string $address
-    ): bool {
+    ): ?Direccion {
         try {
             return $this->addressModel->add($zip, $locality, $province, $address);
         } catch (QueryException $e) {
-            return false;
+            return null;
         }
     }
 

@@ -1,10 +1,10 @@
 export class Response {
     private _statusCode: number;
-    private _message?: object;
+    private _message?: Array<any>;
 
     constructor(
         statusCode: number,
-        message: Object
+        message: Array<any>
     ) {
         this._statusCode = statusCode;
         this._message = message;
@@ -14,7 +14,7 @@ export class Response {
         return this._statusCode;
     }
 
-    get message(): object {
+    get message(): Array<any> {
         return this._message;
     }
 }
