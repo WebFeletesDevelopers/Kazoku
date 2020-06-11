@@ -13,7 +13,7 @@ class Clase
     private string $schedule;
     private string $trainer;
     private int $minimumAge;
-    private int $maximumAge;
+    private ?int $maximumAge;
     private string $name;
     private int $centerId;
     private int $days;
@@ -34,7 +34,7 @@ class Clase
         string $schedule,
         string $trainer,
         int $minimumAge,
-        int $maximumAge,
+        ?int $maximumAge,
         string $name,
         int $centerId,
         int $days
@@ -82,9 +82,9 @@ class Clase
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function maximumAge(): int
+    public function maximumAge(): ?int
     {
         return $this->maximumAge;
     }

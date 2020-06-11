@@ -30,6 +30,12 @@ abstract class BaseTwigAction
      */
     public function __construct()
     {
+        if ($_COOKIE['lang']) {
+            setlocale(LC_ALL, 'en_US.UTF-8');
+            bindtextdomain('kazoku', __DIR__ . '/../locale');
+            textdomain('kazoku');
+        }
+
         $loader = new FilesystemLoader(__DIR__ . '/../View');
         $this->twig = new Environment($loader);
         $this->twig->addExtension(new Twig_Extensions_Extension_I18n());

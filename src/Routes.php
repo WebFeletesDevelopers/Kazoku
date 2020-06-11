@@ -4,24 +4,25 @@ namespace WebFeletesDevelopers\Kazoku;
 
 use Slim\App;
 use WebFeletesDevelopers\Kazoku\Action\Assistance\AssistanceSendAction;
+use WebFeletesDevelopers\Kazoku\Action\Address\XHR\AutocompleteAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\ModifyCenterAction;
-use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteJudokaFromClassAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaFromRegisterAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
-use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\centerAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\CenterDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\classAdminAction;
 use WebFeletesDevelopers\Kazoku\Action\classDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\CreateClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteClassAction;
+use WebFeletesDevelopers\Kazoku\Action\Classes\DeleteJudokaFromClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Classes\ModifyClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaFromRegisterAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\JudokaDetailAction;
 use WebFeletesDevelopers\Kazoku\Action\judokasAction;
 use WebFeletesDevelopers\Kazoku\Action\LoginAction;
@@ -43,6 +44,7 @@ use WebFeletesDevelopers\Kazoku\Action\User\GetLoginHashAction;
 use WebFeletesDevelopers\Kazoku\Action\User\PasswordForgottenAction;
 use WebFeletesDevelopers\Kazoku\Action\User\UpdatePasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\StartRecoveryAction;
+use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdateAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdatePasswordForRecoveryAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
@@ -81,6 +83,8 @@ class Routes
         $app->post('/xhr/user/register', Action\User\RegisterAction::class);
         $app->post('/xhr/user/activatebytrainer', ActivateUserByTrainerAction::class);
         $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
+        $app->post('/xhr/user/updateAddress', UpdateAddressAction::class);
+
 
 
         //news
@@ -123,6 +127,7 @@ class Routes
         $app->get('/pruebatraduccion', PruebaTraduccionAction::class);
         $app->get('/panel', panelAction::class);
 
+        $app->post('/xhr/address/autocomplete', AutocompleteAddressAction::class);
 
         return $app;
     }

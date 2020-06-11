@@ -2,11 +2,10 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
-use DateTime;
 use Exception;
 use PDO;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AddressFactory;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Direccion;
+use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AddressFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 
 /**
@@ -25,7 +24,7 @@ class AddressModel extends BaseModel
      * @return bool
      * @throws QueryException
      */
-    public function add(int $zip, string $locality, string $province, string $address): bool
+    public function add(int $zip, string $locality, string $province, string $address): Direccion
     {
         $sql = <<<SQL
         INSERT INTO address(zip_code, locality, province, address)
@@ -43,7 +42,13 @@ SQL;
             throw QueryException::fromFailedQuery($sql, $binds);
         }
 
-        return true;
+        return new Direccion(
+            $this->db->lastInsertId(),
+            $zip,
+            $locality,
+            $province,
+            $address
+        );
     }
 
     /**
@@ -75,7 +80,8 @@ SQL;
      * @param $id
      * @return array
      */
-    public function getAddress($id): array {
+    public function getAddress($id): array
+    {
         $sql = <<<SQL
          SELECT a.id AS id,
                a.zip_code AS zip,
@@ -86,7 +92,7 @@ SQL;
         WHERE a.id = ?
 SQL;
         try {
-            $statement = $this->query($sql,[$id]);
+            $statement = $this->query($sql, [$id]);
             $rows = $statement->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];
@@ -94,7 +100,8 @@ SQL;
         return $rows;
     }
 
-    public function getAll(): array {
+    public function getAll(): array
+    {
         $sql = <<<SQL
          SELECT a.id AS id,
                a.zip_code AS zip,
@@ -109,6 +116,27 @@ SQL;
         } catch (Exception $e) {
             $rows = [];
         }
+        return AddressFactory::fromMysqlRows($rows);
+    }
+
+    public function getByNaturalSearch(string $input): array
+    {
+        $sql = <<<SQL
+         SELECT a.id AS id,
+               a.zip_code AS zip,
+               a.locality AS locality,
+               a.province AS province,
+               a.address AS address
+        FROM address a
+        WHERE MATCH(a.address) AGAINST (? IN NATURAL LANGUAGE MODE)
+SQL;
+        try {
+            $statement = $this->query($sql, [$input]);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+
         return AddressFactory::fromMysqlRows($rows);
     }
 }
