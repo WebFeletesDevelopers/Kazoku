@@ -29,12 +29,12 @@
                     </p>
                 </div>
                 <div class="row d-flex justify-content-between font-small text-muted mb-4">
-                        <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE"}}</a>
-                    <button id="modifyClass" data-name="modifyClass" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CLASE" }}</button>
-                    <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS"}}</button>
-                    <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO"}}</button>
-                    <button id="deleteClass" data-name="deleteClass" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CLASE"}}</button>
-                    <button id="undefined"   data-name="undefined" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"EXTRA CLASE"}}</button>
+                        <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE" | trans}}</a>
+                    <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"MODIFICAR CLASE" | trans}}</a>
+                    <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS" | trans}}</button>
+                    <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO" | trans}}</button>
+                    <button id="deleteClass" data-name="deleteClass" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CLASE" | trans}}</button>
+                    <button id="undefined"   data-name="undefined" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"EXTRA CLASE" | trans}}</button>
                 </div>
             </div>
 

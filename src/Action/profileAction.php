@@ -39,6 +39,8 @@ class profileAction extends BaseTwigAction implements ActionInterface
         $news = $loggedInUser
             ? $controller->getLatest()
             : $controller->getLatestPublic();
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         if($loggedInUser->id() != null){
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
@@ -77,7 +79,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
 
         $body = $response->getBody();
         $arguments = [
-            'title' => 'classadmin',
+            'title' => 'Kazoku | Perfil',
             'judoka' => $judoka,
             'class' => $clase,
             'days' => $classDays,

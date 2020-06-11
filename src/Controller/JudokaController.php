@@ -116,6 +116,15 @@ class JudokaController
         }
     }
 
+    public function deleteFromClass(
+        int $judokaId
+    ): bool {
+        try {
+            return $this->model->deleteFromClass($judokaId);
+        } catch (QueryException $e) {
+        }
+    }
+
     /**
      * Modifies a judoka
      * @param string $name
@@ -199,6 +208,17 @@ class JudokaController
     public function getOneJudokaByuserId($userId): array
     {
         return $this->model->getOneJudokaByUserId($userId);
+    }
+
+
+    /**
+     * Gets all judokas from a specific class
+     * @param $classId
+     * @return array
+     */
+    public function getJudokaByClass($classId): array
+    {
+        return $this->model->getJudokasByClassId($classId);
     }
 
     /**

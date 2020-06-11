@@ -23,10 +23,11 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         $controller = new ClaseController($model);
         $allClass = $controller->getClasesAllData();
 
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $arguments = [
-            'title' => 'classadmin',
-            'userName' => 'Alberto',
-            'userId' => 0,
+            'title' => 'Clases',
+            'photoRoute' => $fileRoute,
             'clases' => $allClass,
             'action' => 'class-admin'
         ];

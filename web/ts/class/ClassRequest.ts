@@ -34,6 +34,17 @@ export class ClassRequest {
     }
 
     /**
+     * Deletes a judoka from the class
+     * @param judokaId
+     */
+    public static deleteJudokaFromClass(judokaId): Promise<Response>
+    {
+        const data = `judokaId=${judokaId}`;
+        return Request.post('/class/deleteJudoka', data);
+    }
+
+
+    /**
      * Obtains a class from the database
      * @param codClass
      */

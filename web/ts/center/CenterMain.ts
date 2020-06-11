@@ -90,7 +90,17 @@ export class CenterMain {
             e.preventDefault();
             CenterMain.createCenter(newCenter);
         });
-
+        const deleteButtons: NodeListOf<Element> = document.querySelectorAll('button.delete-center');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', e => {
+                const centerId = button.getAttribute("data-id");
+                e.preventDefault();
+                var r = confirm("¿Realmente desea borrar este centro?");
+                if (r == true) {
+                    CenterMain.deleteCenter(parseInt(centerId));
+                }
+            });
+        });
     }
 
     /**
@@ -157,6 +167,14 @@ export class CenterMain {
             const $centerId = parseInt(modifyCenter.getAttribute("data-id"));
             CenterMain.modifyCenter(modCenter,$centerId);
         });
+        deleteCenter.addEventListener('click', e => {
+            var r = confirm("¿Realmente desea borrar este centro?");
+            if (r == true) {
+                e.preventDefault();
+                const $centerId = parseInt(deleteCenter.getAttribute("data-id"));
+                CenterMain.deleteCenter($centerId);
+            }
+        });
 
     }
 
@@ -187,8 +205,29 @@ export class CenterMain {
             }
         });
     }
+
+    /**
+     * Modifies a center
+     * @param centro
+     * @param centerId
+     */
     private static modifyCenter(centro: Center, centerId: number): void  {
         CenterRequest.modifyCenter(centro,centerId).then(res => {
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+            } else {
+                document.location.replace('/centerAdmin');
+            }
+        });
+    }
+
+    /**
+     * Deletes a center
+     * @param centro
+     * @param centerId
+     */
+    private static deleteCenter(centerId: number): void  {
+        CenterRequest.deleteCenter(centerId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
             } else {

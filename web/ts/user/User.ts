@@ -109,7 +109,6 @@ export class User {
     public validate(): boolean {
         return !! this.name
             && !! this.surname
-            && !! this.secondSurname
             && !! this.username
             && !! this.phone
             && !! this.email

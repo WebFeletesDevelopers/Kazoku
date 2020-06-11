@@ -82,8 +82,8 @@ abstract class BaseTwigAction
     protected function getProfilePic(?User $loggedInUser): ?String
     {
         if($loggedInUser !== null) {
-            $filename1 = '/img/profile' . $loggedInUser->id() . '.jpg';
-            $filename2 = '/img/profile' . $loggedInUser->id() . '.jpg';
+            $filename1 = '/img/profile/' . $loggedInUser->id() . '.jpg';
+            $filename2 = '/img/profile/' . $loggedInUser->id() . '.jpg';
             $generic = "/img/profile/generic.png";
 
             if (file_exists($filename1)) {

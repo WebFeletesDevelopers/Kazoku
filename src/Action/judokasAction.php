@@ -24,10 +24,12 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $controller = new JudokaController($model);
         $allJudokas = $controller->getJudokas();
         $body = $response->getBody();
+
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $arguments = [
-            'title' => 'classadmin',
-            'userName' => 'Alberto',
-            'userId' => 0,
+            'title' => 'Judokas',
+            'photoRoute' => $fileRoute,
             'judokas' => $allJudokas,
             'action' => 'judokas'
         ];
