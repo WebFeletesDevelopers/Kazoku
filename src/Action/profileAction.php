@@ -39,6 +39,8 @@ class profileAction extends BaseTwigAction implements ActionInterface
         $news = $loggedInUser
             ? $controller->getLatest()
             : $controller->getLatestPublic();
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         if($loggedInUser->id() != null){
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);

@@ -36,6 +36,8 @@ class myClassAction extends BaseTwigAction implements ActionInterface
         $controller = new NoticiaController($model, $userModel);
 
         $loggedInUser = $this->validateUserSession($userModel);
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $news = $loggedInUser
             ? $controller->getLatest()
             : $controller->getLatestPublic();
