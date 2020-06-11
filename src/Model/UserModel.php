@@ -290,6 +290,10 @@ SQL;
         return UserFactory::fromMysqlRows($rows)[0];
     }
 
+
+
+
+
     /**
      * Finds an user by his/her ID but with less data returned
      * @param int $userId
@@ -393,6 +397,38 @@ SQL;
             $rows = $statement->fetchAll();
 
             return UserFactory::fromMysqlRows($rows);
+        }
+    }
+
+    /**
+     * Finds all users by rank but with reduced info
+     * @param int $rank
+     * @return array
+     * @throws QueryException
+     */
+    public function findByRankMin(int $rank): array
+    {
+        {
+            $sql = <<<SQL
+        SELECT u.id AS id,
+               u.rank AS `rank`,
+               u.username AS username,
+               u.name AS name,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
+               u.email AS email
+        FROM users u
+        WHERE u.rank = ?
+SQL;
+
+            $binds = [$rank];
+            $statement = $this->query($sql, $binds);
+            if ($statement === false) {
+                throw QueryException::fromFailedQuery($sql, []);
+            }
+            $rows = $statement->fetchAll();
+            return $rows;
         }
     }
 

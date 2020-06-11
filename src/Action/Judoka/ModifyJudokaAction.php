@@ -148,12 +148,14 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         if ($email === null || trim($email) === '-') {
             throw InvalidParametersException::fromInvalidParameter('email');
         }
-        if ($sex === null || $sex = 0) {
+        if ($sex === null) {
             throw InvalidParametersException::fromInvalidParameter('sex');
         }
+        /*
         if ($userId === null || $userId = 0) {
             throw InvalidParametersException::fromInvalidParameter('userId');
         }
+        */
         if ($parentId <= 0) {
             throw InvalidParametersException::fromInvalidParameter('parentId');
         }
@@ -166,9 +168,11 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         if ($judokaId === null || $judokaId = 0) {
             throw InvalidParametersException::fromInvalidParameter('judokaId');
         }
+        /*
         if ($phone === null || $phone = 0) {
             throw InvalidParametersException::fromInvalidParameter('phone');
         }
+        */
         if ($fanjydaId = 0) {
             throw InvalidParametersException::fromInvalidParameter('fanjydaId');
         }

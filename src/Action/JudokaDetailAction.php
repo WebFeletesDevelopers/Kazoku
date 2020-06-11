@@ -8,10 +8,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
+use WebFeletesDevelopers\Kazoku\Controller\UserController;
+use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class judokasAction.
@@ -25,17 +28,29 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
         $body = $response->getBody();
         $judokaId = $args['id'];
         if($judokaId > 0){
+            // get judoka
             $database = ConnectionHelper::getConnection();
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
             $allJudokaInfo = $controller->getOneJudoka($judokaId);
+
+           if($allJudokaInfo['parentId'] != null){
+               //get parent
+               $parentModel = new UserModel($database);
+               $parentController = new UserControllerMin($parentModel);
+               $parent = $parentController->findByIDmin($allJudokaInfo['parentId']);
+           }
+
             if($allJudokaInfo['classId'] != null){
+                //get clase
                 $modelClase = new ClaseModel($database);
                 $controllerClase = new ClaseController($modelClase);
                 $allClasses = $controllerClase->getClases();
                 $value = intval($allJudokaInfo['classId']);
                 $clase = $controllerClase->getClass([$value]);
+
                 if($clase != null){
+                    //get center
                     $modelCenter = new CentroModel($database);
                     $controllerCenter = new CentroController($modelCenter);
                     $center = $controllerCenter->getCenter($clase['centerId']);
@@ -48,9 +63,15 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             $controllerClase = new ClaseController($modelClase);
             $allClasses = $controllerClase->getClasesAllData();
 
+            // get all centers (if there's gonna be a change
             $modelCenter = new CentroModel($database);
             $controllerCenter = new CentroController($modelCenter);
             $centers = $controllerCenter->getCentersAllData();
+
+            // get all parents (reduced data)
+            $parentModel = new UserModel($database);
+            $parentController = new UserControllerMin($parentModel);
+            $allParents = $parentController->findByRankMin(2);
 
 
 
@@ -63,8 +84,9 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'userId' => 0,
             'judoka' => $allJudokaInfo,
             'classes' => $allClasses,
-            'class' => $clase,
             'days' => $classDays,
+            'parent' => $parent,
+            'allParents' => $allParents,
             'classDays' => $classDays,
             'center' => $center,
             'centers' => $center,

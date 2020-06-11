@@ -149,9 +149,9 @@ class JudokaController
         ?int $parentId,
         int $addressId,
         int $beltId,
-        int $classid,
+        ?int $classid,
         int $judokaId,
-        int $phone,
+        ?int $phone,
         ?int $fanjydaId
     ): bool {
         if($lastName2 == '' or $lastName2 == 'NaN'){
@@ -172,7 +172,9 @@ class JudokaController
         if($parentId == '' or $parentId == 'NaN'){
             $parentId = null;
         }
-
+        if($phone == '' or $phone == 'NaN'){
+            $phone = null;
+        }
         try {
             return $this->model->modify($name, $lastName1, $lastName2, $sex, $userId, $fanjydaId, $dni, $birthDate, $phone, $email, $illness, $parentId, $beltId, $addressId, $classid, $judokaId);
         } catch (QueryException $e) {

@@ -134,6 +134,18 @@ class UserController
     }
 
     /**
+     * Finds a user by its  but getting reduced data
+     * @param int $rank
+     * @return array|null
+     */
+    public function findByRankMin(int $rank): ?array {
+        try {
+            return $this->model->findByRankMin($rank);
+        } catch (QueryException $e) {
+        }
+    }
+
+    /**
      * @param string $userId
      * @param string $hash
      * @return bool
