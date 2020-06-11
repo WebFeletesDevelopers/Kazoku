@@ -6,6 +6,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
 use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
@@ -26,7 +28,12 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
         $verificationModel = new VerificationModel($pdo);
         $mailService = new SendMailService();
         $userController = new UserController($userModel, $verificationModel, $mailService);
-        $users = $userController->listNotConfirmed($_COOKIE['hash']);
+
+        try {
+            $users = $userController->listNotConfirmed($_COOKIE['hash']);
+        } catch (InvalidHashException $e) {
+        } catch (QueryException $e) {
+        }
         $config = [
             'title' => _('Confirmar usuarios'),
             'users' => $users,

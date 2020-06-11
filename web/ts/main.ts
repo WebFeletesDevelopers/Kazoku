@@ -7,6 +7,7 @@ import { UserMain } from "./user/UserMain";
 import { JudokaMain } from './judoka/JudokaMain';
 import { TrainerMain } from "./trainer/TrainerMain";
 import { AddressMain } from "./address/AddressMain";
+import { AssistanceMain } from "./assistance/AssistanceMain";
 
 class Main {
     public static handle(): void {
@@ -19,6 +20,7 @@ class Main {
         UserMain.handle();
         TrainerMain.handle();
         AddressMain.handle();
+        AssistanceMain.handle();
     }
 }
 

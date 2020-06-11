@@ -8,6 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class judokasAction.
@@ -25,6 +26,8 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $allJudokas = $controller->getJudokas();
         $body = $response->getBody();
 
+        $userModel = new UserModel($database);
+        $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         $arguments = [

@@ -199,10 +199,10 @@ SQL;
         } catch (Exception $e) {
             $rows = [];
         }
-
-
         return $rows;
     }
+
+
     public function getClass($classId): ?array
     {
         $sql = <<<SQL
