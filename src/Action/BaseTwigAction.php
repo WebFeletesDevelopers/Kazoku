@@ -30,7 +30,7 @@ abstract class BaseTwigAction
      */
     public function __construct()
     {
-        if ($_COOKIE[lang]) {
+        if ($_COOKIE['lang']) {
             setlocale(LC_ALL, 'en_US.UTF-8');
             bindtextdomain('kazoku', __DIR__ . '/../locale');
             textdomain('kazoku');
