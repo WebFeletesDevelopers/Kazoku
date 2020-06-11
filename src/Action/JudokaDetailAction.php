@@ -26,10 +26,14 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $body = $response->getBody();
+        $database = ConnectionHelper::getConnection();
+        $userModel = new UserModel($database);
+        $loggedInUser = $this->validateUserSession($userModel);
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $judokaId = $args['id'];
-        if($judokaId > 0){
+                if($judokaId > 0){
             // get judoka
-            $database = ConnectionHelper::getConnection();
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
             $allJudokaInfo = $controller->getOneJudoka($judokaId);
@@ -83,6 +87,7 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'userName' => 'Alberto',
             'userId' => 0,
             'judoka' => $allJudokaInfo,
+            'photoRoute' => $fileRoute,
             'classes' => $allClasses,
             'days' => $classDays,
             'parent' => $parent,

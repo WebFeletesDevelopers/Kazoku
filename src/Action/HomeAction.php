@@ -22,15 +22,17 @@ class HomeAction extends BaseTwigAction implements ActionInterface
 
         $database = ConnectionHelper::getConnection();
         $model = new NoticiaModel($database);
+
         $userModel = new UserModel($database);
+        $loggedInUser = $this->validateUserSession($userModel);
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $controller = new NoticiaController($model, $userModel);
 
-        $loggedInUser = $this->validateUserSession($userModel);
         $news = $loggedInUser
             ? $controller->getLatest()
             : $controller->getLatestPublic();
 
-        $fileRoute = parent::getProfilePic($loggedInUser);
 
 
 
