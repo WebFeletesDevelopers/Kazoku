@@ -135,6 +135,22 @@ ALTER TABLE verification
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+create table absence
+(
+    id int null,
+    userId int null,
+    classId int null,
+    date date null,
+    constraint absences_pk
+        unique (id),
+    constraint classId
+        foreign key (classId) references class (id),
+    constraint userId
+        foreign key (userId) references pupil (id)
+);
+
+
+
 INSERT INTO `center` (`id`, `name`, `address`, `zip_code`, `phone`) VALUES
 (2, 'CEIP Félix Revello de Toro\r\n', 'Calle Navarro Ledesma, 168', 29010, 951298573),
 (1, 'Fuengirola', 'Calle Boquetillo, S/N', 29640, 672716467);
