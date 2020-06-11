@@ -128,11 +128,11 @@ export class UserMain {
         registerButton.disabled = true;
         UserRequest.register(user).then(res => {
             if (res.statusCode === 201) {
+                document.location.replace('/');
                 if(user.rank == 3){
                     JudokaRequest.createFromRegister(user).then(r => {
                     });
                 }
-                document.location.replace('/');
             } else {
                 registerContainer.classList.add('kazoku-error-shadow', 'animate');
             }
