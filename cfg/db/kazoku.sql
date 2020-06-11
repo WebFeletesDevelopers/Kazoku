@@ -184,11 +184,7 @@ INSERT INTO `class` (`id`, `schedule`, `trainer`, `minimum_age`, `maximum_age`, 
 (2, '17:30-18:30', 'Jose David', 9, 12, 'Benjamines y Alevines', 1, 10),
 (3, '18:30-19:30', 'Jose David', 13, 14, 'Infantiles', 1, 10),
 (4, '19:30-21:00', 'Jose David', 15, 19, 'Cadetes y Junior', 1, 10),
-(5, '20:30-22:30', 'Jose David', 20, NULL, 'Absoluto y Senior', 1, 21),
-(6, '16:00-17:00', 'Jose David', NULL, NULL, NULL, 2, 5),
-(7, '17:00-18:00', 'Jose David', NULL, NULL, NULL, 2, 5),
-(8, '8:00-16:00', 'Alberto', NULL, NULL, NULL, 2, 21),
-(9, '18:00-19:30', 'Jose David', NULL, NULL, NULL, 2, 5);
+(5, '20:30-22:30', 'Jose David', 20, NULL, 'Absoluto y Senior', 1, 21);
 
 INSERT INTO `pupil` (`name`,`surname`,`second_surname`,`gender`,`birth_date`,`belt_id`,`class_id`) VALUES
     ('Bruce','Quinn','Parks','0','2019-08-14',6,6),

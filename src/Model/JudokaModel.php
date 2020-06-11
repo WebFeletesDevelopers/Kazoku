@@ -261,8 +261,6 @@ SQL;
         return true;
     }
 
-
-
     /**
      * Deteles a judoka from the database
      * @param int $codJudoka
@@ -367,6 +365,11 @@ SQL;
         return $rows[0];
     }
 
+    /**
+     * Gets judokas by their class ID
+     * @param $classId
+     * @return array
+     */
     public function getJudokasByClassId($classId): array
     {
         $sql = <<<SQL
@@ -404,8 +407,6 @@ SQL;
         }
         return $rows;
     }
-
-
 
     /**
      * Finds a judoka by some basics data
@@ -489,7 +490,7 @@ SQL;
         ];
 
         try {
-            $statement = $this->query($sql,$binds);
+            $statement = $this->query($sql, $binds);
             $rows = $statement->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];
