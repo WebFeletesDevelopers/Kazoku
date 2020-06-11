@@ -87,23 +87,19 @@
                                 width="20px">
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                        <a class="dropdown-item mr-3" role="presentation" href="#">
+                            <img class="mr-1" src="{{ "/img/flags/england.png" | trans }}" width="23"/></i>
+                            {{ "Cambiar Idioma" | trans }}
+                        </a>
                         {% if user is not null %}
-                            <a class="dropdown-item" role="presentation" href="#">
+                            <a class="dropdown-item" role="presentation" href="/profile">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ "Perfil" | trans }}
                             </a>
-                            <a class="dropdown-item" role="presentation" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                {{ "Configuración" | trans }}
-                            </a>
-                            <a class="dropdown-item" role="presentation" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                {{ "Actividad" | trans }}
-                            </a>
                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-center" data-action="logout-button" role="presentation" href="#">
-                                {{ "Cerrar sesión" | trans }}
-                            </a>
+                            {{ "Cerrar sesión" | trans }}
+                        </a>
                         {% else %}
                             <a class="dropdown-item" role="presentation" href="/register">
                                 <i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
