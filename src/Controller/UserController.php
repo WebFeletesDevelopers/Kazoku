@@ -121,6 +121,19 @@ class UserController
     }
 
     /**
+     * Finds basic data of an user by it's ID
+     * @param int $userId
+     * @return array|null
+     */
+    public function findByIDmin(int $userId): ?array {
+        try {
+            return $this->model->findByIdmin($userId);
+        } catch (InvalidUserIdException $e) {
+        } catch (QueryException $e) {
+        }
+    }
+
+    /**
      * @param string $userId
      * @param string $hash
      * @return bool

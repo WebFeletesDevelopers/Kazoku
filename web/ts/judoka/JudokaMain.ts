@@ -291,7 +291,6 @@ export class JudokaMain {
         updateButton.addEventListener('click', e => {
             const judokaId = updateButton.getAttribute("data-id");
             const name = updateButton.getAttribute("data-name");
-            alert(name);
             if (name == "updateData") {
                 e.preventDefault();
                 JudokaMain.updateJudoka(editedJudoka,parseInt(judokaId));

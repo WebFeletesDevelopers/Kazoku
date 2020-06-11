@@ -203,7 +203,7 @@ SQL;
 
         return $rows;
     }
-    public function getClass($classId): array
+    public function getClass($classId): ?array
     {
         $sql = <<<SQL
         SELECT cl.id AS id,
@@ -233,7 +233,9 @@ SQL;
         } catch (Exception $e) {
             $rows = [];
         }
-
+        if($rows == false){
+            $rows = [];
+        }
         return $rows;
     }
 }

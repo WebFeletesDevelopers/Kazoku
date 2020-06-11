@@ -209,6 +209,38 @@ SQL;
     }
 
     /**
+     * Links a judoka with his user account
+     * @param int|null $userId
+     * @param int $judokaId
+     * @return bool
+     * @throws QueryException
+     */
+    public function linkWithUser(
+        ?int $userId,
+        int $judokaId
+    ): bool
+    {
+        $sql = <<<SQL
+        UPDATE pupil SET
+            user_id = ?      
+        WHERE id = ?
+SQL;
+        $binds = [
+            $userId,
+            $judokaId
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
+
+
+
+    /**
      * Deteles a judoka from the database
      * @param int $codJudoka
      * @return bool
@@ -302,14 +334,64 @@ SQL;
 
         try {
             $statement = $this->query($sql,$binds);
-            $rows = $statement->fetch(PDO::FETCH_ASSOC);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $rows = [];
         }
         if($rows == false){
+            $rows[0] = [];
+        }
+        return $rows[0];
+    }
+
+    /**
+     * Finds a judoka by some basics data
+     * @param $name
+     * @param $surname
+     * @param $email
+     * @return array
+     */
+    public function findJudoka($name,$surname,$email): array
+    {
+        $sql = <<<SQL
+        SELECT p.name AS name,
+            p.surname AS lastName1,
+            p.second_surname AS lastName2,
+            p.gender AS sex,
+            p.id as judokaId,
+            p.user_id as userId,
+            p.fanjyda_id as fanjydaId,
+            p.DNI AS dni,
+            p.birth_date as birthDate,
+            p.phone as phone,
+            p.email as email,
+            p.extra_info as illness,
+            p.guardian_id as parentId,
+            p.belt_id as beltId,
+            p.address_id as addressId,
+            p.class_id as classId,
+            p.id as id
+        FROM pupil p
+        WHERE p.name = ?  
+        AND p.surname = ?
+        AND p.email = ?
+SQL;
+        $binds = [
+            $name,
+            $surname,
+            $email
+        ];
+
+        try {
+            $statement = $this->query($sql,$binds);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
             $rows = [];
         }
-        return $rows;
+        if($rows == false){
+            $rows[0] = [];
+        }
+        return $rows[0];
     }
 
     /**
