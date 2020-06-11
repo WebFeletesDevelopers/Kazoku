@@ -3,6 +3,7 @@
 namespace WebFeletesDevelopers\Kazoku;
 
 use Slim\App;
+use WebFeletesDevelopers\Kazoku\Action\Assistance\AssistanceSendAction;
 use WebFeletesDevelopers\Kazoku\Action\assistanceAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\CreateCenterAction;
 use WebFeletesDevelopers\Kazoku\Action\Center\DeleteCenterAction;
@@ -86,6 +87,9 @@ class Routes
         $app->get('/newsCreator', NewsCreatorAction::class);
         $app->post('/news/add', CreateNewsAction::class);
         $app->post('/news/delete', DeleteNewsAction::class);
+
+        // Assistance
+        $app->post('/assistance/send', AssistanceSendAction::class);
 
         //class
         $app->get('/classAdmin', classAdminAction::class);

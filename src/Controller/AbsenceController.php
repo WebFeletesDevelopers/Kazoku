@@ -23,15 +23,23 @@ class AbsenceController
     }
 
     /**
-     * Creates a new absence
+     * Creates a new absence if it is not added yet
      * @param Absence $absence
      * @return bool
      */
     public function new(Absence $absence): bool {
-        try {
-            return $this->model->new($absence);
-        } catch (QueryException $e) {
+        $inserted = $this->model->searchForExisting($absence->getUserId(),$absence->getDate());
+        if($inserted == null){
+            try {
+                return $this->model->new($absence);
+            } catch (QueryException $e) {
+                return false;
+            }
         }
+        else{
+            return $this->deleteByParams($absence->getUserId(),$absence->getDate());
+        }
+
     }
 
     /**

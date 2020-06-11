@@ -6,6 +6,7 @@ import { GeneralMain } from "./general/GeneralMain";
 import { UserMain } from "./user/UserMain";
 import { JudokaMain } from './judoka/JudokaMain';
 import { TrainerMain } from "./trainer/TrainerMain";
+import { AssistanceMain } from "./assistance/AssistanceMain";
 
 class Main {
     public static handle(): void {
@@ -17,6 +18,7 @@ class Main {
         GeneralMain.handle();
         UserMain.handle();
         TrainerMain.handle();
+        AssistanceMain.handle();
     }
 }
 

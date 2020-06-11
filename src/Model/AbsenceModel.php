@@ -2,6 +2,7 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
+use PDO;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Absence;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AbsenceFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
@@ -24,11 +25,10 @@ class AbsenceModel extends BaseModel
     public function new(Absence $absence): bool
     {
         $sql = <<<SQL
-        INSERT INTO absence(id, userId,classId,date)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO absence(userId,classId,date)
+        VALUES (?, ?, ?)
 SQL;
         $binds = [
-            $absence->getId(),
             $absence->getUserId(),
             $absence->getClassId(),
             $absence->getDate(),
@@ -155,6 +155,30 @@ SQL;
         }
         return $rows;
     }
+
+
+
+    public function searchForExisting(int $userId,$date): array {
+        $sql = <<<SQL
+        SELECT 
+                a.id as id,
+                a.userId as judokaId,
+                a.classId as classId,
+                a.date as date
+        FROM absence a
+        WHERE userId = ?
+        AND date = ?
+SQL;
+        $binds = [$userId,$date];
+        try{
+            $statement = $this->query($sql,$binds);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $rows = [];
+        }
+        return $rows;
+    }
+
 
     /**
      * Get all absences

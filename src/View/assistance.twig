@@ -4,7 +4,7 @@
 <div class="container-fluid p-0 m-0">
     <div class="card m-0 p-0 shadow">
         <div class="card-header py-3">
-            <p class="text-primary m-0 font-weight-bold">{{ "Club de Judo" | trans }}{% if title is defined %}  {{ title }}{% else%}Kazoku{% endif %} - {{ "Nombre del grupo (centro)" }}</p>
+            <p data-name="{{ date }}" id="title" class="text-primary m-0 font-weight-bold">{{ class.name }} ({{ center.name }}) </p>
             <input id="cod" type="hidden" value="<?=$CodClase?>">
         </div>
         <div class="card-body">
@@ -15,27 +15,27 @@
             </div>
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <!-- Si hay alumnos y si está en una hora de clase -->
-                {% if 1 == 1 %}
-                <table class="table dataTable my-0" id="tablaAlumnos">
+                {% if judokas is not null %}
+                <table class="table dataTable my-0" id="tablaAlumnos" data-id="{{ class.id }}">
                     <thead>
                     <tr>
                         <th></th>
                         <th>{{"Nombre" | trans}}</th>
-                        <th>Apellidos</th>
-                        <th>Presente</th>
+                        <th>{{"Apellidos" | trans}}</th>
+                        <th>{{"Presente" | trans}}</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <!-- Foreach de alumnos-->
-                    {% for i in 1..5  %}
+                    {% for judoka in judokas  %}
                     <tr>
                         <td><img src="/img/profile/{% if user.userId is defined %}{{ userId }}{% else %}generic{% endif %}.png" width="30" height="30"></td>
-                        <td>{{"Nombre"}}</td>
-                        <td>{{ "Apellidos" }}</td>
+                        <td>{{ judoka.name}}</td>
+                        <td>{{ judoka.lastName1 }} {{ judoka.lastName2 }}</td>
                         <td>
                             <label class="switch">
-                                <input type="checkbox" id="{{ "codAlumno "}}" onClick="addToList(1);">
+                                <input class="marcar-falta"  type="checkbox" data-id="{{ judoka.judokaId }}">
                                 <span class="slider round"></span>
                             </label>
                         </td>

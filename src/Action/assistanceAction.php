@@ -8,9 +8,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
+use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
@@ -27,26 +29,36 @@ class assistanceAction extends BaseTwigAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         // get basic info
-        $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
+
+        $model = new ClaseModel($database);
+        $controller = new ClaseController($model);
+        $currentClass = $controller->getCurrentClassId();
+        $clase = $controller->getClass([$currentClass]);
+
+        $centerModel = new CentroModel($database);
+        $centerController = new CentroController($centerModel);
+        $centro = $centerController->getCenter($clase['centerId']);
+
         $model = new JudokaModel($database);
         $controller = new JudokaController($model);
-        $allJudokas = $controller->getJudokas();
-        $body = $response->getBody();
+        $allJudokas = $controller->getJudokaByClass($currentClass);
 
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
 
-        $classModel = new ClaseModel($database);
-        $classController = new ClaseController($classModel);
-        $classes = $classController->getClasesAllData();
 
-        echo $classController->getCurrentClassId();
+        //echo $classController->getCurrentClassId();
+        $body = $response->getBody();
+
         $arguments = [
             'photoRoute' => $fileRoute,
             'judokas' => $allJudokas,
-            'action' => 'judokas'
+            'class' => $clase,
+            'center' => $centro,
+            'date' => date('Y-m-d'),
+            'action' => 'assistance'
         ];
         $compiledTwig = $this->render('assistance', $arguments);
         $body->write($compiledTwig);
