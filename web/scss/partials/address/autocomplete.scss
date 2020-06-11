@@ -1,0 +1,28 @@
+[data-action="address-autocomplete"] {
+  form {
+    .has-autocomplete {
+      margin-bottom: 0.1rem;
+    }
+
+    .address-selector-autocomplete {
+      width: 100%;
+      padding: .2rem 0;
+      margin-top: .2rem;
+      background: white;
+      z-index: 3;
+
+
+      .autocomplete-element {
+        color: white;
+        background: #385469;
+        transition: 0.4s background ease;
+        cursor: pointer;
+        padding: .2rem .5rem;
+
+        &:hover {
+          background: #2e59d9;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import {News} from "./News";
-import {NewsRequest} from "./NewsRequest";
-import {ErrorHandler} from "../util/ErrorHandler";
+import { News } from "./News";
+import { NewsRequest } from "./NewsRequest";
+import { ErrorHandler } from "../util/ErrorHandler";
 
 /**
  * News processing class.
@@ -56,6 +56,11 @@ export class NewsMain {
             NewsMain.createNews(news, (e.target as HTMLButtonElement));
         });
     }
+
+    /**
+     * Handle home
+     * @private
+     */
     private static handleHome(): void {
         const deleteButtons: NodeListOf<Element> = document.querySelectorAll('button.borrar');
 
