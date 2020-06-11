@@ -165,7 +165,7 @@ SQL;
         string $name,
         string $phone,
         string $surname,
-        string $secondSurname,
+        ?string $secondSurname,
         string $password,
         string $email
     ): User {

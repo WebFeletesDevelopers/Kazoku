@@ -70,7 +70,7 @@ export class UserMain {
         });
         secondSurnameElement.addEventListener('keyup', e => {
             user.secondSurname = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            //UserMain.validateRegisterButton(user, buttonElement);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         usernameElement.addEventListener('keyup', e => {

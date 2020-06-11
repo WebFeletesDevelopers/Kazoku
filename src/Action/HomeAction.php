@@ -29,7 +29,6 @@ class HomeAction extends BaseTwigAction implements ActionInterface
         $news = $loggedInUser
             ? $controller->getLatest()
             : $controller->getLatestPublic();
-
         $fileRoute = parent::getProfilePic($loggedInUser);
 
 

@@ -39,7 +39,6 @@ class RegisterAction extends BaseJsonAction implements ActionInterface
         $parametersToValidate = [
             'name' => $name,
             'surname' => $surname,
-            'secondSurname' => $secondSurname,
             'username' => $username,
             'phone' => $phone,
             'email' => $email,
