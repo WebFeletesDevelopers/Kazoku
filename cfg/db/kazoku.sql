@@ -307,3 +307,29 @@ INSERT INTO `pupil` (`name`,`surname`,`second_surname`,`gender`,`birth_date`,`be
     ('Maris','Scott','Jimenez','0','2020-01-26',1,4),
     ('Amir','Hunter','Roach','0','2019-05-05',8,5),
     ('Kitra','Salazar','Walters','1','2020-06-18',12,1);
+
+
+INSERT INTO kazoku.users (id, confirmed, `rank`, username, name, phone, surname, second_surname, password, email, email_confirmed) VALUES
+    (1, 0, 3, 'misko', 'misko', 123456789, 'jons', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'albertogomp@gmail.com', 1),
+    (2, 1, 0, 'Thana', 'Alberto', 609914731, 'Gómez', '', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'personal@albertogomp.es', 1),
+    (4, 0, 2, 'Bruce', 'Quinn', null, 'Fritz', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'bstrosin@example.net', 1),
+    (5, 0, 2, 'Davis', 'Rios', null, 'Kai', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'renee.feest@example.net', 1),
+    (6, 0, 2, 'Julian', 'Mann', null, 'Zenaida', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'alfred.kutch@example.org', 1),
+    (7, 0, 2, 'Adele', 'Patterson', null, 'Hall', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'vsimonis@example.com', 1),
+    (8, 0, 2, 'Janna', 'Walters', null, 'Alice', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'zrunolfsdottir@example.com', 1),
+    (9, 0, 2, 'Vaughan', 'Holloway', null, 'Lawrence', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'lindsey39@example.net', 1),
+    (10, 0, 2, 'Venus', 'Edwards', null, 'Xavier', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'goyette.mariela@example.org', 1),
+    (11, 0, 2, 'Freya', 'Salinas', null, 'Jeremy', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'pmertz@example.net', 1),
+    (12, 0, 2, 'Thane', 'Castro', null, 'Quintessa', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'ernser.dolores@example.net', 1),
+    (13, 0, 2, 'Wynter', 'Mercado', null, 'Dolan', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'jade08@example.net', 1),
+    (14, 0, 2, 'Melyssa', 'Kent', null, 'Lila', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'damaris.reichel@example.net', 1),
+    (15, 0, 2, 'Rowan', 'Montgomery', null, 'Merritt', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'gabe.reinger@example.net', 1),
+    (16, 0, 2, 'Dai', 'Cortez', null, 'Ryan', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'zquitzon@example.net', 1),
+    (17, 0, 2, 'Blaze', 'Irwin', null, 'Juliet', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'mrolfson@example.net', 1),
+    (18, 0, 2, 'Fulton', 'Daniels', null, 'Ezekiel', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'zruecker@example.com', 1),
+    (19, 0, 2, 'Jason', 'Thompson', null, 'Thaddeus', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'donnelly.brooks@example.com', 1),
+    (20, 0, 2, 'Lamar', 'Butler', null, 'Minerva', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'mueller.vivian@example.net', 1),
+    (21, 0, 2, 'Brenna', 'Patrick', null, 'Miriam', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'xsawayn@example.org', 1),
+    (22, 0, 2, 'Isadora', 'Oliver', null, 'Oliver', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'sipes.lisette@example.net', 1),
+    (23, 0, 2, 'Britanney', 'Dyer', null, 'Keefe', 'garcia', 'a03ab19b866fc585b5cb1812a2f63ca861e7e7643ee5d43fd7106b623725fd67', 'wisozk.erling@example.net', 1);
+
