@@ -2,6 +2,13 @@
 
 Sistema de gestión de alumnado, clases y centros. Centro de información para usuarios y herramientas de profesorado
 
+## Información de interés
+* [Enlace a la presentación en Google Slides](https://docs.google.com/presentation/d/1Tk8hJBYVyyMKXgkxLFOPNnH5Xa_Kizr9NCVhZrcmF4Q/edit?usp=sharing) - Presentación para la exposición del proyecto.
+* [Enlace al video demo](https://drive.google.com/drive/folders/1NqG90r9D2HFYT_mlegrWQ6uvG4LxdPQM?usp=sharing) - Se encuentra dentro de una caroepta en Google Drive.
+* [Enlace a la memoria del proyecto](https://docs.google.com/document/d/1g070WeKhdBxYWxJ0EcBri8vPi0mRwhOOv0TBsHws6H0/edit#) - Documento de Google Docs.
+
+
+
 ## Información Técnica
 
 Para desplegar este proyecto en local es necesario el uso de <a href="docker.com" target="_blank">docker</a>.
@@ -58,7 +65,37 @@ Una vez se hayan hecho las traduciones, se han de compilar las traducciones con 
 ```
 make compile-mo-dev
 ```
-## Información de usuario
+## Información de usuario (Enlaces de testing, la versión final puede variar)
+
+### Gestión de cuentas para usuarios 
+* [Inicio de Sesion](https://testingkazoku.romeronet.es/login) - Disponible para todos los usuarios
+* [Registro](https://testingkazoku.romeronet.es/registro) - Disponible para todos los usuarios
+* [Recuperación de contraseña](https://testingkazoku.romeronet.es/user/startPasswordRecovery) - Disponible para todos los usuarios
+### Páginas de información para usuarios
+* [Mi Perfil](https://testingkazoku.romeronet.es/profile) - Disponible para todos los usuarios
+* [Mi Clase](https://testingkazoku.romeronet.es/virtualClass) - Disponible para todos los usuarios
+* [Aula virtual](https://testingkazoku.romeronet.es/virtualClass) - No disponible en este momento
+
+### Gestión de cuentas para profesores 
+* [Confirmar usuarios](https://testingkazoku.romeronet.es/confirmUser) - Disponible para todos los profesores
+* [Crear Usuario](https://testingkazoku.romeronet.es/newUser) - Disponible para todos los profesores
+### Gestión general para profesores
+* [Creador de Noticias](https://testingkazoku.romeronet.es/newsCreator) - Disponible para todos los profesores
+* [Gestion de clases](https://testingkazoku.romeronet.es/classAdmin) - Disponible para todos los profesores
+* [Gestion de Centros](https://testingkazoku.romeronet.es/centerAdmin) - Disponible para todos los profesores
+* [Listado de alumnos](https://testingkazoku.romeronet.es/judokas) - Disponible para todos los profesores
+* [Pasar lista](https://testingkazoku.romeronet.es/assistance) - Disponible para todos los profesores
+### Listados para profesores
+* [Detalles de clases](https://testingkazoku.romeronet.es/classDetail) - Disponible para todos los profesores
+* [Detalles de Centros](https://testingkazoku.romeronet.es/centerDetail) - Disponible para todos los profesores
+* [Detalles de Alumnos](https://testingkazoku.romeronet.es/judokaDetail) - Disponible para todos los profesores
+### Panel de control
+* [Panel de control](https://testingkazoku.romeronet.es/judokaDetail) - Disponible para todos los profesores
+
+
+
+
+
 
 
 
@@ -73,5 +110,5 @@ make compile-mo-dev
 ## Autores
 
 * **Fran Romero** - *Web developer at Freepik Company* - [fromero98](https://github.com/fromero98)
-* **Alberto Gómez** - *Web developer at Bettergy Company* - [albertogomezp](https://github.com/albertogomezp/)
+* **Alberto Gómez** - *SPOILER ALERT: Web developer at Bettergy Company* - [albertogomezp](https://github.com/albertogomezp/)
 * este proyecto ha sido desarrollado como proyecto de fin de grado para el  [IESCampanillas](https://github.com/IESCampanillas)
