@@ -60,8 +60,6 @@ class myClassAction extends BaseTwigAction implements ActionInterface
                 $absencesMonth = $absenceController->getAllFromJudokaMonth($allJudokaInfo['judokaId'],date('m'));
                 $allAbscense = $absenceController->getAllFromJudoka($allJudokaInfo['judokaId']);
                 $absenceNumber = sizeof($absencesMonth);
-                echo var_dump($absenceNumber);
-
                 // get class
                 $claseModel = new ClaseModel($database);
                 $claseController = new ClaseController($claseModel);

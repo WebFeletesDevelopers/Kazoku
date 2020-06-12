@@ -14,7 +14,6 @@ export class CenterMain {
         const isCenterAdminPage: boolean = !! document.querySelector('[data-action="center-admin"]');
         const isCenterDetailPage: boolean = !! document.querySelector('[data-action="center-detail"]');
         if (isCenterAdminPage) {
-            console.log(isCenterAdminPage);
             this.handleCenterAdmin();
         }
         if (isCenterDetailPage){
