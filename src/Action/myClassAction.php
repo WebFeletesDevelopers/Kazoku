@@ -2,12 +2,8 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\AbsenceController;
 use WebFeletesDevelopers\Kazoku\Controller\AddressController;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
@@ -83,8 +79,6 @@ class myClassAction extends BaseTwigAction implements ActionInterface
             }
         }
 
-
-
         $body = $response->getBody();
         $arguments = [
             'title' => 'Kazoku | Perfil',
@@ -95,8 +89,8 @@ class myClassAction extends BaseTwigAction implements ActionInterface
             'classDays' => $classDays,
             'absencesMonth' => $absencesMonth,
             'absenceNumber' => $absenceNumber,
-            'allAbsences' =>$allAbscense,
-            'allAbsencesNumber' =>sizeof($allAbscense),
+            'allAbsences' => $allAbscense,
+            'allAbsencesNumber' => count($allAbscense),
             'center' => $center,
             'address' => $address,
             'action' => 'judoka-myProfile'
