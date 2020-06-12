@@ -24,6 +24,8 @@ services:
       - "./src:/src"
       - "./public:/public"
       - "kazoku_composer_cache:/root/composer"
+      - "./docs:/docs"
+
 
   db:
     image: mariadb:10.4
@@ -41,8 +43,9 @@ services:
   node:
     image: node:lts
     volumes:
-      - ./web:/web
-      - ./public:/public
+      - "./web:/web"
+      - "./public:/public"
+      - "./docs:/docs"
 volumes:
   kazoku_database_devel:
   kazoku_composer_cache:

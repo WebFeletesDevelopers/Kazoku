@@ -8,7 +8,8 @@
   "scripts": {
     "build": "gulp build",
     "build-dev": "gulp build-dev",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "docs": "typedoc --out docs ts"
   },
   "dependencies": {
     "@babel/core": "^7",
@@ -22,6 +23,7 @@
     "gulp-uglify": "^3",
     "rimraf": "^3.0.2",
     "ts-loader": "^7",
+    "typedoc": "^0.17",
     "typescript": "^3",
     "webpack": "^4",
     "webpack-cli": "^3",
