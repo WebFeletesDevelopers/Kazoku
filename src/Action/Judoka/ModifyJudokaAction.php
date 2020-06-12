@@ -145,36 +145,17 @@ class ModifyJudokaAction extends BaseJsonAction implements ActionInterface
         if ($birthDate === null || trim($birthDate) === '') {
             throw InvalidParametersException::fromInvalidParameter('birthdate');
         }
-        if ($email === null || trim($email) === '-') {
+        if (trim($email) === '-') {
             throw InvalidParametersException::fromInvalidParameter('email');
         }
-        if ($sex === null) {
+        if ($sex === null || $sex = 0) {
             throw InvalidParametersException::fromInvalidParameter('sex');
         }
-        /*
-        if ($userId === null || $userId = 0) {
-            throw InvalidParametersException::fromInvalidParameter('userId');
-        }
-        */
-        if ($parentId <= 0) {
-            throw InvalidParametersException::fromInvalidParameter('parentId');
-        }
-        if ($beltId === null || $beltId = 0) {
+        if ($beltId === null || $beltId == 0) {
             throw InvalidParametersException::fromInvalidParameter('beltId');
         }
-        if ($classId === null || $classId = 0) {
+        if ($classId === null || $classId == 0) {
             throw InvalidParametersException::fromInvalidParameter('classId');
-        }
-        if ($judokaId === null || $judokaId = 0) {
-            throw InvalidParametersException::fromInvalidParameter('judokaId');
-        }
-        /*
-        if ($phone === null || $phone = 0) {
-            throw InvalidParametersException::fromInvalidParameter('phone');
-        }
-        */
-        if ($fanjydaId = 0) {
-            throw InvalidParametersException::fromInvalidParameter('fanjydaId');
         }
     }
 }

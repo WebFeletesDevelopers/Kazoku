@@ -13,7 +13,7 @@ export class JudokaMain {
         const isJudokasPage: boolean = !!document.querySelector('[data-action="judokas"]');
         const isJudokaDetailPage: boolean = !!document.querySelector('[data-action="judoka-detail"]');
         const isMyProfilePage: boolean = !!document.querySelector('[data-action="judoka-myProfile"]');
-
+        this.handleAnyPage();
         if (isJudokasPage) {
             this.handleJudokasPage();
         }
@@ -24,7 +24,15 @@ export class JudokaMain {
             this.handleProfilePage();
         }
     }
+    private static handleAnyPage(): void{
+        const     searchTable:         HTMLInputElement = document.querySelector('#searchJudoka');
+        if(searchTable !== null){
+            searchTable.addEventListener('keyup', () => {
+                JudokaMain.findJudoka(searchTable.value);
+            });
+        }
 
+    }
 
     /**
      * Handle the news creator form.
@@ -207,7 +215,6 @@ export class JudokaMain {
         const    modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
         const    modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
         const     modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
-
 
 
 
@@ -396,6 +403,33 @@ export class JudokaMain {
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
             }
+        }
+    }
+
+    /**
+     * Finds a judoka in a tably by any of his values
+     *
+     * @param searching
+     */
+    private static findJudoka(searching){
+            // Declare variables
+            var filter, table, tr, td, i, e;
+            filter = searching.toUpperCase();
+            table = document.getElementById("tablaAlumnos");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                for(e = 1; e <= 7; e++){
+                    td = tr[i].getElementsByTagName("td")[e];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
         }
     }
 
