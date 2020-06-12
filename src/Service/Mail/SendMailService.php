@@ -29,6 +29,8 @@ class SendMailService
      * SendMailService constructor.
      */
     public function __construct() {
+        $mailer = new PHPMailer();
+        $mailer->CharSet = PHPMailer::CHARSET_UTF8;
         $this->emailServer = new CustomEmailServer(
             'smtp.dondominio.com',
             587,
@@ -36,7 +38,7 @@ class SendMailService
             'tls'
         );
         $mailer = new PHPMailerEmailService(
-            new PHPMailer(),
+            $mailer,
             new NullLogger()
         );
         $this->useCase = new SendEmailUseCase(
