@@ -39,14 +39,8 @@ export class JudokaRequest {
      * @param user
      */
     public static createFromRegister(user: User){
-        const data: FormData = new FormData();
-        data.append('name', user.name);
-        data.append('lastName1', user.surname);
-        data.append('lastName2', user.secondSurname);
-        data.append('phone', String(user.phone));
-        data.append('email', user.email);
-
-        return Request.postFormData('/judoka/addFromRegister', data);
+        const data = `name=${user.name}&lastName1=${user.surname}&lastName2=${user.secondSurname}&phone=${user.phone}&email=${user.email}`;
+        return Request.post('/judoka/addFromRegister', data);
     }
 
 }
