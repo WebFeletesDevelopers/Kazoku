@@ -27,6 +27,8 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         $controller = new ClaseController($model);
         $allClass = $controller->getClasesAllData();
 
+
+        // teacher info
         $modelUsers = new UserModel($database);
         $controllerUser = new UserControllerMin($modelUsers);
         $teachers  =$controllerUser->findByRankMin(1);

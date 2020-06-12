@@ -11,6 +11,7 @@ use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -46,6 +47,14 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $judokaController = new JudokaController($judokaModel);
         $judokas = $judokaController->getJudokaByClass($codClase);
 
+        //session info
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
+        $fileRoute = parent::getProfilePic($loggedInUser);
+
         $days['daySplit'] = str_split(sprintf("%05d", decbin($classe['days'])));
         $arguments = [
             'title' => 'kazoku',
@@ -53,6 +62,7 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
             'userId' => 0,
             'class' => $classe,
             'teachers' => $teachers,
+            'photoRoute' => $fileRoute,
             'centers' => $centers,
             'judokas' => $judokas,
             'day' => $days,
