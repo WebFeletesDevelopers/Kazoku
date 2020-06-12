@@ -34,15 +34,36 @@ class assistanceAction extends BaseTwigAction implements ActionInterface
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $currentClass = $controller->getCurrentClassId();
-        $clase = $controller->getClass([$currentClass]);
+        if($currentClass > 0){
+            $clase = $controller->getClass([$currentClass]);
+            $centerModel = new CentroModel($database);
+            $centerController = new CentroController($centerModel);
+            $centro = $centerController->getCenter($clase['centerId']);
 
-        $centerModel = new CentroModel($database);
-        $centerController = new CentroController($centerModel);
-        $centro = $centerController->getCenter($clase['centerId']);
+            $model = new JudokaModel($database);
+            $controllerJudoka = new JudokaController($model);
+            $allJudokas = $controllerJudoka->getJudokaByClass($currentClass);
+            $ClassDate = date('Y-m-d');
 
-        $model = new JudokaModel($database);
-        $controller = new JudokaController($model);
-        $allJudokas = $controller->getJudokaByClass($currentClass);
+        }
+        else{
+            $allClasses = $controller->getClases();
+
+            $claseId = $args['classId'];
+            $date = $args['date'];
+            if($claseId !== null && $date !== null){
+                $ClassDate = date("Y-m-d", $date);
+                $clase = $controller->getClass([$claseId]);
+                // get judokas
+                $model = new JudokaModel($database);
+                $controllerJudoka = new JudokaController($model);
+                $allJudokas = $controllerJudoka->getJudokaByClass($claseId);
+            }
+
+
+        }
+
+
 
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
@@ -56,8 +77,9 @@ class assistanceAction extends BaseTwigAction implements ActionInterface
             'photoRoute' => $fileRoute,
             'judokas' => $allJudokas,
             'class' => $clase,
+            'allClasses' => $allClasses,
             'center' => $centro,
-            'date' => date('Y-m-d'),
+            'date' => $ClassDate,
             'action' => 'assistance'
         ];
         $compiledTwig = $this->render('assistance', $arguments);

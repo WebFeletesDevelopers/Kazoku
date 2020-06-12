@@ -49,4 +49,9 @@ export class Assistance {
             && this.classId > 0
             && this.date != '';
     }
+
+    public validateSearch(): boolean {
+        return this.date.length > 0
+            && this.classId > 0;
+    }
 }

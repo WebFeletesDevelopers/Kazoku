@@ -116,6 +116,7 @@ class Routes
         //judokas
         $app->get('/judokas', judokasAction::class);
         $app->get('/assistance', assistanceAction::class);
+        $app->get('/assistance/{classId}/{date}', assistanceAction::class);
         $app->get('/judokaDetail/{id}', JudokaDetailAction::class);
         $app->get('/judokaDetail/', JudokaDetailAction::class);
         $app->post('/judoka/add', AddJudokaAction::class);

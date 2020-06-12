@@ -11,4 +11,5 @@ export class AssistanceRequest {
         const data = `userId=${assistance.userId}&classId=${assistance.classId}&date=${assistance.date}`;
         return Request.post('/assistance/send', data);
     }
+
 }

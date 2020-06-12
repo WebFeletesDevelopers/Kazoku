@@ -4,7 +4,7 @@
 <div class="container-fluid p-0 m-0">
     <div class="card m-0 p-0 shadow">
         <div class="card-header py-3">
-            <p data-name="{{ date }}" id="title" class="text-primary m-0 font-weight-bold">{{ class.name }} ({{ center.name }}) </p>
+            <p data-name="{{ date }}" id="title" class="text-primary m-0 font-weight-bold">{{ class.name }} {{ center.name }} </p>
             <input id="cod" type="hidden" value="<?=$CodClase?>">
         </div>
         <div class="card-body">
@@ -56,7 +56,26 @@
                 <button class="btn btn-primary" onclick="sendList()">ENVIAR</button>
 
                 {% else %}
-                <p class="alert alert-warning">No hay resultados</p>
+                <p class="alert alert-danger text-center">Ahora mismo no hay clase, seleccione una clase y día</p>
+                    <div class="row container-fluid">
+                        <div class="col-md-6 col-sm-12 container-fluid ">
+                            <select id="allClasses" class="form-control my-1 container-fluid">
+                                <option value="0">{{ "Seleccione una" | trans }}</option>
+                                {% for optionClass in allClasses %}
+                                    <option value="{{ optionClass.id }}">{{ optionClass.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-12 container-fluid">
+                            <input class="form-control text-center my-1 container-fluid" type="date" id="day">
+                        </div>
+                    </div>
+                    <div class="row container-fluid">
+                        <button id="searchCombo" class="container-fluid form-control my-3 col-12 kaz-primario" disabled>
+                            {{ "Buscar" | trans }}
+                        </button>
+                    </div>
+
                 {% endif %}
             </div>
             <!--<div class="row">
