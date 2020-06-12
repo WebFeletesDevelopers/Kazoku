@@ -39,6 +39,9 @@ export class UserMain {
         const repeatedPaswordElement: HTMLInputElement = formElement.querySelector('input[name="repeated-password"]');
         const rankElement: HTMLSelectElement = formElement.querySelector('select[name="rank"]');
         const buttonElement: HTMLButtonElement = formElement.querySelector('button');
+        const dniFront: HTMLInputElement = formElement.querySelector('input[name="dni-front"]');
+        const dniBack: HTMLInputElement = formElement.querySelector('input[name="dni-back"]');
+
         const user: User = new User(
             nameElement.value,
             surnameElement.value,
@@ -51,7 +54,7 @@ export class UserMain {
             parseInt(rankElement.options[rankElement.selectedIndex].value)
         )
 
-        UserMain.validateRegisterButton(user, buttonElement);
+        UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
 
         registerContainer.addEventListener('animationend', e => {
             (e.target as HTMLDivElement).classList.remove('animate');
@@ -60,60 +63,67 @@ export class UserMain {
         //fixme Simplificar
         nameElement.addEventListener('keyup', e => {
             user.name = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         surnameElement.addEventListener('keyup', e => {
             user.surname = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         secondSurnameElement.addEventListener('keyup', e => {
             user.secondSurname = (e.target as HTMLInputElement).value;
-            //UserMain.validateRegisterButton(user, buttonElement);
+            //UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         usernameElement.addEventListener('keyup', e => {
             user.username = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         phoneElement.addEventListener('keyup', e => {
             user.phone = parseInt((e.target as HTMLInputElement).value);
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         emailElement.addEventListener('keyup', e => {
             user.email = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         passwordElement.addEventListener('keyup', e => {
             user.password = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         repeatedPaswordElement.addEventListener('keyup', e => {
             user.repeatedPassword = (e.target as HTMLInputElement).value;
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
         });
         rankElement.addEventListener('change', e => {
             const select = (e.target as HTMLSelectElement);
             const input = parseInt(select.options[select.selectedIndex].value);
             user.rank = numberToRank(input);
-            UserMain.validateRegisterButton(user, buttonElement);
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
             registerContainer.classList.remove('kazoku-error-shadow');
+        });
+
+        dniFront.addEventListener('change', e => {
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
+        });
+        dniBack.addEventListener('change', e => {
+            UserMain.validateRegisterButton(user, buttonElement, dniFront, dniBack);
         });
 
         buttonElement.addEventListener('click', e => {
             e.preventDefault();
-            UserMain.createUser(user, registerContainer, buttonElement);
+            UserMain.createUser(user, registerContainer, buttonElement, dniFront, dniBack);
         });
     }
 
-    private static validateRegisterButton(user: User, button: HTMLButtonElement): void {
-        if (user.validate()) {
+    private static validateRegisterButton(user: User, button: HTMLButtonElement, frontDni: HTMLInputElement, backDni: HTMLInputElement): void {
+        if (user.validate() && !! frontDni.files[0] && !! backDni.files[0]) {
             button.disabled = false;
             return;
         }
@@ -123,14 +133,16 @@ export class UserMain {
     private static createUser(
         user: User,
         registerContainer: HTMLDivElement,
-        registerButton: HTMLButtonElement
+        registerButton: HTMLButtonElement,
+        frontDni: HTMLInputElement,
+        backDni: HTMLInputElement
     ): void {
         registerButton.disabled = true;
         UserRequest.register(user).then(res => {
             if (res.statusCode === 201) {
                 document.location.replace('/');
                 if(user.rank == 3){
-                    JudokaRequest.createFromRegister(user).then(r => {
+                    JudokaRequest.createFromRegister(user, frontDni, backDni).then(r => {
                     });
                 }
             } else {

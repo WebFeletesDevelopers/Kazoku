@@ -2,16 +2,17 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\Judoka;
 
-use Cassandra\Date;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Psr7\UploadedFile;
 use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
+use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
  * Class AddJudoka
@@ -37,7 +38,7 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
         $lastname1 = $data['lastName1'];
         $lastname2 = $data['lastName2'];
         $dni = $data['dni'];
-        $phone = intval($data['phone']);
+        $phone = (int)$data['phone'];
         $email = $data['email'];
         try {
             $this->validateParameters(
@@ -60,6 +61,15 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
             return $this->withJson($response, $data, 500);
         }
 
+        if (! empty($_FILES)) {
+            $directory = __DIR__ . '/../../../public/profile/';
+            /** @var UploadedFile[] $uploadedFiles */
+            $uploadedFiles = $request->getUploadedFiles();
+            $hash = Utils::hashPassword($name . $phone);
+            $uploadedFiles['dni-front']->moveTo($directory . "${hash}-front.png");
+            $uploadedFiles['dni-back']->moveTo($directory . "${hash}-back.png");
+        }
+
         return $this->withJson($response, [], 201);
     }
 
@@ -71,12 +81,12 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
      * @return void
      * @throws InvalidParametersException
      */
-    private function validateParameters(?string $name,
-                                        ?string $lastname1,
-                                        ?string $email,
-                                        ?int $phone
-    ): void
-    {
+    private function validateParameters(
+        ?string $name,
+        ?string $lastname1,
+        ?string $email,
+        ?int $phone
+    ): void {
         if ($name === null || trim($name) === '') {
             throw InvalidParametersException::fromInvalidParameter('name');
         }

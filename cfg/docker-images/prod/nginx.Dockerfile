@@ -12,3 +12,4 @@ COPY cfg/nginx/dev/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /web /web
 COPY --from=builder /public /public
 
+RUN chmod 777 /public/profile

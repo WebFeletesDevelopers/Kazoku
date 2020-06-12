@@ -96,10 +96,7 @@ class JudokaController
         int $phone,
         string $email
     ): bool {
-        try {
-            return $this->model->addJudokaFromRegister($name, $lastName1, $phone, $email);
-        } catch (QueryException $e) {
-        }
+        return $this->model->addJudokaFromRegister($name, $lastName1, $phone, $email);
     }
 
     /**

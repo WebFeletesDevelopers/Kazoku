@@ -33,3 +33,5 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer global require hirak/prestissimo
 
 RUN composer install -o
+
+RUN chmod 777 /public/profile
