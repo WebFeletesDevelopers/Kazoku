@@ -1,6 +1,8 @@
 import {Judoka} from "./Judoka";
 import {JudokaRequest} from "./JudokaRequest";
 import {ErrorHandler} from "../util/ErrorHandler";
+import {Assistance} from "../assistance/Assistance";
+import {AssistanceRequest} from "../assistance/AssistanceRequest";
 
 /**
  * News processing class.
@@ -13,6 +15,7 @@ export class JudokaMain {
         const isJudokasPage: boolean = !!document.querySelector('[data-action="judokas"]');
         const isJudokaDetailPage: boolean = !!document.querySelector('[data-action="judoka-detail"]');
         const isMyProfilePage: boolean = !!document.querySelector('[data-action="judoka-myProfile"]');
+        const isClassDetailPage: boolean = !!document.querySelector('[data-action="class-detail"]');
         this.handleAnyPage();
         if (isJudokasPage) {
             this.handleJudokasPage();
@@ -23,9 +26,12 @@ export class JudokaMain {
         if (isMyProfilePage){
             this.handleProfilePage();
         }
+        if(isClassDetailPage){
+            this.handleClassDetailPage();
+        }
     }
     private static handleAnyPage(): void{
-        const     searchTable:         HTMLInputElement = document.querySelector('#searchJudoka');
+        const     searchTable:         HTMLInputElement = document.querySelector('.searchJudoka');
         if(searchTable !== null){
             searchTable.addEventListener('keyup', () => {
                 JudokaMain.findJudoka(searchTable.value);
@@ -49,8 +55,11 @@ export class JudokaMain {
                 const name = button.getAttribute("data-name");
                 switch (name) {
                     case "delete-judoka":
-                        e.preventDefault();
-                        JudokaMain.deleteJudoka(parseInt(judokaId));
+                        var r = confirm("¿Estás seguro que quieres borrar este judoka?");
+                        if (r == true) {
+                            e.preventDefault();
+                            JudokaMain.deleteJudoka(parseInt(judokaId));
+                        }
                         break;
                 }
             });
@@ -321,6 +330,44 @@ export class JudokaMain {
 
     }
 
+    private static handleClassDetailPage(){
+        const buttons: NodeListOf<Element> = document.querySelectorAll('.addClase');
+        const clase: HTMLInputElement = document.querySelector('#addJudoka');
+
+            const claseId = clase.getAttribute("data-id");
+            //NewsMain.validateCreateNewsButton(submitButton, news);
+            buttons.forEach(function (button) {
+                button.addEventListener('change', e => {
+                    e.preventDefault();
+                    const judokaId = parseInt(button.getAttribute("data-id"));
+                    var r = confirm("¿Seguro que quieres asignar este alumno a esta clase? Esta acción no es reversible, tendrás que reasignarle una clase después");
+                    if (r == true) {
+                        JudokaMain.addJudokaClass(judokaId, parseInt(claseId));
+                    }
+                });
+            })
+    }
+
+    /**
+     * Send  judoka info for add to a class if it's not already, if un ckecked it is set to null
+     * @param judokaId
+     * @param classId
+     */
+    private static addJudokaClass(judokaId: number, classId: number): void {
+        JudokaRequest.addJudokaClass(judokaId,classId).then(res => {
+            console.log(res);
+
+            if (res.statusCode === 400 || res.statusCode === 500) {
+                ErrorHandler.handle(res.message['message']);
+
+            }
+            else{
+            }
+
+        })
+    }
+
+
     /**
      * Validates judoka params
      * @param button
@@ -415,22 +462,24 @@ export class JudokaMain {
             // Declare variables
             var filter, table, tr, td, i, e;
             filter = searching.toUpperCase();
-            table = document.getElementById("tablaAlumnos");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                for(e = 1; e <= 7; e++){
-                    td = tr[i].getElementsByTagName("td")[e];
-                    if (td) {
-                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            break;
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-        }
+             const tables: NodeListOf<HTMLTableElement> = document.querySelectorAll('.tablaAlumnos');
+             console.log(tables);
+             tables.forEach(function (table) {
+                 tr = table.getElementsByTagName("tr");
+                 for (i = 0; i < tr.length; i++) {
+                     for(e = 1; e <= 7; e++){
+                         td = tr[i].getElementsByTagName("td")[e];
+                         if (td) {
+                             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                 tr[i].style.display = "";
+                                 break;
+                             } else {
+                                 tr[i].style.display = "none";
+                             }
+                         }
+                     }
+                 }
+             });
     }
 
 

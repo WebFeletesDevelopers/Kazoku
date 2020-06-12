@@ -20,6 +20,7 @@ use WebFeletesDevelopers\Kazoku\Action\Classes\ModifyClassAction;
 use WebFeletesDevelopers\Kazoku\Action\confirmUserAction;
 use WebFeletesDevelopers\Kazoku\Action\HomeAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaAction;
+use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaClassAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\AddJudokaFromRegisterAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\DeleteJudokaAction;
 use WebFeletesDevelopers\Kazoku\Action\Judoka\ModifyJudokaAction;
@@ -46,6 +47,7 @@ use WebFeletesDevelopers\Kazoku\Action\User\UpdatePasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\StartRecoveryAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdateAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdatePasswordForRecoveryAction;
+use WebFeletesDevelopers\Kazoku\Action\usersAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 
@@ -85,6 +87,7 @@ class Routes
         $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
         $app->post('/xhr/user/updateAddress', UpdateAddressAction::class);
 
+        $app->get('/users', usersAction::class);
 
 
         //news
@@ -122,6 +125,7 @@ class Routes
         $app->post('/judoka/add', AddJudokaAction::class);
         $app->post('/judoka/modify', ModifyJudokaAction::class);
         $app->post('/judoka/delete', DeleteJudokaAction::class);
+        $app->post('/judoka/addJudokaClass', AddJudokaClassAction::class);
         $app->post('/judoka/addFromRegister', AddJudokaFromRegisterAction::class);
 
 

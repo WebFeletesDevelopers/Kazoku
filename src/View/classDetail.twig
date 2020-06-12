@@ -9,7 +9,9 @@
     <div class="card-body pb-3">
         <div class="form-group">
             <select class="custom-select mr-sm-2 my-2" id="modify-trainer" required>
-                <option value="{{ class.trainer }}">{{ class.trainer }}</option>
+                {% for teacher in teachers %}
+                    <option {% if class.trainer == teacher.name %}selected {% endif %} value="{{ teacher.id }}">{{ teacher.name }} {{ teacher.surname }} {% if class.trainer == teacher.name %} (*) {% endif %}</option>
+                {% endfor %}
             </select>
             <br>
             <select class="custom-select mr-sm-2 my-2" id="modify-center" required>
@@ -66,8 +68,8 @@
         </div>
         <div class="row d-flex justify-content-between font-small text-muted mb-4">
             <button id="modifyClass" data-name="modifyClass" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CLASE" }}</button>
-            <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS"}}</button>
-            <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO"}}</button>
+            <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}"  class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS"}}</button>
+            <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}"  data-toggle="modal" data-target="#exampleModalCenter" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO"}}</button>
             <button id="deleteClass" data-name="deleteClass" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CLASE"}}</button>
         </div>
     </div>
@@ -75,9 +77,60 @@
 </div>
 </div>
     <br>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">
+                        <input id="searchJudoka2" type="text" name="s" class="searchJudoka form-control container-fluid" placeholder="{{"Buscar Alumno" | trans}}">
 
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table dataTable my-0 tablaAlumnos"  data-id="{{ class.id }}">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{"Nombre" | trans}}</th>
+                            <th>{{"Apellidos" | trans}}</th>
+                            <th>{{"Añadir" | trans}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for judoka in allJudokas  %}
+                            {% if judoka.classId != class.id %}
+                            <tr>
+                                <td><img src="/img/profile/{% if user.userId is defined %}{{ userId }}.png{% else %}generic{% endif %}.png" width="30" height="30"></td>
+                                <td>{{ judoka.name}}</td>
+                                <td>{{ judoka.lastName1 }} {{ judoka.lastName2 }}</td>
+                                <td>
+                                        <input class="checkbox-custom form-control-lg addClase" style="     top: .8rem;  width: 1.25rem; height: 1.25rem;"  type="checkbox" data-id="{{ judoka.judokaId }}">
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Añadir</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"Cerrar" | trans}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {% include 'partials/judokasCard.twig' %}
-
-
 
 {% endblock %}
