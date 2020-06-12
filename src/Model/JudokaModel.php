@@ -99,6 +99,7 @@ SQL;
     public function addJudokaFromRegister(
         string $name,
         string $lastName1,
+        string $lastName2,
         int $phone,
         ?string $email
     ): bool {
@@ -106,14 +107,16 @@ SQL;
         INSERT INTO pupil(
             name,
             surname,
+            second_surname,
             phone,
             email
         )
-        VALUES (?,?,?,?);
+        VALUES (?, ?, ?, ?, ?);
 SQL;
         $binds = [
             $name,
             $lastName1,
+            $lastName2,
             $phone,
             $email
         ];

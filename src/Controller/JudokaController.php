@@ -93,10 +93,11 @@ class JudokaController
     public function addJudokaFromRegister(
         string $name,
         string $lastName1,
+        string $lastName2,
         int $phone,
         string $email
     ): bool {
-        return $this->model->addJudokaFromRegister($name, $lastName1, $phone, $email);
+        return $this->model->addJudokaFromRegister($name, $lastName1, $lastName2, $phone, $email);
     }
 
     /**
