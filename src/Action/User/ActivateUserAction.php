@@ -45,12 +45,17 @@ class ActivateUserAction extends BaseTwigAction implements ActionInterface
         $verificationModel = new VerificationModel($pdo);
         $emailService = new SendMailService();
         $userController = new UserController($userModel, $verificationModel, $emailService);
-
-        $userController->activateByEmail($params['token']);
-
         $config = [
-            'title' => 'titulo',
+            'title' => 'Activacion',
         ];
+
+        try {
+            $userController->activateByEmail($params['token'] ?? '');
+        } catch (InvalidCredentialsException $exception) {
+            $compiledTwig = $this->render('user/alreadyActivated', $config);
+            $body->write($compiledTwig);
+            return $response;
+        }
 
         $compiledTwig = $this->render('user/activate', $config);
         $body->write($compiledTwig);
