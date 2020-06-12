@@ -1,0 +1,14 @@
+@import '../css/bootstrap';
+@import '../css/kazoku';
+@import '../css/fonts';
+@import './partials/error';
+@import './partials/login';
+@import './partials/register';
+@import './partials/user/activate.scss';
+@import './partials/user/startPasswordRecovery';
+@import './partials/user/finalRecovery';
+@import './partials/address/autocomplete';
+
+body {
+  height: 100vh;
+}

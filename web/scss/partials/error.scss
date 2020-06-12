@@ -1,0 +1,64 @@
+@import '../variables/variables';
+
+body {
+  .has-error {
+    background: black;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: 0.4s all ease;
+  }
+}
+
+div.kazoku-error {
+  background-color: rgba(130, 71, 62, 1);
+  position: fixed;
+  width: calc(100% - 10rem);
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-left: 8.5rem; //fixme responsive
+  transform: translateY(-50%);
+  z-index: -1;
+  opacity: 0;
+  border-radius: .3rem;
+  padding: .5rem 1rem;
+  transition: opacity .4s ease;
+
+  h2 {
+    text-align: center;
+    color: black;
+  }
+
+  p {
+    color: black;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  button {
+    display: block;
+    color: #FFF;
+    background-color: rgb(62, 130, 99);
+    cursor: pointer;
+    width: 50%;
+    padding: .5rem 1rem;
+    border-radius: .1rem;
+    border: none;
+    margin: 0 auto;
+    transition: background-color .4s ease;
+
+    &:hover {
+      background-color: rgb(15, 54, 36);
+    }
+  }
+
+  @media(max-width: $mobile-breakpoint) {
+    margin: 0 1em;
+    width: 90%;
+  }
+}

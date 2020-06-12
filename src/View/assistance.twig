@@ -1,0 +1,100 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+<div class="container-fluid p-0 m-0">
+    <div class="card m-0 p-0 shadow">
+        <div class="card-header py-3">
+            <p data-name="{{ date }}" id="title" class="text-primary m-0 font-weight-bold">{{ class.name }} {{ center.name }} </p>
+            <input id="cod" type="hidden" value="<?=$CodClase?>">
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <!-- Si hay alumnos y si está en una hora de clase -->
+                {% if judokas is not null %}
+                <table class="table dataTable my-0" id="tablaAlumnos" data-id="{{ class.id }}">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{"Nombre" | trans}}</th>
+                        <th>{{"Apellidos" | trans}}</th>
+                        <th>{{"Presente" | trans}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <!-- Foreach de alumnos-->
+                    {% for judoka in judokas  %}
+                    <tr>
+                        <td><img src="/img/profile/{% if user.userId is defined %}{{ userId }}{% else %}generic{% endif %}.png" width="30" height="30"></td>
+                        <td>{{ judoka.name}}</td>
+                        <td>{{ judoka.lastName1 }} {{ judoka.lastName2 }}</td>
+                        <td>
+                            <label class="switch">
+                                <input class="marcar-falta"  type="checkbox" data-id="{{ judoka.judokaId }}">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Presente</th>
+                    </tr>
+                    </tfoot>
+                </table>
+
+                <button class="btn btn-primary" onclick="sendList()">ENVIAR</button>
+
+                {% else %}
+                <p class="alert alert-danger text-center">{{"Ahora mismo no hay clase, seleccione una clase y día" | trans}}</p>
+                    <div class="row container-fluid">
+                        <div class="col-md-6 col-sm-12 container-fluid ">
+                            <select id="allClasses" class="form-control my-1 container-fluid">
+                                <option value="0">{{ "Seleccione una" | trans }}</option>
+                                {% for optionClass in allClasses %}
+                                    <option value="{{ optionClass.id }}">{{ optionClass.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 col-sm-12 container-fluid">
+                            <input class="form-control text-center my-1 container-fluid" type="date" id="day">
+                        </div>
+                    </div>
+                    <div class="row container-fluid">
+                        <button id="searchCombo" class="container-fluid form-control my-3 col-12 kaz-primario" disabled>
+                            {{ "Buscar" | trans }}
+                        </button>
+                    </div>
+
+                {% endif %}
+            </div>
+            <!--<div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><<</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">>></span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>
+{% endblock %}

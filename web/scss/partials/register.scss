@@ -1,0 +1,52 @@
+@import '../variables/animations';
+@import '../variables/variables';
+@import '../variables/mixins';
+
+body[data-action="register"] {
+  background-image: linear-gradient(180deg, #f8f9fc 10%,#c2cbe5);
+
+  div.register-form {
+    @include full-page-form;
+    width: 70vw;
+    height: 80vh;
+
+    .left {
+      @include half-width-full-height-container;
+      @include form-logo;
+    }
+
+    .right {
+      @include half-width-full-height-container;
+      padding: 2em;
+
+      h2 {
+        color: rgb(100, 100, 100);
+        font-size: 1.75em;
+        text-align: center;
+      }
+
+      form {
+        @include full-page-form-input-multirow;
+        @include magic-center;
+        @include scroll-with-hidden-bars;
+        position: relative;
+        max-height: 100%;
+
+        button {
+          @include full-page-form-button;
+        }
+
+        hr {
+          border: none;
+          border-top: 1px solid rgba(34, 74, 189, 0.4);
+          margin: 2em 0 1.5em;
+        }
+
+        span {
+          color: black;
+        }
+      }
+
+    }
+  }
+}

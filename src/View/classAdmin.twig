@@ -1,0 +1,133 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+<div class="d-sm-flex justify-content-between mb-4">
+    <h2 class="d-sm-inline-block">{{ "Gestión de clases" | trans }}</h2>
+        <button type="button" class="btn kaz-azul text-light btn-sm d-sm-inline-block my-1" data-toggle="modal" data-target="#exampleModal">
+            {{"Añadir clase" | trans}}
+        </button>
+</div>
+    {% for class in clases %}
+        <div class="card">
+            <div class="card-body pb-3">
+                <h4 class="card-title font-weight-bold">{{class.centerName}}</h4>
+                <p class="card-text">{{ class.centerSt }}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="display-3 degree">{{class.name}}</p>
+                </div>
+                <div class="d-flex justify-content-between mb-4">
+                    <p><i class="fas fa-user fa-lg text-info pr-2"></i>{{ class | last }}</p>
+                    <p><i class="fas fa-address-book-o fa-lg grey-text pr-2">
+
+                        </i>
+                        {{ "Edades " | trans }}
+                        {{ class.minAge }}
+                        {{ "-" }}
+                        {{ class.maxAge }}
+                        {{ "Años " | trans }}
+
+                    </p>
+                </div>
+                <div class="row d-flex justify-content-between font-small text-muted mb-4">
+                        <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CLASE" | trans}}</a>
+                    <a  href="/classDetail/{{ class.id }}" id="classDetail" data-name="classDetail" data-id="{{ class.id }}"  class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"MODIFICAR CLASE" | trans}}</a>
+                    <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS" | trans}}</button>
+                    <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO" | trans}}</button>
+                    <button id="deleteClass" data-name="deleteClass" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CLASE" | trans}}</button>
+                    <button id="undefined"   data-name="undefined" data-id="{{ class.id }}" class="classes col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"EXTRA CLASE" | trans}}</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Card -->
+    {% endfor %}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ "Crear clase" | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group"><label for="dni"><strong>{{"Nombre de la clase" | trans}}</strong></label><input class="form-control" maxlength="9" type="text" placeholder="{{ "Ejemplo: Cadetes" |trans}}" name="create-name" id="create-name" required></div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group"><label for="create-minAge"><strong>{{"Edad mínima" | trans}}</strong></label><input class="form-control" type="number" placeholder="10" name="create-minAge" maxlength="2" id="create-minAge" required></div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group"><label for="create-maxAge"><strong>{{"Edad máxima" | trans}}</strong></label><input class="form-control" type="number" placeholder="10" name="create-maxAge" maxlength="2" id="create-maxAge" required></div>
+                            </div>
+                        </div>
+                        <div class="row form-row text-center">
+                            <div class="col-2 ml-1 form-check form-check-inline">
+                                <input class="form-check-input create-check" type="checkbox" id="create-l" value="1">
+                                <label class="form-check-label" for="inlineCheckbox1">{{ "Lunes" | trans }}</label>
+                            </div>
+                            <div class="col-2 form-check form-check-inline">
+                                <input class="form-check-input create-check" type="checkbox" id="create-m" value="2">
+                                <label class="form-check-label" for="inlineCheckbox2">{{ "Martes" | trans }}</label>
+                            </div>
+                            <div class="col-2 form-check form-check-inline">
+                                <input class="form-check-input create-check" type="checkbox" id="create-x" value="4">
+                                <label class="form-check-label" for="inlineCheckbox3">{{ "Miércoles" | trans  }}</label>
+                            </div>
+                            <div class="col-2 form-check form-check-inline">
+                                <input class="form-check-input create-check" type="checkbox" id="create-j" value="8">
+                                <label class="form-check-label" for="inlineCheckbox4">{{ "Jueves" | trans }}</label>
+                            </div>
+                            <div class="col-2 mr-1 form-check form-check-inline">
+                                <input class="form-check-input create-check" type="checkbox" id="create-v" value="16">
+                                <label class="form-check-label" for="inlineCheckbox5">{{ "Viernes" | trans }}</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 my-1">
+                                <div class="form-group"><label for="create-trainer"><strong>{{"Profesor" | trans }}</strong></label><br>
+                                    <select class="custom-select mr-sm-2" id="create-trainer" required>
+                                        <!-- esto tiene que hacer un foreach de profesores -->
+                                        <option selected>{{ "Seleccione uno" | trans }}</option>
+                                        <option value="1">{{"Alberto"   | trans}}</option>
+                                        <option value="2">{{"Fran"  | trans}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-6 my-1">
+                                <div class="form-group"><label for="create-center"><strong>{{"Centro" | trans }}</strong></label><br>
+                                    <select class="custom-select mr-sm-2" id="create-center" required>
+                                        <!-- esto tiene que hacer un foreach de centros -->
+                                        <option selected>{{ "Seleccione uno" | trans }}</option>
+                                        <option value="1">{{"Felix Revello de Toro"   | trans}}</option>
+                                        <option value="2">{{"Kodokan Fuengirola"  | trans}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 my-1">
+                                <div class="form-group"><label for="create-startTime"><strong>{{"Hora de inicio" | trans }}</strong></label><br>
+                                    <input type="time" class="custom-select mr-sm-2" id="create-startTime">
+
+                                </div>
+                            </div>
+
+                            <div class="col-6 my-1">
+                                <div class="form-group"><label for="create-endTime"><strong>{{"Hora de fin" | trans }}</strong></label><br>
+                                        <input type="time" class="custom-select mr-sm-2" id="create-endTime">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"Cerrar" | trans}}</button>
+                    <button id="createClass" type="button" disabled class="btn btn-primary">{{ "Crear clase" | trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <!-- Start: Chart -->
+    <div class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="/img/logo/LogoXL.png" alt="" width="172" height="172">
+            <h1 class="h3 mb-3 font-weight-normal">{{ "Escribir nueva noticia" | trans }}</h1>
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputPassword">{{  "Titulo de la noticia" | trans }}</label>
+            <textarea class="form-control" type="text" name="titulo" id="titulo" rows="1" required></textarea>
+            <div class="text-right"><span id="caracterest" class="valid-text pt-3" id="caracterest"></span></div>
+
+
+        </div>
+
+        <div class="form-label-group">
+            <label for="inputPassword">{{ "Cuerpo de la noticia" | trans }}</label>
+            <textarea class="form-control" type="text" name="mensaje" id="mensaje" rows="6" required></textarea>
+            <div class="text-right"><span id="caracteres" class="valid-text pt-3" id="caracteres"></span></div>
+
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <select class="form-control form-control-md" id="publica">
+                    <option selected value="0">{{ "privada" | trans}}</option>
+                    <option value="1">{{ "pública" | trans }}</option>
+                </select>
+            </label>
+        </div>
+        <div id="message"></div>
+        <button class="btn btn-lg btn-primary btn-block" id="enviar">{{ "Publicar" | trans}}</button>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,207 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h3 class="text-dark mb-4">
+            {% if judoka.name != '' %}
+            {{ "Perfil de " | trans}}{{ judoka.name }}
+            {% else %}
+            {{ "Registra nuevo alumno" | trans }}
+            {% endif %}
+        </h3>
+        <div class="row mb-3">
+            <div class="col-lg-4">
+                <div class="card mb-3">
+                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="/img/profile/{% if judoka.userIdNo is defined %}{{ judoka.userId }}{% else%}generic{% endif %}.png" width="160" height="160" />
+                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">{{ "Cambiar Foto" | trans  }}</button></div>
+                    </div>
+                </div>
+                <ul class="list-group mb-3 p-1  ">
+                  {% if class.name !='' %}
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{ class.name }}</h6>
+
+                                <small class="text-muted">{{ class.schedule }}</small>
+                            </div>
+                            <span class="text-muted" style="">{{ class.minAge }}-{{ class.maxAge }} {{ "años" | trans }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div>
+                                <h6 class="my-0">{{ center.name }}</h6>
+                                <small class="text-muted">{{ center.direction  }}</small>
+                            </div>
+                            <span class="text-muted">{{ center.phone  }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="">
+                                <h6 class="my-0">{{ "Profesor" | trans  }}</h6>
+
+                            </div>
+                            <span class="">{{ class.trainer}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="">
+                                <span class="">{{ "Días" | trans}}</span>
+
+                                <h6 class="my-0 text-center">
+                                    {% if days.daySplit[4] == 1 %}{{ "Lunes" | trans }}{% endif %}
+                                    {% if days.daySplit[3] == 1 %}{{ "Martes" | trans }}{% endif %}
+                                    {% if days.daySplit[2] == 1 %}{{ "Miércoles" | trans }}{% endif %}
+                                    {% if days.daySplit[1] == 1 %}{{ "Jueves" | trans }}{% endif %}
+                                    {% if days.daySplit[0] == 1 %}{{ "Viernes" | trans }}{% endif %}
+                                </h6>
+
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div class="">
+                                <label class="text-success">{{ "Cambiar grupo" | trans}}</label>
+                                <select class="custom-select" id="mod-classId">
+                                {% for class in classes  %}
+                                <option class="my-0 text-center" {% if class.id == judoka.classId %} selected{% endif %} value="{{ class.id }}">{{ class.name }}{% if class.id == judoka.classId %}<small> ({{ "Actual" | trans }})</small>{% endif %} </option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </li>
+                {% else %}
+                        <li>
+                        <div class="">
+                            <label class="text-success">{{ "Seleccionar grupo" | trans}}</label>
+                            <select class="custom-select" id="mod-classId">
+                                {% for class in classes  %}
+                                    <option class="my-0 text-center" {% if class.id == judoka.classId %} selected{% endif %} value="{{ class.id }}">{{ class.name }}{% if class.id == judoka.classId %}<small> ({{ "Actual" | trans }})</small>{% endif %} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        </li>
+                 {% endif %}
+                </ul>
+                <ul class="list-group mb-3 p-1  ">
+                    <li>
+                        <div class="">
+                            <label class="text-success">{{ "Seleccionar padre/madre/tutor" | trans}}</label>
+                            <select class="custom-select" id="mod-parent">
+                                <option value=""  {% if judoka.parentId == null %} selected {% endif %}>{{ "Sin asignar" }}</option>
+                                {% for parents in allParents %}
+                                <option value="{{parents.id}}"  {% if judoka.parentId == parents.id %} selected {% endif %}>{{ parents.name }} {{ parents.surname }} {{ parents.secondSurname }} {% if judoka.parentId == parents.id %}(*){%endif %} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-lg-8 order-sm-first order-md-last h-100">
+                <div class="row h-100">
+                    <div class="col h-100">
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <p class="text-primary m-0 font-weight-bold">{{ "Datos" | trans}}
+                                {% if judoka.userId > 0 %}
+                                    - <small id="userId" data-id="{{ judoka.userId }}" class="text-success">{{ "Cuenta enlazada" | trans }}</small>
+                                {% else %}
+                                    - <small id="userId" data-id="NaN" class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
+                                {% endif %}
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="username"><strong>{{ "Nombre" | trans}}</strong></label><input id="mod-name" class="judoka form-control" type="text" value="{{ judoka.name }}" name="username" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="email"><strong>{{ "Fecha Nacimiento" | trans}}</strong></label><input id="mod-birthDate" class="judoka form-control" type="date" value="{{ judoka.birthDate }}" name="email" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>{{ "Apellido 1" | trans}}</strong></label><input id="mod-lastname1" class="judoka form-control" type="text" value="{{judoka.lastName1}}" name="first_name" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="last_name"><strong>{{ "Apellido 2" | trans}}</strong></label><input id="mod-lastname2" class="judoka form-control" type="text" value="{{ judoka.lastName2 }}" name="last_name" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-2">
+                                        <div class="col my-1">
+                                            <label for="first_name"><strong>{{ "Cinturón" | trans}}</strong></label>
+                                            <Select id="mod-beltId" class="judoka form-control"  name="sex" >
+                                                <option value="1"  {% if judoka.beltId == 1 %}selected {% endif %} >{{"Blanco" | trans}}</option>
+                                                <option value="2"  {% if judoka.beltId == 2 %}selected {% endif %} >{{"Blanco-amarillo" | trans}}</option>
+                                                <option value="3"  {% if judoka.beltId == 3 %}selected {% endif %} >{{"Amarillo" | trans}}</option>
+                                                <option value="4"  {% if judoka.beltId == 4 %}selected {% endif %} >{{"Amarillo-Naranja" | trans}}</option>
+                                                <option value="5"  {% if judoka.beltId == 5 %}selected {% endif %} >{{"naranja" | trans}}</option>
+                                                <option value="6"  {% if judoka.beltId == 6 %}selected {% endif %} >{{"naranja-verde" | trans}}</option>
+                                                <option value="7"  {% if judoka.beltId == 7 %}selected {% endif %} >{{"Verde" | trans}}</option>
+                                                <option value="8"  {% if judoka.beltId == 8 %}selected {% endif %} >{{"Verde-azul" | trans}}</option>
+                                                <option value="9"  {% if judoka.beltId == 9 %}selected {% endif %} >{{"Azul" | trans}}</option>
+                                                <option value="10"  {% if judoka.beltId == 10 %}selected {% endif %} >{{"Azul-marrón" | trans}}</option>
+                                                <option value="11"  {% if judoka.beltId == 11 %}selected {% endif %} >{{"marrón" | trans}}</option>
+                                                <option value="12"  {% if judoka.beltId == 12 %}selected {% endif %} >{{"negro" | trans}}</option>
+                                            </Select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                          <div class="form-group"><label for="first_name"><strong>{{ "DNI/NIE/PASAPORTE" | trans}}</strong></label><input id="mod-dni" class="judoka form-control" type="text" value="{{judoka.dni}}" name="first_name" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="last_name"><strong>{{ "ID Fanjyda" | trans}}</strong></label><input id="mod-fanjydaId" class="judoka form-control" type="text" maxlength="5" value="{{ judoka.fanjydaId }}" name="last_name" /></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group"><label for="last_name"><strong>{{ "Categoría" | trans}}</strong></label>
+                                                <Select id="mod-sex" class="judoka form-control"  name="sex" >
+                                                    <option value="1"  {% if judoka.sex == 1 %}selected {% endif %} >{{"Masculino" | trans}}</option>
+                                                    <option value="0 " {% if judoka.sex == 0 %}selected {% endif %}>{{"Femenino" | trans}}</option>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>{{ "Email" | trans}}</strong></label><input id="mod-email" class="judoka form-control" type="text" value="{{judoka.email}}" name="first_name" /></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>{{ "Teléfono" | trans}}</strong></label><input id="mod-phone" class="judoka form-control" type="number" maxlength="9" value="{{judoka.phone}}" name="first_name" /></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col"><label for="illness"><strong>{{"Información Médica" | trans }}</strong></label><br><textarea class="span6 w-100 form-control" rows="6" value="" name="illness" id="mod-illness" >{{ judoka.illness }}</textarea>
+                                    </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  TODO: cuando esté el buscar padre, se incorporará una tarjeta con la información del padre-->
+        {% if judoka.judokaId != '' %}
+        <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="updateData" data-id="{{judoka.judokaId}}">{{"Actualizar datos" | trans}}</button>
+        {% else %}
+        <button class="btn btn-primary rounded-0 mb-4 container-fluid" id="updateData" data-name="addJudoka" data-id="">{{"Dar de alta" | trans}}</button>
+        {% endif %}
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">{{ "Dirección" | trans}}</p>
+                </div>
+                <div class="card-body" data-action="address-autocomplete">
+                    <form data-judokaid="{{ judoka.judokaId }}">
+                        <div class="form-group has-autocomplete"><label for="address"><strong>{{ "Calle" | trans}}</strong></label><input class="form-control" type="text" placeholder="Calle de ejemplo, 23 - 3ºA" name="address" /></div>
+                        <div class="address-selector-autocomplete"></div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group"><label for="city"><strong>{{ "Ciudad" | trans}}</strong></label><input class="form-control" type="text" placeholder="Málaga" name="city" /></div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group"><label for="zip"><strong>{{ "Código Postal" | trans}}</strong></label><input class="form-control" type="text" placeholder="29003" name="zip" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group"><button id="mod-address" data-id="{% if judoka.addressId > 0 %}{{ judoka.addressId }}{% endif %}" class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
+                        <small class="text-danger">{{ "Si modificas esta dirección, los cambios se aplicarán a las personas que están registradas en tu misma dirección" | trans }}</small>
+                    </form>
+                </div>
+            </div>
+    </div>
+{% endblock %}

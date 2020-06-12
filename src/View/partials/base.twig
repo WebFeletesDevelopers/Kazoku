@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+{% include 'partials/head.twig' %}
+<body id="page-top" class="" data-action="{{ action }}">
+{% include 'partials/errorContainer.twig' %}
+<div id="wrapper">
+    {% include 'partials/sidebar.twig' %}
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+
+            {% include 'partials/header.twig' %}
+            <div class="container-fluid">
+                {% block body %}
+
+                {% endblock %}
+
+            </div>
+        </div>
+        {% include 'partials/footer.twig' %}
+
+</body>
+
+</html>

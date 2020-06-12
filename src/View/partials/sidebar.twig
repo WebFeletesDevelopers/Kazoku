@@ -1,0 +1,27 @@
+<nav class="navbar navbar-dark align-items-start sidebar  sidebar-dark accordion toggled     bg-gradient-primary p-0">
+    <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/">
+            <div class="sidebar-brand-icon rotate-n-15 rotate-center"><img src="/img/logo/logoL.png" height="70px" width="70px"></div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <ul class="nav navbar-nav text-light" id="accordionSidebar">
+            {% if user.rank is defined %}
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/profile"><i class="fas fa-user"></i><span>{{ "Mi perfil" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/myClass"><i class="fas fa-university"></i><span>{{ "Mi Clase" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/virtualClass"><i class="fas fa-pencil"></i><span>{{ "Aula Virtual" | trans }}</span></a></li>
+            {% else %}
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/login"><i class="fas fa-user"></i><span>{{ "Iniciar Sesión" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/register"><i class="fas fa-user-plus"></i><span>{{ "Registrarse" | trans }}</span></a></li>
+            {% endif %}
+            {% if ( user.rank is defined ) and ( ( user.rank == 0) or ( user.rank == 1) ) %}
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/confirmUser"><i class="fas fa-table"></i><span>{{ "Confirmaciones" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/judokas"><i class="far fa-address-book"></i><span>{{ "Alumnos" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/assistance"><i class="fas fa-user-circle "></i><span>{{ "Pasar Lista" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/newUser"><i class="fas fa-user-plus"></i><span>{{ "Altas" | trans }}</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link slide-top" href="/panel"><i class="fas fa-tachometer "></i><span>{{ "Panel" | trans }}</span></a></li>
+            {% endif %}
+        </ul>
+
+        <div class="text-center d-none d-md-inline heartbeat"><button class="btn rounded-circle border-0 heartbeat" id="sidebarToggle" type="button"></button></div>
+    </div>
+</nav>

@@ -1,0 +1,72 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+<div class="d-sm-flex justify-content-between mb-4">
+    <h2 class="d-sm-inline-block">{{ "Gestión de centros" | trans }}</h2>
+        <button type="button" class="btn kaz-azul text-light btn-sm d-sm-inline-block my-1" data-toggle="modal" data-target="#exampleModal">
+            {{"Añadir centro" | trans}}
+        </button>
+</div>
+    {% for center in centers %}
+        <div class="card">
+            <div class="card-body pb-3">
+                <h4 class="card-title font-weight-bold">{{center.phone}}</h4>
+                <p class="card-text">{{ center.direction }}</p>
+                <div class="d-flex justify-content-between">
+                    <p class="display-3 degree">{{center.name}}</p>
+                </div>
+                <div class="d-flex justify-content-between mb-4">
+                    <p><i class="fas fa-newspaper-o fa-lg text-info pr-2"></i>{{ center | last }} {{ "Clases" | trans }}</p>
+                    <p><i class="fas fa-address-book-o fa-lg grey-text pr-2">
+
+                        </i>
+                        {{ "Código Postal" | trans }}
+                        {{ center.zip }}
+
+                    </p>
+                </div>
+                <div class="row d-flex justify-content-between font-small text-muted mb-4">
+                    <a href="/centerDetail/{{ center.id }}" id="centerDetail" data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"VER CENTRO"  | trans}}</a>
+                    <a href="/centerDetail/{{ center.id }}" id="centerDetail" data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px- my-1 text-center">{{"MODIFICAR CENTRO"  | trans}}</a>
+                    <button id="seeClasses"  data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER CLASES" | trans }}</button>
+                    <button id="addClass"   data-id="{{ center.id}}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR CLASE" | trans}}</button>
+                    <button id="deleteCenter" data-id="{{ center.id }}" class="delete-center centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CENTRO" | trans}}</button>
+                    <button id="undefined"   data-id="{{ center.id }}" class="centers col-md-2 col-sm-6 rounded-0 btn btn-primary px-1 my-1 text-center">{{"EXTRA CENTRO" | trans}}</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Card -->
+    {% endfor %}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ "Crear centro" | trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group"><label for="create-name"><strong>{{"Nombre del centro" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{ "Ejemplo: Gimnasio" |trans}}" name="create-name" id="create-name" required></div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group"><label for="create-zip"><strong>{{"Código Postal" | trans}}</strong></label><input class="form-control" type="number" placeholder="29005" name="create-zip" maxlength="5" id="create-zip" required></div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group"><label for="create-phone"><strong>{{"Teléfono" | trans}}</strong></label><input class="form-control" type="number" placeholder="912345678" name="create-phone" maxlength="9" id="create-phone" required></div>
+                            </div>
+                        </div>
+                        <div class="form-group"><label for="create-direction"><strong>{{"Dirección del centro" | trans}}</strong></label><input class="form-control" type="text" placeholder="{{ "Ejemplo: Calle Falsa 123" |trans}}" name="create-direction" id="create-direction" required></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"Cerrar" | trans}}</button>
+                    <button id="createCenter" type="button" disabled class="btn btn-primary">{{ "Crear centro" | trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

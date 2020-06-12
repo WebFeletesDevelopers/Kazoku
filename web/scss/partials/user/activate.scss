@@ -1,0 +1,41 @@
+@import '../../variables/variables';
+@import '../../variables/mixins';
+
+body[data-action="user-activate"] {
+  background-image: $form-page-background;
+
+  div {
+    @include full-page-form;
+    height: 80vh;
+    width: 100vw;
+    flex-direction: column;
+    background-color: white;
+
+    h2 {
+      color: black;
+      margin-top: .5em;
+    }
+
+    figure {
+      min-height: 0;
+
+      img {
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    p {
+      color: black;
+    }
+
+    a {
+      @include full-page-form-button;
+      text-decoration: none;
+      text-align: center;
+      margin: auto 0 1em;
+    }
+  }
+}

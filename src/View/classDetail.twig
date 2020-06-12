@@ -1,0 +1,83 @@
+{% extends './partials/base.twig' %}
+
+{% block body %}
+<div class="d-sm-flex justify-content-between mb-4">
+    <h2 class="d-sm-inline-block">{{ "Gestión de la clase" | trans }} {{ class.name }}</h2>
+</div>
+
+<div class="card">
+    <div class="card-body pb-3">
+        <div class="form-group">
+            <select class="custom-select mr-sm-2 my-2" id="modify-trainer" required>
+                <option value="{{ class.trainer }}">{{ class.trainer }}</option>
+            </select>
+            <br>
+            <select class="custom-select mr-sm-2 my-2" id="modify-center" required>
+                {% for center in centers %}
+                <option {% if class.centerId == center.id %}selected {% endif %} value="{{ center.id }}">{{ center.name}} - {{ center.direction }}</option>
+                {% endfor %}
+            </select>
+        <br>
+        <div class="d-flex justify-content-between my-2">
+            <input class="display-1 form-control degree" id="modify-name" value="{{class.name}}"/>
+        </div>
+        <div class="row mb-4 text-center">
+            <div class="col-sm-12 col-md-2">
+                <i class="fas fa-user fa-lg text-info "> </i>{{ class | last }}
+            </div>
+            <div class="col-sm-12 col-md-6 row text-center">
+                <div class="col-4">
+                    <p>{{ "Edades " | trans }}</p>
+                </div>
+                    <input type="number" class="text-center col-4" height="1vw" id="modify-minAge"  value="{{class.minAge}}"/>
+                    <input type="number" class="text-center col-4" id="modify-maxAge" value="{{class.maxAge}}"/>
+            </div>
+            <div class="col-sm-12 col-md-4 row" >
+                <div class="col-4 ">
+                    {{ "Horario" | trans }}
+                </div>
+                <input type="time" class="text-center col-4" id="modify-startTime"  value="{{schedule.0 }}"/>
+
+                <input type="time" class="text-center col-4" id="modify-endTime" value="{{schedule.1 }}"/>
+
+            </div>
+        </div>
+        <div class="row form-row text-center container-fluid d-flex justify-content-between">
+            <div class="col-2 ml-1 form-check form-check-inline">
+                <input class="form-check-input modify-check" {% if day.daySplit[4] == 1 %} checked {% endif %} type="checkbox" id="modify-l" value="1">
+                <label class="form-check-label"  for="inlineCheckbox1">{{ "Lunes" | trans }}</label>
+            </div>
+            <div class="col-2 form-check form-check-inline">
+                <input class="form-check-input modify-check" {% if day.daySplit[3] == 1 %} checked {% endif %} type="checkbox" id="modify-m" value="2">
+                <label class="form-check-label" for="inlineCheckbox2">{{ "Martes" | trans }}</label>
+            </div>
+            <div class="col-2 form-check form-check-inline">
+                <input class="form-check-input modify-check" {% if day.daySplit[2] == 1 %} checked {% endif %} type="checkbox" id="modify-x" value="4">
+                <label class="form-check-label" for="inlineCheckbox3">{{ "Miércoles" | trans  }}</label>
+            </div>
+            <div class="col-2 form-check form-check-inline">
+                <input class="form-check-input modify-check" {% if day.daySplit[1] == 1 %} checked {% endif %} type="checkbox" id="modify-j" value="8">
+                <label class="form-check-label" for="inlineCheckbox4">{{ "Jueves" | trans }}</label>
+            </div>
+            <div class="col-2 mr-1 form-check form-check-inline">
+                <input class="form-check-input modify-check" {% if day.daySplit[0] == 1 %} checked {% endif %} type="checkbox" id="modify-v" value="16">
+                <label class="form-check-label" for="inlineCheckbox5">{{ "Viernes" | trans }}</label>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between font-small text-muted mb-4">
+            <button id="modifyClass" data-name="modifyClass" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{ "MODIFICAR CLASE" }}</button>
+            <button id="seeJudokas"  data-name="seeJudokas" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"VER ALUMNOS"}}</button>
+            <button id="addJudoka"   data-name="addJudoka" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"AÑADIR ALUMNO"}}</button>
+            <button id="deleteClass" data-name="deleteClass" data-id="{{ class.id }}" class="classes col-md-3 col-sm-12 rounded-0 btn btn-primary px-1 my-1 text-center">{{"BORRAR CLASE"}}</button>
+        </div>
+    </div>
+
+</div>
+</div>
+    <br>
+
+    {% include 'partials/judokasCard.twig' %}
+
+
+
+{% endblock %}

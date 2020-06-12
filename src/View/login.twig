@@ -1,0 +1,30 @@
+<html>
+{% include 'partials/head.twig' %}
+
+<body data-action="login">
+<div class="login-form">
+    <div class="left">
+        <figure>
+            <img src="/img/logo/logoL.png" alt="Kazoku Logo" />
+        </figure>
+    </div>
+    <div class="right">
+        <form>
+            <h2>{% trans %}¡Bienvenido!{% endtrans %}</h2>
+            <input autocomplete="off" name="username" placeholder="{% trans %}Usuario{% endtrans %}"/>
+            <input autocomplete="off" name="password" type="password" placeholder="{% trans %}Contraseña{% endtrans %}"/>
+            <button>{% trans %}Iniciar sesión{% endtrans %}</button>
+        </form>
+        <div class="text-center">
+            <a href="/register">{{ "¿no tienes cuenta? Regístrate" | trans }}</a>
+            <br>
+            <a href="/user/startPasswordRecovery">{{ "He olvidado mi contraseña" | trans }}</a>
+        </div>
+
+    </div>
+</div>
+<a class="border rounded d-inline scroll-to-top heartbeat"  href="/">{{ "Inicio" | trans }}</a>
+
+{% include 'partials/scripts.twig' %}
+</body>
+</html>
