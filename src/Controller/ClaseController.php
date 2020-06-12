@@ -105,12 +105,12 @@ class ClaseController
 
     public function getCurrentClassId(): int{
         $classes = $this->model->getClasesAllData();
-        //echo var_dump($classes);
         $res = 0;
         foreach($classes as $class) {
             if ($this->isClassToday($class['days'])) {
                 if ($this->isOnTime($class['schedule'])) {
                     $res = $class['id'];
+                    break;
                 } else {
                     $res =  0;
                 }
@@ -123,12 +123,12 @@ class ClaseController
 
     private function isOnTime($schedule): bool{
         $hours = explode('-',$schedule);
-        if ( strtotime( date('H:i')) - strtotime($hours[0]) >= 0){
-            if( strtotime( date('H:i')) - strtotime($hours[1]) >= 0){
-                return false;
+        if ( strtotime( date('H:i')) - strtotime($hours[0]) <= 0){
+            if( strtotime( date('H:i')) - strtotime($hours[1]) <= 0){
+                return true;
             }
             else{
-                return true;
+                return false;
             }
         }
         else{
