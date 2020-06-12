@@ -16,7 +16,22 @@ export class Cookie {
      * @param name
      */
     public static get(name: string): string {
-        return document.cookie[name];
+        const cookies = document.cookie;
+        const parsedCookies: Array<string> = [];
+        cookies.split(';').map(fullVal => {
+            const result: Array<string> = [];
+            let count = 0
+            fullVal.trim().split('=').map(val => {
+                if (count === 0) {
+                    result[0] = val;
+                } else {
+                    result[1] = val;
+                }
+                count++;
+            });
+            parsedCookies[result[0]] = result[1];
+        });
+        return parsedCookies[name];
     }
 
     /**
