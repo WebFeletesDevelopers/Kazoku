@@ -47,6 +47,7 @@ use WebFeletesDevelopers\Kazoku\Action\User\UpdatePasswordAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\StartRecoveryAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdateAddressAction;
 use WebFeletesDevelopers\Kazoku\Action\User\XHR\UpdatePasswordForRecoveryAction;
+use WebFeletesDevelopers\Kazoku\Action\usersAction;
 use WebFeletesDevelopers\Kazoku\Action\verificateAction;
 use WebFeletesDevelopers\Kazoku\Action\virtualClassAction;
 
@@ -86,6 +87,7 @@ class Routes
         $app->post('/xhr/user/deletebytrainer', DeleteUserByTrainerAction::class);
         $app->post('/xhr/user/updateAddress', UpdateAddressAction::class);
 
+        $app->get('/users', usersAction::class);
 
 
         //news

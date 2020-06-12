@@ -433,6 +433,34 @@ SQL;
     }
 
     /**
+     * Find all users
+     * @return array
+     * @throws QueryException
+     */
+    public function findAllMin(): array
+    {
+        {
+            $sql = <<<SQL
+        SELECT u.id AS id,
+               u.rank AS `rank`,
+               u.username AS username,
+               u.name AS name,
+               u.phone AS phone,
+               u.surname AS surname,
+               u.second_surname AS secondSurname,
+               u.email AS email
+        FROM users u
+SQL;
+            $statement = $this->query($sql);
+            if ($statement === false) {
+                throw QueryException::fromFailedQuery($sql, []);
+            }
+            $rows = $statement->fetchAll();
+            return $rows;
+        }
+    }
+
+    /**
      * Find an user by it's email.
      * @param string $email
      * @return User
