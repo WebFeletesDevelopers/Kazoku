@@ -5,8 +5,12 @@ namespace WebFeletesDevelopers\Kazoku\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
+use WebFeletesDevelopers\Kazoku\Controller\UserController;
+use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class HomeAction.
@@ -23,11 +27,22 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         $controller = new ClaseController($model);
         $allClass = $controller->getClasesAllData();
 
+        $modelUsers = new UserModel($database);
+        $controllerUser = new UserControllerMin($modelUsers);
+        $teachers  =$controllerUser->findByRankMin(1);
+
+        //get user infp
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         $arguments = [
             'title' => 'Clases',
             'photoRoute' => $fileRoute,
+            'teachers' => $teachers,
             'clases' => $allClass,
             'action' => 'class-admin'
         ];

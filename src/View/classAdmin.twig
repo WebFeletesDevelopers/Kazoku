@@ -89,9 +89,10 @@
                                 <div class="form-group"><label for="create-trainer"><strong>{{"Profesor" | trans }}</strong></label><br>
                                     <select class="custom-select mr-sm-2" id="create-trainer" required>
                                         <!-- esto tiene que hacer un foreach de profesores -->
-                                        <option selected>{{ "Seleccione uno" | trans }}</option>
-                                        <option value="1">{{"Alberto"   | trans}}</option>
-                                        <option value="2">{{"Fran"  | trans}}</option>
+                                        <option value="0" selected>{{ "Seleccione uno" | trans }}</option>
+                                       {% for teacher in teachers %}
+                                        <option value="{{ teacher.id }}">{{ teacher.name }} {{ teacher.surname }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
