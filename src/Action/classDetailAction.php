@@ -46,6 +46,7 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $judokaModel = new JudokaModel($database);
         $judokaController = new JudokaController($judokaModel);
         $judokas = $judokaController->getJudokaByClass($codClase);
+        $allJudokas = $judokaController->getJudokas();
 
         //session info
         $userModel = new UserModel($database);
@@ -63,6 +64,7 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
             'class' => $classe,
             'teachers' => $teachers,
             'photoRoute' => $fileRoute,
+            'allJudokas' => $allJudokas,
             'centers' => $centers,
             'judokas' => $judokas,
             'day' => $days,

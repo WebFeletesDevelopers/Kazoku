@@ -251,4 +251,29 @@ class JudokaController
     {
         return $this->model->getOneJudoka($judokaId);
     }
+
+    /**
+     * Adds (o remove) a judoka from a class
+     * @param $judokaId
+     * @param $classId
+     * @return bool
+     * @throws QueryException
+     */
+    public function AddJudokaClass($judokaId, $classId)
+    {
+        $judoka = $this->model->getOneJudoka($judokaId);
+        $judokaClass = $judoka['classId'];
+        if($judokaClass === $classId){
+            try {
+                return $this->model->deleteJudokaClass($judokaId,$classId);
+
+            } catch (QueryException $e) {
+                return false;
+            }
+        }
+        else{
+            return $this->model->addJudokaClass($judokaId,$classId);
+        }
+
+    }
 }

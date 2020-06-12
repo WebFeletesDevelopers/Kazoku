@@ -551,4 +551,62 @@ SQL;
 
         return $judoka;
     }
+
+    /**
+     * Adds a judoka to a class
+     * @param int $judokaId
+     * @param int $classId
+     * @return bool
+     * @throws QueryException
+     */
+    public function addJudokaClass(int $judokaId, int $classId): bool
+    {
+        $sql = <<<SQL
+        UPDATE pupil SET
+            class_id = ?      
+        WHERE id = ?
+SQL;
+        $binds = [
+           $classId,
+            $judokaId
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a judoka from a class
+     * @param int $judokaId
+     * @param int $classId
+     * @return bool
+     * @throws QueryException
+     */
+    public function deleteJudokaClass(int $judokaId, int $classId): bool
+    {
+        $sql = <<<SQL
+        UPDATE pupil SET
+            class_id = null      
+        WHERE id = ?
+        AND class_id = ?
+SQL;
+        $binds = [
+            $judokaId,
+            $classId,
+
+        ];
+
+        $statement = $this->query($sql, $binds);
+        if ($statement === false) {
+            throw QueryException::fromFailedQuery($sql, $binds);
+        }
+
+        return true;
+    }
+
+
 }

@@ -2,6 +2,7 @@ import { Judoka } from "./Judoka";
 import { Request } from "../util/Request";
 import { Response } from "../util/Response";
 import { User } from "../user/User";
+import {Assistance} from "../assistance/Assistance";
 
 export class JudokaRequest {
     /**
@@ -47,6 +48,13 @@ export class JudokaRequest {
         data.append('email', user.email);
 
         return Request.postFormData('/judoka/addFromRegister', data);
+    }
+
+
+    public static addJudokaClass(judokaId: number, classId: number): Promise<Response>{
+        const data = `judokaId=${judokaId}&classId=${classId}`;
+        return Request.post('/judoka/addJudokaClass', data);
+
     }
 
 }
