@@ -9,7 +9,9 @@
     <div class="card-body pb-3">
         <div class="form-group">
             <select class="custom-select mr-sm-2 my-2" id="modify-trainer" required>
-                <option value="{{ class.trainer }}">{{ class.trainer }}</option>
+                {% for teacher in teachers %}
+                    <option {% if class.trainer == teacher.name %}selected {% endif %} value="{{ teacher.id }}">{{ teacher.name }} {{ teacher.surname }} {% if class.trainer == teacher.name %} (*) {% endif %}</option>
+                {% endfor %}
             </select>
             <br>
             <select class="custom-select mr-sm-2 my-2" id="modify-center" required>
