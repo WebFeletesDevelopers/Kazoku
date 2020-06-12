@@ -21,12 +21,13 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        $pdo = ConnectionHelper::getConnection();
+
         $body = $response->getBody();
-        $userModel = new UserModel($database);
+        $userModel = new UserModel($pdo);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
 
-        $pdo = ConnectionHelper::getConnection();
         $userModel = new UserModel($pdo);
         $verificationModel = new VerificationModel($pdo);
         $mailService = new SendMailService();
