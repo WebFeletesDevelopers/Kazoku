@@ -89,6 +89,24 @@ class AbsenceController
     }
 
     /**
+     * Gets all absences of a judoka in a month
+     * @param int $judokaId
+     * @param string $month
+     * @return array
+     */
+    public function getAllFromJudokaMonth(int $judokaId,string $month): array {
+        $allAbsences = $this->model->getAllFromPupil($judokaId);
+        $rows = [];
+        foreach( $allAbsences as $absence){
+            if(strpos($absence['date'],("-".$month."-"))){
+                array_push($rows,$absence);
+            }
+        }
+        return $rows;
+    }
+
+
+    /**
      * Get all absences from a class
      * @param int $classId
      * @return array

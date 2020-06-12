@@ -61,16 +61,24 @@
                         </h5>
                         <div class="card-body">
                             <p class="card-text">
-                                {% if faltas >= 1 %}
-                               {{ "Has faltado" | trans }} {{ faltasCount }} {{ "Dias este mes" | trans }}
+                                {% if absenceNumber >0 %}
+                               {{ "Has faltado" | trans }} {{ absenceNumber }} {{ "Dias este mes" | trans }}
                                 {% else %}
                                 {{ "¡No has faltado este mes!" }}
                                 {% endif %}
                             </p>
                         </div>
-                        <a class="card-footer border-0" href="/misFaltas">
-                            {{ "Ver todas" | trans }}
-                        </a>
+                        <div class="card-footer border-0 dropdown">
+                            <button class="container-fluid btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ "Ver todas" | trans }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-item" >{{ "Faltas Totales:" |trans }} {{ allAbsencesNumber }}</div>
+                                {% for absence in allAbsences %}
+                                    <div  class="dropdown-item text-center">{{ absence.date | date('d/m/Y')  }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
