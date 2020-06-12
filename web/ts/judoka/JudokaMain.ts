@@ -49,8 +49,11 @@ export class JudokaMain {
                 const name = button.getAttribute("data-name");
                 switch (name) {
                     case "delete-judoka":
-                        e.preventDefault();
-                        JudokaMain.deleteJudoka(parseInt(judokaId));
+                        var r = confirm("¿Estás seguro que quieres borrar este judoka?");
+                        if (r == true) {
+                            e.preventDefault();
+                            JudokaMain.deleteJudoka(parseInt(judokaId));
+                        }
                         break;
                 }
             });
