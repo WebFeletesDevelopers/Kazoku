@@ -32,7 +32,7 @@
                             <td class="text-center"><img src="/img/profile/{% if judoka.judokaIdNo is defined %}{{ judoka.judokaId }}.jpg{% else %}generic.png{% endif %}" width="50" height="50"></td>
                             <td class="text-center">{{judoka.name}}</td>
                             <td class="text-center">{{judoka.lastName1}} {{ judoka.lastName2 }}</td>
-                            <td class="text-center"><input class="text-center border-0" type="date" disabled value="{{ judoka.birthDate  }}"></td>
+                            <td class="text-center"><input class="text-center border-0" type="date" placeholder="yyyy-mm-dd" disabled value="{{ judoka.birthDate  }}"></td>
                             <td class="text-center">{% if judoka.sex == 1 %}{{ "Masculino" | trans }}{% else %}{{ "Femenino" | trans }}{% endif %}</td>
                             <td class="text-center">
                                 {% if judoka.beltId == 1  %}{{ "Blanco" }}

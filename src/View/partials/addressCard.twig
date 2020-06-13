@@ -1,0 +1,33 @@
+<div class="card shadow">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 font-weight-bold">{{ "Dirección" | trans}}</p>
+    </div>
+    <div class="card-body" data-action="address-autocomplete">
+        <form data-judokaid="{{ judoka.judokaId }}">
+            <div class="form-group"><label for="address"><strong>{{ "Calle" | trans}}</strong>
+                </label>
+                <input class="form-control" type="text" placeholder="Calle de ejemplo, 23 - 3ºA" name="address"
+                       value="{{ address is not null ? address.address : '' }}" />
+            </div>
+            <div class="address-selector-autocomplete"></div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="city"><strong>{{ "Ciudad" | trans}}</strong></label>
+                        <input class="form-control" type="text" placeholder="Málaga" name="city"
+                               value="{{ address is not null ? address.locality : '' }}" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="zip"><strong>{{ "Código Postal" | trans}}</strong></label>
+                        <input class="form-control" type="text" placeholder="29003" name="zip"
+                               value="{{ address is not null ? address.zip_code : '' }}" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"><button id="mod-address" data-id="{{ address.id }}" class="btn btn-primary btn-sm" type="submit">{{ "Modificar datos de dirección" | trans }}</button></div>
+            <small class="text-danger">{{ "Si modificas esta dirección, los cambios se aplicarán a las personas que están registradas en tu misma dirección" | trans }}</small>
+        </form>
+    </div>
+</div>
