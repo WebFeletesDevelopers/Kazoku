@@ -1,8 +1,6 @@
-import {Judoka} from "./Judoka";
-import {JudokaRequest} from "./JudokaRequest";
-import {ErrorHandler} from "../util/ErrorHandler";
-import {Assistance} from "../assistance/Assistance";
-import {AssistanceRequest} from "../assistance/AssistanceRequest";
+import { Judoka } from "./Judoka";
+import { JudokaRequest } from "./JudokaRequest";
+import { ErrorHandler } from "../util/ErrorHandler";
 
 /**
  * News processing class.
@@ -90,11 +88,11 @@ export class JudokaMain {
         const modifySex:            HTMLSelectElement = document.querySelector('#mod-sex');
         const updateDataButton:     HTMLButtonElement = document.querySelector('#updateData');
         const updateAddress:        HTMLButtonElement = document.querySelector('#mod-address');
-        const    modifyClassId:        HTMLInputElement = document.querySelector('#mod-classId');
-        const   userId:               HTMLElement = document.querySelector('#userId');
-        const   modifyParentId:       HTMLInputElement = document.querySelector('#mod-parent');
-        const   modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
-        const   modifyBeltId:         HTMLInputElement = document.querySelector('#mod-beltId');
+        const modifyClassId:        HTMLInputElement = document.querySelector('#mod-classId');
+        const userId:               HTMLElement = document.querySelector('#userId');
+        const modifyParentId:       HTMLInputElement = document.querySelector('#mod-parent');
+        const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
+        const modifyBeltId:         HTMLInputElement = document.querySelector('#mod-beltId');
 
         const editedJudoka: Judoka = new Judoka(
             modifyName.value,
@@ -164,7 +162,7 @@ export class JudokaMain {
             this.validateModJudoka(updateDataButton, editedJudoka);
 
         });
-        modifyClassId.addEventListener('keyup', () => {
+        modifyClassId.addEventListener('change', () => {
                 alert("Whoops... Esto no debería haber pasado, ¡portate bien!");
         });
         modifyParentId.addEventListener('change', () => {
@@ -220,10 +218,10 @@ export class JudokaMain {
         const updateAddress:        HTMLButtonElement = document.querySelector('#mod-address');
 
         const modifyClassId:        HTMLSelectElement = document.querySelector('#mod-classId');
-        const   userId:               HTMLElement = document.querySelector('#userId');
-        const    modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
-        const    modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
-        const     modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
+        const userId:               HTMLElement = document.querySelector('#userId');
+        const modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
+        const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
+        const modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
 
 
 
@@ -289,7 +287,7 @@ export class JudokaMain {
             this.validateModJudoka(updateDataButton, editedJudoka);
 
         });
-        modifyClassId.addEventListener('keyup', () => {
+        modifyClassId.addEventListener('change', () => {
                 editedJudoka.codClass = parseInt(modifyClassId.value);
                 this.validateModJudoka(updateDataButton, editedJudoka);
         });
