@@ -15,8 +15,8 @@ Sistema de gestión de alumnado, clases y centros. Centro de información para u
 ## Información Técnica
 ### Documentación del proyecto
 Se encuentra disponible en:
-* [PHP](https://github.com/WebFeletesDevelopers/Kazoku/php)
-* [TypeScript](https://github.com/WebFeletesDevelopers/Kazoku/ts)
+* [PHP](https://github.com/WebFeletesDevelopers/Kazoku/tree/master/docs/php)
+* [TypeScript](https://github.com/WebFeletesDevelopers/Kazoku/tree/master/docs/ts)
 
 Para desplegar este proyecto en local es necesario el uso de <a href="docker.com" target="_blank">docker</a>.
 ### Requisitos
