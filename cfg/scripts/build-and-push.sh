@@ -12,9 +12,15 @@ echo ${DOCKER_AUTH_CONFIG} > ${HOME}/.docker/config.json
 
 tag=${CI_COMMIT_BRANCH}
 
+tag_version=$(git describe $(git rev-list --tags --max-count=1))
+
 if [ "$tag" = "master" ]; then
   tag='latest'
+else
+  tag_version="${tag_version}_WFD_DEVELOP"
 fi
+
+sed -i -e "s/%%APP_VERSION%%/${tag_version}/" web/ts/main.ts
 
 docker build -f cfg/docker-images/prod/php-fpm.Dockerfile -t "${registry_url}/${project_name}-php:${tag}" .
 docker build -f cfg/docker-images/prod/nginx.Dockerfile -t "${registry_url}/${project_name}-web:${tag}" .
