@@ -20,7 +20,7 @@ else
   tag_version="${tag_version}_WFD_DEVELOP"
 fi
 
-tag_version="${tag_version}__$(git rev-list --all --max-count=1)}"
+tag_version="${tag_version}__$(git rev-list --all --max-count=1)"
 
 sed -i -e "s/%%APP_VERSION%%/${tag_version}/" web/ts/main.ts
 
