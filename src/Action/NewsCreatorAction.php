@@ -5,6 +5,7 @@ namespace WebFeletesDevelopers\Kazoku\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
+use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -17,7 +18,10 @@ class NewsCreatorAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+
         $body = $response->getBody();
+        $database = ConnectionHelper::getConnection();
+
         $model = new NoticiaModel($database);
         $userModel = new UserModel($database);
         $controller = new NoticiaController($model, $userModel);
