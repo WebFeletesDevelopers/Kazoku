@@ -30,7 +30,7 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         $judokaId = $args['id'];
-                if($judokaId > 0){
+        if ($judokaId > 0){
             // get judoka
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
@@ -63,7 +63,6 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
                 $addressModel = new AddressModel($database);
                 $address = $addressModel->getAddress($allJudokaInfo['addressId']);
             }
-
         }
             $database = ConnectionHelper::getConnection();
             $modelClase = new ClaseModel($database);

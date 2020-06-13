@@ -2,23 +2,17 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\AddressController;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\AddressModel;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
@@ -31,14 +25,9 @@ class profileAction extends BaseTwigAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $database = ConnectionHelper::getConnection();
-        $model = new NoticiaModel($database);
         $userModel = new UserModel($database);
-        $controller = new NoticiaController($model, $userModel);
 
         $loggedInUser = $this->validateUserSession($userModel);
-        $news = $loggedInUser
-            ? $controller->getLatest()
-            : $controller->getLatestPublic();
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         if($loggedInUser->id() != null){
@@ -75,9 +64,6 @@ class profileAction extends BaseTwigAction implements ActionInterface
             }
         }
 
-
-
-        $body = $response->getBody();
         $arguments = [
             'title' => 'Kazoku | Perfil',
             'judoka' => $judoka,
@@ -86,7 +72,7 @@ class profileAction extends BaseTwigAction implements ActionInterface
             'photoRoute' => $fileRoute,
             'classDays' => $classDays,
             'center' => $center,
-            'address' => $address,
+            'address' => $address ?? null,
             'action' => 'judoka-myProfile'
         ];
 
