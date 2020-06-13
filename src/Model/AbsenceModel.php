@@ -2,11 +2,11 @@
 
 namespace WebFeletesDevelopers\Kazoku\Model;
 
+use Exception;
 use PDO;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Absence;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Factory\AbsenceFactory;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
-use WebFeletesDevelopers\Kazoku\Utils\Utils;
 
 /**
  * Class AbsenceModel
@@ -116,14 +116,15 @@ SQL;
         WHERE userId = ?
 SQL;
         $binds = [$judokaId];
-        try{
-        $statement = $this->query($sql,$binds);
-        $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $statement = $this->query($sql,$binds);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-         $rows = [];
+            $statement = null;
+            $rows = [];
         }
-        if($rows == false){
-            $rows[] = [];
+        if(! $statement || $statement->rowCount() === 0){
+            $rows = [];
         }
         return $rows;
     }

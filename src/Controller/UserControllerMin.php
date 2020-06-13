@@ -62,4 +62,15 @@ class UserControllerMin
         } catch (QueryException $e) {
         }
     }
+
+    /**
+     * Finds all users
+     * @return array|null
+     */
+    public function findAllMin(): ?array {
+        try {
+            return $this->model->findAllMin();
+        } catch (QueryException $e) {
+        }
+    }
 }

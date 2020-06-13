@@ -19,6 +19,9 @@
             <div class="form-row">
                 <input autocomplete="off" name="username" placeholder="{% trans %}Nombre de usuario{% endtrans %}" />
                 <input autocomplete="off" name="phone" placeholder="{% trans %}Teléfono{% endtrans %}" />
+            </div>
+
+            <div class="form-row">
                 <input autocomplete="off" name="email" placeholder="{% trans %}Correo electrónico{% endtrans %}" />
             </div>
 
@@ -36,15 +39,6 @@
                 <option value="2">Padre</option>
                 <option value="1">Profesor</option>
             </select>
-
-            <div class="form-row">
-                <label for="dni-front">{% trans %}Anverso del DNI{% endtrans %}</label>
-                <label for="dni-back" style="margin-left: auto">{% trans %}Reverso del DNI{% endtrans %}</label>
-            </div>
-            <div class="form-row">
-                <input autocomplete="off" name="dni-front" id="dni-front" type="file" />
-                <input autocomplete="off" name="dni-back" id="dni-back" type="file" />
-            </div>
 
             <button>{% trans %}Registrarse{% endtrans %}</button>
         </form>

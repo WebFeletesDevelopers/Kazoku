@@ -2,6 +2,7 @@ import { Judoka } from "./Judoka";
 import { Request } from "../util/Request";
 import { Response } from "../util/Response";
 import { User } from "../user/User";
+import {Assistance} from "../assistance/Assistance";
 
 export class JudokaRequest {
     /**
@@ -38,17 +39,16 @@ export class JudokaRequest {
      * Creates a judoka from register form
      * @param user
      */
-    public static createFromRegister(user: User, frontDni: HTMLInputElement, backDni: HTMLInputElement){
-        const data: FormData = new FormData();
-        data.append('name', user.name);
-        data.append('lastName1', user.surname);
-        data.append('lastName2', user.secondSurname);
-        data.append('phone', String(user.phone));
-        data.append('email', user.email);
-        data.append('dni-front', frontDni.files[0]);
-        data.append('dni-back', backDni.files[0]);
+    public static createFromRegister(user: User){
+        const data = `name=${user.name}&lastName1=${user.surname}&lastName2=${user.secondSurname}&phone=${user.phone}&email=${user.email}`;
+        return Request.post('/judoka/addFromRegister', data);
+    }
 
-        return Request.postFormData('/judoka/addFromRegister', data);
+
+    public static addJudokaClass(judokaId: number, classId: number): Promise<Response>{
+        const data = `judokaId=${judokaId}&classId=${classId}`;
+        return Request.post('/judoka/addJudokaClass', data);
+
     }
 
 }

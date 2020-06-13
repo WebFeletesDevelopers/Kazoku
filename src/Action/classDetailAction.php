@@ -7,10 +7,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
+use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class HomeAction.
@@ -28,6 +31,12 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $classe = $controller->getClass([$codClase]);
+
+        //get teachers
+        $modelUsers = new UserModel($database);
+        $controllerUser = new UserControllerMin($modelUsers);
+        $teachers  =$controllerUser->findByRankMin(1);
+
         // get center
         $modelCenter = new CentroModel($database);
         $controllerCenter = new CentroController($modelCenter);
@@ -37,6 +46,15 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $judokaModel = new JudokaModel($database);
         $judokaController = new JudokaController($judokaModel);
         $judokas = $judokaController->getJudokaByClass($codClase);
+        $allJudokas = $judokaController->getJudokas();
+
+        //session info
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
+        $fileRoute = parent::getProfilePic($loggedInUser);
 
         $days['daySplit'] = str_split(sprintf("%05d", decbin($classe['days'])));
         $arguments = [
@@ -44,6 +62,9 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
             'userName' => 'Alberto',
             'userId' => 0,
             'class' => $classe,
+            'teachers' => $teachers,
+            'photoRoute' => $fileRoute,
+            'allJudokas' => $allJudokas,
             'centers' => $centers,
             'judokas' => $judokas,
             'day' => $days,

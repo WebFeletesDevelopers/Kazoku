@@ -2,25 +2,19 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\AbsenceController;
 use WebFeletesDevelopers\Kazoku\Controller\AddressController;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\AbsenceModel;
 use WebFeletesDevelopers\Kazoku\Model\AddressModel;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
@@ -33,21 +27,16 @@ class myClassAction extends BaseTwigAction implements ActionInterface
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $database = ConnectionHelper::getConnection();
-        $model = new NoticiaModel($database);
         $userModel = new UserModel($database);
-        $controller = new NoticiaController($model, $userModel);
 
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
 
-        $news = $loggedInUser
-            ? $controller->getLatest()
-            : $controller->getLatestPublic();
-        if($loggedInUser->id() != null){
+        if ($loggedInUser->id() !== null){
             $model = new JudokaModel($database);
             $controller = new JudokaController($model);
             $judoka = $controller->getOneJudokaByuserId($loggedInUser->id());
-            if($judoka['judokaId'] != null && $judoka['judokaId'] > 0){
+            if($judoka['judokaId'] != null && $judoka['judokaId'] > 0) {
                 // get judoka
                 $judokaId = intval($judoka['judokaId']);
 
@@ -60,8 +49,6 @@ class myClassAction extends BaseTwigAction implements ActionInterface
                 $absencesMonth = $absenceController->getAllFromJudokaMonth($allJudokaInfo['judokaId'],date('m'));
                 $allAbscense = $absenceController->getAllFromJudoka($allJudokaInfo['judokaId']);
                 $absenceNumber = sizeof($absencesMonth);
-                echo var_dump($absenceNumber);
-
                 // get class
                 $claseModel = new ClaseModel($database);
                 $claseController = new ClaseController($claseModel);
@@ -85,9 +72,8 @@ class myClassAction extends BaseTwigAction implements ActionInterface
             }
         }
 
+        $allAbscense ??= [];
 
-
-        $body = $response->getBody();
         $arguments = [
             'title' => 'Kazoku | Perfil',
             'judoka' => $judoka,
@@ -97,8 +83,8 @@ class myClassAction extends BaseTwigAction implements ActionInterface
             'classDays' => $classDays,
             'absencesMonth' => $absencesMonth,
             'absenceNumber' => $absenceNumber,
-            'allAbsences' =>$allAbscense,
-            'allAbsencesNumber' =>sizeof($allAbscense),
+            'allAbsences' => $allAbscense,
+            'allAbsencesNumber' => count($allAbscense),
             'center' => $center,
             'address' => $address,
             'action' => 'judoka-myProfile'

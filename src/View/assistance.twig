@@ -2,21 +2,16 @@
 
 {% block body %}
 <div class="container-fluid p-0 m-0">
-    <div class="card m-0 p-0 shadow">
+    <div class="card m-0 p-0 container-fluid">
         <div class="card-header py-3">
             <p data-name="{{ date }}" id="title" class="text-primary m-0 font-weight-bold">{{ class.name }} {{ center.name }} </p>
             <input id="cod" type="hidden" value="<?=$CodClase?>">
         </div>
-        <div class="card-body">
-            <div class="row">
-
-                <div class="col-md-6">
-                </div>
-            </div>
+        <div class="card-body p-0">
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                 <!-- Si hay alumnos y si está en una hora de clase -->
                 {% if judokas is not null %}
-                <table class="table dataTable my-0" id="tablaAlumnos" data-id="{{ class.id }}">
+                <table class="table dataTable m-0 container-fluid" id="tablaAlumnos" data-id="{{ class.id }}" style="overflow-x: hidden;">
                     <thead>
                     <tr>
                         <th></th>
@@ -44,7 +39,7 @@
 
                     </tbody>
                     <tfoot>
-                    <tr>
+                    <tr class="">
                         <th></th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
@@ -52,8 +47,6 @@
                     </tr>
                     </tfoot>
                 </table>
-
-                <button class="btn btn-primary" onclick="sendList()">ENVIAR</button>
 
                 {% else %}
                 <p class="alert alert-danger text-center">{{"Ahora mismo no hay clase, seleccione una clase y día" | trans}}</p>

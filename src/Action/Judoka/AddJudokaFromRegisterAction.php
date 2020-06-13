@@ -44,12 +44,14 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
             $this->validateParameters(
                 $name,
                 $lastname1,
+                $lastname2,
                 $email,
                 $phone,
             );
             $controller->addJudokaFromRegister(
                 $name,
                 $lastname1,
+                $lastname2,
                 $phone,
                 $email
             );
@@ -76,6 +78,7 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
     /**
      * @param string|null $name
      * @param string|null $lastname1
+     * @param string|null $lastname2
      * @param string|null $email
      * @param int|null $phone
      * @return void
@@ -84,6 +87,7 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
     private function validateParameters(
         ?string $name,
         ?string $lastname1,
+        ?string $lastname2,
         ?string $email,
         ?int $phone
     ): void {
@@ -91,6 +95,9 @@ class AddJudokaFromRegisterAction extends BaseJsonAction implements ActionInterf
             throw InvalidParametersException::fromInvalidParameter('name');
         }
         if ($lastname1 === null || trim($lastname1) === '') {
+            throw InvalidParametersException::fromInvalidParameter('lastname1');
+        }
+        if ($lastname2 === null || trim($lastname2) === '') {
             throw InvalidParametersException::fromInvalidParameter('lastname1');
         }
         if ($email === null || trim($email) === '-') {

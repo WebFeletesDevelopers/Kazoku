@@ -14,9 +14,9 @@ class User
     private int $id;
     private string $username;
     private string $name;
-    private string $phone;
+    private ?string $phone;
     private string $surname;
-    private string $secondSurname;
+    private ?string $secondSurname;
     private string $password;
     private string $email;
     private bool $confirmedMail;
@@ -41,9 +41,9 @@ class User
         int $id,
         string $username,
         string $name,
-        string $phone,
+        ?string $phone,
         string $surname,
-        string $secondSurname,
+        ?string $secondSurname,
         string $password,
         string $email,
         bool $confirmedMail
@@ -102,9 +102,9 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function phone(): string
+    public function phone(): ?string
     {
         return $this->phone;
     }
@@ -118,9 +118,9 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function secondSurname(): string
+    public function secondSurname(): ?string
     {
         return $this->secondSurname;
     }
@@ -190,9 +190,9 @@ class User
     }
 
     /**
-     * @param string $phone
+     * @param string|null $phone
      */
-    public function setPhone(string $phone): void
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
     }
@@ -206,9 +206,9 @@ class User
     }
 
     /**
-     * @param string $secondSurname
+     * @param string|null $secondSurname
      */
-    public function setSecondSurname(string $secondSurname): void
+    public function setSecondSurname(?string $secondSurname): void
     {
         $this->secondSurname = $secondSurname;
     }

@@ -335,7 +335,6 @@ export class ClassMain {
      * @param classId
      */
     private static modifyClass(classes: Classes, classId: number): void  {
-        console.log(classes);
         ClassRequest.modifyClass(classes,classId).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);

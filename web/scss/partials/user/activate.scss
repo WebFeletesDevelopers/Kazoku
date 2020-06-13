@@ -14,21 +14,27 @@ body[data-action="user-activate"] {
     h2 {
       color: black;
       margin-top: .5em;
+      text-align: center;
     }
 
     figure {
       min-height: 0;
+      height: 100%;
 
       img {
         display: block;
         margin: 0 auto;
-        height: 100%;
+        height: auto;
+        max-height: 100%;
         width: auto;
+        max-width: 100%;
       }
     }
 
     p {
       color: black;
+      text-align: center;
+      margin: 1rem .25rem;
     }
 
     a {
@@ -36,6 +42,10 @@ body[data-action="user-activate"] {
       text-decoration: none;
       text-align: center;
       margin: auto 0 1em;
+
+      @media (max-width: $mobile-breakpoint) {
+        margin: auto auto 1em;
+      }
     }
   }
 }
