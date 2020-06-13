@@ -21,6 +21,8 @@ class Main {
         TrainerMain.handle();
         AddressMain.handle();
         AssistanceMain.handle();
+
+        (window as any).VERSION = '%%APP_VERSION%%';
     }
 }
 
