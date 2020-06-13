@@ -2,7 +2,6 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\News;
 
-use DateTime;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -12,6 +11,7 @@ use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class CreateNewsAction
@@ -30,7 +30,8 @@ class DeleteNewsAction extends BaseJsonAction implements ActionInterface
     {
         $db = ConnectionHelper::getConnection();
         $model = new NoticiaModel($db);
-        $controller = new NoticiaController($model);
+        $userModel = new UserModel($db);
+        $controller = new NoticiaController($model, $userModel);
 
         $data = $request->getParsedBody();
 
