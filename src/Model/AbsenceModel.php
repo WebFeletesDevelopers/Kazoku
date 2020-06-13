@@ -120,6 +120,7 @@ SQL;
             $statement = $this->query($sql,$binds);
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
+            $statement = null;
             $rows = [];
         }
         if(! $statement || $statement->rowCount() === 0){
