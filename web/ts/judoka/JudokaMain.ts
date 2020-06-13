@@ -430,7 +430,7 @@ export class JudokaMain {
      */
     private static sortTable(columna) {
         var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.getElementById("tablaAlumnos");
+        table = document.querySelector('.tablaAlumnos') ?? document.querySelector('#tablaAlumnos');
         switching = true;
         while (switching) {
             switching = false;
