@@ -2,14 +2,13 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
-use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
+use WebFeletesDevelopers\Kazoku\Model\AddressModel;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
@@ -25,7 +24,6 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-        $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
@@ -38,14 +36,14 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             $controller = new JudokaController($model);
             $allJudokaInfo = $controller->getOneJudoka($judokaId);
 
-           if($allJudokaInfo['parentId'] != null){
+            if ($allJudokaInfo['parentId'] != null){
                //get parent
                $parentModel = new UserModel($database);
                $parentController = new UserControllerMin($parentModel);
                $parent = $parentController->findByIDmin($allJudokaInfo['parentId']);
-           }
+            }
 
-            if($allJudokaInfo['classId'] != null){
+            if ($allJudokaInfo['classId'] != null){
                 //get clase
                 $modelClase = new ClaseModel($database);
                 $controllerClase = new ClaseController($modelClase);
@@ -59,6 +57,11 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
                     $controllerCenter = new CentroController($modelCenter);
                     $center = $controllerCenter->getCenter($clase['centerId']);
                 }
+            }
+
+            if ($allJudokaInfo['addressId'] !== null) {
+                $addressModel = new AddressModel($database);
+                $address = $addressModel->getAddress($allJudokaInfo['addressId']);
             }
 
         }
@@ -95,7 +98,8 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'classDays' => $classDays,
             'center' => $center,
             'centers' => $center,
-            'action' => 'judoka-detail'
+            'action' => 'judoka-detail',
+            'address' => $address ?? null
         ];
         $compiledTwig = $this->render('judokaDetail', $arguments);
         $body->write($compiledTwig);
