@@ -24,7 +24,9 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $controller = new JudokaController($model);
         $allJudokas = $controller->getJudokas();
         $body = $response->getBody();
-
+        if($this->loggedInUser == null){
+            header('Location: /');
+        }
         if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
             header('Location: /');
         }
