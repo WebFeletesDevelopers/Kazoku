@@ -20,6 +20,8 @@ else
   tag_version="${tag_version}_WFD_DEVELOP"
 fi
 
+tag_version="${tag_version}__$(git rev-list --all --max-count=1)"
+
 sed -i -e "s/%%APP_VERSION%%/${tag_version}/" web/ts/main.ts
 
 docker build -f cfg/docker-images/prod/php-fpm.Dockerfile -t "${registry_url}/${project_name}-php:${tag}" .
