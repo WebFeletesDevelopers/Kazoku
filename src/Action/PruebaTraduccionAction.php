@@ -13,7 +13,7 @@ class PruebaTraduccionAction extends BaseTwigAction implements ActionInterface
         bindtextdomain('kazoku', __DIR__ . '/../locale');
         textdomain('kazoku');
 
-        $template = $this->render('login');
+        $template = $this->render('prueba');
         $body = $response->getBody();
         $body->write($template);
 

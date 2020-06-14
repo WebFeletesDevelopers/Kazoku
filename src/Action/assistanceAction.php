@@ -2,22 +2,15 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
@@ -31,12 +24,6 @@ class assistanceAction extends BaseTwigAction implements ActionInterface
     {
         // get basic info
         $database = ConnectionHelper::getConnection();
-        $userModel = new UserModel($database);
-        $loggedInUser = $this->validateUserSession($userModel);
-        $fileRoute = parent::getProfilePic($loggedInUser);
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
 
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
@@ -72,7 +59,9 @@ class assistanceAction extends BaseTwigAction implements ActionInterface
 
 
 
-
+        $userModel = new UserModel($database);
+        $loggedInUser = $this->validateUserSession($userModel);
+        $fileRoute = parent::getProfilePic($loggedInUser);
 
 
         //echo $classController->getCurrentClassId();

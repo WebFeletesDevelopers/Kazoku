@@ -5,11 +5,9 @@ namespace WebFeletesDevelopers\Kazoku\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
-use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -24,19 +22,6 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
     {
         $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
-        //get user infp
-        $userModel = new UserModel($database);
-        try {
-            $loggedInUser = $this->validateUserSession($userModel);
-        } catch (QueryException $e) {
-        }
-        $fileRoute = parent::getProfilePic($loggedInUser);
-        if($this->loggedInUser == null){
-            header('Location: /');
-        }
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $allClass = $controller->getClasesAllData();
@@ -47,7 +32,13 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         $controllerUser = new UserControllerMin($modelUsers);
         $teachers  =$controllerUser->findByRankMin(1);
 
-
+        //get user infp
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
+        $fileRoute = parent::getProfilePic($loggedInUser);
 
         $arguments = [
             'title' => 'Clases',

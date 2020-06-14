@@ -2,15 +2,8 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
-use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 
 /**
  * Class HomeAction.
@@ -23,7 +16,6 @@ class virtualClassAction extends BaseTwigAction implements ActionInterface
     {
 
         $body = $response->getBody();
-
         //$compiledTwig = $this->render('home');
         $compiledTwig = $this->render('virtualClass',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);

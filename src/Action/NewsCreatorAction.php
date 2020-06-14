@@ -6,7 +6,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -32,12 +31,7 @@ class NewsCreatorAction extends BaseTwigAction implements ActionInterface
             ? $controller->getLatest()
             : $controller->getLatestPublic();
         $fileRoute = parent::getProfilePic($loggedInUser);
-        if($this->loggedInUser == null){
-            header('Location: /');
-        }
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
+
         $arguments = [
             'title' => 'titulo',
             'userName' => 'Alberto',
