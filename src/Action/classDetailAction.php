@@ -70,7 +70,8 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $days['daySplit'] = str_split(sprintf("%05d", decbin($classe['days'])));
         $arguments = [
             'title' => 'kazoku',
-
+            'userName' => 'Alberto',
+            'userId' => 0,
             'class' => $classe,
             'teachers' => $teachers,
             'photoRoute' => $fileRoute,

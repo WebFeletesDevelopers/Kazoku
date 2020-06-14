@@ -46,7 +46,8 @@ class CenterDetailAction extends BaseTwigAction implements ActionInterface
 
         $arguments = [
             'title' => 'kazoku',
-
+            'userName' => 'Alberto',
+            'userId' => 0,
             'class' => $classe,
             'photoRoute' => $fileRoute,
             'center' => $center,

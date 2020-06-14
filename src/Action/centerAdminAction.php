@@ -36,6 +36,7 @@ class centerAdminAction extends BaseTwigAction implements ActionInterface
 
         $arguments = [
             'title' => 'centerAdmin',
+            'userName' => 'Alberto',
             'photoRoute' => $fileRoute,
             'userId' => 0,
             'centers' => $allCenters,
