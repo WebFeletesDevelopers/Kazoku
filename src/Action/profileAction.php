@@ -26,8 +26,12 @@ class profileAction extends BaseTwigAction implements ActionInterface
     {
         $database = ConnectionHelper::getConnection();
         $userModel = new UserModel($database);
-
         $loggedInUser = $this->validateUserSession($userModel);
+
+        if (! $loggedInUser) {
+            header('Location: /');
+        }
+
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         if($loggedInUser->id() != null){

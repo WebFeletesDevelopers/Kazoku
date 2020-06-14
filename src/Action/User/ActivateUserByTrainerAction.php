@@ -10,7 +10,8 @@ use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Alumno;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
@@ -28,10 +29,14 @@ class ActivateUserByTrainerAction extends BaseJsonAction implements ActionInterf
      * @param ResponseInterface $response
      * @param array $args
      * @return ResponseInterface
-     * @throws \WebFeletesDevelopers\Kazoku\Model\Exception\QueryException
+     * @throws QueryException
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $pdo = ConnectionHelper::getConnection();
         $userModel = new UserModel($pdo);
         $verificationModel = new VerificationModel($pdo);

@@ -14,6 +14,7 @@ class newUserAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        header('Location: /');
         $body = $response->getBody();
         //$compiledTwig = $this->render('home');
         $compiledTwig = $this->render('newUser',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);

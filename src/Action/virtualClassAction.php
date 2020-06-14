@@ -14,9 +14,11 @@ class virtualClassAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser) {
+            header('Location: /');
+        }
 
         $body = $response->getBody();
-        //$compiledTwig = $this->render('home');
         $compiledTwig = $this->render('virtualClass',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);
         return $response;

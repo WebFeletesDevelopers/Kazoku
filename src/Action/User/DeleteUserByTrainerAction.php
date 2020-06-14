@@ -9,6 +9,7 @@ use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 use WebFeletesDevelopers\Kazoku\Model\VerificationModel;
 use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
@@ -28,6 +29,10 @@ class DeleteUserByTrainerAction extends BaseJsonAction implements ActionInterfac
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $pdo = ConnectionHelper::getConnection();
         $userModel = new UserModel($pdo);
         $verificationModel = new VerificationModel($pdo);

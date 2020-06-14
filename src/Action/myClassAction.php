@@ -14,6 +14,7 @@ use WebFeletesDevelopers\Kazoku\Model\AddressModel;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -30,6 +31,11 @@ class myClassAction extends BaseTwigAction implements ActionInterface
         $userModel = new UserModel($database);
 
         $loggedInUser = $this->validateUserSession($userModel);
+
+        if ($loggedInUser->rank() !== Rank::PUPIL) {
+            header('Location: /');
+        }
+
         $fileRoute = parent::getProfilePic($loggedInUser);
 
         if ($loggedInUser->id() !== null){

@@ -2,7 +2,6 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\Classes;
 
-use DateTime;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,10 +9,9 @@ use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
-use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 
 /**
  * Class DeleteClassAction
@@ -30,6 +28,10 @@ class DeleteClassAction extends BaseJsonAction implements ActionInterface
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $db = ConnectionHelper::getConnection();
         $model = new ClaseModel($db);
         $controller = new ClaseController($model);
