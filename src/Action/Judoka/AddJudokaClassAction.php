@@ -2,7 +2,6 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\Judoka;
 
-use DateTime;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,9 +9,8 @@ use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
-use WebFeletesDevelopers\Kazoku\Model\AbsenceModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\Entity\Alumno;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 
@@ -27,6 +25,10 @@ class AddJudokaClassAction extends BaseJsonAction implements ActionInterface
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $db = ConnectionHelper::getConnection();
         $model = new judokaModel($db);
         $controller = new JudokaController($model);

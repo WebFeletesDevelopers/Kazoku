@@ -17,6 +17,12 @@ use WebFeletesDevelopers\Kazoku\Service\Mail\SendMailService;
 
 class RegisterAction extends BaseJsonAction implements ActionInterface
 {
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @param array $args
+     * @return ResponseInterface
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
         $pdo = ConnectionHelper::getConnection();

@@ -1,8 +1,6 @@
 import { Classes } from "./Classes";
-import {ClassRequest} from "./ClassRequest";
-import {ErrorHandler} from "../util/ErrorHandler";
-import {News} from "../news/News";
-import {NewsRequest} from "../news/NewsRequest";
+import { ClassRequest } from "./ClassRequest";
+import { ErrorHandler } from "../util/ErrorHandler";
 
 /**
  * News processing class.
@@ -319,7 +317,6 @@ export class ClassMain {
      * @param classes
      */
     private static createClass(classes: Classes): void  {
-        console.log(classes);
         ClassRequest.addClass(classes).then(res => {
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);

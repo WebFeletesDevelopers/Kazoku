@@ -1,6 +1,6 @@
 import { Center } from "./Center";
-import {CenterRequest} from "./CenterRequest";
-import {ErrorHandler} from "../util/ErrorHandler";
+import { CenterRequest } from "./CenterRequest";
+import { ErrorHandler } from "../util/ErrorHandler";
 
 
 /**
@@ -30,7 +30,6 @@ export class CenterMain {
             button.addEventListener('click', e => {
                 const classId = button.getAttribute("data-id");
                 e.preventDefault();
-                alert(classId);
             });
         })
 
@@ -60,28 +59,28 @@ export class CenterMain {
         createName.addEventListener('keyup', () => {
             newCenter.name = createName.value;
             this.validateCreateCenterButton(createCenter, newCenter);
-            
+
 
 
         });
         createDirection.addEventListener('keyup', () => {
             newCenter.direction = createDirection.value;
             this.validateCreateCenterButton(createCenter, newCenter);
-            
+
 
 
         });
         createZip.addEventListener('keyup', () => {
             newCenter.zip = parseInt(createZip.value);
             this.validateCreateCenterButton(createCenter, newCenter);
-            
+
 
 
         });
         createPhone.addEventListener('keyup', () => {
             newCenter.phone = parseInt(createPhone.value);
             this.validateCreateCenterButton(createCenter, newCenter);
-            
+
 
         });
 
@@ -136,28 +135,28 @@ export class CenterMain {
         modifyName.addEventListener('keyup', () => {
             modCenter.name = modifyName.value;
             this.validateModifyCenterButton(modifyCenter, modCenter);
-            
+
 
 
         });
         modifyDirection.addEventListener('keyup', () => {
             modCenter.direction = modifyDirection.value;
             this.validateModifyCenterButton(modifyCenter, modCenter);
-            
+
 
 
         });
         modifyZip.addEventListener('keyup', () => {
             modCenter.zip = parseInt(modifyZip.value);
             this.validateModifyCenterButton(modifyCenter, modCenter);
-            
+
 
 
         });
         modifyPhone.addEventListener('keyup', () => {
             modCenter.phone = parseInt(modifyPhone.value);
             this.validateModifyCenterButton(modifyCenter, modCenter);
-            
+
 
         });
 

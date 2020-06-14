@@ -9,8 +9,9 @@ use WebFeletesDevelopers\Kazoku\Action\ActionInterface;
 use WebFeletesDevelopers\Kazoku\Action\BaseJsonAction;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
-use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
+use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 
 /**
  * Class createCenterAction
@@ -27,6 +28,10 @@ class CreateCenterAction extends BaseJsonAction implements ActionInterface
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $db = ConnectionHelper::getConnection();
         $model = new CentroModel($db);
         $controller = new CentroController($model);

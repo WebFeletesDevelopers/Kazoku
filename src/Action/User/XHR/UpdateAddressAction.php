@@ -23,6 +23,10 @@ class UpdateAddressAction extends BaseJsonAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser) {
+            header('Location: /');
+        }
+
         $pdo = ConnectionHelper::getConnection();
         $addressModel = new AddressModel($pdo);
         $addressController = new AddressController($addressModel);

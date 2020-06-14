@@ -2,7 +2,6 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action\Assistance;
 
-use DateTime;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,8 +12,8 @@ use WebFeletesDevelopers\Kazoku\Controller\AbsenceController;
 use WebFeletesDevelopers\Kazoku\Model\AbsenceModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\Absence;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
-
 
 /**
  * Class CreateNewsAction
@@ -23,9 +22,18 @@ use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
  */
 class AssistanceSendAction extends BaseJsonAction implements ActionInterface
 {
-
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @param array $args
+     * @return ResponseInterface
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            return $this->withJson($response, [], 403);
+        }
+
         $db = ConnectionHelper::getConnection();
         $model = new AbsenceModel($db);
         $controller = new AbsenceController($model);

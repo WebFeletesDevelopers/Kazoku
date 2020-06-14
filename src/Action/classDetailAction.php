@@ -28,22 +28,6 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $body = $response->getBody();
         $codClase = $args['id'];
         $database = ConnectionHelper::getConnection();
-        //session info
-        $userModel = new UserModel($database);
-        try {
-            $loggedInUser = $this->validateUserSession($userModel);
-        } catch (QueryException $e) {
-        }
-        $fileRoute = parent::getProfilePic($loggedInUser);
-
-        if($this->loggedInUser == null){
-            header('Location: /');
-        }
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
-
-
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $classe = $controller->getClass([$codClase]);
@@ -64,7 +48,13 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $judokas = $judokaController->getJudokaByClass($codClase);
         $allJudokas = $judokaController->getJudokas();
 
-
+        //session info
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
+        $fileRoute = parent::getProfilePic($loggedInUser);
 
         $days['daySplit'] = str_split(sprintf("%05d", decbin($classe['days'])));
         $arguments = [

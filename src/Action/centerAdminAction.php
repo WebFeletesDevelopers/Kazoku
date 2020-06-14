@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
-use WebFeletesDevelopers\Kazoku\Model\UserModel;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 
 /**
  * Class HomeAction.
@@ -18,17 +18,12 @@ class centerAdminAction extends BaseTwigAction implements ActionInterface
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
+        if (! $this->loggedUser || ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
+        }
+
         $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
-        $userModel = new UserModel($database);
-        $loggedInUser = $this->validateUserSession($userModel);
-        $fileRoute = parent::getProfilePic($loggedInUser);
-        if($this->loggedInUser == null){
-            header('Location: /');
-        }
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
         $model = new CentroModel($database);
         $controller = new CentroController($model);
         $allCenters = $controller->getCentersAllData();
@@ -36,7 +31,6 @@ class centerAdminAction extends BaseTwigAction implements ActionInterface
         $arguments = [
             'title' => 'centerAdmin',
             'userName' => 'Alberto',
-            'photoRoute' => $fileRoute,
             'userId' => 0,
             'centers' => $allCenters,
             'action' => 'center-admin'

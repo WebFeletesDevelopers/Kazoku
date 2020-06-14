@@ -2,12 +2,8 @@
 
 namespace WebFeletesDevelopers\Kazoku\Action;
 
-use DateTime;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
@@ -34,12 +30,7 @@ class panelAction extends BaseTwigAction implements ActionInterface
             ? $controller->getLatest()
             : $controller->getLatestPublic();
         $fileRoute = parent::getProfilePic($loggedInUser);
-        if($this->loggedInUser == null){
-            header('Location: /');
-        }
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
-        }
+
 
         $config = [
             'title' => 'Panel',
