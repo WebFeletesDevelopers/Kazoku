@@ -304,7 +304,10 @@ export class JudokaMain {
         modifySex.addEventListener('change', () => {
             editedJudoka.sex = parseInt(modifySex.value);
             this.validateModJudoka(updateDataButton, editedJudoka);
-
+        });
+        modifyBeltId.addEventListener('change', () => {
+            editedJudoka.codBelt = parseInt(modifyBeltId.value);
+            this.validateModJudoka(updateDataButton, editedJudoka);
         });
 
 
