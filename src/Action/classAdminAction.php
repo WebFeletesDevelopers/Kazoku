@@ -30,6 +30,9 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         } catch (QueryException $e) {
         }
         $fileRoute = parent::getProfilePic($loggedInUser);
+        if($this->loggedInUser == null){
+            header('Location: /');
+        }
         if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
             header('Location: /');
         }
