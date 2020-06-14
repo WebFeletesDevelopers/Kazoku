@@ -178,7 +178,6 @@ export class JudokaMain {
         updateButton.addEventListener('click', e => {
             const judokaId = updateButton.getAttribute("data-id");
             const name = updateButton.getAttribute("data-name");
-            alert(name);
             if (name == "updateData") {
                 e.preventDefault();
                 JudokaMain.updateJudoka(editedJudoka,parseInt(judokaId));
@@ -353,8 +352,6 @@ export class JudokaMain {
      */
     private static addJudokaClass(judokaId: number, classId: number): void {
         JudokaRequest.addJudokaClass(judokaId,classId).then(res => {
-            console.log(res);
-
             if (res.statusCode === 400 || res.statusCode === 500) {
                 ErrorHandler.handle(res.message['message']);
 
@@ -461,7 +458,6 @@ export class JudokaMain {
             var filter, table, tr, td, i, e;
             filter = searching.toUpperCase();
              const tables: NodeListOf<HTMLTableElement> = document.querySelectorAll('.tablaAlumnos');
-             console.log(tables);
              tables.forEach(function (table) {
                  tr = table.getElementsByTagName("tr");
                  for (i = 0; i < tr.length; i++) {
