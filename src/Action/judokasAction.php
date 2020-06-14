@@ -43,6 +43,10 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $allJudokas = $controller->getJudokas();
         $body = $response->getBody();
 
+        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
+        }
+
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);

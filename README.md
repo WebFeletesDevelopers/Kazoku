@@ -7,13 +7,16 @@ Sistema de gestión de alumnado, clases y centros. Centro de información para u
 * [Enlace al video demo](https://drive.google.com/drive/folders/1NqG90r9D2HFYT_mlegrWQ6uvG4LxdPQM?usp=sharing) - Se encuentra dentro de una caroepta en Google Drive.
 * [Enlace a la memoria del proyecto](https://docs.google.com/document/d/1g070WeKhdBxYWxJ0EcBri8vPi0mRwhOOv0TBsHws6H0/edit#) - Documento de Google Docs.
 
+## Publicado en 
+* [Producción](https://kazoku.romeronet.es)
+* [Desarrollo](https://testingkazoku.romeronet.es)
 
 
 ## Información Técnica
 ### Documentación del proyecto
 Se encuentra disponible en:
-* [PHP](https://github.com/WebFeletesDevelopers/Kazoku/php)
-* [TypeScript](https://github.com/WebFeletesDevelopers/Kazoku/ts)
+* [PHP](https://github.com/WebFeletesDevelopers/Kazoku/tree/master/docs/php)
+* [TypeScript](https://github.com/WebFeletesDevelopers/Kazoku/tree/master/docs/ts)
 
 Para desplegar este proyecto en local es necesario el uso de <a href="docker.com" target="_blank">docker</a>.
 ### Requisitos
