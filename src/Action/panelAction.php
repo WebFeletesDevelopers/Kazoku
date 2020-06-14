@@ -34,7 +34,12 @@ class panelAction extends BaseTwigAction implements ActionInterface
             ? $controller->getLatest()
             : $controller->getLatestPublic();
         $fileRoute = parent::getProfilePic($loggedInUser);
-
+        if($this->loggedInUser == null){
+            header('Location: /');
+        }
+        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
+        }
 
         $config = [
             'title' => 'Panel',

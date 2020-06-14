@@ -31,6 +31,14 @@ class myClassAction extends BaseTwigAction implements ActionInterface
 
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
+        }
+
+
 
         if ($loggedInUser->id() !== null){
             $model = new JudokaModel($database);

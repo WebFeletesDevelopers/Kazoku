@@ -23,6 +23,7 @@ class virtualClassAction extends BaseTwigAction implements ActionInterface
     {
 
         $body = $response->getBody();
+
         //$compiledTwig = $this->render('home');
         $compiledTwig = $this->render('virtualClass',['title' => "titulo",'userName' => "Alberto",'title' => "titulo",'userId' => 0]);
         $body->write($compiledTwig);

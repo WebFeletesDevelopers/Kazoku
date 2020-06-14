@@ -9,6 +9,7 @@ use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
  * Class CenterDetailAction.
@@ -21,6 +22,17 @@ class CenterDetailAction extends BaseTwigAction implements ActionInterface
     {
         $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
+        $userModel = new UserModel($database);
+        $loggedInUser = $this->validateUserSession($userModel);
+        $fileRoute = parent::getProfilePic($loggedInUser);
+        if($this->loggedInUser == null){
+            header('Location: /');
+        }
+        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
+        }
+
+
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $classe = $controller->getClasesAllData();
@@ -36,6 +48,7 @@ class CenterDetailAction extends BaseTwigAction implements ActionInterface
             'userName' => 'Alberto',
             'userId' => 0,
             'class' => $classe,
+            'photoRoute' => $fileRoute,
             'center' => $center,
             'action' => 'center-detail'
         ];
