@@ -84,6 +84,8 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             $parentController = new UserControllerMin($parentModel);
             $allParents = $parentController->findByRankMin(2);
 
+            // get all users (judokas)allusers
+            $allusers = $parentController->findByRankMin(3);
 
 
 
@@ -99,6 +101,7 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
             'days' => $classDays,
             'parent' => $parent,
             'allParents' => $allParents,
+            'allusers' => $allusers,
             'classDays' => $classDays,
             'center' => $center,
             'centers' => $center,

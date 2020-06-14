@@ -33,7 +33,7 @@ class ActivateUserByTrainerAction extends BaseJsonAction implements ActionInterf
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args = []): ResponseInterface
     {
-        if (! $this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+        if (! $this->loggedUser || ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
             return $this->withJson($response, [], 403);
         }
 

@@ -217,8 +217,9 @@ export class JudokaMain {
         const updateAddress:        HTMLButtonElement = document.querySelector('#mod-address');
 
         const modifyClassId:        HTMLSelectElement = document.querySelector('#mod-classId');
-        const userId:               HTMLElement = document.querySelector('#userId');
+        //const userId:               HTMLElement = document.querySelector('#userId');
         const modifyParentId:       HTMLSelectElement = document.querySelector('#mod-parent');
+        const modifyUserId:       HTMLSelectElement = document.querySelector('#userId');
         const modifyFanjydaId:      HTMLInputElement = document.querySelector('#mod-fanjydaId');
         const modifyBeltId:         HTMLSelectElement = document.querySelector('#mod-beltId');
 
@@ -235,7 +236,7 @@ export class JudokaMain {
             parseInt(modifyPhone.value),
             modifyEmail.value,
             modifyIllness.value,
-            parseInt(userId.getAttribute("data-id")),
+            parseInt(modifyUserId.getAttribute("data-id")),
             parseInt(modifyParentId.value),
             parseInt(updateAddress.getAttribute("data-id")),
             parseInt(modifyBeltId.value),
@@ -291,13 +292,22 @@ export class JudokaMain {
                 this.validateModJudoka(updateDataButton, editedJudoka);
         });
         modifyParentId.addEventListener('change', () => {
-                editedJudoka.codTutor = parseInt(modifyParentId.value);
+            editedJudoka.codTutor = parseInt(modifyParentId.value);
                 this.validateModJudoka(updateDataButton, editedJudoka);
         });
+        modifyUserId.addEventListener('change', () => {
+            editedJudoka.codUsu = parseInt(modifyUserId.value);
+                this.validateModJudoka(updateDataButton, editedJudoka);
+        });
+
+
         modifySex.addEventListener('change', () => {
             editedJudoka.sex = parseInt(modifySex.value);
             this.validateModJudoka(updateDataButton, editedJudoka);
-
+        });
+        modifyBeltId.addEventListener('change', () => {
+            editedJudoka.codBelt = parseInt(modifyBeltId.value);
+            this.validateModJudoka(updateDataButton, editedJudoka);
         });
 
 
