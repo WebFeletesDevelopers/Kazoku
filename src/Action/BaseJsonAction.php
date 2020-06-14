@@ -7,6 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 use WebFeletesDevelopers\Kazoku\Action\Exception\InvalidParametersException;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
 use WebFeletesDevelopers\Kazoku\Model\Entity\User;
+use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**
@@ -23,6 +25,25 @@ abstract class BaseJsonAction
     public function __construct() {
         $userModel = new UserModel(ConnectionHelper::getConnection());
         $this->loggedUser = $this->validateUserSession($userModel);
+    }
+
+    /**
+     * @param UserModel $userModel
+     * @return User|null
+     * @throws QueryException
+     */
+    protected function validateUserSession(UserModel $userModel): ?User
+    {
+        $hash = $_COOKIE['hash'] ?? null;
+        try {
+            return $hash
+                ? $userModel->findByHash($hash)
+                : null;
+        } catch (InvalidHashException $e) {
+            setcookie('hash', null, -1);
+            header('Location: /');
+            die;
+        }
     }
 
     /**
