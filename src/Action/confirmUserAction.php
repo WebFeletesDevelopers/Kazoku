@@ -27,6 +27,12 @@ class confirmUserAction extends BaseTwigAction implements ActionInterface
         $userModel = new UserModel($pdo);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
+        }
 
         $userModel = new UserModel($pdo);
         $verificationModel = new VerificationModel($pdo);

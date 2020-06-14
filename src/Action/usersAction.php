@@ -25,6 +25,12 @@ class usersAction extends BaseTwigAction implements ActionInterface
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
+        }
         $body = $response->getBody();
 
         $arguments = [

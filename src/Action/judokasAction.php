@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\JudokaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
@@ -27,8 +28,17 @@ class judokasAction extends BaseTwigAction implements ActionInterface
         $body = $response->getBody();
 
         $userModel = new UserModel($database);
-        $loggedInUser = $this->validateUserSession($userModel);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
         $fileRoute = parent::getProfilePic($loggedInUser);
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
+        }
 
         $arguments = [
             'title' => 'Judokas',

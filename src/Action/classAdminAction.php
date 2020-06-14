@@ -23,6 +23,19 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
     {
         $body = $response->getBody();
         $database = ConnectionHelper::getConnection();
+        //get user infp
+        $userModel = new UserModel($database);
+        try {
+            $loggedInUser = $this->validateUserSession($userModel);
+        } catch (QueryException $e) {
+        }
+        $fileRoute = parent::getProfilePic($loggedInUser);
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
+        }
         $model = new ClaseModel($database);
         $controller = new ClaseController($model);
         $allClass = $controller->getClasesAllData();
@@ -33,13 +46,7 @@ class classAdminAction extends BaseTwigAction implements ActionInterface
         $controllerUser = new UserControllerMin($modelUsers);
         $teachers  =$controllerUser->findByRankMin(1);
 
-        //get user infp
-        $userModel = new UserModel($database);
-        try {
-            $loggedInUser = $this->validateUserSession($userModel);
-        } catch (QueryException $e) {
-        }
-        $fileRoute = parent::getProfilePic($loggedInUser);
+
 
         $arguments = [
             'title' => 'Clases',
