@@ -28,8 +28,11 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
-        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
-            header('Location: /');
+        if($loggedInUser == null){
+            $body = $response->getBody();
+            $compiledTwig = $this->render('matte');
+            $body->write($compiledTwig);
+            return $response;
         }
 
         $judokaId = $args['id'];
@@ -88,6 +91,9 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
         $classDays['daySplit'] = str_split(sprintf("%05d", decbin($clase['days'])));
         $body = $response->getBody();
         $arguments = [
+            'title' => 'classadmin',
+            'userName' => 'Alberto',
+            'userId' => 0,
             'judoka' => $allJudokaInfo,
             'photoRoute' => $fileRoute,
             'classes' => $allClasses,
