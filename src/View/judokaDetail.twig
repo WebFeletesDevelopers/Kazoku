@@ -82,9 +82,20 @@
                         <div class="">
                             <label class="text-success">{{ "Seleccionar padre/madre/tutor" | trans}}</label>
                             <select class="custom-select" id="mod-parent">
-                                <option value=""  {% if judoka.parentId == null %} selected {% endif %}>{{ "Sin asignar" }}</option>
+                                <option value="0"  {% if judoka.parentId == null %} selected {% endif %}>{{ "Sin asignar" }}</option>
                                 {% for parents in allParents %}
                                 <option value="{{parents.id}}"  {% if judoka.parentId == parents.id %} selected {% endif %}>{{ parents.name }} {{ parents.surname }} {{ parents.secondSurname }} {% if judoka.parentId == parents.id %}(*){%endif %} </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <label class="text-success">{{ "Seleccionar usuario" | trans}}</label>
+                            <select class="custom-select"  id="userId" data-id="{{ judoka.userId }}">
+                                <option value=""  {% if judoka.userId == null %} selected {% endif %}>{{ "Sin asignar" | trans  }}</option>
+                                {% for newUser in allusers %}
+                                    <option value="{{newUser.id}}"  {% if judoka.userId == newUser.id %} selected {% endif %}>{{ newUser.name }} {{ newUser.surname }} {{ newUser.secondSurname }} {% if judoka.userId == newUser.id %}(*){%endif %} </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -99,9 +110,9 @@
                             <div class="card-header py-3">
                                 <p class="text-primary m-0 font-weight-bold">{{ "Datos" | trans}}
                                 {% if judoka.userId > 0 %}
-                                    - <small id="userId" data-id="{{ judoka.userId }}" class="text-success">{{ "Cuenta enlazada" | trans }}</small>
+                                    - <small  class="text-success">{{ "Cuenta enlazada" | trans }}</small>
                                 {% else %}
-                                    - <small id="userId" data-id="NaN" class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
+                                    - <small  class="text-danger">{{ "Cuenta no enlazada" | trans }}</small>
                                 {% endif %}
                                 </p>
                             </div>

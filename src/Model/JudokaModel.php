@@ -183,7 +183,8 @@ SQL;
             guardian_id = ?,
             belt_id = ?,
             address_id = ?,
-            class_id = ?      
+            class_id = ?,
+             user_id = ?
         WHERE id = ?
 SQL;
         $binds = [
@@ -201,6 +202,7 @@ SQL;
             $beltId,
             $addressId,
             $classid,
+            $userId,
             $judokaId,
         ];
 
