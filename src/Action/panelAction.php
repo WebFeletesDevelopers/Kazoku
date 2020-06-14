@@ -10,6 +10,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use WebFeletesDevelopers\Kazoku\Controller\NoticiaController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\NoticiaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 

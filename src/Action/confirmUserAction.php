@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\UserController;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\Exception\InvalidHashException;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;

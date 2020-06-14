@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Controller\CentroController;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**

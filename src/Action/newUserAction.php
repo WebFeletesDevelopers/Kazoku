@@ -5,6 +5,7 @@ namespace WebFeletesDevelopers\Kazoku\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**

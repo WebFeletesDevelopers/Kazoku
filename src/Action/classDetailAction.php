@@ -11,6 +11,7 @@ use WebFeletesDevelopers\Kazoku\Controller\UserControllerMin;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\Exception\QueryException;
 use WebFeletesDevelopers\Kazoku\Model\JudokaModel;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;

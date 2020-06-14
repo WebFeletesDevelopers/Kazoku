@@ -9,6 +9,7 @@ use WebFeletesDevelopers\Kazoku\Controller\ClaseController;
 use WebFeletesDevelopers\Kazoku\Model\CentroModel;
 use WebFeletesDevelopers\Kazoku\Model\ClaseModel;
 use WebFeletesDevelopers\Kazoku\Model\ConnectionHelper;
+use WebFeletesDevelopers\Kazoku\Model\Enum\Rank;
 use WebFeletesDevelopers\Kazoku\Model\UserModel;
 
 /**

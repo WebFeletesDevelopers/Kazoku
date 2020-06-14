@@ -37,7 +37,6 @@ class HomeAction extends BaseTwigAction implements ActionInterface
 
 
         $config = [
-            'title' => 'titulo',
             'news' => $news,
             'photoRoute' => $fileRoute,
             'action' => 'home',
