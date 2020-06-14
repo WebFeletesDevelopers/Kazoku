@@ -25,11 +25,8 @@ class usersAction extends BaseTwigAction implements ActionInterface
         $userModel = new UserModel($database);
         $loggedInUser = $this->validateUserSession($userModel);
         $fileRoute = parent::getProfilePic($loggedInUser);
-        if($loggedInUser == null){
-            $body = $response->getBody();
-            $compiledTwig = $this->render('matte');
-            $body->write($compiledTwig);
-            return $response;
+        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
         }
         $body = $response->getBody();
 

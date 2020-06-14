@@ -36,11 +36,8 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         }
         $fileRoute = parent::getProfilePic($loggedInUser);
 
-        if($loggedInUser == null){
-            $body = $response->getBody();
-            $compiledTwig = $this->render('matte');
-            $body->write($compiledTwig);
-            return $response;
+        if ($this->loggedUser && ! in_array($this->loggedUser->rank(), Rank::TRAINER_RANKS, true)) {
+            header('Location: /');
         }
 
 
@@ -69,8 +66,7 @@ class classDetailAction extends BaseTwigAction implements ActionInterface
         $days['daySplit'] = str_split(sprintf("%05d", decbin($classe['days'])));
         $arguments = [
             'title' => 'kazoku',
-            'userName' => 'Alberto',
-            'userId' => 0,
+
             'class' => $classe,
             'teachers' => $teachers,
             'photoRoute' => $fileRoute,
