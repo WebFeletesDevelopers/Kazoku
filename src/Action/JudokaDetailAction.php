@@ -91,6 +91,9 @@ class JudokaDetailAction extends BaseTwigAction implements ActionInterface
         $classDays['daySplit'] = str_split(sprintf("%05d", decbin($clase['days'])));
         $body = $response->getBody();
         $arguments = [
+            'title' => 'classadmin',
+            'userName' => 'Alberto',
+            'userId' => 0,
             'judoka' => $allJudokaInfo,
             'photoRoute' => $fileRoute,
             'classes' => $allClasses,

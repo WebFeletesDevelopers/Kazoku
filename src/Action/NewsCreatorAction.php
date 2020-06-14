@@ -39,7 +39,8 @@ class NewsCreatorAction extends BaseTwigAction implements ActionInterface
         }
         $arguments = [
             'title' => 'titulo',
-
+            'userName' => 'Alberto',
+            'userId' => 0,
             'photoRoute' => $fileRoute,
             'action' => 'news-creator'
         ];
