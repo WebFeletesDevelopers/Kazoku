@@ -42,7 +42,7 @@ En caso de necesitar purgar las imágenes con ejecutar el comando se reiniciará
 ```
 make daily-up 
 ```
-Todas las funciones se encuentran en el fichero <a href="/makefile">make</a>
+Todas las funciones se encuentran en el fichero <a href="https://github.com/WebFeletesDevelopers/Kazoku/blob/master/Makefile">make</a>
 ## Cambios en Typscript
 
 El código escrito en TypeScript ha de ser compilado antes de que se ejecute,por lo que emplearemos el siguiente comando cada vez que incluyamos un cambio
